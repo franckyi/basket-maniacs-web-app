@@ -1,4 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import url('sass/_colors.scss');
-@import url('sass/_typography.scss')
+@import 'sass/_colors.scss';
+@import 'sass/_typography.scss';
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: $font-primary;
+    background: $light-grey;
+}
+
+nav {
+    background: $brown;
+    color: white;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1em 20px;
+    background: $brown;
+    border-bottom-right-radius: 25%;
+    border-bottom-left-radius: 25%;
+
+    .logo {
+        margin-bottom: 2em;
+        height: 54px;
+    }
+}
+
+.box--orange {
+    padding: 25px;
+    margin: -2em 20px 0 20px;
+    background: linear-gradient(45deg, $orange 0%, $yellow 100%);
+    border-radius: 25px;
+    text-align: center;
+}
