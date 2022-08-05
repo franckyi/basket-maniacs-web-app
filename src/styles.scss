@@ -2,16 +2,15 @@
 
 @import 'sass/_colors.scss';
 @import 'sass/_typography.scss';
+@import 'sass/_buttons.scss';
 
 *, *::before, *::after {
     margin: 0;
     padding: 0;
 }
 
-body {
-    font-family: $font-primary;
-    background: $light-grey;
-}
+html, body { height: 100%; }
+body { margin: 0; font-family: $font-primary, Roboto, "Helvetica Neue", sans-serif; background: $light-grey; }
 
 nav {
     background: $brown;
@@ -39,4 +38,14 @@ header {
     background: linear-gradient(45deg, $orange 0%, $yellow 100%);
     border-radius: 25px;
     text-align: center;
+    box-shadow: 2px 3px 8px rgba(0,0,0,.1);
+}
+
+.box--white {
+    background: white;
+    border: 1px solid $orange;
+    padding: 10px;
+    border-radius: 25px;
+    margin: 20px;
+    box-shadow: 2px 3px 9px rgba(0,0,0,.2);
 }
