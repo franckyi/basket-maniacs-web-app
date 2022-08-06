@@ -10,7 +10,7 @@
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: $font-primary, Roboto, "Helvetica Neue", sans-serif; background: $light-grey; }
+body { font-family: $font-primary, Roboto, "Helvetica Neue", sans-serif; background: $light-grey; }
 
 nav {
     background: $brown;
@@ -48,4 +48,9 @@ header {
     border-radius: 25px;
     margin: 20px;
     box-shadow: 2px 3px 9px rgba(0,0,0,.2);
+}
+
+// todo: correct deeppurple-amber.css
+.mat-typography p {
+    margin: 20px;
 }
