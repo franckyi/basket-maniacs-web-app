@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PlayerOfTheDayComponent } from './player-of-the-day.component';
+import { PlayerOfDayComponent } from './player-of-day.component';
 
-describe('PlayerOfTheDayComponent', () => {
-  let component: PlayerOfTheDayComponent;
-  let fixture: ComponentFixture<PlayerOfTheDayComponent>;
+describe('PlayerOfDayComponent', () => {
+  let component: PlayerOfDayComponent;
+  let fixture: ComponentFixture<PlayerOfDayComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PlayerOfTheDayComponent ]
+      declarations: [ PlayerOfDayComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PlayerOfTheDayComponent);
+    fixture = TestBed.createComponent(PlayerOfDayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

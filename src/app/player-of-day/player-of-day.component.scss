@@ -1,0 +1,37 @@
+@import '../../sass/_colors.scss';
+@import '../../sass/_typography.scss';
+
+.player-of-day {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 3em;
+    &::before {
+        content: 'Player of the day';
+        position: relative;
+        bottom: 50px;
+        left: 20px;
+        border-bottom: 30px solid $orange;
+        border-left: 0px solid transparent;
+        border-right: 55px solid transparent;
+        height: 10px;
+        width: 125px;
+        border-radius: 5px;
+    }
+    .infos {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 1em auto;
+        width: 60%;
+        & span {
+            font-weight: 700;
+        }
+    }
+    .player-infos {
+        list-style: none;
+    }
+    .team-infos {
+        list-style: none;
+    }
+}
