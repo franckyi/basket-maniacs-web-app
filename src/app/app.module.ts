@@ -7,13 +7,15 @@ import { PlayerOfTheDayComponent } from './player-of-the-day/player-of-the-day.c
 import { HeaderHomeComponent } from './header-home/header-home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LatestResultsComponent } from './latest-results/latest-results.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayerOfTheDayComponent,
     HeaderHomeComponent,
-    LatestResultsComponent
+    LatestResultsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
