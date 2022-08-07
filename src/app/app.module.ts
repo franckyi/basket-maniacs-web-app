@@ -8,6 +8,11 @@ import { LatestResultsComponent } from './components/latest-results/latest-resul
 import { HomeComponent } from './views/home/home.component';
 import { PlayerOfDayComponent } from './components/player-of-day/player-of-day.component';
 import { HeaderHomeComponent } from './components/header-home/header-home.component';
+import { AllTeamsComponent } from './views/all-teams/all-teams.component';
+import { MatchComponent } from './views/match/match.component';
+import { NewsComponent } from './views/news/news.component';
+import { AllMatchResultsComponent } from './views/all-match-results/all-match-results.component';
+import { SearchComponent } from './views/search/search.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +21,11 @@ import { HeaderHomeComponent } from './components/header-home/header-home.compon
     HomeComponent,
     PlayerOfDayComponent,
     HeaderHomeComponent,
+    AllTeamsComponent,
+    MatchComponent,
+    NewsComponent,
+    AllMatchResultsComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
