@@ -5,7 +5,7 @@ import { HomeComponent } from './views/home/home.component';
 import { SearchComponent } from './views/search/search.component';
 import { NewsComponent } from './views/news/news.component';
 import { TeamsComponent } from './views/teams/teams.component';
-import { GameComponent } from './components/game/game.component';
+import { GameComponent } from './views/game/game.component';
 
 const routes: Routes = [
   {

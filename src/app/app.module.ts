@@ -13,7 +13,12 @@ import { TeamsComponent } from './views/teams/teams.component';
 import { NewsComponent } from './views/news/news.component';
 import { SearchComponent } from './views/search/search.component';
 import { GameScoresComponent } from './views/game-scores/game-scores.component';
-import { GameComponent } from './components/game/game.component';
+import { GameComponent } from './views/game/game.component';
+import { HeaderSearchComponent } from './components/header-search/header-search.component';
+import { HeaderTeamsComponent } from './components/header-teams/header-teams.component';
+import { HeaderGameScoresComponent } from './components/header-game-scores/header-game-scores.component';
+import { HeaderGameComponent } from './components/header-game/header-game.component';
+import { HeaderNewsComponent } from './components/header-news/header-news.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +32,11 @@ import { GameComponent } from './components/game/game.component';
     SearchComponent,
     GameScoresComponent,
     GameComponent,
+    HeaderSearchComponent,
+    HeaderTeamsComponent,
+    HeaderGameScoresComponent,
+    HeaderGameComponent,
+    HeaderNewsComponent,
   ],
   imports: [
     BrowserModule,
