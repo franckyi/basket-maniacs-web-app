@@ -1,5 +1,6 @@
 @import '../../../sass/colors';
-// @import '../../../sass/_buttons';
+@import '../../../sass/buttons';
+@import '../../../sass/typography';
 
 .header-search {
     min-height: 60px;
@@ -30,7 +31,7 @@
 .search-form {
     display: flex;
     flex-direction: column;
-    margin: 20px;
+    margin: 2em 20px;
     gap: 10px;
     input {
         padding: 15px 25px;
