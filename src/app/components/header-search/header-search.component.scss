@@ -1,3 +1,5 @@
+@import '../../../sass/colors';
+
 .header-search {
     min-height: 60px;
 }
@@ -5,4 +7,21 @@
 .search-nav {
     margin-top: -4em;
     height: 120px;
+    text-align: center;
+    &__filter {
+        display: flex;
+        justify-content: space-around;
+    }
+    &__category {
+        display: flex;
+        flex-direction: column;
+        color: $color-text--light;
+
+        .mat-icon {
+            font-size: 38px;
+            width: auto;
+            height: auto;
+            color: $color-text--light;
+        }
+    }
 }
