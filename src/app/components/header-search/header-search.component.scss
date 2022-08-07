@@ -17,13 +17,13 @@
     &__category {
         display: flex;
         flex-direction: column;
-        color: $color-text--light;
+        // color: $color-text--light;
 
         .mat-icon {
             font-size: 38px;
             width: auto;
             height: auto;
-            color: $color-text--light;
+            // color: $color-text--light;
         }
     }
 }

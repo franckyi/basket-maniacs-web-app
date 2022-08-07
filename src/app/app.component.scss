@@ -1,5 +1,9 @@
 @import '../sass/colors';
 
+// .mat-app-background {
+//     background: ;
+// }
+
 .main-nav {
     position: sticky;
     bottom: 0;
@@ -9,8 +13,6 @@
     gap: 25px;
     height: 80px;
     width: 100vw;
-    background: $brown;
-    color: white;
     .mat-icon {
         font-size: 38px;
         height: auto;

@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-
 @import 'sass/_colors.scss';
 @import 'sass/_typography.scss';
 @import 'sass/_buttons.scss';
+@import '@angular/material/prebuilt-themes/purple-green.css';
 
 *, *::before, *::after {
     margin: 0;
@@ -17,7 +17,7 @@ header {
     justify-content: center;
     flex-direction: column;
     padding: 1em 20px;
-    background: $brown;
+    // background: $brown;
     border-bottom-right-radius: 25%;
     border-bottom-left-radius: 25%;
 
