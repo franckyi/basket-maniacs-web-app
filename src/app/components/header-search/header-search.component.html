@@ -1,6 +1,31 @@
-<header>
-    <img class="logo" src="../../assets/img/logo.svg" alt="NBA app logo">
+<header class="header-search">
 </header>
-<p class="box--orange">
-    Check latest NBA game scores,  about matches, teams and players.
-</p>
+<nav class="box--white search-nav">
+    <h2>Search by category</h2>
+    <div class="filter">
+        <div class="by-player">
+            <a [routerLink] = "['']" >
+                <mat-icon aria-hidden="false" aria-label="Go to Home" fontIcon="home"></mat-icon>
+            </a>
+            <span class="label"></span>
+        </div>
+        <div class="by-team">
+            <a [routerLink] = "['']" >
+                <mat-icon aria-hidden="false" aria-label="Go to Home" fontIcon="home"></mat-icon>
+            </a>
+            <span class="label"></span>
+        </div>
+        <div class="by-game">
+            <a [routerLink] = "['']" >
+                <mat-icon aria-hidden="false" aria-label="Go to Home" fontIcon="home"></mat-icon>
+            </a>
+            <span class="label"></span>
+        </div>
+        <div class="by-news">
+            <a [routerLink] = "['']" >
+                <mat-icon aria-hidden="false" aria-label="Go to Home" fontIcon="home"></mat-icon>
+            </a>
+            <span class="label"></span>
+        </div>
+    </div>
+</nav>
