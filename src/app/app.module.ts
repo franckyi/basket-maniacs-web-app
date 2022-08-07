@@ -15,7 +15,7 @@ import { HeaderHomeComponent } from './header-home/header-home.component';
     LatestResultsComponent,
     HomeComponent,
     PlayerOfDayComponent,
-    HeaderHomeComponent
+    HeaderHomeComponent,
   ],
   imports: [
     BrowserModule,
