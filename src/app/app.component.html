@@ -1,23 +1,21 @@
-<body class="mat-app-background">
-    <router-outlet></router-outlet>
-    <nav class="main-nav">
-        <a [routerLink] = "['']" >
-            <mat-icon aria-hidden="false" aria-label="Go to Home" fontIcon="home"></mat-icon>
-        </a>
-        <a [routerLink]= "['/search']" >
-            <mat-icon aria-hidden="false" aria-label="Go to Search page" fontIcon="search"></mat-icon>
-        </a>
-        <a [routerLink]= "['/teams']" >
-            <mat-icon aria-hidden="false" aria-label="Go to Teams page" fontIcon="groups"></mat-icon>
-        </a>
-        <a [routerLink]= "['/game-scores']" >
-            <mat-icon aria-hidden="false" aria-label="Go to Scoreboard" fontIcon="ballot"></mat-icon>
-        </a>
-        <a [routerLink]= "['/game']" >
-            <mat-icon aria-hidden="false" aria-label="Go to Games page" fontIcon="sports_basketball"></mat-icon>
-        </a>
-        <a [routerLink]="['/news']" >
-            <mat-icon aria-hidden="false" aria-label="Go to News page" fontIcon="newspaper"></mat-icon>
-        </a>
-    </nav>
-</body>
+<router-outlet></router-outlet>
+<nav class="main-nav">
+    <a [routerLink] = "['']" >
+        <mat-icon aria-hidden="false" aria-label="Go to Home" fontIcon="home"></mat-icon>
+    </a>
+    <a [routerLink]= "['/search']" >
+        <mat-icon aria-hidden="false" aria-label="Go to Search page" fontIcon="search"></mat-icon>
+    </a>
+    <a [routerLink]= "['/teams']" >
+        <mat-icon aria-hidden="false" aria-label="Go to Teams page" fontIcon="groups"></mat-icon>
+    </a>
+    <a [routerLink]= "['/game-scores']" >
+        <mat-icon aria-hidden="false" aria-label="Go to Scoreboard" fontIcon="ballot"></mat-icon>
+    </a>
+    <a [routerLink]= "['/game']" >
+        <mat-icon aria-hidden="false" aria-label="Go to Games page" fontIcon="sports_basketball"></mat-icon>
+    </a>
+    <a [routerLink]="['/news']" >
+        <mat-icon aria-hidden="false" aria-label="Go to News page" fontIcon="newspaper"></mat-icon>
+    </a>
+</nav>

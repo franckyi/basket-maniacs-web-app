@@ -17,7 +17,7 @@ header {
     justify-content: center;
     flex-direction: column;
     padding: 1em 20px;
-    // background: $brown;
+    background: #9C27B0;
     border-bottom-right-radius: 25%;
     border-bottom-left-radius: 25%;
 
@@ -25,6 +25,11 @@ header {
         margin-bottom: 2em;
         height: 54px;
     }
+}
+
+.mat-card:not([class*=mat-elevation-z]) {
+    margin: -2em 20px 1em 20px;
+    border-radius: 10px;
 }
 
 .label-text {
