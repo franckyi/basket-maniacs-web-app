@@ -1,7 +1,11 @@
 @import '../../../sass/_colors.scss';
 @import '../../../sass/_typography.scss';
+@import '../../../styles.scss';
 
 .latest-results {
+    &::before {
+        @extend .label-bg;
+    }
     .results-list {
         display: flex;
         flex-direction: column;

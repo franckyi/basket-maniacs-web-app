@@ -17,16 +17,45 @@ nav {
     color: white;
 }
 
+.label-text {
+    position: relative;
+    top: 37px;
+    left: 65px;
+    z-index: 2;
+}
+
+.label-bg {
+    content: '';
+    position: relative;
+    bottom: 50px;
+    left: 20px;
+    height: 10px;
+    width: 125px;
+    border-bottom: 30px solid $orange;
+    border-left: 0px solid transparent;
+    border-right: 55px solid transparent;
+    border-radius: 5px;
+}
+
+
 .box--white {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    margin: 20px;
+    margin-top: 3em;
     background: white;
     border: 1px solid $orange;
-    padding: 10px;
     border-radius: 25px;
-    margin: 20px;
     box-shadow: 2px 3px 9px rgba(0,0,0,.2);
 }
 
 // todo: correct deeppurple-amber.css
 .mat-typography p {
     margin: -2em 20px 0 20px;
+}
+
+@mixin nba-gradient {
+    background: linear-gradient(45deg, $orange 0%, $yellow 100%);
 }

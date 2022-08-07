@@ -1,29 +1,23 @@
 @import '../../../sass/_colors.scss';
 @import '../../../sass/_typography.scss';
-
-.label {
-    position: relative;
-    top: 37px;
-    left: 65px;
-    z-index: 2;
-}
+@import '../../../styles.scss';
 
 .player-of-day {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 3em;
     &::before {
-        content: '';
-        position: relative;
-        bottom: 50px;
-        left: 20px;
-        border-bottom: 30px solid $orange;
-        border-left: 0px solid transparent;
-        border-right: 55px solid transparent;
-        height: 10px;
-        width: 125px;
-        border-radius: 5px;
+        @extend .label-bg;
+    }
+    &__heading {
+        display: flex;
+        .mat-icon {
+            font-size: 68px;
+            height: auto;
+            width: auto;
+            border-radius: 50%;
+            border: 5px solid $orange;
+            padding: 10px;
+            @include nba-gradient;
+            color: darkgoldenrod;
+        }
     }
 
     .infos {

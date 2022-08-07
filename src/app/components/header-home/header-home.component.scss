@@ -1,5 +1,6 @@
 @import '../../../sass/_colors.scss';
 @import '../../../sass/_typography.scss';
+@import '../../../styles.scss';
 
 header {
     display: flex;
@@ -19,8 +20,8 @@ header {
 .box--orange {
     padding: 25px;
     margin: -2em 20px 0 20px;
-    background: linear-gradient(45deg, $orange 0%, $yellow 100%);
     border-radius: 25px;
     text-align: center;
     box-shadow: 2px 3px 8px rgba(0,0,0,.1);
+    @include nba-gradient;
 }
