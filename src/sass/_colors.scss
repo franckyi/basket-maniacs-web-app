@@ -5,3 +5,7 @@ $brown--light: #CA714D;
 $color-text: #333;
 $color-text--light: #828282;
 $light-grey: #fafafa;
+
+@mixin nba-gradient {
+    background: linear-gradient(45deg, $orange 0%, $yellow 100%);
+}

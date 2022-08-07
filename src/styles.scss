@@ -12,6 +12,21 @@
 html, body { height: 100%; }
 body { font-family: $font-primary, Roboto, "Helvetica Neue", sans-serif; background: $light-grey; }
 
+header {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1em 20px;
+    background: $brown;
+    border-bottom-right-radius: 25%;
+    border-bottom-left-radius: 25%;
+
+    .logo {
+        margin-bottom: 2em;
+        height: 54px;
+    }
+}
+
 nav {
     position: sticky;
     bottom: 0;
@@ -50,6 +65,14 @@ nav {
     border-radius: 5px;
 }
 
+.box--orange {
+    padding: 25px;
+    margin: -2em 20px 0 20px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 2px 3px 8px rgba(0,0,0,.1);
+    @include nba-gradient;
+}
 
 .box--white {
     display: flex;
@@ -67,8 +90,4 @@ nav {
 // todo: correct deeppurple-amber.css
 .mat-typography p {
     margin: -2em 20px 0 20px;
-}
-
-@mixin nba-gradient {
-    background: linear-gradient(45deg, $orange 0%, $yellow 100%);
 }
