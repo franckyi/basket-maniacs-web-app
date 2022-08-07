@@ -1,0 +1,17 @@
+@import '../sass/colors';
+
+nav {
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    background: $brown;
+    height: 90px;
+    width: 100vw;
+    .mat-icon {
+        font-size: 38px;
+        height: auto;
+        width: auto;
+    }
+}
