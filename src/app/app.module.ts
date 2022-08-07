@@ -9,11 +9,11 @@ import { LatestResultsComponent } from './components/latest-results/latest-resul
 import { PlayerOfDayComponent } from './components/player-of-day/player-of-day.component';
 import { HeaderHomeComponent } from './components/header-home/header-home.component';
 import { HomeComponent } from './views/home/home.component';
-import { AllTeamsComponent } from './views/all-teams/all-teams.component';
-import { MatchComponent } from './views/match/match.component';
+import { TeamsComponent } from './views/teams/teams.component';
 import { NewsComponent } from './views/news/news.component';
-import { AllMatchResultsComponent } from './views/all-match-results/all-match-results.component';
 import { SearchComponent } from './views/search/search.component';
+import { GameScoresComponent } from './views/game-scores/game-scores.component';
+import { GameComponent } from './components/game/game.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +22,11 @@ import { SearchComponent } from './views/search/search.component';
     HomeComponent,
     PlayerOfDayComponent,
     HeaderHomeComponent,
-    AllTeamsComponent,
-    MatchComponent,
+    TeamsComponent,
     NewsComponent,
-    AllMatchResultsComponent,
     SearchComponent,
+    GameScoresComponent,
+    GameComponent,
   ],
   imports: [
     BrowserModule,
