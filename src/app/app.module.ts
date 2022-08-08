@@ -19,6 +19,7 @@ import { HeaderTeamsComponent } from './components/header-teams/header-teams.com
 import { HeaderGameScoresComponent } from './components/header-game-scores/header-game-scores.component';
 import { HeaderGameComponent } from './components/header-game/header-game.component';
 import { HeaderNewsComponent } from './components/header-news/header-news.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { HeaderNewsComponent } from './components/header-news/header-news.compon
     HeaderGameScoresComponent,
     HeaderGameComponent,
     HeaderNewsComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

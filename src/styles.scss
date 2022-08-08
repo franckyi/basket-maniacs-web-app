@@ -12,7 +12,7 @@
 html, body { height: 100%; }
 body { font-family: $font-primary, Roboto, "Helvetica Neue", sans-serif; background: $light-grey; }
 
-header {
+.field-shape {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -20,11 +20,25 @@ header {
     background: #9C27B0;
     border-bottom-right-radius: 25%;
     border-bottom-left-radius: 25%;
+}
 
+header {
+    @extend .field-shape;
+    height: 60px;
+}
+
+footer {
+    @extend .field-shape;
+    margin-top: 2em;
+    transform: rotate(180deg);
     .logo {
-        margin-bottom: 2em;
-        height: 54px;
+        transform: rotate(180deg);
     }
+}
+
+.logo {
+    margin-bottom: 2em;
+    height: 54px;
 }
 
 .mat-card:not([class*=mat-elevation-z]) {

@@ -1,11 +1,49 @@
 <router-outlet></router-outlet>
+
+<app-footer></app-footer>
+
+<section>
+    <div class="example-button-row">
+      <div class="example-flex-container">
+        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+
+        <button mat-icon-button color="accent" aria-label="Example icon button with a menu icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <button mat-icon-button disabled aria-label="Example icon button with a open in new tab icon">
+          <mat-icon>open_in_new</mat-icon>
+        </button>
+      </div>
+    </div>
+  </section>
+
+
 <nav class="main-nav">
-    <a [routerLink] = "['']" >
-        <mat-icon aria-hidden="false" aria-label="Go to Home" fontIcon="home"></mat-icon>
-    </a>
-    <a [routerLink]= "['/search']" >
-        <mat-icon aria-hidden="false" aria-label="Go to Search page" fontIcon="search"></mat-icon>
-    </a>
+    <button [routerLink] = "['']" mat-icon-button color="accent" aria-label="Go to Home">
+        <mat-icon>home</mat-icon>
+    </button>
+    <button [routerLink]= "['/search']" mat-icon-button color="primary" aria-label="Go to search page">
+        <mat-icon>search</mat-icon>
+    </button>
+    <button [routerLink] = "['']" mat-icon-button color="primary" aria-label="Go to Home">
+        <mat-icon>home</mat-icon>
+    </button>
+    <button [routerLink] = "['']" mat-icon-button color="primary" aria-label="Go to Home">
+        <mat-icon>home</mat-icon>
+    </button>
+    <button [routerLink] = "['']" mat-icon-button color="primary" aria-label="Go to Home">
+        <mat-icon>home</mat-icon>
+    </button>
+    <button [routerLink] = "['']" mat-icon-button color="primary" aria-label="Go to Home">
+        <mat-icon>home</mat-icon>
+    </button>
+
+
     <a [routerLink]= "['/teams']" >
         <mat-icon aria-hidden="false" aria-label="Go to Teams page" fontIcon="groups"></mat-icon>
     </a>
