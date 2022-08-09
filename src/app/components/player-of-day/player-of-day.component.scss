@@ -3,37 +3,36 @@
 @import '../../../styles.scss';
 
 .player-of-day {
-    &::before {
-        @extend .label-bg;
-    }
     &__heading {
         display: flex;
+        flex-direction: column;
+        align-items: center;
         .mat-icon {
             font-size: 68px;
             height: auto;
             width: auto;
             border-radius: 50%;
-            // border: 5px solid $orange;
             padding: 10px;
-            @include nba-gradient;
-            // color: darkgoldenrod;
+        }
+        .mat-card-subtitle {
+            margin-bottom: 0;
         }
     }
-
-    .infos {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin: 1em auto;
-        width: 60%;
-        & span {
-            font-weight: 700;
+        .infos {
+            display: flex;
+            justify-content: space-between;
+            margin: 1em auto;
+            width: 90%;
+            color: $color-text--light;
+            & span {
+                font-weight: 700;
+                color: $color-text;
+            }
         }
-    }
-    .player-infos {
-        list-style: none;
-    }
-    .team-infos {
-        list-style: none;
-    }
+        .player-infos {
+            list-style: none;
+        }
+        .team-infos {
+            list-style: none;
+        }
 }

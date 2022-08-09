@@ -8,8 +8,10 @@
     padding: 0;
 }
 
-html, body { height: 100%; }
-body { font-family: $font-primary, Roboto, "Helvetica Neue", sans-serif; background: $light-grey; }
+html, body { 
+    height: 100%;
+    font-family: $font-primary, Roboto, "Helvetica Neue", sans-serif; background: $light-grey;
+}
 
 .field-shape {
     display: flex;
@@ -41,7 +43,7 @@ footer {
 }
 
 .mat-card:not([class*=mat-elevation-z]) {
-    margin: -2em 20px 1em 20px;
+    margin: -2em 20px 2em 20px;
     border-radius: 10px;
 }
 
@@ -65,24 +67,11 @@ footer {
     border-radius: 5px;
 }
 
-.box--orange {
-    padding: 25px;
-    margin: -2em 20px 0 20px;
+.card--rounded {
     border-radius: 25px;
-    text-align: center;
-    box-shadow: 2px 3px 8px rgba(0,0,0,.1);
-    @include nba-gradient;
-}
-
-.box--white {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 10px;
-    margin: 20px;
-    margin-top: 3em;
-    background: white;
-    border: 1px solid $orange;
-    border-radius: 25px;
-    box-shadow: 2px 3px 9px rgba(0,0,0,.2);
+    .mat-card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }

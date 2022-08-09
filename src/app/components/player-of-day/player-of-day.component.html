@@ -1,21 +1,23 @@
-<span class="label-text">Player of the day</span>
-<article class="box--white player-of-day">
-    <div class="player-of-day__heading">
-        <mat-icon aria-hidden="false" aria-label="Go to Home icon" fontIcon="hotel_class"></mat-icon>
-        <h2 class="heading">playerFullName</h2>
-    </div>
-    
-    <div class="infos">
-        <ul class="player-infos">
-            <li>First name: <span>LeBron</span></li>
-            <li>Last name: <span>James</span></li>
-            <li>Position: <span>F</span></li>
-        </ul>
-        <ul class="team-infos">
-            <li>Team: <span>Los Angeles Lakers</span></li>
-            <li>City: <span>Los Angeles</span></li>
-            <li>Division: <span>Pacific</span></li>
-        </ul>
-    </div>
-    <button class="btn-primary">Go to team page</button>
-</article>
+<h1 class="section-heading">Player of the day</h1>
+<mat-card class="card--rounded player-of-day">
+    <mat-card-content>
+        <div class="player-of-day__heading">
+            <mat-icon aria-hidden="false" aria-label="Best player icon" fontIcon="hotel_class"color="primary"></mat-icon>
+            <mat-card-title class="heading">LeBron James</mat-card-title>
+            <mat-card-subtitle>Player of the day</mat-card-subtitle>
+        </div>
+        <div class="infos">
+            <ul class="player-infos">
+                <li>First name: <span>LeBron</span></li>
+                <li>Last name: <span>James</span></li>
+                <li>Position: <span>F</span></li>
+            </ul>
+            <ul class="team-infos">
+                <li>Team: <span>Los Angeles Lakers</span></li>
+                <li>City: <span>Los Angeles</span></li>
+                <li>Division: <span>Pacific</span></li>
+            </ul>
+        </div>
+        <button mat-flat-button color="primary">Go to team page</button>
+    </mat-card-content>
+</mat-card>

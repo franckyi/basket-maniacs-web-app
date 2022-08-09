@@ -43,3 +43,12 @@ $font-primary: 'Poppins', sans-serif;
 .heading {
   margin: 1em auto;
 }
+
+.section-heading {
+  margin: 2em 20px;
+  text-transform: uppercase;
+  font-family: $font-primary;
+  font-size: 14px;
+  font-weight: 700;
+  color: $color-text--light;
+}

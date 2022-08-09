@@ -1,15 +1,6 @@
 @import '../sass/typography';
 
-.btn-primary {
-    padding: 1em 40px;
-    margin: 1em auto;
-    background: $brown;
-    color: white;
-    border-radius: 30px;
-    outline: none;
-    border: none;
-    font-size: 16px;
-    letter-spacing: 1.5px;
-    font-family: $font-primary;
-    font-weight: 700;
+.mat-button-base {
+    padding-left: 15px;
+    padding-right: 15px;
 }
