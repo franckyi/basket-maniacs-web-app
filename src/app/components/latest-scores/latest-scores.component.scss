@@ -3,12 +3,13 @@
 @import '../../../styles.scss';
 
 .latest-scores {
-    display: flex;
-    flex-direction: column;
+    // display: flex;
+    // flex-direction: column;
     .scores-list {
         display: flex;
         flex-direction: column;
         list-style: none;
+        width: 100%;
         .scores-list-item {
             width: 96%;
             margin: 0 auto;
@@ -35,5 +36,10 @@
             padding-top: 15px;
             color: $color-text--light;
         }
+    }
+    .mat-card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
