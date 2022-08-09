@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import {MatDividerModule} from '@angular/material/divider';
 // import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
@@ -12,6 +13,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatIconModule,
     MatCardModule,
     MatButtonModule,
+    MatDividerModule,
     // MatTableModule,
   ]
 })

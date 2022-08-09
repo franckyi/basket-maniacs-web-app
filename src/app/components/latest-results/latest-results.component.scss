@@ -3,14 +3,12 @@
 @import '../../../styles.scss';
 
 .latest-results {
-    &::before {
-        @extend .label-bg;
-    }
+    display: flex;
+    flex-direction: column;
     .results-list {
         display: flex;
         flex-direction: column;
         list-style: none;
-
         .results-item {
             width: 96%;
             margin: 0 auto;
@@ -20,23 +18,21 @@
                 border-bottom: none;
             }
         }
-
-        .heading {
+        .main-infos {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             margin-bottom: 0;
-
             .teams {
                 margin-left: 5px;
             }
         }
 
-        .infos {
+        .other-infos {
             display: flex;
             justify-content: space-between;
             padding-top: 15px;
             color: $color-text--light;
-
             .result {
                 font-weight: 700;
                 color: $color-text;

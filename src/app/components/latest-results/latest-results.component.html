@@ -1,21 +1,25 @@
-<article class="box--white latest-results">
-    <ul class="results-list">
-        
-        
-        
-        <li class="results-item">
-            <div class="heading">
-                <img src="../../assets/img/ball.svg" height="28" alt="ball icon">
-                <span class="teams">Home team VS Visitors team</span>
-            </div>
-            <div class="infos">
-                <span class="score">score</span>
-                <div class="date-city-wrap">
-                    <span class="date">Date | </span>
-                    <span class="city">City</span>
+<h1 class="section-heading">Latest scores</h1>
+<mat-card class="card--rounded latest-results">
+    <mat-card-content>
+        <ul class="results-list">
+            <li class="results-item">
+                <div class="main-infos">
+                    <div class="teams-wrap">
+                        <img src="../../assets/img/ball.svg" height="28" alt="ball icon">
+                        <span class="teams">Home team VS Visitors team</span>
+                    </div>
+                    <span class="score">score</span>
                 </div>
-            </div>
-        </li>
-    </ul>
-    <button [routerLink]="['/game-scores']" class="btn-primary">All game scores</button>
-</article>
+                <div class="other-infos">
+                    <div class="date-city-wrap">
+                        <span class="date">Date | </span>
+                        <span class="city">City</span>
+                    </div>
+                </div>
+            </li>
+            <mat-divider></mat-divider>
+        </ul>    
+    </mat-card-content>
+</mat-card>
+
+<button [routerLink]="['/game-scores']" mat-flat-button color="primary">All game scores</button>

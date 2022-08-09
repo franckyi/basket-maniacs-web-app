@@ -3,6 +3,11 @@
 @import '../../../styles.scss';
 
 .player-of-day {
+    .mat-card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     &__heading {
         display: flex;
         flex-direction: column;
