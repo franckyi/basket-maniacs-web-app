@@ -31,9 +31,12 @@ header {
 footer {
     @extend .field-shape;
     margin-top: 2em;
+    margin-bottom: 200px;
+    height: 200px;
     transform: rotate(180deg);
     .logo {
         transform: rotate(180deg);
+        margin-bottom: -5em;
     }
 }
 
@@ -44,7 +47,6 @@ footer {
 
 .mat-card:not([class*=mat-elevation-z]) {
     margin: -2em 20px 2em 20px;
-    border-radius: 10px;
 }
 
 .card--rounded {
