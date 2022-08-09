@@ -6,10 +6,12 @@ import {Game} from "../../API/Game";
   templateUrl: './latest-score-item.component.html',
   styleUrls: ['./latest-score-item.component.scss']
 })
-export class LatestScoreItemComponent implements OnInit {
+export class latestScoresItems implements OnInit {
 
-  constructor() { }
+  @Input() score?: Game;
 
+  constructor(private api: ApiService) { }
+  this.latestScoresItems = api.getGames();
   ngOnInit(): void {
   }
 
