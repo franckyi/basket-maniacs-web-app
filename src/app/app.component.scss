@@ -1,18 +1,17 @@
 @import '../sass/colors';
 
 .main-nav {
-    position: sticky;
-    bottom: 0;
     display: flex;
-    align-items: center;
     justify-content: space-evenly;
-    height: 80px;
+    position: fixed;
+    padding: 13px 0;
+    bottom: 0;
+    height: 70px;
     width: 100vw;
-    padding: 5px;
-    background: $light-grey;
+    background: white;
     box-shadow: -1px -1px 10px rgba(0,0,0,.2); 
     .mat-icon-button {
-        line-height: 30px;
+        line-height: 20px;
     }
     .mat-button-wrapper {
         display: flex;
