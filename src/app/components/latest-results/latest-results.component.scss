@@ -5,11 +5,11 @@
 .latest-results {
     display: flex;
     flex-direction: column;
-    .results-list {
+    .scores-list {
         display: flex;
         flex-direction: column;
         list-style: none;
-        .results-item {
+        .scores-list-item {
             width: 96%;
             margin: 0 auto;
             padding-bottom: 15px;
