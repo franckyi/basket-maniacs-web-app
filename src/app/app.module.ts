@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LatestScoresComponent } from './components/latest-scores/latest-scores.component';
+import { LatestScoreItemComponent } from './components/latest-score-item/latest-score-item.component';
 import { PlayerOfDayComponent } from './components/player-of-day/player-of-day.component';
 import { HeaderHomeComponent } from './components/header-home/header-home.component';
 import { HomeComponent } from './views/home/home.component';
@@ -20,13 +21,13 @@ import { HeaderGameScoresComponent } from './components/header-game-scores/heade
 import { HeaderGameComponent } from './components/header-game/header-game.component';
 import { HeaderNewsComponent } from './components/header-news/header-news.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { LatestScoreItemComponent } from './components/latest-score-item/latest-score-item.component';
 import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
     AppComponent,
     LatestScoresComponent,
+    LatestScoreItemComponent,
     HomeComponent,
     PlayerOfDayComponent,
     HeaderHomeComponent,
@@ -41,7 +42,6 @@ import {HttpClientModule} from "@angular/common/http";
     HeaderGameComponent,
     HeaderNewsComponent,
     FooterComponent,
-    LatestScoreItemComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,9 @@ export class LatestScoresComponent implements OnInit {
 
   latestScoresItems: Observable<GamesResponse>;
 
-  constructor() { }
+  constructor(private api: ApiService) {
+    this.latestScoresItems = api.getGames();
+  }
 
   ngOnInit(): void {
   }
