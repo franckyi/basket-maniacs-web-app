@@ -2,22 +2,7 @@
 <mat-card class="card--rounded latest-scores">
     <mat-card-content>
         <ul class="scores-list">
-            <li class="scores-list-item">
-                <div class="main-infos">
-                    <div class="teams-wrap">
-                        <img src="../../assets/img/ball.svg" height="28" alt="ball icon">
-                        <span class="teams">Home team VS Visitors team</span>
-                    </div>
-                    <span class="score">score</span>
-                </div>
-                <div class="other-infos">
-                    <div class="date-city-wrap">
-                        <span class="date">Date | </span>
-                        <span class="city">City</span>
-                    </div>
-                </div>
-            </li>
-            <mat-divider></mat-divider>
+            <app-latest-score-item *ngFor="let score of (latestScoreItems | async)?.data" [score]="score" ></app-latest-score-item>
         </ul>    
         <button [routerLink]="['/game-scores']" mat-flat-button color="primary">All game scores</button>
     </mat-card-content>

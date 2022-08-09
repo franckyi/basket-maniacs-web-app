@@ -20,6 +20,7 @@ import { HeaderGameScoresComponent } from './components/header-game-scores/heade
 import { HeaderGameComponent } from './components/header-game/header-game.component';
 import { HeaderNewsComponent } from './components/header-news/header-news.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LatestScoreItemComponent } from './components/latest-score-item/latest-score-item.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { FooterComponent } from './components/footer/footer.component';
     HeaderGameComponent,
     HeaderNewsComponent,
     FooterComponent,
+    LatestScoreItemComponent,
   ],
   imports: [
     BrowserModule,
