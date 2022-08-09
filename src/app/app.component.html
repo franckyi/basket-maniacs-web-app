@@ -2,58 +2,29 @@
 
 <app-footer></app-footer>
 
-<section>
-    <div class="example-button-row">
-      <div class="example-flex-container">
-        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-
-        <button mat-icon-button color="accent" aria-label="Example icon button with a menu icon">
-          <mat-icon>menu</mat-icon>
-        </button>
-        <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
-          <mat-icon>favorite</mat-icon>
-        </button>
-        <button mat-icon-button disabled aria-label="Example icon button with a open in new tab icon">
-          <mat-icon>open_in_new</mat-icon>
-        </button>
-      </div>
-    </div>
-  </section>
-
-
 <nav class="main-nav">
     <button [routerLink] = "['']" mat-icon-button color="accent" aria-label="Go to Home">
         <mat-icon>home</mat-icon>
+        <span class="main-nav__label">Home</span>
     </button>
     <button [routerLink]= "['/search']" mat-icon-button color="primary" aria-label="Go to search page">
         <mat-icon>search</mat-icon>
+        <span class="main-nav__label">Search</span>
     </button>
-    <button [routerLink] = "['']" mat-icon-button color="primary" aria-label="Go to Home">
-        <mat-icon>home</mat-icon>
+    <button [routerLink] = "['/teams']" mat-icon-button color="primary" aria-label="Go to Teams page">
+        <mat-icon>groups</mat-icon>
+        <span class="main-nav__label">Teams</span>
     </button>
-    <button [routerLink] = "['']" mat-icon-button color="primary" aria-label="Go to Home">
-        <mat-icon>home</mat-icon>
+    <button [routerLink] = "['/game-scores']" mat-icon-button color="primary" aria-label="Go to Scoreboard">
+        <mat-icon>ballot</mat-icon>
+        <span class="main-nav__label">Scores</span>
+    </button>    
+    <button [routerLink] = "['/game']" mat-icon-button color="primary" aria-label="Go to Games page">
+        <mat-icon>sports_basketball</mat-icon>
+        <span class="main-nav__label">Game</span>
+    </button>    
+    <button [routerLink] = "['/news']" mat-icon-button color="primary" aria-label="Go to News page">
+        <mat-icon>newspaper</mat-icon>
+        <span class="main-nav__label">News</span>
     </button>
-    <button [routerLink] = "['']" mat-icon-button color="primary" aria-label="Go to Home">
-        <mat-icon>home</mat-icon>
-    </button>
-    <button [routerLink] = "['']" mat-icon-button color="primary" aria-label="Go to Home">
-        <mat-icon>home</mat-icon>
-    </button>
-
-
-    <a [routerLink]= "['/teams']" >
-        <mat-icon aria-hidden="false" aria-label="Go to Teams page" fontIcon="groups"></mat-icon>
-    </a>
-    <a [routerLink]= "['/game-scores']" >
-        <mat-icon aria-hidden="false" aria-label="Go to Scoreboard" fontIcon="ballot"></mat-icon>
-    </a>
-    <a [routerLink]= "['/game']" >
-        <mat-icon aria-hidden="false" aria-label="Go to Games page" fontIcon="sports_basketball"></mat-icon>
-    </a>
-    <a [routerLink]="['/news']" >
-        <mat-icon aria-hidden="false" aria-label="Go to News page" fontIcon="newspaper"></mat-icon>
-    </a>
 </nav>
