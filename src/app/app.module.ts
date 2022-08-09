@@ -5,7 +5,7 @@ import {MaterialModule} from "./material/material.module";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LatestResultsComponent } from './components/latest-results/latest-results.component';
+import { LatestScoresComponent } from './components/latest-scores/latest-scores.component';
 import { PlayerOfDayComponent } from './components/player-of-day/player-of-day.component';
 import { HeaderHomeComponent } from './components/header-home/header-home.component';
 import { HomeComponent } from './views/home/home.component';
@@ -24,7 +24,7 @@ import { FooterComponent } from './components/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LatestResultsComponent,
+    LatestScoresComponent,
     HomeComponent,
     PlayerOfDayComponent,
     HeaderHomeComponent,

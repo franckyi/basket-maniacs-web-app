@@ -2,7 +2,7 @@
 @import '../../../sass/_typography.scss';
 @import '../../../styles.scss';
 
-.latest-results {
+.latest-scores {
     display: flex;
     flex-direction: column;
     .scores-list {
@@ -14,9 +14,6 @@
             margin: 0 auto;
             padding-bottom: 15px;
             border-bottom: 1px solid #ddd;
-            &:last-child {
-                border-bottom: none;
-            }
         }
         .main-infos {
             display: flex;
