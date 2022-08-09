@@ -21,6 +21,7 @@ import { HeaderGameComponent } from './components/header-game/header-game.compon
 import { HeaderNewsComponent } from './components/header-news/header-news.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LatestScoreItemComponent } from './components/latest-score-item/latest-score-item.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { LatestScoreItemComponent } from './components/latest-score-item/latest-
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
