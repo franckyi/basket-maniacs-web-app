@@ -2,6 +2,13 @@
     <div class="main-infos">
         <div class="teams-wrap">
             <img src="../../assets/img/ball.svg" height="28" alt="ball icon">
+            
+            
+            <img src="../../assets/img/logos/{{ score?.home_team?.abbreviation }}.png" alt="">
+            <!-- albo  -->
+            <img [src]="'../../assets/img/logos/' + score?.home_team?.abbreviation + '.png'" alt="">
+            
+            
             <span class="teams">{{ score?.home_team?.abbreviation }} VS {{ score?.visitor_team?.abbreviation }}</span>
         </div>
         <span class="score">{{ score?.home_team_score }} : {{ score?.visitor_team_score }}</span>
