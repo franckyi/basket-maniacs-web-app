@@ -15,7 +15,7 @@
     </div>
     <div class="other-infos">
         <div class="date-city-wrap">
-            <span class="date">{{ score?.date }} | </span>
+            <span class="date">{{ score?.date | date: 'mediumDate'}} | </span>
             <span class="city">{{ score?.home_team?.city }}</span>
         </div>
     </div>
