@@ -1,7 +1,7 @@
-import { Players } from "./players";
+import { Player } from "./players";
 import { Meta } from "./meta";
 
 export interface PlayersResponse {
-    data: Players[]
+    data: Player[]
     meta: Meta;
 }
