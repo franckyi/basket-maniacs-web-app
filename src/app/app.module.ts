@@ -25,6 +25,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { AllScoresComponent } from './components/all-scores/all-scores.component';
 import { AllPlayersComponent } from './components/all-players/all-players.component';
 import { AllPlayersItemComponent } from './components/all-players-item/all-players-item.component';
+import { AllTeamsComponent } from './components/all-teams/all-teams.component';
+import { AllTeamsItemComponent } from './components/all-teams-item/all-teams-item.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { AllPlayersItemComponent } from './components/all-players-item/all-playe
     AllScoresComponent,
     AllPlayersComponent,
     AllPlayersItemComponent,
+    AllTeamsComponent,
+    AllTeamsItemComponent,
   ],
   imports: [
     BrowserModule,

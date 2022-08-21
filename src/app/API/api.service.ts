@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {GamesResponse} from './games-response';
+import {TeamsResponse} from './teams-response';
 import {PlayersResponse} from './players-response';
 import {map, shareReplay, switchMap} from "rxjs";
 
@@ -46,6 +47,14 @@ export class ApiService {
       }),
       shareReplay(),
     );
+  }
+
+  getTeams() {
+    return this.httpClient.get<TeamsResponse>('https://free-nba.p.rapidapi.com/teams', {
+      headers: {
+        'X-RapidAPI-Key': 'c9cbb3c9e7msh9aa61fe6c842aa3p16bcf1jsnb868d2788b63'
+      }
+    })
   }
 
   getPlayers() {
