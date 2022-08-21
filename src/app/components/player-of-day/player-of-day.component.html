@@ -3,18 +3,18 @@
     <mat-card-content>
         <div class="player-of-day__heading">
             <mat-icon aria-hidden="false" aria-label="Best player icon" fontIcon="hotel_class"color="primary"></mat-icon>
-            <mat-card-title class="heading">{{ stats?.player }}</mat-card-title>
+            <mat-card-title class="heading">{{ stats?.player?.first_name }} {{ stats?.player?.last_name }}</mat-card-title>
         </div>
         <div class="infos">
             <ul class="player-infos">
-                <li>First name: <span>LeBron</span></li>
-                <li>Last name: <span>James</span></li>
-                <li>Position: <span>F</span></li>
+                <li>First name: <span>{{ stats?.player?.first_name }}</span></li>
+                <li>Last name: <span>{{ stats?.player?.last_name }}</span></li>
+                <li>Position: <span>{{ stats?.player?.position }}</span></li>
             </ul>
             <ul class="team-infos">
-                <li>Team: <span>Los Angeles Lakers</span></li>
-                <li>City: <span>Los Angeles</span></li>
-                <li>Division: <span>Pacific</span></li>
+                <li>Team: <span>{{ stats?.team?.full_name }}</span></li>
+                <li>City: <span>{{ stats?.team?.city }}</span></li>
+                <li>Division: <span>{{ stats?.team?.division }}</span></li>
             </ul>
         </div>
         <button mat-flat-button color="primary">Go to team page</button>
