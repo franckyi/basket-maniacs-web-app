@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {Players} from "../../API/players";
+import {Player} from "../../API/players";
 
 @Component({
   selector: 'app-all-players-item',
@@ -8,7 +8,7 @@ import {Players} from "../../API/players";
 })
 export class AllPlayersItemComponent implements OnInit {
 
-  @Input() player?: Players;
+  @Input() player?: Player;
 
   constructor() { }
 
