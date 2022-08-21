@@ -1,7 +1,8 @@
 import { Game } from "./Game";
 import { Meta } from "./meta";
+import { GameStats } from "./stats";
 
 export interface StatsResponse {
-    data: Game[]
+    data: GameStats[]
     meta: Meta;
 }
