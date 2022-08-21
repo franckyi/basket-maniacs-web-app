@@ -23,6 +23,8 @@ import { HeaderNewsComponent } from './components/header-news/header-news.compon
 import { FooterComponent } from './components/footer/footer.component';
 import {HttpClientModule} from "@angular/common/http";
 import { AllScoresComponent } from './components/all-scores/all-scores.component';
+import { AllPlayersComponent } from './components/all-players/all-players.component';
+import { AllPlayersItemComponent } from './components/all-players-item/all-players-item.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { AllScoresComponent } from './components/all-scores/all-scores.component
     HeaderNewsComponent,
     FooterComponent,
     AllScoresComponent,
+    AllPlayersComponent,
+    AllPlayersItemComponent,
   ],
   imports: [
     BrowserModule,
