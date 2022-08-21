@@ -1,0 +1,32 @@
+.teams-wrap {
+    display: flex;
+    align-items: center;
+    gap: 5%;
+    margin: 1em auto;
+    &__ball{
+        margin-right: 10%;
+    }
+    &__team {
+        display: flex;
+        gap: 5%;
+        // flex-direction: column;
+    }
+    // &__team-logo {
+
+    // }
+    &__score {
+        // margin-left: 10%; 
+        // margin-right: 10%; 
+        font-size: 21px;
+        font-weight: 700;
+    }
+    &__vs {
+        margin-left: 10%; 
+        margin-right: 10%; 
+    }
+}
+
+.other-infos {
+    margin-bottom: 1em;
+    text-align: center;
+}
