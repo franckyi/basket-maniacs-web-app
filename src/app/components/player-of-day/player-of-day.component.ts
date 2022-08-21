@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {ApiService} from "../../API/api.service";
-import {Game} from "../../API/Game";
+import {GameStats} from "../../API/stats";
 import {Observable} from "rxjs";
-import {GamesResponse} from "../../API/games-response";
+import {StatsResponse} from "../../API/stats-response";
 
 @Component({
   selector: 'app-player-of-day',
@@ -10,10 +10,12 @@ import {GamesResponse} from "../../API/games-response";
   styleUrls: ['./player-of-day.component.scss']
 })
 export class PlayerOfDayComponent implements OnInit {
-  latestScoresItems: Observable<GamesResponse>;
+  @Input() stats?: GameStats;
+
+  SingleGameStats: Observable<StatsResponse>;
 
   constructor(private api: ApiService) {
-    this.latestScoresItems = api.getLastGame$();
+    this.SingleGameStats = api.getGameStats();
    }
 
   ngOnInit(): void {

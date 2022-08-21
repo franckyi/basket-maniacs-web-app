@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {GamesResponse} from './games-response';
 import {TeamsResponse} from './teams-response';
 import {PlayersResponse} from './players-response';
+import {StatsResponse} from './stats-response';
 import {map, shareReplay, switchMap} from "rxjs";
 
 
@@ -83,7 +84,7 @@ export class ApiService {
       }
     })
   }
-
+  
   getPlayers() {
     return this.httpClient.get<PlayersResponse>('https://free-nba.p.rapidapi.com/players', {
       headers: {
@@ -91,5 +92,14 @@ export class ApiService {
       }
     })
   }
+
+  getGameStats() {
+    return this.httpClient.get<StatsResponse>('https://free-nba.p.rapidapi.com/stats', {
+      headers: {
+        'X-RapidAPI-Key': 'c9cbb3c9e7msh9aa61fe6c842aa3p16bcf1jsnb868d2788b63'
+      }
+    })
+  }
+
 
 }

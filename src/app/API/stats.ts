@@ -2,7 +2,7 @@ import { Game } from "./Game";
 import { Team } from "./Team";
 import { Player } from "./players";
 
-export interface Stats {
+export interface GameStats {
     "id": number;
     "ast": number;
     "blk": number;
