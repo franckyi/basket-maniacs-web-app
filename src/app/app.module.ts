@@ -22,6 +22,7 @@ import { HeaderGameComponent } from './components/header-game/header-game.compon
 import { HeaderNewsComponent } from './components/header-news/header-news.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {HttpClientModule} from "@angular/common/http";
+import { AllScoresComponent } from './components/all-scores/all-scores.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {HttpClientModule} from "@angular/common/http";
     HeaderGameComponent,
     HeaderNewsComponent,
     FooterComponent,
+    AllScoresComponent,
   ],
   imports: [
     BrowserModule,

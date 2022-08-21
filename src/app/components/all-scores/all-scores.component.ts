@@ -5,16 +5,16 @@ import {Observable} from "rxjs";
 import {GamesResponse} from "../../API/games-response";
 
 @Component({
-  selector: 'app-latest-scores',
-  templateUrl: './latest-scores.component.html',
-  styleUrls: ['./latest-scores.component.scss']
+  selector: 'app-all-scores',
+  templateUrl: './all-scores.component.html',
+  styleUrls: ['./all-scores.component.scss']
 })
-export class LatestScoresComponent implements OnInit {
-
+export class AllScoresComponent implements OnInit {
+  
   latestScoresItems: Observable<GamesResponse>;
 
   constructor(private api: ApiService) {
-    this.latestScoresItems = api.getLatestGames$();
+    this.latestScoresItems = api.getGames();
   }
 
   ngOnInit(): void {
