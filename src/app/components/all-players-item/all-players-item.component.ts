@@ -8,7 +8,7 @@ import {Players} from "../../API/players";
 })
 export class AllPlayersItemComponent implements OnInit {
 
-  @Input() playerData?: Players;
+  @Input() player?: Players;
 
   constructor() { }
 

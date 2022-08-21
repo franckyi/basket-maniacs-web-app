@@ -2,7 +2,7 @@
 <mat-card class="card--rounded latest-scores">
     <mat-card-content>
         <ul class="scores-list">
-            <app-all-players-item *ngFor="let score of (AllPlayersItems | async)?.data" [playerData]="playerData"></app-all-players-item>
+            <app-all-players-item *ngFor="let player of (AllPlayersItems | async)?.data" [player]="player"></app-all-players-item>
         </ul>    
     </mat-card-content>
 </mat-card>
