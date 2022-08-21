@@ -4,6 +4,5 @@
         <ul class="scores-list">
             <app-latest-score-item *ngFor="let score of (latestScoresItems | async)?.data" [score]="score"></app-latest-score-item>
         </ul>    
-        <button [routerLink]="['/game-scores']" mat-flat-button color="primary">All game scores</button>
     </mat-card-content>
 </mat-card>
