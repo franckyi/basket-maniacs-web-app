@@ -1,3 +1,5 @@
+@import '../../../sass/colors';
+
 .teams-wrap {
     display: flex;
     align-items: center;
@@ -8,6 +10,7 @@
     }
     &__team {
         display: flex;
+        align-items: center;
         gap: 5%;
         // flex-direction: column;
     }
@@ -29,4 +32,5 @@
 .other-infos {
     margin-bottom: 1em;
     text-align: center;
+    color: $color-text--light;
 }
