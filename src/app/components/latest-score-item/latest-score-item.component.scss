@@ -5,9 +5,6 @@ app-latest-score-item {
     padding-bottom: .5em;
     border-bottom: 1px solid $light-grey;
 }
-app-latest-score-item:nth-last-child(1) li {
-    background: red;
-}
 
 .teams-wrap {
     display: flex;
