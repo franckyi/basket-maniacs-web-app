@@ -2,6 +2,7 @@
 
 .teams-wrap {
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 5%;
     margin: 1em auto;
@@ -12,14 +13,11 @@
         display: flex;
         align-items: center;
         gap: 5%;
-        // flex-direction: column;
     }
     // &__team-logo {
 
     // }
     &__score {
-        // margin-left: 10%; 
-        // margin-right: 10%; 
         font-size: 21px;
         font-weight: 700;
     }
