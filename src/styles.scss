@@ -52,3 +52,14 @@ footer {
 .card--rounded {
     border-radius: 25px;
 }
+
+/**
+Components
+**/
+
+// Latest score item
+app-latest-score-item:not(:last-child) {
+    padding-top: .5em;
+    padding-bottom: .5em;
+    border-bottom: 1px solid $light-grey;
+}
