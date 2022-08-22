@@ -1,5 +1,13 @@
 @import '../../../sass/colors';
 
+.scores-list app-latest-score-item:nth-child(1) li {
+    background: red;
+}
+.scores-list-item {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid $light-grey;
+}
 .teams-wrap {
     display: flex;
     justify-content: center;
