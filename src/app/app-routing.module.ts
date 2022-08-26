@@ -21,7 +21,7 @@ const routes: Routes = [
     component: TeamsComponent
   },
   {
-    path: 'game-scores',
+    path: 'scores',
     component: GameScoresComponent
   },
   {
