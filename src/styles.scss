@@ -53,9 +53,7 @@ footer {
     border-radius: 25px;
 }
 
-/**
-Components
-**/
+// Components
 
 // Latest score item
 app-latest-score-item:not(:last-child) {
@@ -63,3 +61,25 @@ app-latest-score-item:not(:last-child) {
     padding-bottom: .5em;
     border-bottom: 1px solid $light-grey;
 }
+
+// Search
+
+app-header-search {
+    width: 100vw;
+}
+
+app-search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+app-search-player {
+    max-width: 40vw;
+    margin: 0 auto;
+
+    mat-form-field {
+        width: 100%;
+    }
+}
+
