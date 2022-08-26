@@ -55,13 +55,6 @@ footer {
 
 // Components
 
-// Latest score item
-app-latest-score-item:not(:last-child) {
-    padding-top: .5em;
-    padding-bottom: .5em;
-    border-bottom: 1px solid $light-grey;
-}
-
 // Search
 
 app-header-search {
@@ -83,3 +76,86 @@ app-search-player {
     }
 }
 
+// Scores
+
+.teams-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+    margin: 1em auto;
+    &__ball{
+        margin-right: 10%;
+    }
+    &__team {
+        display: flex;
+        align-items: center;
+        gap: 5%;
+    }
+    &__team-logo {
+        max-height: 32px;
+        width: auto;
+        margin-left: 10px;
+    }
+    &__score {
+        font-size: 21px;
+        font-weight: 700;
+    }
+    &__vs {
+        margin-left: 10%; 
+        margin-right: 10%; 
+    }
+}
+
+.other-infos {
+    margin-bottom: 1em;
+    text-align: center;
+    color: $color-text--light;
+}
+
+.latest-scores {
+    .scores-list {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        width: 100%;
+        .scores-list-item {
+            width: 96%;
+            margin: 0 auto;
+            // padding-bottom: 15px;
+            // border-bottom: 1px solid #ddd;
+        }
+        .main-infos {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0;
+            .teams {
+                margin-left: 5px;
+            }
+            .score {
+                font-weight: 700;
+                color: $color-text;
+            }
+        }
+
+        .other-infos {
+            display: flex;
+            justify-content: center;
+            // padding-top: 15px;
+            color: $color-text--light;
+        }
+    }
+    .mat-card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+// Latest score item
+app-latest-score-item:not(:last-child) {
+    padding-top: .5em;
+    padding-bottom: .5em;
+    border-bottom: 1px solid $light-grey;
+}

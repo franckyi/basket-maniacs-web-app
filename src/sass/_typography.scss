@@ -40,11 +40,10 @@
 
 $font-primary: 'Poppins', sans-serif;
 
-.section-heading {
+h1.section-heading {
   margin: 2em 20px;
-  text-transform: uppercase;
+  // text-transform: uppercase;
   font-family: $font-primary;
-  font-size: 14px;
-  font-weight: 700;
-  color: $color-text--light;
+  font-size: clamp(14px, 1.6rem, 1.8rem);
+  font-weight: 500;
 }
