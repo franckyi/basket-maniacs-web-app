@@ -96,6 +96,8 @@ app-search-player {
         max-height: 32px;
         width: auto;
         margin-left: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
     &__score {
         font-size: 21px;
@@ -122,8 +124,6 @@ app-search-player {
         .scores-list-item {
             width: 96%;
             margin: 0 auto;
-            // padding-bottom: 15px;
-            // border-bottom: 1px solid #ddd;
         }
         .main-infos {
             display: flex;
@@ -142,7 +142,6 @@ app-search-player {
         .other-infos {
             display: flex;
             justify-content: center;
-            // padding-top: 15px;
             color: $color-text--light;
         }
     }

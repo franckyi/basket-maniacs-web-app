@@ -11,6 +11,10 @@ export class SearchFiltersComponent implements OnInit {
     // isActivePlayerFilter = true;
   }
 
+  activateFilterTeam() {
+
+  }
+  
   constructor() { }
 
   ngOnInit(): void {
