@@ -15,7 +15,7 @@ export class PlayerOfDayComponent implements OnInit {
   SingleGameStats: Observable<StatsResponse>;
 
   constructor(private api: ApiService) {
-    this.SingleGameStats = api.getGameStats();
+    this.SingleGameStats = api.getStats();
    }
 
   ngOnInit(): void {

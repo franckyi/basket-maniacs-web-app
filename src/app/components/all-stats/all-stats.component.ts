@@ -15,7 +15,7 @@ export class AllStatsComponent implements OnInit {
   AllStatsItems: Observable<StatsResponse>;
 
   constructor(private api: ApiService) {
-    this.AllStatsItems = api.getGameStats();
+    this.AllStatsItems = api.getStats();
    }
 
   ngOnInit(): void {
