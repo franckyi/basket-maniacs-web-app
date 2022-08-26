@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchFiltersComponent implements OnInit {
 
+  activateFilterPlayer() {
+    // isActivePlayerFilter = true;
+  }
+
   constructor() { }
 
   ngOnInit(): void {

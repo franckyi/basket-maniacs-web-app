@@ -1,2 +1,5 @@
 <app-header-search></app-header-search>
-<app-search-player></app-search-player>
+<app-search-player *ngIf="isActivePlayerFilter"></app-search-player>
+<app-search-team *ngIf="isActiveTeamFilter"></app-search-team>
+<app-search-game *ngIf="isActiveGameFilter"></app-search-game>
+<app-search-news *ngIf="isActiveNewsFilter"></app-search-news>

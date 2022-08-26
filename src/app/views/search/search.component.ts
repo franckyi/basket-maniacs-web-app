@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
+  public isActivePlayerFilter: boolean = false;
+  public isActiveTeamFilter: boolean = false;
+  public isActiveGameFilter: boolean = false;
+  public isActiveNewsFilter: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
