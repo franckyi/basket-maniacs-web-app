@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {Game} from "../../API/Game";
+import {Game} from "../../../API/Game";
 
 @Component({
   selector: 'app-latest-score-item',

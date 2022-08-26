@@ -3,7 +3,7 @@ import {ApiService} from "../../API/api.service";
 import {Player} from "../../API/players";
 import {Observable} from "rxjs";
 import {PlayersResponse} from "../../API/players-response";
-import { AllPlayersItemComponent } from '../all-players-item/all-players-item.component';
+import { AllPlayersItemComponent } from './all-players-item/all-players-item.component';
 
 @Component({
   selector: 'app-all-players',

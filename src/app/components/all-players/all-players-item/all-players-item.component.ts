@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {Player} from "../../API/players";
+import {Player} from "../../../API/players";
 
 @Component({
   selector: 'app-all-players-item',

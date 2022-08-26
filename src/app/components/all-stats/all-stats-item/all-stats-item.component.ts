@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {GameStats} from "../../API/stats";
+import {GameStats} from "../../../API/stats";
 
 @Component({
   selector: 'app-all-stats-item',

@@ -3,7 +3,7 @@ import {ApiService} from "../../API/api.service";
 import {Player} from "../../API/players";
 import {Observable} from "rxjs";
 import {StatsResponse} from "../../API/stats-response";
-import { AllStatsItemComponent } from '../all-stats-item/all-stats-item.component';
+import { AllStatsItemComponent } from './all-stats-item/all-stats-item.component';
 
 @Component({
   selector: 'app-all-stats',
