@@ -17,7 +17,7 @@ import { GameScoresComponent } from './views/game-scores/game-scores.component';
 import { GameComponent } from './views/game/game.component';
 import { HeaderSearchComponent } from './components/header-search/header-search.component';
 import { HeaderTeamsComponent } from './components/header-teams/header-teams.component';
-import { HeaderGameScoresComponent } from './components/header-game-scores/header-game-scores.component';
+import { HeaderScoresComponent } from './components/header-scores/header-scores.component';
 import { HeaderGameComponent } from './components/header-game/header-game.component';
 import { HeaderNewsComponent } from './components/header-news/header-news.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -42,10 +42,9 @@ import { AllStatsItemComponent } from './components/all-stats-item/all-stats-ite
     NewsComponent,
     SearchComponent,
     GameScoresComponent,
-    GameComponent,
     HeaderSearchComponent,
     HeaderTeamsComponent,
-    HeaderGameScoresComponent,
+    HeaderScoresComponent,
     HeaderGameComponent,
     HeaderNewsComponent,
     FooterComponent,
