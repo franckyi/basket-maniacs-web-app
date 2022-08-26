@@ -29,6 +29,11 @@ import { AllTeamsComponent } from './components/all-teams/all-teams.component';
 import { AllTeamsItemComponent } from './components/all-teams-item/all-teams-item.component';
 import { AllStatsComponent } from './components/all-stats/all-stats.component';
 import { AllStatsItemComponent } from './components/all-stats-item/all-stats-item.component';
+import { SearchFiltersComponent } from './views/search/search-filters/search-filters.component';
+import { SearchPlayerComponent } from './views/search/search-player/search-player.component';
+import { SearchTeamComponent } from './views/search/search-team/search-team.component';
+import { SearchGameComponent } from './views/search/search-game/search-game.component';
+import { SearchNewsComponent } from './views/search/search-news/search-news.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +60,11 @@ import { AllStatsItemComponent } from './components/all-stats-item/all-stats-ite
     AllTeamsItemComponent,
     AllStatsComponent,
     AllStatsItemComponent,
+    SearchFiltersComponent,
+    SearchPlayerComponent,
+    SearchTeamComponent,
+    SearchGameComponent,
+    SearchNewsComponent,
   ],
   imports: [
     BrowserModule,
