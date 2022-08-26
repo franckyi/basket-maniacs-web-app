@@ -93,13 +93,12 @@ export class ApiService {
     })
   }
 
-  getGameStats() {
+  getStats() {
     return this.httpClient.get<StatsResponse>('https://free-nba.p.rapidapi.com/stats', {
       headers: {
         'X-RapidAPI-Key': 'c9cbb3c9e7msh9aa61fe6c842aa3p16bcf1jsnb868d2788b63'
       }
     })
   }
-
 
 }
