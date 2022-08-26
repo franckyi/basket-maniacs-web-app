@@ -27,6 +27,8 @@ import { AllPlayersComponent } from './components/all-players/all-players.compon
 import { AllPlayersItemComponent } from './components/all-players-item/all-players-item.component';
 import { AllTeamsComponent } from './components/all-teams/all-teams.component';
 import { AllTeamsItemComponent } from './components/all-teams-item/all-teams-item.component';
+import { AllStatsComponent } from './components/all-stats/all-stats.component';
+import { AllStatsItemComponent } from './components/all-stats-item/all-stats-item.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { AllTeamsItemComponent } from './components/all-teams-item/all-teams-ite
     AllPlayersItemComponent,
     AllTeamsComponent,
     AllTeamsItemComponent,
+    AllStatsComponent,
+    AllStatsItemComponent,
   ],
   imports: [
     BrowserModule,

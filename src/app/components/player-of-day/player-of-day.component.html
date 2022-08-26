@@ -1,6 +1,10 @@
 <h1 class="section-heading">Player of the day</h1>
 <mat-card class="card--rounded player-of-day">
     <mat-card-content>
+
+        <span>{{ stats }}</span>
+
+
         <div class="player-of-day__heading">
             <mat-icon aria-hidden="false" aria-label="Best player icon" fontIcon="hotel_class"color="primary"></mat-icon>
             <mat-card-title class="heading">{{ stats?.player?.first_name }} {{ stats?.player?.last_name }}</mat-card-title>
