@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ChangeFiltersService } from './services/change-filters.service';
+import { Filter } from './services/filter';
 
 @Component({
   selector: 'app-search',
@@ -7,12 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  public isActivePlayerFilter: boolean = false;
-  public isActiveTeamFilter: boolean = false;
-  public isActiveGameFilter: boolean = false;
-  public isActiveNewsFilter: boolean = false;
+  currentFilter$: Observable <Filter>;   
 
-  constructor() { }
+  constructor(private filterService: ChangeFiltersService) {
+    this.currentFilter$ = filterService.getCurrentFilter$();
+     }
 
   ngOnInit(): void {
   }
