@@ -3,6 +3,7 @@ import {ApiService} from "../../API/api.service";
 import {GameStats} from "../../API/stats";
 import {Observable} from "rxjs";
 import {StatsResponse} from "../../API/stats-response";
+import {Player} from "../../API/players";
 
 @Component({
   selector: 'app-player-of-day',
@@ -10,7 +11,7 @@ import {StatsResponse} from "../../API/stats-response";
   styleUrls: ['./player-of-day.component.scss']
 })
 export class PlayerOfDayComponent implements OnInit {
-  @Input() stats?: GameStats;
+  @Input() player?: Player;
 
   SingleGameStats: Observable<StatsResponse>;
 

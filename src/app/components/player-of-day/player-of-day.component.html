@@ -1,20 +1,14 @@
 <h1 class="section-heading">Player of the day</h1>
 <mat-card class="card--rounded player-of-day">
     <mat-card-content>
-
-        <span>{{ stats }}</span>
-
-
         <div class="player-of-day__heading">
             <mat-icon aria-hidden="false" aria-label="Best player icon" fontIcon="hotel_class"color="primary"></mat-icon>
-            <mat-card-title class="heading">{{ stats?.player?.first_name }} {{ stats?.player?.last_name }}</mat-card-title>
-            <span>{{ stats?.id }}</span>
-            <span>{{ stats?.player?.position }}</span>
+            <mat-card-title class="heading">{{ player?.first_name }}</mat-card-title>
         </div>
-        <ul class="team-infos">
+        <!-- <ul class="team-infos">
             <li>Team: <span>{{ stats?.team?.full_name }}</span></li>
             <li>City: <span>{{ stats?.team?.city }}</span></li>
-        </ul>
+        </ul> -->
         <button mat-flat-button color="primary">Go to team page</button>
     </mat-card-content>
 </mat-card>
