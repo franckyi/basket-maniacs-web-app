@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {ApiService} from "../../API/api.service";
-import {GameStats} from "../../API/stats";
 import {Observable} from "rxjs";
-import {StatsResponse} from "../../API/stats-response";
+import {PlayersResponse} from "../../API/players-response";
 import {Player} from "../../API/players";
 
 @Component({
@@ -13,10 +12,10 @@ import {Player} from "../../API/players";
 export class PlayerOfDayComponent implements OnInit {
   @Input() player?: Player;
 
-  SingleGameStats: Observable<StatsResponse>;
+  player$: Observable<PlayersResponse>;
 
   constructor(private api: ApiService) {
-    this.SingleGameStats = api.getStats();
+    this.player$ = api.getPlayers();
    }
 
   ngOnInit(): void {
