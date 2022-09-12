@@ -2,7 +2,9 @@
 
 [version 1](https://www.figma.com/file/zXa5Q8IpAgz19Uqle2R4NH/Serwis-NBA?node-id=0%3A1)
 
-# SerwisNba
+# About the app
+
+The NBA Scores app let you stay update with latest NBA game scores. You also have access to more info such as team roasts and players list. The app is powered by a free API. This app is my final project of the JavaScript course I've completed at SDAcademy. The design on Figma was done by my self. The plan is to improve it as my skills grow. More features will not be added, but I'll improve the existing ones.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.1.
 
