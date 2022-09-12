@@ -1,3 +1,7 @@
+# Design on Figma
+
+[version 1](https://www.figma.com/file/zXa5Q8IpAgz19Uqle2R4NH/Serwis-NBA?node-id=0%3A1)
+
 # SerwisNba
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.1.
