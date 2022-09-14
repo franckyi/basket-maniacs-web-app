@@ -92,13 +92,6 @@ app-search-player {
         align-items: center;
         gap: 5%;
     }
-    &__team-logo {
-        max-height: 32px;
-        width: auto;
-        margin-left: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
     &__score {
         font-size: 21px;
         font-weight: 700;
@@ -139,6 +132,12 @@ app-search-player {
                 font-weight: 700;
                 color: $color-text;
             }
+            .team-logo {
+                max-height: 32px;
+                width: auto;
+                margin-left: 10px;
+                padding: 5px 0;
+            }
         }
 
         .other-infos {
@@ -163,7 +162,11 @@ app-latest-score-item:not(:last-child) {
 
 // Search
 
+.search {
+    width: 80vw;
+}
+
 app-search-player {
     max-width: 100vw;
     margin: 0 auto;
-  }
+}
