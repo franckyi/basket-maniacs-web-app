@@ -26,7 +26,7 @@ export class SearchTeamComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  displayedColumns: string[] = ['id', 'abbreviation', 'city', 'conference', 'division', 'full_name', 'name'];
+  displayedColumns: string[] = ['full_name', 'abbreviation', 'city', 'division'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(event: Event) {
