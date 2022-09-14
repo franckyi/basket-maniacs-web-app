@@ -2,33 +2,33 @@ import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 
 export interface GamesData {
-  "id": number,
-  "date": string,
-  "home_team": {
-      "id": number,
-      "abbreviation": string,
-      "city": string,
-      "conference": string,
-      "division": string,
-      "full_name": string,
-      "name": string
+  id: number,
+  date: string,
+  home_team: {
+      id: number,
+      abbreviation: string,
+      city: string,
+      conference: string,
+      division: string,
+      full_name: string,
+      name: string
   },
-  "home_team_score": number,
-  "period": number,
-  "postseason": false,
-  "season": number,
-  "status": string,
-  "time": any,
-  "visitor_team": {
-      "id": number,
-      "abbreviation": string,
-      "city": string,
-      "conference": string,
-      "division": string,
-      "full_name": string,
-      "name": string
+  home_team_score: number,
+  period: number,
+  postseason: false,
+  season: number,
+  status: string,
+  time: any,
+  visitor_team: {
+      id: number,
+      abbreviation: string,
+      city: string,
+      conference: string,
+      division: string,
+      full_name: string,
+      name: string
   },
-  "visitor_team_score": number
+  visitor_team_score: number
 }
 
 @Component({
