@@ -47,11 +47,6 @@ export class SearchGameComponent implements OnInit {
     this.getRemoteData();
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
   getRemoteData() {
     const remoteGamesData =
     [
