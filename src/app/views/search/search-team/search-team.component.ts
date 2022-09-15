@@ -23,20 +23,20 @@ export class SearchTeamComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.getRemoteData();
   }
 
   displayedColumns: string[] = ['full_name', 'abbreviation', 'city'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource = new MatTableDataSource();
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-}
-
-const ELEMENT_DATA: TeamsData[] =
+  getRemoteData() {
+    const remoteTeamData =
 [
   {
       "id": 1,
@@ -309,3 +309,8 @@ const ELEMENT_DATA: TeamsData[] =
       "name": "Wizards"
   }
 ];
+this.dataSource.data = remoteTeamData;
+  }
+
+}
+
