@@ -32,22 +32,21 @@ export class SearchPlayerComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.getRemoteData();
   }
   
   displayedColumns: string[] = ['first_name', 'last_name', 'team'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource = new MatTableDataSource();
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-}
-
-const ELEMENT_DATA: PlayersData[] =
-[
-  {
+  getRemoteData() {
+    const PlayersData = [
+      {
       "id": 14,
       "first_name": "Ike",
       "height_feet": null,
@@ -1846,5 +1845,12 @@ const ELEMENT_DATA: PlayersData[] =
           "name": "Rockets"
       },
       "weight_pounds": null
+      }
+    ];
+
+    this.dataSource.data = PlayersData;
+
   }
-];
+
+}
+
