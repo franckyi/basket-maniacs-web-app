@@ -30,11 +30,6 @@ export class SearchTeamComponent implements OnInit {
   displayedColumns: string[] = ['full_name', 'abbreviation', 'city'];
   dataSource = new MatTableDataSource();
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
   getRemoteData() {
     const remoteTeamData =
 [
