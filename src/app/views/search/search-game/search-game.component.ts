@@ -15,10 +15,10 @@ export interface GamesData {
   },
   home_team_score: number,
   period: number,
-  postseason: false,
+  postseason: boolean,
   season: number,
   status: string,
-  time: any,
+  time: string  ,
   visitor_team: {
       id: number,
       abbreviation: string,
@@ -38,13 +38,13 @@ export interface GamesData {
 })
 export class SearchGameComponent implements OnInit {
 
+  displayedColumns: string[] = ['home_team', 'home_team_score', 'visitor_team', 'visitor_team_score', 'date'];
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
+
   constructor() { }
 
   ngOnInit(): void {
   }
-
-  displayedColumns: string[] = ['home_team', 'home_team_score', 'visitor_team', 'visitor_team_score', 'date'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
