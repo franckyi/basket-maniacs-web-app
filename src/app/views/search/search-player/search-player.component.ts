@@ -33,7 +33,7 @@ export class SearchPlayerComponent implements OnInit {
     filterValues: any = {};
     dataSource = new MatTableDataSource();
     displayedColumns: string[] = ['first_name', 'last_name', 'team'];
-  
+
     filterSelectObj: any = [];
 
   constructor() {
