@@ -32,7 +32,7 @@ export class SearchPlayerComponent implements OnInit {
 
     filterValues: any = {};
     dataSource = new MatTableDataSource();
-    displayedColumns: string[] = ['first_name', 'last_name'];
+    displayedColumns: string[] = ['first_name', 'last_name', 'team'];
   
     filterSelectObj: any = [];
 
@@ -47,6 +47,11 @@ export class SearchPlayerComponent implements OnInit {
         }, {
           name: 'Last name',
           columnProp: 'last_name',
+          options: []
+        },
+        {
+          name: 'Team',
+          columnProp: 'team',
           options: []
         }
       ]  
