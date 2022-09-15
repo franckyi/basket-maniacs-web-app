@@ -35,7 +35,7 @@ export class SearchPlayerComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  displayedColumns: string[] = ['id', 'first_name', 'last_name', 'team', 'position'];
+  displayedColumns: string[] = ['first_name', 'last_name', 'team'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(event: Event) {

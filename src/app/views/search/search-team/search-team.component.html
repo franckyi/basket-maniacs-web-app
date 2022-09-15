@@ -1,14 +1,14 @@
 <div class="search">
     <mat-form-field appearance="standard">
-    <mat-label>Team name</mat-label>
+    <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="eg. boston" #input>
   </mat-form-field>
   
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   
-    <!-- Name Column -->
+    <!-- Team name Column -->
     <ng-container matColumnDef="full_name">
-        <th mat-header-cell *matHeaderCellDef> Full name </th>
+        <th mat-header-cell *matHeaderCellDef> Team name </th>
         <td mat-cell *matCellDef="let element"> {{element.full_name}} </td>
     </ng-container>
           
@@ -22,12 +22,6 @@
     <ng-container matColumnDef="city">
       <th mat-header-cell *matHeaderCellDef> City </th>
       <td mat-cell *matCellDef="let element"> {{element.city}} </td>
-    </ng-container>
-  
-    <!-- Division Column -->
-    <ng-container matColumnDef="division">
-        <th mat-header-cell *matHeaderCellDef> Division </th>
-        <td mat-cell *matCellDef="let element"> {{element.division}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

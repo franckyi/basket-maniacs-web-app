@@ -1,21 +1,15 @@
 <div class="search">
 
     <mat-form-field appearance="standard">
-        <mat-label>Name</mat-label>
+        <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="eg. lebron" #input>
     </mat-form-field>
     
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    
-        <!-- Id Column -->
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> Id </th>
-            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-        </ng-container>
             
         <!-- Name Column -->
         <ng-container matColumnDef="first_name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <th mat-header-cell *matHeaderCellDef> First Name </th>
         <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>
         </ng-container>
     
@@ -29,12 +23,6 @@
         <ng-container matColumnDef="team">
         <th mat-header-cell *matHeaderCellDef> Team </th>
         <td mat-cell *matCellDef="let element"> {{element.team?.name}} </td>
-        </ng-container>
-    
-        <!-- Position Column -->
-        <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> Position </th>
-        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
         </ng-container>
         
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
