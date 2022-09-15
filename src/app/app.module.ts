@@ -5,6 +5,9 @@ import {MaterialModule} from "./material/material.module";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {HttpClientModule} from "@angular/common/http";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { LatestScoresComponent } from './components/latest-scores/latest-scores.component';
 import { LatestScoreItemComponent } from './components/latest-scores/latest-score-item/latest-score-item.component';
 import { PlayerOfDayComponent } from './components/player-of-day/player-of-day.component';
@@ -21,7 +24,6 @@ import { HeaderScoresComponent } from './components/header-scores/header-scores.
 import { HeaderGameComponent } from './components/header-game/header-game.component';
 import { HeaderNewsComponent } from './components/header-news/header-news.component';
 import { FooterComponent } from './components/footer/footer.component';
-import {HttpClientModule} from "@angular/common/http";
 import { AllScoresComponent } from './components/all-scores/all-scores.component';
 import { AllPlayersComponent } from './components/all-players/all-players.component';
 import { AllPlayersItemComponent } from './components/all-players/all-players-item/all-players-item.component';
@@ -73,7 +75,9 @@ import { RandomPlayerComponent } from './components/all-players/random-player/ra
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
