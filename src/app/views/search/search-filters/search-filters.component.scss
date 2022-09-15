@@ -20,6 +20,7 @@
     &__category {
         display: flex;
         flex-direction: column;
+        cursor: pointer;
 
         .mat-icon {
             font-size: 38px;
