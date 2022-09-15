@@ -8,7 +8,7 @@
           <option [value]="item" *ngFor="let item of filter.options">{{item}}</option>
         </select>
     </mat-form-field>
-    <button mat-flat-button color="warn" (click)="resetFilters()">Reset</button>
+    <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
     
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     
