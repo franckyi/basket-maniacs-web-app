@@ -1,25 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 
-export interface Player {
-  id: any;
-  first_name: string;
-  height_feet: any;
-  height_inches: any;
-  last_name: string;
-  position: string;
-  team: {
-    id: number,
-    abbreviation: string,
-    city: string,
-    conference: string,
-    division: string,
-    full_name: string,
-    name: string
-  };
-  weight_pounds: unknown;
-}
-
 /**
  * @title Table with filtering
  */

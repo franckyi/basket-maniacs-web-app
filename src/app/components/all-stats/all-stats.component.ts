@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from "../../API/api.service";
-import {Player} from "../../API/players";
+import {Player} from "../../API/Player";
 import {Observable} from "rxjs";
 import {StatsResponse} from "../../API/stats-response";
 import { AllStatsItemComponent } from './all-stats-item/all-stats-item.component';

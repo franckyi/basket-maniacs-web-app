@@ -1,6 +1,6 @@
 import { Game } from "./Game";
 import { Team } from "./Team";
-import { Player } from "./players";
+import { Player } from "./Player";
 
 export interface GameStats {
     "id": number;

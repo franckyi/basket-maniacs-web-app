@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import {ApiService} from "../../API/api.service";
 import {Observable} from "rxjs";
 import {PlayersResponse} from "../../API/players-response";
-import {Player} from "../../API/players";
+import {Player} from "../../API/Player";
 
 @Component({
   selector: 'app-player-of-day',

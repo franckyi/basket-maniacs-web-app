@@ -1,4 +1,4 @@
-import { Player } from "./players";
+import { Player } from "./Player";
 import { Meta } from "./meta";
 
 export interface PlayersResponse {
