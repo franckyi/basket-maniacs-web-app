@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
+import { Player } from 'src/app/API/Player';
+import { PlayersResponse } from 'src/app/API/players-response';
 
 /**
  * @title Table with filtering
