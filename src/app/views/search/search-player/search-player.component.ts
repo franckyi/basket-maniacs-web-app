@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { Player } from 'src/app/API/Player';
 import { PlayersResponse } from 'src/app/API/players-response';
+import { TeamsComponent } from '../../teams/teams.component';
 
 /**
  * @title Table with filtering
@@ -35,7 +36,7 @@ export class SearchPlayerComponent implements OnInit {
         {
           name: 'Team',
           columnProp: 'team',
-          options: {}
+          options: []
         }
       ]  
    }
@@ -1882,28 +1883,24 @@ export class SearchPlayerComponent implements OnInit {
     let filterFunction = function (data: any, filter: any): boolean {
       let searchTerms = JSON.parse(filter);
       let isFilterSet = false;
-      
+
+
       for (const col in searchTerms) {
-        console.log(`'col is ' ${col}`);
+
         if (searchTerms[col].toString() !== '') {
           isFilterSet = true;
         } else {
           delete searchTerms[col];
         }
-      }
 
-      console.log(searchTerms);
+        console.log(data[col].full_name);  // TEAM CONTENT
+
+      }
 
       let nameSearch = () => {
         let found = false;
         if (isFilterSet) {
           for (const col in searchTerms) {
-
-            if(typeof(searchTerms[col] === 'object')) {
-                console.log(typeof searchTerms[col]);
-                console.log(searchTerms[col][2]);
-            }
-
             searchTerms[col].trim().toLowerCase().split(' ').forEach((word: any) => {
               if (data[col].toString().toLowerCase().indexOf(word) != -1 && isFilterSet) {
                 found = true
@@ -1930,7 +1927,6 @@ export class SearchPlayerComponent implements OnInit {
     })
     this.dataSource.filter = "";
   }
-
 
 
 }
