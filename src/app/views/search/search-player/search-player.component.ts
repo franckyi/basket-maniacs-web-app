@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 
-export interface PlayersData {
+export interface Player {
   id: any;
   first_name: string;
   height_feet: any;
@@ -78,7 +78,7 @@ export class SearchPlayerComponent implements OnInit {
   
   // Get remote serve data using HTTP call
   getRemoteData() {
-    const  PlayersData = [
+    const  Player = [
       {
       "id": 14,
       "first_name": "Ike",
@@ -1881,9 +1881,9 @@ export class SearchPlayerComponent implements OnInit {
       }
     ];
 
-    this.dataSource.data =  PlayersData;
+    this.dataSource.data =  Player;
     this.filterSelectObj.filter((o: { options: any[]; columnProp: any; }) => {
-        o.options = this.getFilterObject(  PlayersData, o.columnProp);
+        o.options = this.getFilterObject(  Player, o.columnProp);
       });
   }
 
