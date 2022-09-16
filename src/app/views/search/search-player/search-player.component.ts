@@ -35,7 +35,7 @@ export class SearchPlayerComponent implements OnInit {
         {
           name: 'Team',
           columnProp: 'team',
-          options: []
+          options: {}
         }
       ]  
    }
@@ -1865,7 +1865,7 @@ export class SearchPlayerComponent implements OnInit {
     ];
 
     this.dataSource.data =  Player;
-    this.filterSelectObj.filter((o: { options: any[]; columnProp: any; }) => {
+    this.filterSelectObj.filter((o: { options: any; columnProp: any; }) => {
         o.options = this.getFilterObject(  Player, o.columnProp);
       });
   }
@@ -1884,6 +1884,7 @@ export class SearchPlayerComponent implements OnInit {
       let isFilterSet = false;
       
       for (const col in searchTerms) {
+        console.log(`'col is ' ${col}`);
         if (searchTerms[col].toString() !== '') {
           isFilterSet = true;
         } else {
@@ -1916,6 +1917,7 @@ export class SearchPlayerComponent implements OnInit {
       }
       return nameSearch()
     }
+
     return filterFunction
   }
 
