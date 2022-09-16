@@ -48,7 +48,7 @@ export class SearchGameComponent implements OnInit {
         this.filterSelectObj = [
             {
               name: 'Home team',
-              columnProp: 'home_team.full_name',
+              columnProp: 'home_team',
               options: []
             }, {
               name: 'Away team',
@@ -60,7 +60,62 @@ export class SearchGameComponent implements OnInit {
               columnProp: 'date',
               options: []
             }
-          ]  
+          ];
+
+
+
+          
+          this.dataSource.filterPredicate = (data: any, filter: string) => {
+
+            const accumulator = (currentTerm: any, key: any) => {
+      
+              return this.nestedFilterCheck(currentTerm, data, key);
+      
+            };
+      
+            const dataStr = Object.keys(data).reduce(accumulator, '').toLowerCase();
+      
+            // Transform the filter by converting it to lowercase and removing whitespace.
+            const transformedFilter = filter.trim().toLowerCase();
+
+            return dataStr.indexOf(transformedFilter) !== -1;
+            console.log(transformedFilter);
+      
+          };
+      
+       
+      
+        }
+      
+       
+      
+        nestedFilterCheck(search: any, data: { [x: string]: any; }, key: string) {
+      
+          if (typeof data[key] === 'object') {
+      
+            for (const k in data[key]) {
+      
+              if (data[key][k] !== null) {
+      
+                search = this.nestedFilterCheck(search, data[key], k);
+      
+              }
+      
+            }
+      
+          } else {
+      
+            search += data[key];
+      
+          }
+      
+          return search;
+      
+      
+
+          
+          
+          
    }
 
   ngOnInit() {
@@ -76,6 +131,7 @@ export class SearchGameComponent implements OnInit {
       if (!uniqChk.includes(obj[key])) {
         uniqChk.push(obj[key]);
       }
+    //   console.log('francky');
       return obj;
     });
     return uniqChk;
@@ -2997,6 +3053,7 @@ export class SearchGameComponent implements OnInit {
   filterChange(filter: any, event: any) {
     // let filterValues = {}
     this.filterValues[filter.columnProp] = event.target.value.trim().toLowerCase()
+    console.log( 'test' + this.filterValues.home_team);
     this.dataSource.filter = JSON.stringify(this.filterValues)
   }
 
