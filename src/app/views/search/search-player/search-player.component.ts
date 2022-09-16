@@ -1879,9 +1879,10 @@ export class SearchPlayerComponent implements OnInit {
 
   // Custom filter method fot Angular Material Datatable
   createFilter() {
-    let filterFunction = function (data: any, filter: string): boolean {
+    let filterFunction = function (data: any, filter: any): boolean {
       let searchTerms = JSON.parse(filter);
       let isFilterSet = false;
+      
       for (const col in searchTerms) {
         if (searchTerms[col].toString() !== '') {
           isFilterSet = true;
@@ -1896,6 +1897,12 @@ export class SearchPlayerComponent implements OnInit {
         let found = false;
         if (isFilterSet) {
           for (const col in searchTerms) {
+
+            if(typeof(searchTerms[col] === 'object')) {
+                console.log(typeof searchTerms[col]);
+                console.log(searchTerms[col][2]);
+            }
+
             searchTerms[col].trim().toLowerCase().split(' ').forEach((word: any) => {
               if (data[col].toString().toLowerCase().indexOf(word) != -1 && isFilterSet) {
                 found = true
