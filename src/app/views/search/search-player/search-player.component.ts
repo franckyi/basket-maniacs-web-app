@@ -53,11 +53,20 @@ export class SearchPlayerComponent implements OnInit {
   getFilterObject(fullObj: any, key: any) {
     const uniqChk: any[] = [];
     fullObj.filter((obj: { [x: string]: any; }) => {
+
       if (!uniqChk.includes(obj[key])) {
+        // console.log('OUTSIDE');
+
+        if(typeof obj[key] === 'object') {
+            uniqChk.push(obj[key].full_name);
+            console.log('TEST TEAMS AS OPTIONS');
+        }
+
         uniqChk.push(obj[key]);
       }
-    //   return obj;
-      console.log(obj[key].full_name);
+
+      return obj;
+    //   console.log(obj[key].full_name);
     });
     return uniqChk;
     // console.log(uniqChk[key].full_name);
@@ -1871,10 +1880,10 @@ export class SearchPlayerComponent implements OnInit {
     this.dataSource.data =  Player;
     this.filterSelectObj.filter((o: { options: any; columnProp: any; }) => {
         o.options = this.getFilterObject(  Player, o.columnProp);
-        if (o.columnProp == 'team') {
-            console.log(o.columnProp);
-            console.log(o.options[0] + ' ' + typeof(o.options));
-        }
+        // if (o.columnProp == 'team') {
+        //     console.log(o.columnProp);
+        //     console.log(o.options[0] + ' ' + typeof(o.options));
+        // }
       });
     //   console.log(`this.filterSelectObj.filter == ${this.filterSelectObj.filter}`);
   }
