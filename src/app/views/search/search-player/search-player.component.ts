@@ -37,7 +37,7 @@ export class SearchPlayerComponent implements OnInit {
         {
           name: 'Team',
           columnProp: 'team',
-          options: []
+          options: {}
         }
       ]  
    }
@@ -56,11 +56,11 @@ export class SearchPlayerComponent implements OnInit {
       if (!uniqChk.includes(obj[key])) {
         uniqChk.push(obj[key]);
       }
-      return obj;
-    //   console.log(obj[key].full_name);
+    //   return obj;
+      console.log(obj[key].full_name);
     });
-    // return uniqChk;
-    console.log(uniqChk[key].full_name);
+    return uniqChk;
+    // console.log(uniqChk[key].full_name);
   }
   
   // Get remote serve data using HTTP call
