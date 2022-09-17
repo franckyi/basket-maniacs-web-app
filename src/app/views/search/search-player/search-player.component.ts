@@ -12,6 +12,7 @@ import { TeamsComponent } from '../../teams/teams.component';
   templateUrl: './search-player.component.html',
   styleUrls: ['./search-player.component.scss']
 })
+
 export class SearchPlayerComponent implements OnInit {
 
     filterValues: any = {};
@@ -56,8 +57,10 @@ export class SearchPlayerComponent implements OnInit {
         uniqChk.push(obj[key]);
       }
       return obj;
+    //   console.log(obj[key].full_name);
     });
-    return uniqChk;
+    // return uniqChk;
+    console.log(uniqChk[key].full_name);
   }
   
   // Get remote serve data using HTTP call
@@ -1868,7 +1871,12 @@ export class SearchPlayerComponent implements OnInit {
     this.dataSource.data =  Player;
     this.filterSelectObj.filter((o: { options: any; columnProp: any; }) => {
         o.options = this.getFilterObject(  Player, o.columnProp);
+        if (o.columnProp == 'team') {
+            console.log(o.columnProp);
+            console.log(o.options[0] + ' ' + typeof(o.options));
+        }
       });
+    //   console.log(`this.filterSelectObj.filter == ${this.filterSelectObj.filter}`);
   }
 
   // Called on Filter change
@@ -1884,16 +1892,13 @@ export class SearchPlayerComponent implements OnInit {
       let searchTerms = JSON.parse(filter);
       let isFilterSet = false;
 
-
       for (const col in searchTerms) {
 
-        if (searchTerms[col].toString() !== '') {
-          isFilterSet = true;
-        } else {
-          delete searchTerms[col];
-        }
+        if (searchTerms[col].toString() === '')
+             { delete searchTerms[col]; }
+        else { isFilterSet = true; }
 
-        console.log(data[col].full_name);  // TEAM CONTENT
+        // console.log(data[col].full_name);  // TEAM CONTENT
 
       }
 
