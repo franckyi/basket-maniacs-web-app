@@ -64,12 +64,11 @@ export class SearchPlayerComponent implements OnInit {
         else {
             uniqChk.push(obj[key]);
         }
-
       }
-
       return obj;
     //   console.log(obj[key].full_name);
     });
+    
     return uniqChk;
     // console.log(uniqChk[key].full_name);
   }
