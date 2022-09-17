@@ -61,8 +61,10 @@ export class SearchPlayerComponent implements OnInit {
             uniqChk.push(obj[key].full_name);
             console.log('TEST TEAMS AS OPTIONS');
         }
+        else {
+            uniqChk.push(obj[key]);
+        }
 
-        uniqChk.push(obj[key]);
       }
 
       return obj;

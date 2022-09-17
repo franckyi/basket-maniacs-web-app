@@ -1,35 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
-
-export interface GamesData {
-  id: number,
-  date: string,
-  home_team: {
-      id: number,
-      abbreviation: string,
-      city: string,
-      conference: string,
-      division: string,
-      full_name: string,
-      name: string
-  },
-  home_team_score: number,
-  period: number,
-  postseason: boolean,
-  season: number,
-  status: string,
-  time: string  ,
-  visitor_team: {
-      id: number,
-      abbreviation: string,
-      city: string,
-      conference: string,
-      division: string,
-      full_name: string,
-      name: string
-  },
-  visitor_team_score: number
-}
+import { Game } from 'src/app/API/Game';
+import { GamesResponse } from 'src/app/API/games-response';
 
 @Component({
   selector: 'app-search-game',
@@ -139,7 +111,7 @@ export class SearchGameComponent implements OnInit {
   
   // Get remote serve data using HTTP call
   getRemoteData() {
-    const remoteGamesData =
+    const Game =
     [
       {
           "id": 47179,
@@ -3043,9 +3015,9 @@ export class SearchGameComponent implements OnInit {
       }
     ];
 
-    this.dataSource.data =  remoteGamesData;
+    this.dataSource.data =  Game;
     this.filterSelectObj.filter((o: { options: any[]; columnProp: any; }) => {
-        o.options = this.getFilterObject(  remoteGamesData, o.columnProp);
+        o.options = this.getFilterObject(  Game, o.columnProp);
       });
   }
 
