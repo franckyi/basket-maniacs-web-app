@@ -16,77 +16,57 @@ export class SearchGameComponent implements OnInit {
     filterSelectObj: any = [];
 
   constructor() {
-        // Object to create Filter for
-        this.filterSelectObj = [
-            {
-              name: 'Home team',
-              columnProp: 'home_team',
-              options: {}
-            }, {
-              name: 'Away team',
-              columnProp: 'visitor_team',
-              options: {}
-            },
-            {
-              name: 'Date',
-              columnProp: 'date',
-              options: []
-            }
-          ];
-
-
-
-          
-          this.dataSource.filterPredicate = (data: any, filter: string) => {
-
-            const accumulator = (currentTerm: any, key: any) => {
-      
-              return this.nestedFilterCheck(currentTerm, data, key);
-      
-            };
-      
-            const dataStr = Object.keys(data).reduce(accumulator, '').toLowerCase();
-      
-            // Transform the filter by converting it to lowercase and removing whitespace.
-            const transformedFilter = filter.trim().toLowerCase();
-
-            return dataStr.indexOf(transformedFilter) !== -1;
-            console.log(transformedFilter);
-      
-          };
-      
-       
-      
+    // Object to create Filter for
+    this.filterSelectObj = [
+        {
+            name: 'Home team',
+            columnProp: 'home_team',
+            options: {}
+        }, {
+            name: 'Away team',
+            columnProp: 'visitor_team',
+            options: {}
+        },
+        {
+            name: 'Date',
+            columnProp: 'date',
+            options: []
         }
+        ];
+        
+        this.dataSource.filterPredicate = (data: any, filter: string) => {
+        const accumulator = (currentTerm: any, key: any) => {
+            return this.nestedFilterCheck(currentTerm, data, key);
+        };
+    
+        const dataStr = Object.keys(data).reduce(accumulator, '').toLowerCase();
+    
+        // Transform the filter by converting it to lowercase and removing whitespace.
+        const transformedFilter = filter.trim().toLowerCase();
+        return dataStr.indexOf(transformedFilter) !== -1;
+        // console.log(transformedFilter);
+    
+        };
+    
+    
+    
+    }
       
        
       
         nestedFilterCheck(search: any, data: { [x: string]: any; }, key: string) {
       
           if (typeof data[key] === 'object') {
-      
             for (const k in data[key]) {
-      
               if (data[key][k] !== null) {
-      
                 search = this.nestedFilterCheck(search, data[key], k);
-      
               }
-      
             }
-      
           } else {
-      
             search += data[key];
-      
           }
       
           return search;
-      
-      
-
-          
-          
           
    }
 
