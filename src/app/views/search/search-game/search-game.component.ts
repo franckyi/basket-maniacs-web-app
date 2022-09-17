@@ -21,11 +21,11 @@ export class SearchGameComponent implements OnInit {
             {
               name: 'Home team',
               columnProp: 'home_team',
-              options: []
+              options: {}
             }, {
               name: 'Away team',
               columnProp: 'visitor_team',
-              options: []
+              options: {}
             },
             {
               name: 'Date',
@@ -100,14 +100,27 @@ export class SearchGameComponent implements OnInit {
   getFilterObject(fullObj: any, key: any) {
     const uniqChk: any[] = [];
     fullObj.filter((obj: { [x: string]: any; }) => {
+
       if (!uniqChk.includes(obj[key])) {
-        uniqChk.push(obj[key]);
+        // console.log('OUTSIDE');
+
+        if(typeof obj[key] === 'object') {
+            uniqChk.push(obj[key].home_team);
+            console.log('DISPLAY TEAM NAMES');
+        }
+        else {
+            uniqChk.push(obj[key]);
+        }
+
       }
-    //   console.log('francky');
+
       return obj;
+    //   console.log(obj[key].full_name);
     });
     return uniqChk;
+    // console.log(uniqChk[key].full_name);
   }
+  
   
   // Get remote serve data using HTTP call
   getRemoteData() {
