@@ -82,11 +82,11 @@ export class SearchGameComponent implements OnInit {
     fullObj.filter((obj: { [x: string]: any; }) => {
 
       if (!uniqChk.includes(obj[key])) {
-        // console.log('OUTSIDE');
+        console.log(uniqChk);
 
-        if(typeof obj[key] === 'object') {
-            uniqChk.push(obj[key].home_team);
-            console.log('DISPLAY TEAM NAMES');
+        if (typeof obj[key] === 'object') {
+            uniqChk.push(obj[key].home_team?.id);
+            console.log('obj[key] ' + obj[key].home_team?.id);
         }
         else {
             uniqChk.push(obj[key]);
@@ -95,7 +95,7 @@ export class SearchGameComponent implements OnInit {
       }
 
       return obj;
-    //   console.log(obj[key].full_name);
+    //   console.log(obj[key].home_team?.city);
     });
     return uniqChk;
     // console.log(uniqChk[key].full_name);
