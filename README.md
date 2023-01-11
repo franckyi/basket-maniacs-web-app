@@ -1,4 +1,4 @@
-# Design on Figma
+# My design on Figma
 
 [version 1](https://www.figma.com/file/zXa5Q8IpAgz19Uqle2R4NH/Serwis-NBA?node-id=0%3A1)
 
