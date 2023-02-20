@@ -13,7 +13,6 @@ import { LatestScoreItemComponent } from './components/latest-scores/latest-scor
 import { HeaderHomeComponent } from './components/header-home/header-home.component';
 import { HomeComponent } from './views/home/home.component';
 import { TeamsComponent } from './views/teams/teams.component';
-import { NewsComponent } from './views/news/news.component';
 import { SearchComponent } from './views/search/search.component';
 import { GameScoresComponent } from './views/game-scores/game-scores.component';
 import { GameComponent } from './views/game/game.component';
@@ -21,7 +20,6 @@ import { HeaderSearchComponent } from './components/header-search/header-search.
 import { HeaderTeamsComponent } from './components/header-teams/header-teams.component';
 import { HeaderScoresComponent } from './components/header-scores/header-scores.component';
 import { HeaderGameComponent } from './components/header-game/header-game.component';
-import { HeaderNewsComponent } from './components/header-news/header-news.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AllScoresComponent } from './components/all-scores/all-scores.component';
 import { AllPlayersComponent } from './components/all-players/all-players.component';
@@ -44,7 +42,6 @@ import { RandomPlayerComponent } from './components/all-players/random-player/ra
     HomeComponent,
     HeaderHomeComponent,
     TeamsComponent,
-    NewsComponent,
     SearchComponent,
     GameScoresComponent,
     GameComponent,
@@ -52,7 +49,6 @@ import { RandomPlayerComponent } from './components/all-players/random-player/ra
     HeaderTeamsComponent,
     HeaderScoresComponent,
     HeaderGameComponent,
-    HeaderNewsComponent,
     FooterComponent,
     AllScoresComponent,
     AllPlayersComponent,
