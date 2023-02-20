@@ -18,9 +18,9 @@
     <button [routerLink] = "['/scores']" mat-icon-button color="primary" aria-label="Go to Scoreboard">
         <mat-icon>sports_basketball</mat-icon>
         <span class="main-nav__label">Scores</span>
-    </button>    
-    <button [routerLink] = "['/news']" mat-icon-button color="primary" aria-label="Go to News page">
-        <mat-icon>newspaper</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" aria-label="Read News">
+        <a [href]="newsUrl"><mat-icon>newspaper</mat-icon></a>
         <span class="main-nav__label">News</span>
     </button>
 </nav>
