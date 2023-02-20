@@ -21,10 +21,6 @@ export class SearchFiltersComponent implements OnInit {
     this.filterService.setFilter(Filter.game) ;
   }
 
-  activateFilterNews() {
-    this.filterService.setFilter(Filter.news) ;
-  }
-
   constructor(private filterService: ChangeFiltersService) { }
 
   ngOnInit(): void {
