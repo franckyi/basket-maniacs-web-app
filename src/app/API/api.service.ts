@@ -16,7 +16,7 @@ export class ApiService {
   }
 
   getGames() {
-    return this.httpClient.get<GamesResponse>('https://free-nba.p.rapidapi.com/games?seasons[]=2021', {
+    return this.httpClient.get<GamesResponse>('https://free-nba.p.rapidapi.com/games?page=0&per_page=25', {
       headers: {
         'X-RapidAPI-Key': 'befd1205e9mshc5b6271d340e520p18212ajsn969c844a4f9c'
       }
@@ -24,14 +24,14 @@ export class ApiService {
   }
 
   getLatestGames$() {
-    return this.httpClient.get<GamesResponse>('https://free-nba.p.rapidapi.com/games?seasons[]=2021&per_page=10', {
+    return this.httpClient.get<GamesResponse>('https://free-nba.p.rapidapi.com/games?per_page=10', {
       headers: {
         'X-RapidAPI-Key': 'befd1205e9mshc5b6271d340e520p18212ajsn969c844a4f9c'
       }
     }).pipe(
       switchMap(
         value => {
-          return this.httpClient.get<GamesResponse>(`https://free-nba.p.rapidapi.com/games?seasons[]=2021&per_page=10&page=${value.meta.total_pages}`, {
+          return this.httpClient.get<GamesResponse>(`https://free-nba.p.rapidapi.com/games?per_page=10&page=${value.meta.total_pages}`, {
             headers: {
               'X-RapidAPI-Key': 'befd1205e9mshc5b6271d340e520p18212ajsn969c844a4f9c'
             }
