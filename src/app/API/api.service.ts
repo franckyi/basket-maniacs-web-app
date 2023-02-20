@@ -18,7 +18,7 @@ export class ApiService {
   getGames() {
     return this.httpClient.get<GamesResponse>('https://free-nba.p.rapidapi.com/games?seasons[]=2021', {
       headers: {
-        'X-RapidAPI-Key': 'c9cbb3c9e7msh9aa61fe6c842aa3p16bcf1jsnb868d2788b63'
+        'X-RapidAPI-Key': 'befd1205e9mshc5b6271d340e520p18212ajsn969c844a4f9c'
       }
     })
   }
@@ -26,14 +26,14 @@ export class ApiService {
   getLatestGames$() {
     return this.httpClient.get<GamesResponse>('https://free-nba.p.rapidapi.com/games?seasons[]=2021&per_page=10', {
       headers: {
-        'X-RapidAPI-Key': 'c9cbb3c9e7msh9aa61fe6c842aa3p16bcf1jsnb868d2788b63'
+        'X-RapidAPI-Key': 'befd1205e9mshc5b6271d340e520p18212ajsn969c844a4f9c'
       }
     }).pipe(
       switchMap(
         value => {
           return this.httpClient.get<GamesResponse>(`https://free-nba.p.rapidapi.com/games?seasons[]=2021&per_page=10&page=${value.meta.total_pages}`, {
             headers: {
-              'X-RapidAPI-Key': 'c9cbb3c9e7msh9aa61fe6c842aa3p16bcf1jsnb868d2788b63'
+              'X-RapidAPI-Key': 'befd1205e9mshc5b6271d340e520p18212ajsn969c844a4f9c'
             }
           });
         }
@@ -53,14 +53,14 @@ export class ApiService {
   getLastGame$() {
     return this.httpClient.get<GamesResponse>('https://free-nba.p.rapidapi.com/games?seasons[]=2021&per_page=1', {
       headers: {
-        'X-RapidAPI-Key': 'c9cbb3c9e7msh9aa61fe6c842aa3p16bcf1jsnb868d2788b63'
+        'X-RapidAPI-Key': 'befd1205e9mshc5b6271d340e520p18212ajsn969c844a4f9c'
       }
     }).pipe(
       switchMap(
         value => {
           return this.httpClient.get<GamesResponse>(`https://free-nba.p.rapidapi.com/games?seasons[]=2021&per_page=1&page=${value.meta.total_pages}`, {
             headers: {
-              'X-RapidAPI-Key': 'c9cbb3c9e7msh9aa61fe6c842aa3p16bcf1jsnb868d2788b63'
+              'X-RapidAPI-Key': 'befd1205e9mshc5b6271d340e520p18212ajsn969c844a4f9c'
             }
           });
         }
@@ -80,7 +80,7 @@ export class ApiService {
   getTeams() {
     return this.httpClient.get<TeamsResponse>('https://free-nba.p.rapidapi.com/teams', {
       headers: {
-        'X-RapidAPI-Key': 'c9cbb3c9e7msh9aa61fe6c842aa3p16bcf1jsnb868d2788b63'
+        'X-RapidAPI-Key': 'befd1205e9mshc5b6271d340e520p18212ajsn969c844a4f9c'
       }
     })
   }
@@ -88,7 +88,7 @@ export class ApiService {
   getPlayers() {
     return this.httpClient.get<PlayersResponse>('https://free-nba.p.rapidapi.com/players', {
       headers: {
-        'X-RapidAPI-Key': 'c9cbb3c9e7msh9aa61fe6c842aa3p16bcf1jsnb868d2788b63'
+        'X-RapidAPI-Key': 'befd1205e9mshc5b6271d340e520p18212ajsn969c844a4f9c'
       }
     })
   }
@@ -96,7 +96,7 @@ export class ApiService {
   getStats() {
     return this.httpClient.get<StatsResponse>('https://free-nba.p.rapidapi.com/stats', {
       headers: {
-        'X-RapidAPI-Key': 'c9cbb3c9e7msh9aa61fe6c842aa3p16bcf1jsnb868d2788b63'
+        'X-RapidAPI-Key': 'befd1205e9mshc5b6271d340e520p18212ajsn969c844a4f9c'
       }
     })
   }
