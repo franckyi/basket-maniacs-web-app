@@ -84,7 +84,7 @@ export class ApiService {
       }
     })
   }
-  
+
   getPlayers() {
     return this.httpClient.get<PlayersResponse>('https://free-nba.p.rapidapi.com/players', {
       headers: {

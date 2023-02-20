@@ -10,7 +10,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LatestScoresComponent } from './components/latest-scores/latest-scores.component';
 import { LatestScoreItemComponent } from './components/latest-scores/latest-score-item/latest-score-item.component';
-import { PlayerOfDayComponent } from './components/player-of-day/player-of-day.component';
 import { HeaderHomeComponent } from './components/header-home/header-home.component';
 import { HomeComponent } from './views/home/home.component';
 import { TeamsComponent } from './views/teams/teams.component';
@@ -44,12 +43,12 @@ import { RandomPlayerComponent } from './components/all-players/random-player/ra
     LatestScoresComponent,
     LatestScoreItemComponent,
     HomeComponent,
-    PlayerOfDayComponent,
     HeaderHomeComponent,
     TeamsComponent,
     NewsComponent,
     SearchComponent,
     GameScoresComponent,
+    GameComponent,
     HeaderSearchComponent,
     HeaderTeamsComponent,
     HeaderScoresComponent,
