@@ -34,7 +34,6 @@ import { SearchFiltersComponent } from './views/search/search-filters/search-fil
 import { SearchPlayerComponent } from './views/search/search-player/search-player.component';
 import { SearchTeamComponent } from './views/search/search-team/search-team.component';
 import { SearchGameComponent } from './views/search/search-game/search-game.component';
-import { SearchNewsComponent } from './views/search/search-news/search-news.component';
 import { RandomPlayerComponent } from './components/all-players/random-player/random-player.component';
 
 @NgModule({
@@ -66,7 +65,6 @@ import { RandomPlayerComponent } from './components/all-players/random-player/ra
     SearchPlayerComponent,
     SearchTeamComponent,
     SearchGameComponent,
-    SearchNewsComponent,
     RandomPlayerComponent,
   ],
   imports: [
