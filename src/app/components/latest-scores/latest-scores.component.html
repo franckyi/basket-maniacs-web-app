@@ -3,6 +3,6 @@
     <mat-card-content>
         <ul class="scores-list">
             <app-latest-score-item *ngFor="let score of (latestScoresItems | async)?.data" [score]="score"></app-latest-score-item>
-        </ul>    
+        </ul>
     </mat-card-content>
 </mat-card>
