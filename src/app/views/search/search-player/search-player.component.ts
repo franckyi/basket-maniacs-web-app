@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { Player } from 'src/app/API/Player';
+import {Observable} from "rxjs";
 import { PlayersResponse } from 'src/app/API/players-response';
 import { TeamsComponent } from '../../teams/teams.component';
+import { ApiService } from 'src/app/API/api.service';
 
 /**
  * @title Table with filtering
@@ -15,13 +17,15 @@ import { TeamsComponent } from '../../teams/teams.component';
 
 export class SearchPlayerComponent implements OnInit {
 
-    filterValues: any = {};
-    dataSource = new MatTableDataSource();
-    displayedColumns: string[] = ['first_name', 'last_name', 'team'];
+  SearchPlayerResults: Observable<PlayersResponse>;
+  filterValues: any = {};
+  dataSource = new MatTableDataSource();
+  displayedColumns: string[] = ['first_name', 'last_name', 'team'];
+  filterSelectObj: any = [];
 
-    filterSelectObj: any = [];
+  constructor(private api: ApiService) {
 
-  constructor() {
+    this.SearchPlayerResults = api.getPlayers();
 
     // Object to create Filter for
     this.filterSelectObj = [

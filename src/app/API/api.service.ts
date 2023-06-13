@@ -86,7 +86,7 @@ export class ApiService {
   }
 
   getPlayers() {
-    return this.httpClient.get<PlayersResponse>('https://free-nba.p.rapidapi.com/players', {
+    return this.httpClient.get<PlayersResponse>('https://free-nba.p.rapidapi.com/players&search=michael', {
       headers: {
         'X-RapidAPI-Key': 'befd1205e9mshc5b6271d340e520p18212ajsn969c844a4f9c'
       }
