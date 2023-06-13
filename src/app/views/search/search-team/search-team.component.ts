@@ -32,13 +32,13 @@ export class SearchTeamComponent implements OnInit {
       // Object to create Filter for
       this.filterSelectObj = [
         {
-          name: 'Team Name',
-          columnProp: 'full_name',
+          name: 'Team name',
+          columnProp: 'team_name',
           options: []
         },
         {
-          name: 'City',
-          columnProp: 'city',
+          name: 'Team ID',
+          columnProp: 'team_id',
           options: []
         }
       ]

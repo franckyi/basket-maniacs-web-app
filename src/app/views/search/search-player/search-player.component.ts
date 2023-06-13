@@ -26,17 +26,13 @@ export class SearchPlayerComponent implements OnInit {
     // Object to create Filter for
     this.filterSelectObj = [
         {
-          name: 'First Name',
-          columnProp: 'first_name',
-          options: []
-        }, {
-          name: 'Last name',
-          columnProp: 'last_name',
+          name: 'First or last name',
+          columnProp: 'name',
           options: []
         },
         {
-          name: 'Team',
-          columnProp: 'team',
+          name: 'Player ID',
+          columnProp: 'player_id',
           options: {}
         }
       ]
@@ -50,28 +46,28 @@ export class SearchPlayerComponent implements OnInit {
   }
 
   // Get Uniqu values from columns to build filter
-  getFilterObject(fullObj: any, key: any) {
-    const uniqChk: any[] = [];
-    fullObj.filter((obj: { [x: string]: any; }) => {
+  // getFilterObject(fullObj: any, key: any) {
+  //   const uniqChk: any[] = [];
+  //   fullObj.filter((obj: { [x: string]: any; }) => {
 
-      if (!uniqChk.includes(obj[key])) {
-        // console.log('OUTSIDE');
+  //     if (!uniqChk.includes(obj[key])) {
+  //       // console.log('OUTSIDE');
 
-        if(typeof obj[key] === 'object') {
-            uniqChk.push(obj[key].full_name);
-            // console.log('TEST TEAMS AS OPTIONS');
-        }
-        else {
-            uniqChk.push(obj[key]);
-        }
-      }
-      return obj;
-    //   console.log(obj[key].full_name);
-    });
+  //       if(typeof obj[key] === 'object') {
+  //           uniqChk.push(obj[key].full_name);
+  //           // console.log('TEST TEAMS AS OPTIONS');
+  //       }
+  //       else {
+  //           uniqChk.push(obj[key]);
+  //       }
+  //     }
+  //     return obj;
+  //   //   console.log(obj[key].full_name);
+  //   });
 
-    return uniqChk;
-    // console.log(uniqChk[key].full_name);
-  }
+  //   return uniqChk;
+  //   // console.log(uniqChk[key].full_name);
+  // }
 
   // Get remote serve data using HTTP call
   // getRemoteData() {

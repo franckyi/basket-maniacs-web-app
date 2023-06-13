@@ -19,17 +19,17 @@ export class SearchGameComponent implements OnInit {
     // Object to create Filter for
     this.filterSelectObj = [
         {
-            name: 'Home team',
-            columnProp: 'home_team',
+            name: 'By date',
+            columnProp: 'game_date',
             options: {}
         }, {
-            name: 'Away team',
-            columnProp: 'visitor_team',
+            name: 'By season',
+            columnProp: 'game_season',
             options: {}
         },
         {
-            name: 'Date',
-            columnProp: 'date',
+            name: 'By ID',
+            columnProp: 'game_id',
             options: []
         }
         ];
