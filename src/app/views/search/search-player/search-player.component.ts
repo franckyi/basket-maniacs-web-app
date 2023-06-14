@@ -44,14 +44,12 @@ export class SearchPlayerComponent implements OnInit {
 
   ngOnInit() {
     // this.getRemoteData();
-
     // Overrride default filter behaviour of Material Datatable
     this.dataSource.filterPredicate = this.createFilter();
   }
 
   // Called on Filter change
   filterChange(filter: any, event: any) {
-    // let filterValues = {}
     this.filterValues[filter.columnProp] = event.target.value.trim().toLowerCase()
     this.dataSource.filter = JSON.stringify(this.filterValues)
   }
@@ -93,9 +91,14 @@ export class SearchPlayerComponent implements OnInit {
     return filterFunction
   }
 
-
+  searchPlayerByName () {
+    console.log('called searchPlayerByName()')
+  }
+  
+  
   // Reset table filters
   resetFilters() {
+    console.log('called resetFilters()')
     this.filterValues = {}
     this.filterSelectObj.forEach((value: any, key: number) => {
       value.modelValue = undefined;

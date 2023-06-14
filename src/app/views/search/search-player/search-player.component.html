@@ -5,7 +5,7 @@
     <input matInput value="">
   </mat-form-field>
   <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
-  <button [style.margin-left.px]="10" mat-flat-button color="primary">Search</button>
+  <button (click)="searchPlayerByName()" [style.margin-left.px]="10" mat-flat-button color="primary">Search</button>
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
