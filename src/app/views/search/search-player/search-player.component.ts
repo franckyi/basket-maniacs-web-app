@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { Player } from 'src/app/API/Player';
-import {Observable} from "rxjs";
+import { Observable } from "rxjs";
 import { PlayersResponse } from 'src/app/API/players-response';
 import { TeamsComponent } from '../../teams/teams.component';
 import { ApiService } from 'src/app/API/api.service';
@@ -27,7 +27,7 @@ export class SearchPlayerComponent implements OnInit {
 
     this.SearchPlayerResults = api.getPlayers();
 
-    // Object to create Filter for
+    // Array of filters
     this.filterSelectObj = [
         {
           name: 'First or last name',
@@ -48,34 +48,6 @@ export class SearchPlayerComponent implements OnInit {
     // Overrride default filter behaviour of Material Datatable
     this.dataSource.filterPredicate = this.createFilter();
   }
-
-  // Get Uniqu values from columns to build filter
-  // getFilterObject(fullObj: any, key: any) {
-  //   const uniqChk: any[] = [];
-  //   fullObj.filter((obj: { [x: string]: any; }) => {
-
-  //     if (!uniqChk.includes(obj[key])) {
-  //       // console.log('OUTSIDE');
-
-  //       if(typeof obj[key] === 'object') {
-  //           uniqChk.push(obj[key].full_name);
-  //           // console.log('TEST TEAMS AS OPTIONS');
-  //       }
-  //       else {
-  //           uniqChk.push(obj[key]);
-  //       }
-  //     }
-  //     return obj;
-  //   //   console.log(obj[key].full_name);
-  //   });
-
-  //   return uniqChk;
-  //   // console.log(uniqChk[key].full_name);
-  // }
-
-  // Get remote serve data using HTTP call
-  // getRemoteData() {
-  // }
 
   // Called on Filter change
   filterChange(filter: any, event: any) {
