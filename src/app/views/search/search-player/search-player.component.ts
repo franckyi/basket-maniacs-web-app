@@ -10,7 +10,7 @@ import { ApiService } from 'src/app/API/api.service';
     <div class="search">
       <mat-form-field style="margin-left: 15px;">
         <mat-label for="name">Player name</mat-label>
-        <input [(ngModel)]="playerName" matInput id="name" placeholder="First or last name">
+        <input [(ngModel)]="playerName" matInput id="name" placeholder="First or last name" required="required">
       </mat-form-field>
       <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
       <button (click)="passQuery(playerName)" [style.margin-left.px]="10" mat-flat-button color="primary">Search</button>

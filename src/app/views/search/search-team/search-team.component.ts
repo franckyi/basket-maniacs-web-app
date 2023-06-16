@@ -11,7 +11,7 @@ import { Team } from 'src/app/API/Team';
     <div class="search">
       <mat-form-field style="margin-left: 15px;">
         <mat-label>Team name</mat-label>
-        <input #teamName matInput>
+        <input #teamName matInput required="required">
       </mat-form-field>
       <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
       <button (click)="passQuery(teamName.value)" [style.margin-left.px]="10" mat-flat-button color="primary">Search</button>
