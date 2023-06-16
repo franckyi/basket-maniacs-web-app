@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/API/api.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { Observable } from "rxjs";
-import { PlayersResponse } from 'src/app/API/players-response';
 
 /**
  * @title Table with filtering
@@ -12,8 +9,8 @@ import { PlayersResponse } from 'src/app/API/players-response';
   template: `
     <div class="search">
       <mat-form-field style="margin-left: 15px;">
-        <mat-label for="filter.columnProp">{{filters[0].name}}</mat-label>
-        <input [(ngModel)]="playerName" matInput id="{{filters[0].columnProp}}">
+        <mat-label for="name">Player name</mat-label>
+        <input [(ngModel)]="playerName" matInput id="name" placeholder="First or last name">
       </mat-form-field>
       <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
       <button (click)="passQuery(playerName)" [style.margin-left.px]="10" mat-flat-button color="primary">Search</button>
@@ -35,79 +32,13 @@ import { PlayersResponse } from 'src/app/API/players-response';
 })
 
 export class SearchPlayerComponent implements OnInit {
-  SearchPlayerResults: Observable<PlayersResponse>;
-  filterValues: any = {};
-  dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['first_name', 'last_name', 'team'];
   filters: any = [];
   playerName: string = '';
   playerId: string = '';
   results: any | undefined = null;
   
-  constructor(private _api: ApiService) {
-    
-    interface PlayerResults {
-      'first_name': string;
-      'last_name': string;
-      'team': string;
-    }
-    
-    this.SearchPlayerResults = _api.getPlayers('');
-
-    // Array of filters
-    this.filters = [
-      {
-        name: 'First or last name',
-        columnProp: 'name',
-        value: ''
-      },
-    ]
-  }
-
-  ngOnInit() {
-    this.dataSource.filterPredicate = this.createFilter();
-  }
-
-  // Called on Filter change
-  filterChange(filter: any, event: any) {
-    this.filterValues[filter.columnProp] = event.target.value.trim().toLowerCase()
-    this.dataSource.filter = JSON.stringify(this.filterValues)
-  }
-
-  // Custom filter method fot Angular Material Datatable
-  createFilter() {
-    let filterFunction = function (data: any, filter: any): boolean {
-      let searchTerms = JSON.parse(filter);
-      let isFilterSet = false;
-
-      for (const col in searchTerms) {
-
-        if (searchTerms[col].toString() === '')
-             { delete searchTerms[col]; }
-        else { isFilterSet = true; }
-
-      }
-
-      let nameSearch = () => {
-        let found = false;
-        if (isFilterSet) {
-          for (const col in searchTerms) {
-            searchTerms[col].trim().toLowerCase().split(' ').forEach((word: any) => {
-              if (data[col].toString().toLowerCase().indexOf(word) != -1 && isFilterSet) {
-                found = true
-              }
-            });
-          }
-          return found
-        } else {
-          return true;
-        }
-      }
-      return nameSearch()
-    }
-
-    return filterFunction
-  }
+  constructor(private _api: ApiService) {}
+  ngOnInit() {}
 
   passQuery (name: string) {
     console.log('called searchPlayer()');
@@ -121,16 +52,9 @@ export class SearchPlayerComponent implements OnInit {
     );
   }
   
-  // Reset table filters
   resetFilters() {
     console.log('called resetFilters()')
-    this.filterValues = {}
-    this.filters.forEach((value: any, key: number) => {
-      value.modelValue = undefined;
-    })
-    this.dataSource.filter = "";
   }
-
 
 }
 

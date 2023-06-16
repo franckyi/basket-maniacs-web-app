@@ -43,16 +43,9 @@ export interface TeamsData {
   styleUrls: ['./search-team.component.scss']
 })
 export class SearchTeamComponent implements OnInit {
-
-    filterValues: any = {};
-    dataSource = new MatTableDataSource();
-    displayedColumns: string[] = ['full_name', 'abbreviation', 'city'];
-    results: any | undefined = null;
-
-    filterSelectObj: any = [];
+  results: any | undefined = null;
 
   constructor(private _api: ApiService) {}
-
   ngOnInit() {}
 
   passQuery (name: string) {
@@ -69,13 +62,7 @@ export class SearchTeamComponent implements OnInit {
     );
   }
 
-
-  // Reset table filters
   resetFilters() {
-    this.filterValues = {}
-    this.filterSelectObj.forEach((value: any, key: number) => {
-      value.modelValue = undefined;
-    })
-    this.dataSource.filter = "";
+    console.log('called resetFilters()')
   }
 }
