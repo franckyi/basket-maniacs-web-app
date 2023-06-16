@@ -1,17 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/API/api.service';
 import { Team } from 'src/app/API/Team';
-
-export interface TeamsData {
-  "id": number,
-  "abbreviation": string,
-  "city": string,
-  "conference": string,
-  "division": string,
-  "full_name": string,
-  "name": string
-}
 
 /**
  * @title Table with filtering

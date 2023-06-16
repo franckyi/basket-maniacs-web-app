@@ -14,8 +14,10 @@ export class ApiService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getGames() {
-    return this.httpClient.get<GamesResponse>('https://free-nba.p.rapidapi.com/games?page=0&per_page=25', {
+  getGames(season: number | null, perPage: number = 25) {
+    let query: string | null = (season !== null) ? '&Seasons=' + season : null;
+    perPage = perPage ?? 25;
+    return this.httpClient.get<GamesResponse>(`https://free-nba.p.rapidapi.com/games?page=0&per_page=${perPage}${query}`, {
       headers: {
         'X-RapidAPI-Key': 'befd1205e9mshc5b6271d340e520p18212ajsn969c844a4f9c'
       }
