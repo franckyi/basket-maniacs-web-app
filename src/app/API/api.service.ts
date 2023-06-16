@@ -6,7 +6,6 @@ import {PlayersResponse} from './players-response';
 import {StatsResponse} from './stats-response';
 import {map, shareReplay, switchMap} from "rxjs";
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -85,12 +84,14 @@ export class ApiService {
     })
   }
 
-  getPlayers() {
-    return this.httpClient.get<PlayersResponse>('https://free-nba.p.rapidapi.com/players&search=michael', {
+  getPlayers(name: string) {
+    let query: string | undefined;
+    query = '&search=' + name;
+    return this.httpClient.get<PlayersResponse>(`https://free-nba.p.rapidapi.com/players?${query}`, {
       headers: {
         'X-RapidAPI-Key': 'befd1205e9mshc5b6271d340e520p18212ajsn969c844a4f9c'
       }
-    })
+    }) 
   }
 
   getStats() {

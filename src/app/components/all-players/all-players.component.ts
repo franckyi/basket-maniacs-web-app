@@ -15,7 +15,7 @@ export class AllPlayersComponent implements OnInit {
   AllPlayersItems: Observable<PlayersResponse>;
 
   constructor(private api: ApiService) {
-    this.AllPlayersItems = api.getPlayers();
+    this.AllPlayersItems = api.getPlayers('');
    }
 
   ngOnInit(): void {
