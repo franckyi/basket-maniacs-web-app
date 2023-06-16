@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/API/api.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { Player } from 'src/app/API/Player';
 import { Observable } from "rxjs";
 import { PlayersResponse } from 'src/app/API/players-response';
-import { TeamsComponent } from '../../teams/teams.component';
-import {MatCardModule} from '@angular/material/card';
 
 /**
  * @title Table with filtering
@@ -21,18 +18,17 @@ import {MatCardModule} from '@angular/material/card';
       <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
       <button (click)="passQuery(playerName)" [style.margin-left.px]="10" mat-flat-button color="primary">Search</button>
       <mat-card *ngIf="results !== null" class="search-results">
-            <mat-card-content>
-              <ul>
-        <li *ngFor="let result of results; index as i">
-          
+          <mat-card-content>
+            <ul>
+              <li *ngFor="let result of results; index as i">
               <div>{{ result.first_name }}</div>
               <div>{{ result.last_name }}</div>
               <div>{{ result.team.full_name }}</div>
               <div>{{ result.team.division }}</div>
-                </li>
-      </ul>
-      </mat-card-content>
-          </mat-card>
+              </li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
     </div>
     `,
   styleUrls: ['./search-player.component.scss']
