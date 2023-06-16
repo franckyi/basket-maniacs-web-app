@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import { ApiService } from 'src/app/API/api.service';
-import { GamesResponse } from 'src/app/API/games-response';
-import { Game } from 'src/app/API/Game';
 
 @Component({
   selector: 'app-search-game',
@@ -37,7 +35,7 @@ import { Game } from 'src/app/API/Game';
   styleUrls: ['./search-game.component.scss']
 })
 export class SearchGameComponent implements OnInit {
-  results: any | undefined = [];
+  results: any | undefined = null;
   season: string = '';
 
   constructor(private _api: ApiService) {}
@@ -48,7 +46,7 @@ export class SearchGameComponent implements OnInit {
     console.log('homeTeam:', homeTeam);
     console.log('visitorTeam:', visitorTeam);
 
-    if ( homeTeam !== '' && visitorTeam === '' ) {
+    if ( homeTeam !== '' && visitorTeam === '' && season !== '' ) {
       this._api.getGames(season, 500)
       .subscribe(
         (response) => {
@@ -59,7 +57,7 @@ export class SearchGameComponent implements OnInit {
         }
       );
     } 
-    else if ( homeTeam === '' && visitorTeam !== '' ) {
+    else if ( homeTeam === '' && visitorTeam !== '' && season !== '') {
       this._api.getGames(season, 500)
       .subscribe(
         (response) => {
