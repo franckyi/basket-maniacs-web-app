@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
+import { ApiService } from 'src/app/API/api.service';
+import { Team } from 'src/app/API/Team';
 
 export interface TeamsData {
   "id": number,
@@ -16,7 +18,28 @@ export interface TeamsData {
  */
 @Component({
   selector: 'app-search-team',
-  templateUrl: './search-team.component.html',
+  template: `
+    <div class="search">
+      <mat-form-field style="margin-left: 15px;">
+        <mat-label>Team name</mat-label>
+        <input #teamName matInput>
+      </mat-form-field>
+      <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
+      <button (click)="passQuery(teamName.value)" [style.margin-left.px]="10" mat-flat-button color="primary">Search</button>
+      <mat-card *ngIf="results !== null" class="search-results">
+          <mat-card-content>
+            <ul>
+              <li *ngFor="let result of results; index as i">
+              <div>{{ result.full_name }}</div>
+              <div>{{ result.abbreviation }}</div>
+              <div>{{ result.city }}</div>
+              <div>{{ result.division }}</div>
+              </li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  `,
   styleUrls: ['./search-team.component.scss']
 })
 export class SearchTeamComponent implements OnInit {
@@ -24,89 +47,26 @@ export class SearchTeamComponent implements OnInit {
     filterValues: any = {};
     dataSource = new MatTableDataSource();
     displayedColumns: string[] = ['full_name', 'abbreviation', 'city'];
+    results: any | undefined = null;
 
     filterSelectObj: any = [];
 
-  constructor() {
+  constructor(private _api: ApiService) {}
 
-      // Object to create Filter for
-      this.filterSelectObj = [
-        {
-          name: 'Team name',
-          columnProp: 'team_name',
-          options: []
-        },
-        {
-          name: 'Team ID',
-          columnProp: 'team_id',
-          options: []
-        }
-      ]
-   }
+  ngOnInit() {}
 
-  ngOnInit() {
-    // this.getRemoteData();
-
-    // Overrride default filter behaviour of Material Datatable
-    this.dataSource.filterPredicate = this.createFilter();
-  }
-
-    // Get Uniqu values from columns to build filter
-    getFilterObject(fullObj: any, key: any) {
-        const uniqChk: any[] = [];
-        fullObj.filter((obj: { [x: string]: any; }) => {
-          if (!uniqChk.includes(obj[key])) {
-            uniqChk.push(obj[key]);
-          }
-          return obj;
-        });
-        return uniqChk;
+  passQuery (name: string) {
+    console.log('called passQuery()');
+    console.log('name:', name);
+    this._api.getTeams()
+    .subscribe(
+      (response) => {
+        this.results = response.data.filter( 
+          (team: Team) => team.full_name.toLowerCase().includes(name.toLowerCase())
+        );
+        console.log('✅ filtered teams', this.results)
       }
-
-  // TODO: Get remote serve data using HTTP call
-  // getRemoteData() {
-  // }
-
-  // Called on Filter change
-  filterChange(filter: any, event: any) {
-    // let filterValues = {}
-    this.filterValues[filter.columnProp] = event.target.value.trim().toLowerCase()
-    this.dataSource.filter = JSON.stringify(this.filterValues)
-  }
-
-  // Custom filter method fot Angular Material Datatable
-  createFilter() {
-    let filterFunction = function (data: any, filter: string): boolean {
-      let searchTerms = JSON.parse(filter);
-      let isFilterSet = false;
-      for (const col in searchTerms) {
-        if (searchTerms[col].toString() !== '') {
-          isFilterSet = true;
-        } else {
-          delete searchTerms[col];
-        }
-      }
-
-      console.log(searchTerms);
-
-      let nameSearch = () => {
-        let found = false;
-        if (isFilterSet) {
-          for (const col in searchTerms) {
-            searchTerms[col].trim().toLowerCase().split(' ').forEach((word: any) => {
-              if (data[col].toString().toLowerCase().indexOf(word) != -1 && isFilterSet) {
-                found = true
-              }
-            });
-          }
-          return found
-        } else {
-          return true;
-        }
-      }
-      return nameSearch()
-    }
-    return filterFunction
+    );
   }
 
 
