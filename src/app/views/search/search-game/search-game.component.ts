@@ -117,7 +117,7 @@ export class SearchGameComponent implements OnInit {
           } else {
             console.log(this.results.length);
             console.log('not found')
-            this.notFoundMsg = 'No teams found... Try again';
+            this.notFoundMsg = 'No games found... Try other criteria';
             this.results = null;
           }
         }
