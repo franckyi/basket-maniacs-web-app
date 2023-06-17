@@ -1,7 +1,8 @@
-<li class="game__item">
-    <div class="main-info">
-        <span class="score">{{ team?.full_name }}</span>
-        <img class="team-logo" src="../../assets/img/team-logos/{{ team?.abbreviation }}.svg" height="48" alt="">
-    </div>
+<li class="results__item team">
+    <span class="team__score">{{ team?.full_name }}</span>
+    <img
+        class="team__logo"
+        src="../../assets/img/team-logos/{{ team?.abbreviation }}.svg"
+        [alt]="team?.full_name + ' logo'"
+    >
 </li>
-<mat-divider></mat-divider>

@@ -78,32 +78,42 @@ app-search-player {
     color: $color-text--light;
 }
 
-.game {
+.results {
     &__list {
         display: flex;
         flex-direction: column;
         list-style: none;
         width: 100%;
+        gap: .5rem;
+        list-style: none;
     }
     &__item {
-        margin: 0 auto;
+        padding-top: .5rem;
+        padding-bottom: .5rem;
+        border: 1px solid #f7edf9;
+        border-radius: 15px;
+        &.team {
+            padding-left: .5rem;
+            padding-right: .5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
     }
+}
+
+.game {
     &__main-info {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 5%;
-        margin: 1em auto;
         &__ball{
             margin-right: 10%;
         }
         .teams {
             margin-left: 5px;
         }
-        // .score {
-        //     font-weight: 700;
-        //     color: $color-text;
-        // }
     }
 
     &__team {
@@ -135,13 +145,31 @@ app-search-player {
         display: flex;
         justify-content: center;
         color: $color-text--light;
+        column-gap: 5px;
     }
 }
 
-app-latest-score-item:not(:last-child) {
-    padding-top: .5em;
-    padding-bottom: .5em;
-    border-bottom: 1px solid $light-grey;
+.team {
+    // &__item {
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: space-between;
+    //     height: 4rem;
+    //     &:not( :nth-last-child(1) ) {
+    //         border-bottom: 1px solid beige;
+    //     }
+    // }
+    &__logo {
+        max-height: 40px;
+        max-width: 60px;
+    }
+}
+
+.player {
+    &__club-logo {
+        max-height: 40px;
+        max-width: 60px;
+    }
 }
 
 .search {
@@ -153,7 +181,6 @@ app-search-player {
     margin: 0 auto;
 }
 
-table.mat-table,
 .mat-form-field {
     width: 100%;
 }

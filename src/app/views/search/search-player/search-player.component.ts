@@ -35,20 +35,22 @@ import { ApiService } from 'src/app/API/api.service';
         <mat-icon aria-hidden="false" aria-label="Next page" fontIcon="navigate_next"
           (click)="goToNextPage()"></mat-icon>
       </div>
-      <mat-card class="search-results" *ngIf="results !== null && results.length > 0">
-        <mat-card-content class="results">
-          <ul class="game__list">
-            <li class="game__item player" *ngFor="let result of results">
-            <div>{{ result.first_name }}</div>
-            <div>{{ result.last_name }}</div>
-            <div>{{ result.team.full_name }}</div>
-            <div>({{ result.team.abbreviation }})</div>
-            <img
-              class="club-logo"
-              [src]="'../../assets/img/team-logos/' + result.team.abbreviation + '.svg'"
-              [alt]="result.team.full_name + 'logo'"
-              height="24"
-            >
+      <mat-card 
+        class="mat-card mat-focus-indicator card--rounded search-results"
+        *ngIf="results !== null && results.length > 0"
+      >
+        <mat-card-content class="mat-card-content results">
+          <ul class="player__list results__list">
+            <li class="player__item results__item" *ngFor="let result of results">
+              {{ result.first_name }}
+              {{ result.last_name }}
+              {{ result.team.full_name }}
+              ({{ result.team.abbreviation }})
+              <img
+                class="player__club-logo"
+                [src]="'../../assets/img/team-logos/' + result.team.abbreviation + '.svg'"
+                [alt]="result.team.full_name + 'logo'"
+              >
             </li>
           </ul>
         </mat-card-content>

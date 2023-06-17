@@ -41,7 +41,7 @@ import { ApiService } from 'src/app/API/api.service';
         *ngIf="btnClicked && results !== null && season !== '' "
       >
         <mat-card-content class="results">
-            <ul class="game__list">
+            <ul class="results__list">
                 <app-latest-score-item *ngFor="let result of results" [score]="result"></app-latest-score-item>
             </ul>
         </mat-card-content>
