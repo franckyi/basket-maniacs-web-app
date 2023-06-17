@@ -1,30 +1,26 @@
-<li class="scores-list-item">
-    <div class="main-infos">
-        <div class="teams-wrap">
-            <div class="teams-wrap__team">
-                <img
-                    class="teams-wrap__team-logo club-logo"
-                    src="../../assets/img/team-logos/{{ score?.home_team?.abbreviation }}.svg"
-                    [alt]="score?.home_team?.full_name + 'logo'">
-                <span class="teams-wrap__team-name">{{ score?.home_team?.abbreviation }}
-                </span>
-                <span class="teams-wrap__score">{{ score?.home_team_score }}</span>
-            </div>
-            <span class="teams-wrap__vs">VS</span>
-            <div class="teams-wrap__team">
-                <span class="teams-wrap__score">{{ score?.visitor_team_score }}</span>
-                <img
-                    class="teams-wrap__team-logo club-logo"
-                    [src]="'../../assets/img/team-logos/' + score?.visitor_team?.abbreviation + '.svg'"
-                    [alt]="score?.visitor_team?.full_name + 'logo'">
-                <span class="teams-wrap__team-name">{{ score?.visitor_team?.abbreviation }}</span>
-            </div>
+<li class="game__item">
+    <div class="game__main-info">
+        <div class="game__team">
+            <img
+                class="game__logo"
+                src="../../assets/img/team-logos/{{ score?.home_team?.abbreviation }}.svg"
+                [alt]="score?.home_team?.full_name + 'logo'">
+            <span class="game__team-name">{{ score?.home_team?.abbreviation }}
+            </span>
+            <span class="game__score">{{ score?.home_team_score }}</span>
+        </div>
+        <span class="game__vs">VS</span>
+        <div class="game__team">
+            <span class="game__score">{{ score?.visitor_team_score }}</span>
+            <img
+                class="game__logo"
+                [src]="'../../assets/img/team-logos/' + score?.visitor_team?.abbreviation + '.svg'"
+                [alt]="score?.visitor_team?.full_name + 'logo'">
+            <span class="game__team-name">{{ score?.visitor_team?.abbreviation }}</span>
         </div>
     </div>
-    <div class="other-infos">
-        <div class="date-city-wrap">
-            <span class="date">{{ score?.date | date: 'mediumDate'}} | </span>
-            <span class="city">{{ score?.home_team?.city }}</span>
-        </div>
+    <div class="game__minor-info">
+        <span class="date">{{ score?.date | date: 'mediumDate'}} | </span>
+        <span class="city">{{ score?.home_team?.city }}</span>
     </div>
 </li>

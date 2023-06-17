@@ -2,7 +2,7 @@
 <h1 class="section-heading">All teams</h1>
 <mat-card class="card--rounded latest-scores">
     <mat-card-content>
-        <ul class="scores-list">
+        <ul class="game__list">
             <app-all-teams-item *ngFor="let team of (AllTeamsItems | async)?.data" [team]="team"></app-all-teams-item>
         </ul>    
     </mat-card-content>

@@ -39,8 +39,8 @@ import { ApiService } from 'src/app/API/api.service';
       <p *ngIf="notFoundMsg !== '' ">{{ notFoundMsg }}</p>
       <mat-card *ngIf="btnClicked && results !== null && season !== '' " class="search-results">
         <mat-card-content class="results">
-          <ul class="results__list">
-            <li *ngFor="let result of results" class="results__item">
+          <ul class="game__list">
+            <li *ngFor="let result of results" class="game__item">
               <div>{{ result.home_team.full_name }} VS {{ result.visitor_team.full_name }} {{ result.season }}</div>
             </li>
           </ul>
