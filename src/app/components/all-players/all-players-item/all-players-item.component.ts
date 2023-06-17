@@ -9,9 +9,7 @@ import {Player} from "../../../API/Player";
 export class AllPlayersItemComponent implements OnInit {
 
   @Input() player?: Player;
-
   constructor() { }
-
   ngOnInit(): void {
   }
 

@@ -3,7 +3,16 @@ table {
     width: 100%;
   }
   
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.results{
+  &__item.player {
+    display: flex;
+    div {
+      flex-basis: 20%;
+    }
   }
+}

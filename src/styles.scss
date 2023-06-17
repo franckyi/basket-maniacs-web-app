@@ -90,7 +90,8 @@ app-search-player {
     &__team {
         display: flex;
         align-items: center;
-        gap: 5%;
+        gap: 5px;
+        width: -webkit-fill-available;
     }
     &__score {
         font-size: 21px;
@@ -110,21 +111,17 @@ app-search-player {
     color: $color-text--light;
 }
 
-.latest-scores {
-    .scores-list {
+.results {
+    &__list {
         display: flex;
         flex-direction: column;
         list-style: none;
         width: 100%;
-        .scores-list-item {
-            width: 96%;
-            margin: 0 auto;
-        }
         .main-infos {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 0;
+            // display: flex;
+            // align-items: center;
+            // justify-content: space-between;
+            // margin-bottom: 0;
             .teams {
                 margin-left: 5px;
             }
@@ -145,6 +142,10 @@ app-search-player {
             justify-content: center;
             color: $color-text--light;
         }
+    }
+    &__item {
+        width: 96%;
+        margin: 0 auto;
     }
     .mat-card-content {
         display: flex;
@@ -186,4 +187,14 @@ button.btn-reset {
 
 .pagination {
     margin: 2rem;
+    .mat-icon {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.club-logo {
+    max-width: 60px;
+    max-height: 40px;
 }

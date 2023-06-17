@@ -36,13 +36,19 @@ import { ApiService } from 'src/app/API/api.service';
           (click)="goToNextPage()"></mat-icon>
       </div>
       <mat-card class="search-results" *ngIf="results !== null && results.length > 0">
-        <mat-card-content>
-          <ul>
-            <li *ngFor="let result of results">
+        <mat-card-content class="results">
+          <ul class="results__list">
+            <li class="results__item player" *ngFor="let result of results">
             <div>{{ result.first_name }}</div>
             <div>{{ result.last_name }}</div>
             <div>{{ result.team.full_name }}</div>
-            <div>{{ result.team.division }}</div>
+            <div>({{ result.team.abbreviation }})</div>
+            <img
+              class="club-logo"
+              [src]="'../../assets/img/team-logos/' + result.team.abbreviation + '.svg'"
+              [alt]="result.team.full_name + 'logo'"
+              height="24"
+            >
             </li>
           </ul>
         </mat-card-content>

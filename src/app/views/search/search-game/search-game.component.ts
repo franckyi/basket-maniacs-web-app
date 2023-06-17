@@ -38,10 +38,10 @@ import { ApiService } from 'src/app/API/api.service';
       >Search</button>
       <p *ngIf="notFoundMsg !== '' ">{{ notFoundMsg }}</p>
       <mat-card *ngIf="btnClicked && results !== null && season !== '' " class="search-results">
-        <mat-card-content>
-          <ul>
-            <li *ngFor="let result of results">
-            <div>{{ result.home_team.full_name }} VS {{ result.visitor_team.full_name }} {{ result.season }}</div>
+        <mat-card-content class="results">
+          <ul class="results__list">
+            <li *ngFor="let result of results" class="results__item">
+              <div>{{ result.home_team.full_name }} VS {{ result.visitor_team.full_name }} {{ result.season }}</div>
             </li>
           </ul>
       </mat-card-content>

@@ -2,7 +2,10 @@
     <div class="main-infos">
         <div class="teams-wrap">
             <div class="teams-wrap__team">
-                <img class="teams-wrap__team-logo" src="../../assets/img/team-logos/{{ score?.home_team?.abbreviation }}.svg" height="48" alt="">
+                <img
+                    class="teams-wrap__team-logo club-logo"
+                    src="../../assets/img/team-logos/{{ score?.home_team?.abbreviation }}.svg"
+                    [alt]="score?.home_team?.full_name + 'logo'">
                 <span class="teams-wrap__team-name">{{ score?.home_team?.abbreviation }}
                 </span>
                 <span class="teams-wrap__score">{{ score?.home_team_score }}</span>
@@ -10,7 +13,10 @@
             <span class="teams-wrap__vs">VS</span>
             <div class="teams-wrap__team">
                 <span class="teams-wrap__score">{{ score?.visitor_team_score }}</span>
-                <img class="teams-wrap__team-logo" [src]="'../../assets/img/team-logos/' + score?.visitor_team?.abbreviation + '.svg'" height="48" alt="">
+                <img
+                    class="teams-wrap__team-logo club-logo"
+                    [src]="'../../assets/img/team-logos/' + score?.visitor_team?.abbreviation + '.svg'"
+                    [alt]="score?.visitor_team?.full_name + 'logo'">
                 <span class="teams-wrap__team-name">{{ score?.visitor_team?.abbreviation }}</span>
             </div>
         </div>
