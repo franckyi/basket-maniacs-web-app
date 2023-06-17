@@ -14,15 +14,16 @@ import { ApiService } from 'src/app/API/api.service';
       </mat-form-field>
       <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
       <button (click)="passQuery(playerName)" [style.margin-left.px]="10" mat-flat-button color="primary">Search</button>
-      <mat-card *ngIf="results !== null" class="search-results">
-          <mat-card-content>
-            <ul>
-              <li *ngFor="let result of results; index as i">
-              <div>{{ result.first_name }}</div>
-              <div>{{ result.last_name }}</div>
-              <div>{{ result.team.full_name }}</div>
-              <div>{{ result.team.division }}</div>
-              </li>
+      <p *ngIf="results !== null && results.length <= 0">No players found... Try another name</p>
+      <mat-card class="search-results" *ngIf="results !== null && results.length > 0">
+        <mat-card-content>
+          <ul>
+            <li *ngFor="let result of results">
+            <div>{{ result.first_name }}</div>
+            <div>{{ result.last_name }}</div>
+            <div>{{ result.team.full_name }}</div>
+            <div>{{ result.team.division }}</div>
+            </li>
           </ul>
         </mat-card-content>
       </mat-card>
@@ -34,26 +35,31 @@ import { ApiService } from 'src/app/API/api.service';
 export class SearchPlayerComponent implements OnInit {
   filters: any = [];
   playerName: string = '';
-  playerId: string = '';
   results: any | undefined = null;
+  noResults: boolean = false;
   
   constructor(private _api: ApiService) {}
   ngOnInit() {}
 
   passQuery (name: string) {
-    console.log('called searchPlayer()');
-    console.log('name:', name);
-    this._api.getPlayers(name)
-    .subscribe(
-      (response) => {
-        console.log('✅ found players', response)
-        this.results = response.data;
-      }
-    );
+    if (this.playerName !== '') {
+      this._api.getPlayers(name)
+      .subscribe(
+        (response) => {
+          if (response.data.length > 0) {
+            this.results = response.data;
+          } else {
+            this.noResults === true;
+            this.results = null;
+          }
+        }
+      );
+    }
   }
   
   resetFilters() {
-    console.log('called resetFilters()')
+    this.playerName = '';
+    this.results = null;
   }
 
 }

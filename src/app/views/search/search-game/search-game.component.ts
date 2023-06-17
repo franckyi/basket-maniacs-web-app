@@ -8,11 +8,11 @@ import { ApiService } from 'src/app/API/api.service';
     <div class="d-flex">
         <mat-form-field style="margin-left: 15px;">
           <mat-label>Home team</mat-label>
-          <input #homeName matInput placeholder="Team name">
+          <input [(ngModel)]="homeTeam" matInput placeholder="Team name">
         </mat-form-field>
         <mat-form-field style="margin-left: 15px;">
           <mat-label>Visitor team</mat-label>
-          <input #visitorName matInput placeholder="Team name">
+          <input [(ngModel)]="visitorTeam" matInput placeholder="Team name">
         </mat-form-field>
       </div>
       <mat-form-field style="margin-left: 15px;">
@@ -20,11 +20,11 @@ import { ApiService } from 'src/app/API/api.service';
         <input [(ngModel)]="season" matInput placeholder="YYYY" required="required">
       </mat-form-field>
       <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
-      <button (click)="passQueries(season, homeName.value, visitorName.value )" [style.margin-left.px]="10" mat-flat-button color="primary">Search</button>
-      <mat-card *ngIf="results !== null" class="search-results">
+      <button (click)="passQueries(season, homeTeam, visitorTeam )" [style.margin-left.px]="10" mat-flat-button color="primary">Search</button>
+      <mat-card *ngIf="results !== null && season !== '' " class="search-results">
           <mat-card-content>
             <ul>
-              <li *ngFor="let result of results; index as i">
+              <li *ngFor="let result of results">
               <div>{{ result.home_team.full_name }} VS {{ result.visitor_team.full_name }} {{ result.season }}</div>
               </li>
           </ul>
@@ -37,15 +37,14 @@ import { ApiService } from 'src/app/API/api.service';
 export class SearchGameComponent implements OnInit {
   results: any | undefined = null;
   season: string = '';
+  homeTeam: string = '';
+  visitorTeam: string = '';
 
   constructor(private _api: ApiService) {}
   ngOnInit() {}
 
   passQueries(season: string, homeTeam: string, visitorTeam: string) {
-    console.log('season:', season);
-    console.log('homeTeam:', homeTeam);
-    console.log('visitorTeam:', visitorTeam);
-
+    this.results = '';
     if ( homeTeam !== '' && visitorTeam === '' && season !== '' ) {
       this._api.getGames(season, 500)
       .subscribe(
@@ -68,11 +67,13 @@ export class SearchGameComponent implements OnInit {
         }
       );
     }
-  
   }
 
   resetFilters() {
-    console.log('called resetFilters()')
+    this.season = '';
+    this.homeTeam = '';
+    this.visitorTeam = '';
+    this.results = null;
   }
 
 }
