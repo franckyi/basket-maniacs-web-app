@@ -99,6 +99,11 @@ app-search-player {
             align-items: center;
             justify-content: space-between;
         }
+        &.player {
+            justify-content: space-between;
+            padding-left: .5rem;
+            padding-right: .5rem;
+        }
     }
 }
 
@@ -150,15 +155,6 @@ app-search-player {
 }
 
 .team {
-    // &__item {
-    //     display: flex;
-    //     align-items: center;
-    //     justify-content: space-between;
-    //     height: 4rem;
-    //     &:not( :nth-last-child(1) ) {
-    //         border-bottom: 1px solid beige;
-    //     }
-    // }
     &__logo {
         max-height: 40px;
         max-width: 60px;
@@ -200,7 +196,7 @@ button.btn-reset {
 }
 
 .pagination {
-    margin: 2rem;
+    margin: .5rem auto 2rem;
     .mat-icon {
         &:hover {
             cursor: pointer;

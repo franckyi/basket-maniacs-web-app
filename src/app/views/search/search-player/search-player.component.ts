@@ -40,10 +40,10 @@ import { ApiService } from 'src/app/API/api.service';
         *ngIf="results !== null && results.length > 0"
       >
         <mat-card-content class="mat-card-content results">
-          <ul class="player__list results__list">
-            <li class="player__item results__item" *ngFor="let result of results">
+          <ul class="results__list">
+            <li class="player results__item" *ngFor="let result of results">
               {{ result.first_name }}
-              {{ result.last_name }}
+              {{ result.last_name }},
               {{ result.team.full_name }}
               ({{ result.team.abbreviation }})
               <img
