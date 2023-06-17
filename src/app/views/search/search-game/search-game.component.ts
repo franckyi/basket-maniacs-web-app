@@ -37,15 +37,17 @@ import { ApiService } from 'src/app/API/api.service';
         (click)="passQueries(season, homeTeam, visitorTeam )"
       >Search</button>
       <p *ngIf="notFoundMsg !== '' ">{{ notFoundMsg }}</p>
-      <mat-card *ngIf="btnClicked && results !== null && season !== '' " class="search-results">
+      <mat-card class="card--rounded latest-scores search-results"
+        *ngIf="btnClicked && results !== null && season !== '' "
+      >
         <mat-card-content class="results">
-          <ul class="game__list">
-            <li *ngFor="let result of results" class="game__item">
-              <div>{{ result.home_team.full_name }} VS {{ result.visitor_team.full_name }} {{ result.season }}</div>
-            </li>
-          </ul>
-      </mat-card-content>
+            <ul class="game__list">
+                <app-latest-score-item *ngFor="let result of results" [score]="result"></app-latest-score-item>
+            </ul>
+        </mat-card-content>
       </mat-card>
+
+
     </div>
   `,
   styleUrls: ['./search-game.component.scss']

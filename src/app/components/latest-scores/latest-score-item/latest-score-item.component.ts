@@ -11,8 +11,7 @@ export class LatestScoreItemComponent implements OnInit {
   @Input() score?: Game;
 
   constructor() { }
-  
-  ngOnInit(): void {
-  }
+
+  ngOnInit(): void {}
 
 }
