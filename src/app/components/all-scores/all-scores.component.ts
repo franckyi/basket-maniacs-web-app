@@ -30,7 +30,7 @@ import {GamesResponse} from "../../API/games-response";
   styleUrls: ['./all-scores.component.scss']
 })
 export class AllScoresComponent implements OnInit {
-  page: number = 0;
+  page: number = 1;
   latestScoresItems: Observable<GamesResponse>;
 
   constructor(private api: ApiService) {
