@@ -59,8 +59,7 @@ import { ApiService } from 'src/app/API/api.service';
         </mat-card-content>
       </mat-card>
     </div>
-    `,
-  styleUrls: ['./search-player.component.scss']
+    `
 })
 
 export class SearchPlayerComponent implements OnInit {
