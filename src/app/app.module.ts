@@ -33,8 +33,6 @@ import { SearchPlayerComponent } from './views/search/search-player/search-playe
 import { SearchTeamComponent } from './views/search/search-team/search-team.component';
 import { SearchGameComponent } from './views/search/search-game/search-game.component';
 import { RandomPlayerComponent } from './components/all-players/random-player/random-player.component';
-import { PaginationComponent } from './components/common/pagination/pagination.component';
-import { ChildComponent } from './components/common/child/child.component';
 
 @NgModule({
   declarations: [
@@ -63,9 +61,7 @@ import { ChildComponent } from './components/common/child/child.component';
     SearchPlayerComponent,
     SearchTeamComponent,
     SearchGameComponent,
-    RandomPlayerComponent,
-    PaginationComponent,
-    ChildComponent,
+    RandomPlayerComponent
   ],
   imports: [
     BrowserModule,
