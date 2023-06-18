@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-teams',
-  templateUrl: './teams.component.html',
+  template: `
+    <app-all-teams></app-all-teams>
+  `,
   styleUrls: ['./teams.component.scss']
 })
 export class TeamsComponent implements OnInit {
