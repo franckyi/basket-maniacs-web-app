@@ -24,15 +24,15 @@ export class ApiService {
     })
   }
 
-  getLatestGames$() {
-    return this.httpClient.get<GamesResponse>('https://free-nba.p.rapidapi.com/games?per_page=10', {
+  getLatestGames$(perPage: number) {
+    return this.httpClient.get<GamesResponse>(`https://free-nba.p.rapidapi.com/games?per_page=${perPage}`, {
       headers: {
         'X-RapidAPI-Key': 'befd1205e9mshc5b6271d340e520p18212ajsn969c844a4f9c'
       }
     }).pipe(
       switchMap(
-        value => {
-          return this.httpClient.get<GamesResponse>(`https://free-nba.p.rapidapi.com/games?per_page=10&page=${value.meta.total_pages}`, {
+        (value) => {
+          return this.httpClient.get<GamesResponse>(`https://free-nba.p.rapidapi.com/games?per_page=${perPage}&page=${value.meta.total_pages}`, {
             headers: {
               'X-RapidAPI-Key': 'befd1205e9mshc5b6271d340e520p18212ajsn969c844a4f9c'
             }

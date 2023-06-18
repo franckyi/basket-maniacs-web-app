@@ -5,7 +5,16 @@ import {GamesResponse} from "../../API/games-response";
 
 @Component({
   selector: 'app-latest-scores',
-  templateUrl: './latest-scores.component.html',
+  template: `
+    <h1 class="section-heading">Latest results</h1>
+    <mat-card class="card--rounded latest-scores">
+        <mat-card-content>
+            <ul class="results__list">
+                <app-latest-score-item *ngFor="let score of (latestScoresItems | async)?.data" [score]="score"></app-latest-score-item>
+            </ul>
+        </mat-card-content>
+    </mat-card>
+  `,
   styleUrls: ['./latest-scores.component.scss']
 })
 export class LatestScoresComponent implements OnInit {
@@ -13,7 +22,7 @@ export class LatestScoresComponent implements OnInit {
   latestScoresItems: Observable<GamesResponse>;
 
   constructor(private api: ApiService) {
-    this.latestScoresItems = api.getLatestGames$();
+    this.latestScoresItems = api.getLatestGames$(10);
   }
 
   ngOnInit(): void {

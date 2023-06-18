@@ -7,7 +7,7 @@ import {GamesResponse} from "../../API/games-response";
   selector: 'app-all-scores',
   template: `
     <app-header-scores></app-header-scores>
-    <h1 class="section-heading">Game scores</h1>
+    <h1 class="section-heading">All game results</h1>
     <mat-card class="card--rounded results">
         <mat-card-content>
             <ul class="results__list">
@@ -23,7 +23,7 @@ export class AllScoresComponent implements OnInit {
   latestScoresItems: Observable<GamesResponse>;
 
   constructor(private api: ApiService) {
-    this.latestScoresItems = api.getGames('');
+    this.latestScoresItems = api.getLatestGames$(100);
   }
 
   ngOnInit(): void {

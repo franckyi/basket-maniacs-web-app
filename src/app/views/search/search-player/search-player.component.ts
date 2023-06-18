@@ -25,7 +25,9 @@ import { ApiService } from 'src/app/API/api.service';
       </div>
       <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
       <button (click)="passQuery(playerName)" [style.margin-left.px]="10" mat-flat-button color="primary">Search</button>
+      
       <p *ngIf="notFoundMsg !== '' && playerName !== '' ">{{ notFoundMsg }}</p>
+
       <div class="pagination" *ngIf="results !== null && results.length > 0">
         <mat-icon aria-hidden="false" aria-label="Previous page" fontIcon="navigate_before"
           *ngIf="page > 1"
@@ -35,6 +37,7 @@ import { ApiService } from 'src/app/API/api.service';
         <mat-icon aria-hidden="false" aria-label="Next page" fontIcon="navigate_next"
           (click)="goToNextPage()"></mat-icon>
       </div>
+
       <mat-card 
         class="mat-card mat-focus-indicator card--rounded search-results"
         *ngIf="results !== null && results.length > 0"
