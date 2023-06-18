@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {MaterialModule} from "./material/material.module";
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import {MaterialModule} from "./material/material.module";
+import { AppRoutingModule } from './app-routing.module';
+
+import { AppComponent } from './app.component';
 import { LatestScoresComponent } from './components/latest-scores/latest-scores.component';
 import { LatestScoreItemComponent } from './components/latest-scores/latest-score-item/latest-score-item.component';
 import { HeaderHomeComponent } from './components/header-home/header-home.component';
@@ -33,6 +33,8 @@ import { SearchPlayerComponent } from './views/search/search-player/search-playe
 import { SearchTeamComponent } from './views/search/search-team/search-team.component';
 import { SearchGameComponent } from './views/search/search-game/search-game.component';
 import { RandomPlayerComponent } from './components/all-players/random-player/random-player.component';
+import { PaginationComponent } from './components/common/pagination/pagination.component';
+import { ChildComponent } from './components/common/child/child.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { RandomPlayerComponent } from './components/all-players/random-player/ra
     SearchTeamComponent,
     SearchGameComponent,
     RandomPlayerComponent,
+    PaginationComponent,
+    ChildComponent,
   ],
   imports: [
     BrowserModule,
