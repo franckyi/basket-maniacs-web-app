@@ -11,5 +11,5 @@ export class AppComponent {
   newsUrl = 'https://www.nba.com/news';
 }
 
-export class IconOverviewExample {}
+// export class IconOverviewExample {}
 
