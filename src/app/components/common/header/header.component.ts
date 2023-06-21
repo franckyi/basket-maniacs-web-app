@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
     </header>
     <mat-card>
       <mat-card-content>
-        {{ heading }}
+        {{heading}}
       </mat-card-content>
     </mat-card> 
   `,
