@@ -1,9 +1,0 @@
-<app-header-teams></app-header-teams>
-<h1 class="section-heading">NBA teams list</h1>
-<mat-card class="card--rounded latest-scores results">
-    <mat-card-content>
-        <ul class="results__list">
-            <app-all-teams-item *ngFor="let team of (AllTeamsItems | async)?.data" [team]="team"></app-all-teams-item>
-        </ul>    
-    </mat-card-content>
-</mat-card>

@@ -5,7 +5,17 @@ import {TeamsResponse} from "../../API/teams-response";
 
 @Component({
   selector: 'app-all-teams',
-  templateUrl: './all-teams.component.html',
+  template: `
+    <app-header-teams></app-header-teams>
+    <h1 class="section-heading">NBA teams list</h1>
+    <mat-card class="card--rounded latest-scores results">
+      <mat-card-content>
+        <ul class="results__list">
+          <app-all-teams-item *ngFor="let team of (AllTeamsItems | async)?.data" [team]="team"></app-all-teams-item>
+        </ul>    
+      </mat-card-content>
+    </mat-card>
+  `,
   styleUrls: ['./all-teams.component.scss']
 })
 export class AllTeamsComponent implements OnInit {
