@@ -33,6 +33,8 @@ import { SearchPlayerComponent } from './views/search/search-player/search-playe
 import { SearchTeamComponent } from './views/search/search-team/search-team.component';
 import { SearchGameComponent } from './views/search/search-game/search-game.component';
 import { RandomPlayerComponent } from './components/all-players/random-player/random-player.component';
+import { NewsComponent } from './views/news/news.component';
+import { NavigationComponent } from './components/common/navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import { RandomPlayerComponent } from './components/all-players/random-player/ra
     SearchPlayerComponent,
     SearchTeamComponent,
     SearchGameComponent,
-    RandomPlayerComponent
+    RandomPlayerComponent,
+    NewsComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
