@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {ApiService} from "../../API/api.service";
 import {Observable} from "rxjs";
 import {GamesResponse} from "../../API/games-response";
@@ -17,15 +17,12 @@ import {GamesResponse} from "../../API/games-response";
   `,
   styleUrls: ['./latest-scores.component.scss']
 })
-export class LatestScoresComponent implements OnInit {
+export class LatestScoresComponent {
 
   latestScoresItems: Observable<GamesResponse>;
 
   constructor(private api: ApiService) {
     this.latestScoresItems = api.getLatestGames$(10);
-  }
-
-  ngOnInit(): void {
   }
 
 }
