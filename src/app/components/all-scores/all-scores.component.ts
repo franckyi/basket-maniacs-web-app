@@ -6,7 +6,7 @@ import {GamesResponse} from "../../API/games-response";
 @Component({
   selector: 'app-all-scores',
   template: `
-    <app-header-scores></app-header-scores>
+    <app-header></app-header>
     <h1 class="section-heading">All game results</h1>
 
     <div class="pagination">

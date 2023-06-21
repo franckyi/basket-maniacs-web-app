@@ -6,7 +6,7 @@ import {TeamsResponse} from "../../API/teams-response";
 @Component({
   selector: 'app-all-teams',
   template: `
-    <app-header-teams></app-header-teams>
+    <app-header></app-header>
     <h1 class="section-heading">NBA teams list</h1>
     <mat-card class="card--rounded latest-scores results">
       <mat-card-content>

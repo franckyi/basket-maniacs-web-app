@@ -10,16 +10,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LatestScoresComponent } from './components/latest-scores/latest-scores.component';
 import { LatestScoreItemComponent } from './components/latest-scores/latest-score-item/latest-score-item.component';
-import { HeaderHomeComponent } from './components/header-home/header-home.component';
 import { HomeComponent } from './views/home/home.component';
 import { TeamsComponent } from './views/teams/teams.component';
 import { SearchComponent } from './views/search/search.component';
 import { GameScoresComponent } from './views/game-scores/game-scores.component';
-import { GameComponent } from './views/game/game.component';
-import { HeaderSearchComponent } from './components/header-search/header-search.component';
-import { HeaderTeamsComponent } from './components/header-teams/header-teams.component';
-import { HeaderScoresComponent } from './components/header-scores/header-scores.component';
-import { HeaderGameComponent } from './components/header-game/header-game.component';
 import { FooterComponent } from './components/common/footer/footer.component';
 import { AllScoresComponent } from './components/all-scores/all-scores.component';
 import { AllPlayersComponent } from './components/all-players/all-players.component';
@@ -35,7 +29,6 @@ import { SearchGameComponent } from './views/search/search-game/search-game.comp
 import { RandomPlayerComponent } from './components/all-players/random-player/random-player.component';
 import { NewsComponent } from './views/news/news.component';
 import { NavigationComponent } from './components/common/navigation/navigation.component';
-import { HeaderNewsComponent } from './components/header-news/header-news.component';
 import { HeaderComponent } from './components/common/header/header.component';
 
 @NgModule({
@@ -44,15 +37,9 @@ import { HeaderComponent } from './components/common/header/header.component';
     LatestScoresComponent,
     LatestScoreItemComponent,
     HomeComponent,
-    HeaderHomeComponent,
     TeamsComponent,
     SearchComponent,
     GameScoresComponent,
-    GameComponent,
-    HeaderSearchComponent,
-    HeaderTeamsComponent,
-    HeaderScoresComponent,
-    HeaderGameComponent,
     FooterComponent,
     AllScoresComponent,
     AllPlayersComponent,
@@ -68,7 +55,6 @@ import { HeaderComponent } from './components/common/header/header.component';
     RandomPlayerComponent,
     NewsComponent,
     NavigationComponent,
-    HeaderNewsComponent,
     HeaderComponent
   ],
   imports: [

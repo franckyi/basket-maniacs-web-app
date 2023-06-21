@@ -6,7 +6,7 @@ import { News } from 'src/app/API/news';
 @Component({
   selector: 'app-news',
   template: `
-    <app-header-news></app-header-news>
+    <app-header [heading]="heading"></app-header>
     <mat-list>
       <mat-list-item *ngFor="let result of (latestNews | async)">
         <span matListItemTitle>{{ result.title }}</span>
@@ -17,7 +17,7 @@ import { News } from 'src/app/API/news';
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit {
-
+  heading: string = 'Latest news from NBA official website';
   latestNews: Observable<News[]>;
 
   constructor(private _api: ApiService) {
