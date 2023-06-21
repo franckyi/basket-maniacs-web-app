@@ -20,7 +20,7 @@ import { HeaderSearchComponent } from './components/header-search/header-search.
 import { HeaderTeamsComponent } from './components/header-teams/header-teams.component';
 import { HeaderScoresComponent } from './components/header-scores/header-scores.component';
 import { HeaderGameComponent } from './components/header-game/header-game.component';
-import { FooterComponent } from './components/footer/footer.component';
+import { FooterComponent } from './components/common/footer/footer.component';
 import { AllScoresComponent } from './components/all-scores/all-scores.component';
 import { AllPlayersComponent } from './components/all-players/all-players.component';
 import { AllPlayersItemComponent } from './components/all-players/all-players-item/all-players-item.component';
@@ -36,6 +36,7 @@ import { RandomPlayerComponent } from './components/all-players/random-player/ra
 import { NewsComponent } from './views/news/news.component';
 import { NavigationComponent } from './components/common/navigation/navigation.component';
 import { HeaderNewsComponent } from './components/header-news/header-news.component';
+import { HeaderComponent } from './components/common/header/header.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { HeaderNewsComponent } from './components/header-news/header-news.compon
     RandomPlayerComponent,
     NewsComponent,
     NavigationComponent,
-    HeaderNewsComponent
+    HeaderNewsComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
