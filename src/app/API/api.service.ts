@@ -5,29 +5,43 @@ import {TeamsResponse} from './teams-response';
 import {PlayersResponse} from './players-response';
 import {StatsResponse} from './stats-response';
 import {map, shareReplay, switchMap} from "rxjs";
+import {News} from './news';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
+  BASE_URL = 'https://free-nba.p.rapidapi.com';
   KEY = 'befd1205e9mshc5b6271d340e520p18212ajsn969c844a4f9c';
+  NEWS_URL = `https://nba-latest-news.p.rapidapi.com/articles?source=nba`;
+  NEWS_KEY = '0c008c7080msh10a514646ed797cp1182abjsn21ea7e48e462';
+  NEWS_HOST = 'nba-latest-news.p.rapidapi.com';
 
   constructor(private httpClient: HttpClient) {
+  }
+
+  getNews() {
+    return this.httpClient.get<News[]>(this.NEWS_URL, {
+      headers: {
+        'X-RapidAPI-Key': this.NEWS_KEY
+      }
+    })
   }
 
   getGames(season: string, perPage: number = 100) {
     let query: string | null = season !== '' ? '&seasons[]=' + season : '';
     perPage = perPage ?? 100;
-    return this.httpClient.get<GamesResponse>(`https://free-nba.p.rapidapi.com/games?page=1&per_page=${perPage}${query}`, {
+    return this.httpClient.get<GamesResponse>(this.NEWS_URL, {
       headers: {
-        'X-RapidAPI-Key': this.KEY
+        'X-RapidAPI-Key': this.KEY,
+        'X-RapidAPI-Host': this.NEWS_HOST
       }
     })
   }
 
   getLatestGames$(perPage: number, page: number = 1) {
-    return this.httpClient.get<GamesResponse>(`https://free-nba.p.rapidapi.com/games?per_page=${perPage}`, {
+    return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?per_page=${perPage}`, {
       headers: {
         'X-RapidAPI-Key': this.KEY
       }
@@ -35,7 +49,7 @@ export class ApiService {
       switchMap(
         (value) => {
           page = value.meta.total_pages - (page);
-          return this.httpClient.get<GamesResponse>(`https://free-nba.p.rapidapi.com/games?per_page=${perPage}&page=${page}`, {
+          return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?per_page=${perPage}&page=${page}`, {
             headers: {
               'X-RapidAPI-Key': this.KEY
             }
@@ -55,14 +69,14 @@ export class ApiService {
   }
 
   getLastGame$() {
-    return this.httpClient.get<GamesResponse>('https://free-nba.p.rapidapi.com/games?seasons[]=2021&per_page=1', {
+    return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?seasons[]=2021&per_page=1`, {
       headers: {
         'X-RapidAPI-Key': this.KEY
       }
     }).pipe(
       switchMap(
         value => {
-          return this.httpClient.get<GamesResponse>(`https://free-nba.p.rapidapi.com/games?seasons[]=2021&per_page=1&page=${value.meta.total_pages}`, {
+          return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?seasons[]=2021&per_page=1&page=${value.meta.total_pages}`, {
             headers: {
               'X-RapidAPI-Key': this.KEY
             }
@@ -82,7 +96,7 @@ export class ApiService {
   }
 
   getTeams() {
-    return this.httpClient.get<TeamsResponse>('https://free-nba.p.rapidapi.com/teams', {
+    return this.httpClient.get<TeamsResponse>(`${this.BASE_URL}/teams`, {
       headers: {
         'X-RapidAPI-Key': this.KEY
       }
@@ -94,7 +108,7 @@ export class ApiService {
     let limit: string = perPage ? 'per_page=' + perPage : 'per_page=' + 100;
     let page: number = getPage;
     query = limit + '&search=' + name;
-    return this.httpClient.get<PlayersResponse>(`https://free-nba.p.rapidapi.com/players?page=${page}&${query}`, {
+    return this.httpClient.get<PlayersResponse>(`${this.BASE_URL}/players?page=${page}&${query}`, {
       headers: {
         'X-RapidAPI-Key': this.KEY
       }
@@ -102,7 +116,7 @@ export class ApiService {
   }
 
   getStats() {
-    return this.httpClient.get<StatsResponse>('https://free-nba.p.rapidapi.com/stats', {
+    return this.httpClient.get<StatsResponse>(`${this.BASE_URL}/stats`, {
       headers: {
         'X-RapidAPI-Key': this.KEY
       }
