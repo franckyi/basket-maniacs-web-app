@@ -12,10 +12,10 @@ import {News} from './news';
 })
 export class ApiService {
 
-  BASE_URL = 'https://free-nba.p.rapidapi.com';
-  KEY = 'befd1205e9mshc5b6271d340e520p18212ajsn969c844a4f9c';
-  NEWS_URL = `https://nba-latest-news.p.rapidapi.com/articles?source=nba`;
-  NEWS_KEY = '0c008c7080msh10a514646ed797cp1182abjsn21ea7e48e462';
+  BASE_URL  = 'https://free-nba.p.rapidapi.com';
+  KEY       = 'befd1205e9mshc5b6271d340e520p18212ajsn969c844a4f9c';
+  NEWS_URL  = `https://nba-latest-news.p.rapidapi.com/articles?source=nba`;
+  NEWS_KEY  = '0c008c7080msh10a514646ed797cp1182abjsn21ea7e48e462';
   NEWS_HOST = 'nba-latest-news.p.rapidapi.com';
 
   constructor(private httpClient: HttpClient) {
@@ -24,7 +24,8 @@ export class ApiService {
   getNews() {
     return this.httpClient.get<News[]>(this.NEWS_URL, {
       headers: {
-        'X-RapidAPI-Key': this.NEWS_KEY
+        'X-RapidAPI-Key': this.NEWS_KEY,
+        'X-RapidAPI-Host': this.NEWS_HOST,
       }
     })
   }
