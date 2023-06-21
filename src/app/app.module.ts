@@ -35,6 +35,7 @@ import { SearchGameComponent } from './views/search/search-game/search-game.comp
 import { RandomPlayerComponent } from './components/all-players/random-player/random-player.component';
 import { NewsComponent } from './views/news/news.component';
 import { NavigationComponent } from './components/common/navigation/navigation.component';
+import { HeaderNewsComponent } from './components/header-news/header-news.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { NavigationComponent } from './components/common/navigation/navigation.c
     SearchGameComponent,
     RandomPlayerComponent,
     NewsComponent,
-    NavigationComponent
+    NavigationComponent,
+    HeaderNewsComponent
   ],
   imports: [
     BrowserModule,

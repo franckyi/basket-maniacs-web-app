@@ -9,7 +9,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
-
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [],
@@ -23,7 +23,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatSelectModule,
     MatInputModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatListModule
   ]
 })
 export class MaterialModule { }
