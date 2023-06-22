@@ -30,7 +30,6 @@ export class ApiService {
     })
   }
 
-  // https://free-nba.p.rapidapi.com/games?page=1&per_page=${perPage}${query}
   getGames(season: string, perPage: number = 100) {
     let query: string | null = `&seasons[]=${season}`;
     perPage = perPage ?? 100;
