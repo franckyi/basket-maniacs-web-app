@@ -30,13 +30,14 @@ export class ApiService {
     })
   }
 
+  // https://free-nba.p.rapidapi.com/games?page=1&per_page=${perPage}${query}
   getGames(season: string, perPage: number = 100) {
-    let query: string | null = season !== '' ? '&seasons[]=' + season : '';
+    let query: string | null = `&seasons[]=${season}`;
     perPage = perPage ?? 100;
-    return this.httpClient.get<GamesResponse>(this.NEWS_URL, {
+    console.log('requesting URL: ', `${this.BASE_URL}/games??page=1&per_page=${perPage}${query}`)
+    return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games??page=1&per_page=${perPage}${query}`, {
       headers: {
-        'X-RapidAPI-Key': this.KEY,
-        'X-RapidAPI-Host': this.NEWS_HOST
+        'X-RapidAPI-Key': this.KEY
       }
     })
   }
