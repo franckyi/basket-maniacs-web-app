@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game-scores.component.scss']
 })
 export class GameScoresComponent implements OnInit {
-  heading: string = 'All games results.';
+  heading: string = 'All games results';
   
   constructor() { }
 

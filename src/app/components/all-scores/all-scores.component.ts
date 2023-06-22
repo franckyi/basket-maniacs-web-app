@@ -6,23 +6,20 @@ import {GamesResponse} from "../../API/games-response";
 @Component({
   selector: 'app-all-scores',
   template: `
-    <app-header></app-header>
-    <h1 class="section-heading">All game results</h1>
-
+    <app-header [heading]="heading"></app-header>
     <div class="pagination">
-        <mat-icon aria-hidden="false" aria-label="Previous page" fontIcon="navigate_before"
-          *ngIf="page > 1"
-          (click)="goToPrevPage()"
-        ></mat-icon>
-          <span>{{ page }}</span>
-        <mat-icon aria-hidden="false" aria-label="Next page" fontIcon="navigate_next"
-          (click)="goToNextPage()"></mat-icon>
-      </div>
-
+      <mat-icon aria-hidden="false" aria-label="Previous page" fontIcon="navigate_before"
+        *ngIf="page > 1"
+        (click)="goToPrevPage()"
+      ></mat-icon>
+        <span>{{ page }}</span>
+      <mat-icon aria-hidden="false" aria-label="Next page" fontIcon="navigate_next"
+        (click)="goToNextPage()"></mat-icon>
+    </div>
     <mat-card class="card--rounded results">
         <mat-card-content>
             <ul class="results__list">
-                <app-latest-score-item *ngFor="let score of (latestScoresItems | async)?.data" [score]="score"></app-latest-score-item>
+                <app-latest-score-item *ngFor="let score of (lastResults | async)?.data" [score]="score"></app-latest-score-item>
             </ul>
         </mat-card-content>
     </mat-card>
@@ -30,11 +27,12 @@ import {GamesResponse} from "../../API/games-response";
   styleUrls: ['./all-scores.component.scss']
 })
 export class AllScoresComponent implements OnInit {
+  heading: string = 'All game results';
   page: number = 1;
-  latestScoresItems: Observable<GamesResponse>;
+  lastResults: Observable<GamesResponse>;
 
   constructor(private api: ApiService) {
-    this.latestScoresItems = api.getLatestGames$(100, this.page);
+    this.lastResults = api.getLatestGames$(100, this.page);
   }
 
   ngOnInit(): void {
@@ -44,14 +42,14 @@ export class AllScoresComponent implements OnInit {
     console.log('called goToPrevPage()');
     this.page -= 1;
     console.log('this.page', this.page);
-    this.latestScoresItems = this.api.getLatestGames$(100, this.page);
+    this.lastResults = this.api.getLatestGames$(100, this.page);
   }
 
   goToNextPage() {
     console.log('called goToNextPage()');
     this.page += 1;
     console.log('this.page', this.page);
-    this.latestScoresItems = this.api.getLatestGames$(100, this.page);
+    this.lastResults = this.api.getLatestGames$(100, this.page);
   }
 
 }

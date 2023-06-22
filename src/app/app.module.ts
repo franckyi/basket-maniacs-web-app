@@ -30,6 +30,7 @@ import { RandomPlayerComponent } from './components/all-players/random-player/ra
 import { NewsComponent } from './views/news/news.component';
 import { NavigationComponent } from './components/common/navigation/navigation.component';
 import { HeaderComponent } from './components/common/header/header.component';
+import { PaginationComponent } from './components/common/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { HeaderComponent } from './components/common/header/header.component';
     RandomPlayerComponent,
     NewsComponent,
     NavigationComponent,
-    HeaderComponent
+    HeaderComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
