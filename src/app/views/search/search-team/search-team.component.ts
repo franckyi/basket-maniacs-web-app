@@ -20,14 +20,9 @@ import { Team } from 'src/app/API/Team';
       <button (click)="passQuery(teamName)" [style.margin-left.px]="10" mat-flat-button color="primary">Search</button>
       <p *ngIf="notFoundMsg !== '' && teamName !== '' ">{{ notFoundMsg }}</p>
       <mat-card *ngIf="results !== null && teamName !== '' " class="search-results">
-          <mat-card-content>
-            <ul>
-              <li *ngFor="let result of results">
-              <div>{{ result.full_name }}</div>
-              <div>{{ result.abbreviation }}</div>
-              <div>{{ result.city }}</div>
-              <div>{{ result.division }}</div>
-              </li>
+        <mat-card-content>
+          <ul class="results__list">
+            <app-all-teams-item *ngFor="let result of results" [team]="result"></app-all-teams-item>
           </ul>
         </mat-card-content>
       </mat-card>

@@ -12,7 +12,7 @@ import {TeamsResponse} from "../../API/teams-response";
       <mat-card-content>
         <ul class="results__list">
           <app-all-teams-item *ngFor="let team of (AllTeamsItems | async)?.data" [team]="team"></app-all-teams-item>
-        </ul>    
+        </ul>
       </mat-card-content>
     </mat-card>
   `,
