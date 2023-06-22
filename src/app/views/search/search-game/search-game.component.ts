@@ -12,6 +12,7 @@ import { ApiService } from 'src/app/API/api.service';
             matInput placeholder="Team name"
             [(ngModel)]="homeTeam"
             (input)="resetPrevSearch()"
+            (keydown.enter)="passQueries(season, homeTeam, visitorTeam)"
           >
         </mat-form-field>
         <mat-form-field style="margin-left: 15px;">
@@ -20,6 +21,7 @@ import { ApiService } from 'src/app/API/api.service';
             matInput placeholder="Team name"
             [(ngModel)]="visitorTeam"
             (input)="resetPrevSearch()"
+            (keydown.enter)="passQueries(season, homeTeam, visitorTeam)"
           >
         </mat-form-field>
       </div>
@@ -29,6 +31,7 @@ import { ApiService } from 'src/app/API/api.service';
           matInput placeholder="YYYY" required="required"
           [(ngModel)]="season"
           (input)="resetPrevSearch()"
+          (keydown.enter)="passQueries(season, homeTeam, visitorTeam)"
         >
       </mat-form-field>
       <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
@@ -70,6 +73,12 @@ export class SearchGameComponent implements OnInit {
   passQueries(season: string, homeTeam: string, visitorTeam: string) {
     this.btnClicked = true;
     this.results = '';
+
+    if (season === '' || season === 'undefined') {
+      this.notFoundMsg = 'Please select a season and try again.';
+      return;
+    };
+
     if ( homeTeam !== '' && visitorTeam === '' ) {
       this._api.getGames(season, 100)
       .subscribe(

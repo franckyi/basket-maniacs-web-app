@@ -8,7 +8,13 @@ import { Team } from 'src/app/API/Team';
     <div class="search">
       <mat-form-field style="margin-left: 15px;">
         <mat-label>Team name</mat-label>
-        <input [(ngModel)]="teamName" matInput required="required" (input)="emptyNotFoundMsg()">
+        <input
+          matInput
+          [(ngModel)]="teamName"
+          (input)="emptyNotFoundMsg()"
+          required="required"
+          (keydown.enter)="passQuery(teamName)"
+        >
       </mat-form-field>
       <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
       <button (click)="passQuery(teamName)" [style.margin-left.px]="10" mat-flat-button color="primary">Search</button>

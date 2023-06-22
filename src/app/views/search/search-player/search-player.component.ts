@@ -12,6 +12,7 @@ import { ApiService } from 'src/app/API/api.service';
             matInput id="name" placeholder="First or last name"
             [(ngModel)]="playerName"
             (input)="emptyNotFoundMsg()"
+            (keydown.enter)="passQuery(playerName)"
           >
         </mat-form-field>
         <mat-form-field style="margin-left: 15px;">
@@ -20,6 +21,7 @@ import { ApiService } from 'src/app/API/api.service';
             matInput id="team" placeholder="Team name"
             [(ngModel)]="teamName"
             (input)="emptyNotFoundMsg()"
+            (keydown.enter)="passQuery(playerName)"
           >
         </mat-form-field>
       </div>
