@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {Game} from "../../../API/Game";
 
 @Component({
@@ -33,12 +33,10 @@ import {Game} from "../../../API/Game";
   `,
   styleUrls: ['./latest-score-item.component.scss']
 })
-export class LatestScoreItemComponent implements OnInit {
+export class LatestScoreItemComponent {
 
   @Input() score?: Game;
 
   constructor() { }
-
-  ngOnInit(): void {}
 
 }

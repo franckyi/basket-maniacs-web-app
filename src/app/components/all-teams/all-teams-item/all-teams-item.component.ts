@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {Team} from "../../../API/Team";
 
 @Component({
@@ -6,12 +6,9 @@ import {Team} from "../../../API/Team";
   templateUrl: './all-teams-item.component.html',
   styleUrls: ['./all-teams-item.component.scss']
 })
-export class AllTeamsItemComponent implements OnInit {
+export class AllTeamsItemComponent {
   @Input() team?: Team;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }
