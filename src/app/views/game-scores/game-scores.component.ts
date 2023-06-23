@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-game-scores',
@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   `,
   styleUrls: ['./game-scores.component.scss']
 })
-export class GameScoresComponent implements OnInit {
+export class GameScoresComponent {
   heading: string = 'All games results';
   
   constructor() { }

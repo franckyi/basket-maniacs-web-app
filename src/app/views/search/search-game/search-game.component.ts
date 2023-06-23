@@ -49,8 +49,6 @@ import { ApiService } from 'src/app/API/api.service';
             </ul>
         </mat-card-content>
       </mat-card>
-
-
     </div>
   `,
   styleUrls: ['./search-game.component.scss']
@@ -83,6 +81,7 @@ export class SearchGameComponent implements OnInit {
       this._api.getGames(season, 100)
       .subscribe(
         (response) => {
+          console.log('found results: ', response.data);
           this.results = response.data.filter( game => 
             game.home_team.full_name.toLowerCase().includes( homeTeam.toLowerCase() )
           )
