@@ -1,0 +1,13 @@
+app-header-search,
+app-search-player {
+    width: 100%;
+}
+
+app-search-player {
+    max-width: 40vw;
+    margin: 0 auto;
+
+    mat-form-field {
+        width: 100%;
+    }
+}

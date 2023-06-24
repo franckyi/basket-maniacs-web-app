@@ -1,32 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'sass/_colors.scss';
-@import 'sass/_typography.scss';
-@import 'sass/_buttons.scss';
 
-*, *::before, *::after {
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    background: white;
-}
-
-html, body { 
-    font-family: $font-primary, Roboto, "Helvetica Neue", sans-serif;
-}
+// IMPORTS
+@import 'sass/colors';
+@import 'sass/typography';
+@import 'sass/reset';
+@import 'sass/buttons';
 
 body, nav {
     max-width: 33rem;
     margin: 0 auto;
-}
-
-app-header-search {
-    width: 100%;
-}
-
-app-search-player {
-    width: 100%;
 }
 
 .mat-app-background {
@@ -38,14 +20,15 @@ app-search-player {
     justify-content: center;
     flex-direction: column;
     padding: 1em 20px;
-    background: #9C27B0;
+    background: #3f51b5;
     border-bottom-right-radius: 25%;
     border-bottom-left-radius: 25%;
 }
 
 header {
     @extend .field-shape;
-    height: 60px;
+    text-align: center;
+    height: 7rem;
 }
 
 footer {
@@ -83,14 +66,7 @@ app-search {
     align-items: center;
 }
 
-app-search-player {
-    max-width: 40vw;
-    margin: 0 auto;
 
-    mat-form-field {
-        width: 100%;
-    }
-}
 
 .other-info {
     margin-bottom: 1em;
@@ -119,7 +95,8 @@ app-search-player {
             align-items: center;
             justify-content: space-between;
         }
-        &.player {
+        &.player,
+        &.news > .mat-list-item-content {
             justify-content: space-between;
             padding-left: .5rem;
             padding-right: .5rem;

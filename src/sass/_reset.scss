@@ -1,0 +1,12 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: white;
+}
+
+html, body { 
+    font-family: $font-primary, Roboto, "Helvetica Neue", sans-serif;
+}
