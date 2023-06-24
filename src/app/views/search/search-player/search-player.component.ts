@@ -72,8 +72,13 @@ export class SearchPlayerComponent implements OnInit {
   notFoundMsg: string = '';
   page: number = 1;
   
-  constructor(private _api: ApiService) {}
-  ngOnInit() {}
+  constructor(private _api: ApiService) {
+    
+  }
+  
+  ngOnInit(): void {
+
+  }
 
   goToPrevPage() {
     console.log('called goToPrevPage()');
