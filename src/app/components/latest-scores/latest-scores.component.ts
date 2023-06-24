@@ -20,13 +20,9 @@ import {GamesResponse} from "../../API/games-response";
 export class LatestScoresComponent implements OnInit, OnChanges, OnDestroy {
   @Input() perPage!: number;
   lastGames: Observable<GamesResponse>;
-  // gamesSubscription: Subscription;
 
   constructor(private api: ApiService) {
-    console.log('constructor...');
-    console.log('perPage:', this.perPage);
     this.lastGames = api.getLatestGames$(this.perPage);
-    // this.gamesSubscription = this.lastGames.subscribe();
   }
 
   ngOnInit(): void {
@@ -34,15 +30,10 @@ export class LatestScoresComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('ngOnChanges...')
-    console.log(changes)
     this.lastGames = this.api.getLatestGames$(this.perPage);
-    console.log('perPage:', this.perPage);
   }
 
   ngOnDestroy(): void {
-    // this.gamesSubscription.unsubscribe();
-    // console.log('unsubscribed...')
   }
 
 }
