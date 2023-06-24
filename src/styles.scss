@@ -7,6 +7,10 @@
 @import 'sass/reset';
 @import 'sass/buttons';
 
+html, body {
+    background: bottom;
+}
+
 body, nav {
     max-width: 33rem;
     margin: 0 auto;
@@ -47,10 +51,6 @@ footer {
 .logo {
     margin-bottom: 2em;
     height: 54px;
-}
-
-.mat-card:not([class*=mat-elevation-z]) {
-    margin: -2em 20px 2em 20px;
 }
 
 .card--rounded {

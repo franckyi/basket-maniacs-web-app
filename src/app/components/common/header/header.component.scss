@@ -1,5 +1,13 @@
 @import '../../../../sass/colors';
 
 .intro-text {
+    width: fit-content;
     background: linear-gradient(45deg, $orange 0%, $yellow 100%);
+    .mat-card-content {
+        font-size: 1.8rem;
+    }
+}
+
+.mat-card:not([class*=mat-elevation-z]) {
+    margin: -2em auto 2em auto;
 }

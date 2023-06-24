@@ -5,9 +5,9 @@ import { Component, OnInit } from '@angular/core';
   template: `
     <app-header [title]="title" [introText]="introText"></app-header>
     <app-news-list [perPage]="NewsPerPage"></app-news-list>
-    <button [routerLink]="['/news']" mat-flat-button color="primary">More news</button>
+    <button [routerLink]="['/news']" mat-flat-button color="accent">More news</button>
     <app-latest-scores [perPage]="gamesPerPage"></app-latest-scores>
-    <button [routerLink]="['/scores']" mat-flat-button color="primary">All game scores</button>
+    <button [routerLink]="['/scores']" mat-flat-button color="accent">All game scores</button>
   `,
   styleUrls: ['./home.component.scss']
 })
