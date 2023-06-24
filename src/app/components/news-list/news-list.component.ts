@@ -6,7 +6,7 @@ import { News } from 'src/app/API/news';
 @Component({
   selector: 'app-news-list',
   template: `
-    <h2 class="section-heading">What's app from NBA 📰</h2>
+    <h2 class="section-heading">Last news</h2>
     <mat-list class="results__list">
       <mat-list-item class="results__item news"
         *ngFor="let item of (newsList | async) | slice:0:perPage"
