@@ -32,6 +32,7 @@ import { NavigationComponent } from './components/common/navigation/navigation.c
 import { HeaderComponent } from './components/common/header/header.component';
 import { PaginationComponent } from './components/common/pagination/pagination.component';
 import { NewsListComponent } from './components/news-list/news-list.component';
+import { LogoComponent } from './components/common/logo/logo.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { NewsListComponent } from './components/news-list/news-list.component';
     NavigationComponent,
     HeaderComponent,
     PaginationComponent,
-    NewsListComponent
+    NewsListComponent,
+    LogoComponent
   ],
   imports: [
     BrowserModule,

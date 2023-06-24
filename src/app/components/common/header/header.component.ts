@@ -4,18 +4,17 @@ import { Component, OnInit, Input } from '@angular/core';
   selector: 'app-header',
   template: `
     <header>
-      <img class="logo" src="../../assets/img/logo.svg" alt="NBA app logo">
+      <app-logo [title]="title"></app-logo>
     </header>
     <mat-card>
-      <mat-card-content>
-        {{heading}}
-      </mat-card-content>
+      <mat-card-content>{{introText}}</mat-card-content>
     </mat-card> 
   `,
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Input() heading?: string;
+  @Input() introText?: string;
+  @Input() title?: string;
 
   constructor() { }
 

@@ -6,8 +6,6 @@ import {TeamsResponse} from "../../API/teams-response";
 @Component({
   selector: 'app-teams-list',
   template: `
-    <app-header></app-header>
-    <h1 class="section-heading">NBA teams list</h1>
     <mat-card class="card--rounded latest-scores results">
       <mat-card-content>
         <ul class="results__list">

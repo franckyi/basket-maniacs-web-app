@@ -6,11 +6,13 @@ import { News } from 'src/app/API/news';
 @Component({
   selector: 'app-news-list',
   template: `
-    <h1 class="section-heading">News</h1>
-    <mat-list>
-      <mat-list-item *ngFor="let item of (newsList | async) | slice:0:perPage">
-        <span matListItemTitle>{{ item.title }}</span>
-        <a [href]="item.url" target="_blank" rel="nofollow">Read on nba.com</a>
+    <h2 class="section-heading">What's app from NBA 📰</h2>
+    <mat-list class="results__list">
+      <mat-list-item class="results__item news"
+        *ngFor="let item of (newsList | async) | slice:0:perPage"
+      >
+        <div matBadge="{{item.source}}" matBadgeColor="accent" matBadgeOverlap="false">{{ item.title }}</div>
+        <a [href]="item.url" target="_blank" rel="nofollow">Read</a>
       </mat-list-item>
     </mat-list>
   `,
@@ -20,7 +22,12 @@ import { News } from 'src/app/API/news';
 export class NewsListComponent implements OnInit {
   @Input() perPage?: number;
   newsList: Observable<News[]>;
-  
+  hidden = false;
+
+  toggleBadgeVisibility() {
+    this.hidden = !this.hidden;
+  }
+
   constructor(private api: ApiService) {
     this.newsList = api.getNews();
     console.log('news perPage:', this.perPage);

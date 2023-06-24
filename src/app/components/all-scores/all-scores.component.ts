@@ -6,7 +6,7 @@ import {GamesResponse} from "../../API/games-response";
 @Component({
   selector: 'app-all-scores',
   template: `
-    <app-header [heading]="heading"></app-header>
+    <app-header [introText]="introText"></app-header>
     <div class="pagination">
       <mat-icon aria-hidden="false" aria-label="Previous page" fontIcon="navigate_before"
         *ngIf="page > 1"
@@ -27,7 +27,7 @@ import {GamesResponse} from "../../API/games-response";
   styleUrls: ['./all-scores.component.scss']
 })
 export class AllScoresComponent implements OnInit {
-  heading: string = 'All game results';
+  introText: string = 'All game results';
   page: number = 1;
   lastResults: Observable<GamesResponse>;
 
