@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import {MaterialModule} from "./components/common/material/material.module";
+import { MaterialModule } from "./components/common/material/material.module";
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -18,8 +18,8 @@ import { FooterComponent } from './components/common/footer/footer.component';
 import { AllScoresComponent } from './components/all-scores/all-scores.component';
 import { AllPlayersComponent } from './components/all-players/all-players.component';
 import { AllPlayersItemComponent } from './components/all-players/all-players-item/all-players-item.component';
-import { AllTeamsComponent } from './components/all-teams/all-teams.component';
-import { AllTeamsItemComponent } from './components/all-teams/all-teams-item/all-teams-item.component';
+import { TeamsListComponent } from './components/teams-list/teams-list.component';
+import { AllTeamsItemComponent } from './components/teams-list/all-teams-item/all-teams-item.component';
 import { AllStatsComponent } from './components/all-stats/all-stats.component';
 import { AllStatsItemComponent } from './components/all-stats/all-stats-item/all-stats-item.component';
 import { SearchFiltersComponent } from './views/search/search-filters/search-filters.component';
@@ -45,7 +45,7 @@ import { PaginationComponent } from './components/common/pagination/pagination.c
     AllScoresComponent,
     AllPlayersComponent,
     AllPlayersItemComponent,
-    AllTeamsComponent,
+    TeamsListComponent,
     AllTeamsItemComponent,
     AllStatsComponent,
     AllStatsItemComponent,

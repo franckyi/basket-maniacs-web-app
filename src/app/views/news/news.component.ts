@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import {Observable} from "rxjs";
 import { ApiService } from 'src/app/API/api.service';
 import { News } from 'src/app/API/news';
@@ -16,18 +16,20 @@ import { News } from 'src/app/API/news';
   `,
   styleUrls: ['./news.component.scss']
 })
-export class NewsComponent implements OnInit {
+export class NewsComponent implements OnInit, OnChanges {
   heading: string = 'Latest news from NBA official website';
   latestNews: Observable<News[]>;
-
-  constructor(private _api: ApiService) {
-    this.latestNews = _api.getNews();
+  
+  constructor(private api: ApiService) {
+    this.latestNews = api.getNews();
   }
 
   ngOnInit(): void {
-    this.latestNews.subscribe( response => {
-      console.log(response);
-    })
+
+  }
+
+  ngOnChanges(): void {
+
   }
 
 }

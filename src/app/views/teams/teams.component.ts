@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-teams',
   template: `
     <app-header [heading]="heading"></app-header>
-    <app-all-teams></app-all-teams>
+    <app-teams-list></app-teams-list>
   `,
   styleUrls: ['./teams.component.scss']
 })

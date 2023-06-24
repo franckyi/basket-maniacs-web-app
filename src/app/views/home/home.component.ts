@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
   template: `
     <app-header [heading]="heading"></app-header>
     <app-latest-scores [perPage]="perPage"></app-latest-scores>
+    <!-- <app-latest-news></app-latest-news> -->
     <button [routerLink]="['/scores']" mat-flat-button color="primary">All game scores</button>
   `,
   styleUrls: ['./home.component.scss']

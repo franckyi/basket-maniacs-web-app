@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {TeamsResponse} from "../../API/teams-response";
 
 @Component({
-  selector: 'app-all-teams',
+  selector: 'app-teams-list',
   template: `
     <app-header></app-header>
     <h1 class="section-heading">NBA teams list</h1>
@@ -16,9 +16,9 @@ import {TeamsResponse} from "../../API/teams-response";
       </mat-card-content>
     </mat-card>
   `,
-  styleUrls: ['./all-teams.component.scss']
+  styleUrls: ['./teams-list.component.scss']
 })
-export class AllTeamsComponent implements OnInit {
+export class TeamsListComponent implements OnInit {
 
   AllTeamsItems: Observable<TeamsResponse>;
 
