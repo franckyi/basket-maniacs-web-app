@@ -1,0 +1,41 @@
+// CORE MIXIN
+
+@use '@angular/material' as mat;
+@include mat.core();
+
+// DEFINING PALETTES
+
+$nba-primary: mat.define-palette(mat.$deep-orange-palette, 900);
+$nba-accent: mat.define-palette(mat.$amber-palette, A200, A400, A700);
+// The "warn" palette is optional and defaults to red if not specified.
+// $nba-warn: mat.define-palette(mat.$red-palette);
+
+// DEFINING THEMES
+
+// LIGHT THEME
+$nba-light-theme: mat.define-light-theme((
+    color: (
+        primary: $nba-primary,
+        accent: $nba-accent
+    )
+));
+
+// DARK THEME
+$nba-dark-theme: mat.define-light-theme((
+    color: (
+        primary: $nba-accent,
+        accent: $nba-primary
+    )
+));
+
+// Apply the light theme by default
+@include mat.core-theme($nba-light-theme);
+@include mat.button-theme($nba-light-theme);
+
+// Apply the dark theme only when the user prefers dark themes.
+@media (prefers-color-scheme: light) {
+    // Use the `-color` mixins to only apply color styles without reapplying the same
+    // typography and density styles.
+    @include mat.core-color($nba-dark-theme);
+    @include mat.button-color($nba-dark-theme);
+   }
