@@ -6,7 +6,7 @@ import {GamesResponse} from "../../API/games-response";
 @Component({
   selector: 'app-latest-scores',
   template: `
-    <h2 class="section-heading">Last results</h2>
+    <h2 class="section-heading">Last games</h2>
     <mat-card class="card--rounded latest-scores">
       <mat-card-content>
         <ul class="results__list">
