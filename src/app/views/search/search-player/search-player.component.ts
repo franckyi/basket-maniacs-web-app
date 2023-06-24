@@ -53,7 +53,7 @@ import { ApiService } from 'src/app/API/api.service';
               ({{ result.team.abbreviation }})
               <img
                 class="player__club-logo"
-                [src]="'../../assets/img/team-logos/' + result.team.abbreviation + '.svg'"
+                [src]="'../../assets/img/team-logos/' + result.team.abbreviation + '.png'"
                 [alt]="result.team.full_name + 'logo'"
               >
             </li>

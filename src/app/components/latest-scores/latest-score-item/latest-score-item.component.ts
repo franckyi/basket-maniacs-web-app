@@ -9,7 +9,7 @@ import {Game} from "../../../API/Game";
           <div class="game__team">
               <img
                 class="game__logo"
-                src="../../assets/img/team-logos/{{ score?.home_team?.abbreviation }}.svg"
+                src="../../assets/img/team-logos/{{ score?.home_team?.abbreviation }}.png"
                 [alt]="score?.home_team?.full_name + 'logo'">
               <span class="game__team-name">{{ score?.home_team?.abbreviation }}
               </span>
@@ -20,7 +20,7 @@ import {Game} from "../../../API/Game";
               <span class="game__score">{{ score?.visitor_team_score }}</span>
               <img
                 class="game__logo"
-                [src]="'../../assets/img/team-logos/' + score?.visitor_team?.abbreviation + '.svg'"
+                [src]="'../../assets/img/team-logos/' + score?.visitor_team?.abbreviation + '.png'"
                 [alt]="score?.visitor_team?.full_name + 'logo'">
               <span class="game__team-name">{{ score?.visitor_team?.abbreviation }}</span>
           </div>

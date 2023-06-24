@@ -8,7 +8,7 @@ import {Team} from "../../../API/Team";
       <span class="team__score">{{ team?.full_name | uppercase }} ({{ team?.abbreviation }}), {{ team?.division }} division</span>
       <img
         class="team__logo"
-        src="../../assets/img/team-logos/{{ team?.abbreviation }}.svg"
+        src="../../assets/img/team-logos/{{ team?.abbreviation }}.png"
         [alt]="team?.full_name + ' logo'"
       >
     </li>
