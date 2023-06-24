@@ -1,3 +1,5 @@
-app-header {
-    width: 100%;
+@import '../../../../sass/colors';
+
+.intro-text {
+    background: linear-gradient(45deg, $orange 0%, $yellow 100%);
 }

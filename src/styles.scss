@@ -12,16 +12,12 @@ body, nav {
     margin: 0 auto;
 }
 
-.mat-app-background {
-    background: none;
-}
-
 .field-shape {
     display: flex;
     justify-content: center;
     flex-direction: column;
     padding: 1em 20px;
-    background: #3f51b5;
+    background: $color-primary;
     border-bottom-right-radius: 25%;
     border-bottom-left-radius: 25%;
 }
