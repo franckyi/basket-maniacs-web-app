@@ -31,6 +31,8 @@ import { NewsComponent } from './views/news/news.component';
 import { NavigationComponent } from './components/common/navigation/navigation.component';
 import { HeaderComponent } from './components/common/header/header.component';
 import { PaginationComponent } from './components/common/pagination/pagination.component';
+import { NewsListComponent } from './components/news-list/news-list.component';
+import { NewsListItemComponent } from './components/news-list/news-list-item/news-list-item.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { PaginationComponent } from './components/common/pagination/pagination.c
     NewsComponent,
     NavigationComponent,
     HeaderComponent,
-    PaginationComponent
+    PaginationComponent,
+    NewsListComponent,
+    NewsListItemComponent
   ],
   imports: [
     BrowserModule,
