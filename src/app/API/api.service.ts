@@ -42,6 +42,7 @@ export class ApiService {
   }
 
   getLatestGames$(perPage: number = 10, page: number = 1) {
+    console.log('perPage:', perPage)
     return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?per_page=${perPage}`, {
       headers: {
         'X-RapidAPI-Key': this.KEY

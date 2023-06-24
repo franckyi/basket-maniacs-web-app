@@ -1,6 +1,6 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
 import {ApiService} from "../../API/api.service";
-import {Observable} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {GamesResponse} from "../../API/games-response";
 
 @Component({
@@ -17,22 +17,32 @@ import {GamesResponse} from "../../API/games-response";
   `,
   styleUrls: ['./latest-scores.component.scss']
 })
-export class LatestScoresComponent implements OnInit, OnChanges {
-  @Input() perPage?: number;
+export class LatestScoresComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() perPage!: number;
   lastGames: Observable<GamesResponse>;
+  subscription: Subscription;
+
   constructor(private api: ApiService) {
+    console.log('constructor...');
+    console.log('perPage:', this.perPage);
     this.lastGames = api.getLatestGames$(this.perPage);
+    this.subscription = this.lastGames.subscribe();
   }
 
   ngOnInit(): void {
-    console.log('inside ngOnInit...')
-    console.log('perPage:', this.perPage);
-  }
-  
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('inside ngOnChanges...')
-    console.log(changes)
+    
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('ngOnChanges...')
+    console.log(changes)
+    this.lastGames = this.api.getLatestGames$(this.perPage);
+    console.log('perPage:', this.perPage);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+    console.log('unsubscribed...')
+  }
 
 }
