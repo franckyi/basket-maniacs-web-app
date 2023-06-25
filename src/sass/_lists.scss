@@ -13,17 +13,19 @@
         }
     }
     &__item {
+        padding: 1rem;
+        font-size: 1.6rem;
         background: white;
         border: 1px solid $color-accent;
         border-radius: 10px;
         &:hover {
             background: #fafafa;
         }
-        &.team {
+        &.team,
+        &.player {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1rem;
         }
     }
 }
