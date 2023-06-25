@@ -8,17 +8,17 @@ import { Component, OnInit } from '@angular/core';
           <mat-icon color="accent">home</mat-icon>
           <span class="main-nav__label">Home</span>
       </div>
-      <div [routerLink] = "['/scores']" mat-icon-button class="main-nav__link" aria-label="Go to Scoreboard">
-          <mat-icon>sports_basketball</mat-icon>
-          <span class="main-nav__label">Scores</span>
+      <div [routerLink]= "['/search']" mat-icon-button class="main-nav__link" aria-label="Go to search page">
+          <mat-icon>search</mat-icon>
+          <span class="main-nav__label">Search</span>
       </div>
       <div [routerLink]="['/news']" mat-icon-button class="main-nav__link" aria-label="Read News">
           <mat-icon>newspaper</mat-icon>
           <span class="main-nav__label">News</span>
       </div>
-      <div [routerLink]= "['/search']" mat-icon-button class="main-nav__link" aria-label="Go to search page">
-          <mat-icon>search</mat-icon>
-          <span class="main-nav__label">Search</span>
+      <div [routerLink] = "['/scores']" mat-icon-button class="main-nav__link" aria-label="Go to Scoreboard">
+          <mat-icon>sports_basketball</mat-icon>
+          <span class="main-nav__label">Scores</span>
       </div>
       <div [routerLink] = "['/teams']" mat-icon-button class="main-nav__link" aria-label="Go to Teams page">
           <mat-icon>groups</mat-icon>
