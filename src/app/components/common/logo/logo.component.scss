@@ -1,4 +1,15 @@
-.app-logo {
+@import '../../../../sass/fonts';
+@import '../../../../sass/colors';
+
+.app-logo-text {
     font-size: 3rem;
+    font-family: $font-primary, sans-serif;
+    font-weight: 700;
     color: white;
+}
+
+.app-icon {
+    font-size: 4rem;
+    font-family: 'Sport', $font-primary, sans-serif;
+    color: $color-accent;
 }

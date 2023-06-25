@@ -12,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  title = '🏀 NBA News';
+  title = 'NBA News';
   introText: string = 'Check last NBA scores, stay update about teams and players.';
   gamesPerPage: number = 4;
   NewsPerPage: number = 3;
