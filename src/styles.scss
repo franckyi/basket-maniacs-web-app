@@ -28,8 +28,11 @@
 /*******************/
 
 body {
-    max-width: 576px;
     margin: 0 auto;
+    app-latest-scores,
+    app-news-list {
+        text-align: center
+    }
 }
 
 header {
