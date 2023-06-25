@@ -6,12 +6,12 @@
         flex-direction: column;
         list-style: none;
         width: 100%;
-        gap: .5rem;
+        // gap: .5rem;
+        padding: 1rem;
         list-style: none;
     }
     &__item {
-        padding-top: .5rem;
-        padding-bottom: .5rem;
+        padding-top: .5rem 1.6rem;
         background: white;
         border: 1px solid $color-accent;
         border-radius: 15px;
