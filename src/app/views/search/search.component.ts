@@ -6,8 +6,8 @@ import { Filter } from './services/filter';
 @Component({
   selector: 'app-search',
   template: `
-    <app-header [title]="title" [introText]="introText"></app-header>
-    <mat-card>
+    <app-header [title]="title"></app-header>
+    <mat-card class="filters">
       <app-search-filters></app-search-filters>
     </mat-card>
     <app-search-player *ngIf="(currentFilter$ | async) == 'player'"></app-search-player>
@@ -18,7 +18,6 @@ import { Filter } from './services/filter';
 })
 export class SearchComponent implements OnInit {
   title: string = 'Search';
-  introText: string = 'Use filters to find players, teams and game results';
   currentFilter$: Observable <Filter>;   
 
   constructor(private filterService: ChangeFiltersService) {

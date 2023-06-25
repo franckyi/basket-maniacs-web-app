@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
     <header>
       <app-logo [title]="title"></app-logo>
     </header>
-    <mat-card class="intro-text">
+    <mat-card class="intro-text" *ngIf="introText">
       <mat-card-content>{{introText}}</mat-card-content>
     </mat-card> 
   `,
