@@ -21,40 +21,15 @@
 @import 'sass/typography';
 @import 'sass/reset';
 @import 'sass/lists';
+@import 'sass/ui';
 @import 'sass/buttons';
 
 /*******************/
-
-.field-shape {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 1em 20px;
-    background: $color-primary;
-    border-bottom-right-radius: 25%;
-    border-bottom-left-radius: 25%;
-}
 
 header {
     @extend .field-shape;
     text-align: center;
     height: 10rem;
-}
-
-footer {
-    @extend .field-shape;
-    z-index: -5;
-    margin-top: 2em;
-    height: 200px;
-    transform: rotate(180deg);
-    position: sticky;
-    bottom: 0;
-    max-width: 33rem;
-    width: 30.5rem;
-    .logo {
-        transform: rotate(180deg);
-        margin-bottom: -5em;
-    }
 }
 
 .logo {

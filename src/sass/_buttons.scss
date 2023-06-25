@@ -1,8 +1,6 @@
 @import '../sass/typography';
 
-.mat-button-base {
+button.mat-button-base {
+    display: block;
     margin: 1em auto;
-    padding-left: 15px;
-    padding-right: 15px;
-    font-family: $font-primary;
 }

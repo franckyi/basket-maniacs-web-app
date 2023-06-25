@@ -1,0 +1,9 @@
+@import '../../../../sass/ui';
+
+footer {
+    @extend .field-shape;
+    z-index: -5;
+    margin-top: 2em;
+    height: 13rem;
+    transform: rotate(180deg);
+}
