@@ -8,10 +8,11 @@ import { News } from 'src/app/API/news';
   template: `
     <h2 class="section-heading">Last news</h2>
     <mat-list class="results__list">
-      <mat-list-item class="results__item news" *ngFor="let item of (newsList | async) | slice:0:perPage">
-        <div matBadge="{{item.source}}" matBadgeColor="accent" matBadgeOverlap="false">{{ item.title }}</div>
-        <a [href]="item.url" target="_blank" rel="nofollow">Read</a>
-      </mat-list-item>
+      <a [href]="item.url" *ngFor="let item of (newsList | async) | slice:0:perPage" target="_blank" rel="nofollow">
+        <mat-list-item class="results__item news">
+          <div matBadge="{{item.source}}" matBadgeColor="accent" matBadgeOverlap="false">{{ item.title }}</div>
+        </mat-list-item>
+      </a>
     </mat-list>
   `,
   styleUrls: ['./news-list.component.scss']

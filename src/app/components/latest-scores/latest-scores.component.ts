@@ -7,8 +7,8 @@ import {GamesResponse} from "../../API/games-response";
   selector: 'app-latest-scores',
   template: `
     <h2 class="section-heading">Last games</h2>
-    <mat-list class="results__list games">
-      <app-latest-score-item class="results__item news" *ngFor="let score of (lastGames | async)?.data" [score]="score">
+    <mat-list class="results__list">
+      <app-latest-score-item class="results__item" *ngFor="let score of (lastGames | async)?.data" [score]="score">
       </app-latest-score-item>
     </mat-list>
   `,

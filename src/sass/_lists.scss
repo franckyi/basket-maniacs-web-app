@@ -8,31 +8,22 @@
         width: 100%;
         gap: .5rem;
         list-style: none;
+        &.mat-list-base {
+            display: flex;
+        }
     }
     &__item {
         background: white;
         border: 1px solid $color-accent;
-        border-radius: 15px;
-        a {
-            &,
-            &:active,
-            &:visited,
-            &:focus,
-            &:focus-visible {
-                color: $color-primary;
-                text-decoration: none;
-                font-weight: 700;
-                cursor: pointer;
-            }
+        border-radius: 10px;
+        &:hover {
+            background: #fafafa;
         }
         &.team {
             display: flex;
             align-items: center;
             justify-content: space-between;
-        }
-        &.player,
-        &.news > .mat-list-item-content {
-            justify-content: space-between;
+            padding: 1rem;
         }
     }
 }

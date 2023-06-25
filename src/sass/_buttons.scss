@@ -3,4 +3,7 @@
 button.mat-button-base {
     display: block;
     margin: 1em auto;
+    &:hover {
+        background: $color-primary;
+    }
 }
