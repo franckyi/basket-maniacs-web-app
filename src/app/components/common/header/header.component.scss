@@ -2,9 +2,11 @@
 
 .intro-text {
     @include nba-gradient;
-    width: fit-content;
+    margin: -1em auto 2em auto;
+    max-width: 70%;
+    text-align: center;
     .mat-card-content {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
 }
 

@@ -4,7 +4,7 @@
     Imports
 */
 
-// Bootstrap
+// Bootstrap imports
 @import '../node_modules/bootstrap/scss/functions';
 @import '../node_modules/bootstrap/scss/variables';
 // @import '../node_modules/bootstrap/scss/maps';
@@ -15,21 +15,15 @@
 // @import '../node_modules/bootstrap/scss/grid';
 @import '../node_modules/bootstrap/scss/helpers';
 
-// This project
+// Sass imports
 @import 'sass/colors';
 @import 'sass/fonts';
 @import 'sass/typography';
 @import 'sass/reset';
+@import 'sass/lists';
 @import 'sass/buttons';
 
-html, body {
-    background: bottom;
-}
-
-body, nav {
-    max-width: 33rem;
-    margin: 0 auto;
-}
+/*******************/
 
 .field-shape {
     display: flex;
@@ -44,7 +38,7 @@ body, nav {
 header {
     @extend .field-shape;
     text-align: center;
-    height: 7rem;
+    height: 10rem;
 }
 
 footer {
@@ -78,42 +72,10 @@ app-search {
     align-items: center;
 }
 
-
-
 .other-info {
     margin-bottom: 1em;
     text-align: center;
     color: $color-text--light;
-}
-
-.results {
-    &__list {
-        display: flex;
-        flex-direction: column;
-        list-style: none;
-        width: 100%;
-        gap: .5rem;
-        list-style: none;
-    }
-    &__item {
-        padding-top: .5rem;
-        padding-bottom: .5rem;
-        border: 1px solid #f7edf9;
-        border-radius: 15px;
-        &.team {
-            padding-left: .5rem;
-            padding-right: .5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        &.player,
-        &.news > .mat-list-item-content {
-            justify-content: space-between;
-            padding-left: .5rem;
-            padding-right: .5rem;
-        }
-    }
 }
 
 .game {

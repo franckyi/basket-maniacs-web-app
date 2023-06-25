@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   template: `
     <nav class="main-nav">
       <div [routerLink] = "['']" mat-icon-button color="accent" aria-label="Go to Home">
-          <mat-icon>home</mat-icon>
+          <mat-icon color="accent">home</mat-icon>
           <span class="main-nav__label">Home</span>
       </div>
       <div [routerLink] = "['/scores']" mat-icon-button color="primary" aria-label="Go to Scoreboard">
