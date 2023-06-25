@@ -6,7 +6,7 @@ import { Filter } from './services/filter';
 @Component({
   selector: 'app-search',
   template: `
-    <app-header></app-header>
+    <app-header [title]="title"></app-header>
     <mat-card class="filters">
       <app-search-filters [currentFilter]="currentFilter$"></app-search-filters>
     </mat-card>
@@ -18,6 +18,7 @@ import { Filter } from './services/filter';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+  title = 'Search';
   currentFilter$: Observable <Filter>;   
 
   constructor(private filterService: ChangeFiltersService) {

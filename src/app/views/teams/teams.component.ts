@@ -10,8 +10,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./teams.component.scss']
 })
 export class TeamsComponent implements OnInit {
-  title: string = 'Teams list';
-  introText: string = 'A list of all NBA teams';
+  title: string = 'Teams';
+  introText: string = 'A list of all NBA teams sorted in alphabetical order';
   constructor() { }
 
   ngOnInit(): void {

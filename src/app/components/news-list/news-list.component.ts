@@ -35,6 +35,7 @@ export class NewsListComponent implements OnInit {
   ngOnInit(): void {
     console.log('onInit');
     console.log('news perPage:', this.perPage);
+    console.log(this.newsList.subscribe(v => console.log(v)));
   }
 
 }
