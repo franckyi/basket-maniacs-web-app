@@ -1,7 +1,11 @@
 @import '../sass/colors';
 
 .results {
+    &.mat-card {
+        padding: 0;
+    }
     &__list {
+        padding-left: 0;
         display: flex;
         flex-direction: column;
         list-style: none;
