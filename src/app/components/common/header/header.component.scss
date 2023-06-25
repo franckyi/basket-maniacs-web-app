@@ -1,8 +1,8 @@
 @import '../../../../sass/colors';
 
 .intro-text {
+    @include nba-gradient;
     width: fit-content;
-    background: linear-gradient(45deg, $orange 0%, $yellow 100%);
     .mat-card-content {
         font-size: 1.8rem;
     }
