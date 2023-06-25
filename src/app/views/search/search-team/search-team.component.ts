@@ -6,7 +6,7 @@ import { Team } from 'src/app/API/Team';
   selector: 'app-search-team',
   template: `
     <div class="search">
-      <mat-form-field style="margin-left: 15px;">
+      <mat-form-field>
         <mat-label>Team name</mat-label>
         <input
           matInput
@@ -16,8 +16,10 @@ import { Team } from 'src/app/API/Team';
           (keydown.enter)="passQuery(teamName)"
         >
       </mat-form-field>
-      <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
-      <button (click)="passQuery(teamName)" [style.margin-left.px]="10" mat-flat-button color="primary">Search</button>
+      <div class="d-flex buttons">
+        <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
+        <button (click)="passQuery(teamName)" [style.margin-left.px]="10" mat-flat-button color="accent">Search</button>
+      </div>
       <p *ngIf="notFoundMsg !== '' && teamName !== '' ">{{ notFoundMsg }}</p>
       <mat-card *ngIf="results !== null && teamName !== '' " class="search-results">
         <mat-card-content>
