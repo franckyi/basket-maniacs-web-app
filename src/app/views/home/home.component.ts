@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
     <button [routerLink]="['/news']" mat-flat-button color="accent">More news</button>
     <app-latest-scores [perPage]="gamesPerPage"></app-latest-scores>
     <button [routerLink]="['/scores']" mat-flat-button color="accent">All game scores</button>
+    <app-footer></app-footer>
   `,
   styleUrls: ['./home.component.scss']
 })

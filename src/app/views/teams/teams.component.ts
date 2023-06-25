@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
   template: `
     <app-header [title]="title" [introText]="introText"></app-header>
     <app-teams-list></app-teams-list>
+    <app-footer></app-footer>
   `,
   styleUrls: ['./teams.component.scss']
 })

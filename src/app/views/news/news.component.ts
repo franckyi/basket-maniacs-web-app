@@ -5,6 +5,7 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
   template: `
     <app-header [title]="title" [introText]="introText"></app-header>
     <app-news-list></app-news-list>
+    <app-footer></app-footer>
   `,
   styleUrls: ['./news.component.scss']
 })

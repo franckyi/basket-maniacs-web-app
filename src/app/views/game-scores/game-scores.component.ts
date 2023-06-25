@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <app-header [title]="title" [introText]="introText"></app-header>
     <app-latest-scores [perPage]="perPage"></app-latest-scores>
+    <app-footer></app-footer>
   `,
   styleUrls: ['./game-scores.component.scss']
 })
