@@ -8,7 +8,7 @@ import { Filter } from './services/filter';
   template: `
     <app-header></app-header>
     <mat-card class="filters">
-      <app-search-filters></app-search-filters>
+      <app-search-filters [currentFilter]="currentFilter$"></app-search-filters>
     </mat-card>
     <app-search-player *ngIf="(currentFilter$ | async) == 'player'"></app-search-player>
     <app-search-team  *ngIf="(currentFilter$ | async) == 'team'"></app-search-team>
