@@ -12,7 +12,8 @@
     background: $color-primary;
     color: white;
     box-shadow: -1px -1px 10px rgba(0,0,0,.2); 
-    .mat-icon-button {
+    &__link {
+        text-align: center;
         line-height: 20px;
     }
     .mat-button-wrapper {
