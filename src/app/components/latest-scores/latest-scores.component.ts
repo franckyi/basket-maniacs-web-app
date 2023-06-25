@@ -8,7 +8,7 @@ import {GamesResponse} from "../../API/games-response";
   template: `
     <h2 class="section-heading">Last games</h2>
     <mat-list class="results__list">
-      <app-latest-score-item class="results__item" *ngFor="let score of (lastGames | async)?.data" [score]="score">
+      <app-latest-score-item *ngFor="let score of (lastGames | async)?.data" [score]="score">
       </app-latest-score-item>
     </mat-list>
   `,
