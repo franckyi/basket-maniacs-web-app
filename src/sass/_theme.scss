@@ -49,11 +49,14 @@ $my-theme: mat.define-light-theme((
 // Include only used components below for better performance
 @include mat.button-theme($my-theme);
 @include mat.badge-theme($my-theme);
+@include mat.input-theme($my-theme);
+@include mat.form-field-theme($my-theme);
+// @include mat.list-theme($my-theme);
 // Or uncomment below to use in all components (for large apps)
-// @include mat.all-component-colors($light-theme);
-// @include mat.all-component-typographies($light-theme);
-// @include mat.all-component-densities($light-theme);
-// @include mat.all-component-themes($light-theme);
+// @include mat.all-component-colors($my-theme);
+// @include mat.all-component-typographies($my-theme);
+// @include mat.all-component-densities($my-theme);
+// @include mat.all-component-themes($my-theme);
 
 /*
     Using a dark theme

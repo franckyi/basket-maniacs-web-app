@@ -6,7 +6,7 @@ import { ApiService } from 'src/app/API/api.service';
   template: `
     <div class="search">
       <div class="d-flex">
-        <mat-form-field style="margin-left: 15px;">
+        <mat-form-field>
           <mat-label for="name">Player name</mat-label>
           <input
             matInput id="name" placeholder="First or last name"
@@ -15,7 +15,7 @@ import { ApiService } from 'src/app/API/api.service';
             (keydown.enter)="passQuery(playerName)"
           >
         </mat-form-field>
-        <mat-form-field style="margin-left: 15px;">
+        <mat-form-field>
           <mat-label for="team">Team name</mat-label>
           <input
             matInput id="team" placeholder="Team name"
@@ -25,8 +25,11 @@ import { ApiService } from 'src/app/API/api.service';
           >
         </mat-form-field>
       </div>
-      <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
-      <button (click)="passQuery(playerName)" [style.margin-left.px]="10" mat-flat-button color="accent">Search</button>
+      
+      <div class="d-flex buttons">
+        <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
+        <button (click)="passQuery(playerName)" mat-flat-button color="accent">Search</button>
+      </div>
       
       <p *ngIf="notFoundMsg !== '' && playerName !== '' ">{{ notFoundMsg }}</p>
 

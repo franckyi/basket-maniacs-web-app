@@ -3,7 +3,9 @@
 button.mat-button-base {
     display: block;
     margin: 1em auto;
+    font-size: 1.8rem;
     &:hover {
         background: $color-primary;
+        color: white;
     }
 }
