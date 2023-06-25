@@ -26,7 +26,7 @@ import { ApiService } from 'src/app/API/api.service';
         </mat-form-field>
       </div>
       <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
-      <button (click)="passQuery(playerName)" [style.margin-left.px]="10" mat-flat-button color="primary">Search</button>
+      <button (click)="passQuery(playerName)" [style.margin-left.px]="10" mat-flat-button color="accent">Search</button>
       
       <p *ngIf="notFoundMsg !== '' && playerName !== '' ">{{ notFoundMsg }}</p>
 

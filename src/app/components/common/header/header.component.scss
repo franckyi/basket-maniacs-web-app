@@ -1,5 +1,9 @@
 @import '../../../../sass/colors';
 
+app-header {
+    width: 100%;
+}
+
 .intro-text {
     @include nba-gradient;
     margin: -1em auto 2em auto;
