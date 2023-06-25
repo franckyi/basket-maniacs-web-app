@@ -8,6 +8,10 @@ app-search-player {
 }
 
 .search {
+  &__inputs {
+    max-width: 80%;
+  }
+
   input.mat-input-element {
     font-size: 1.8rem;
   }

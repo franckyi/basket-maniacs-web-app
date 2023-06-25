@@ -5,7 +5,7 @@ import { ApiService } from 'src/app/API/api.service';
   selector: 'app-search-player',
   template: `
     <div class="search">
-      <div class="d-flex">
+      <div class="d-flex search__inputs">
         <mat-form-field>
           <mat-label for="name">Player name</mat-label>
           <input
