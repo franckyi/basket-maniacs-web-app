@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-paginator',
@@ -13,13 +13,21 @@ import { Component, OnInit, Input, Output } from '@angular/core';
   styleUrls: ['./paginator.component.scss']
 })
 export class PaginatorComponent implements OnInit {
-  @Input() length?: number;
+  @Input() meta?: object;
   @Input() pageSize?: number;
   page: number = 1;
 
-  constructor() { }
+  constructor() {
+    console.log(this.meta)
+   }
 
   ngOnInit(): void {
+    console.log(this.meta)
+
+  }
+
+  ngOnChanges(): void {
+    console.log(this.meta)
   }
 
   // goToPrevPage() {

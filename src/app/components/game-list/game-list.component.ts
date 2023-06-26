@@ -6,8 +6,8 @@ import {GamesResponse} from "../../API/games-response";
 @Component({
   selector: 'app-game-list',
   template: `
-    <h2 class="section-heading">Games results</h2>
-    <app-paginator [length]="10" [pageSize]="perPage"></app-paginator>
+    <h2 class="section-heading">Game results</h2>
+    <app-paginator [meta]="meta" [pageSize]="perPage"></app-paginator>
     <mat-list class="results__list">
       <app-game-list-item *ngFor="let score of (gameList | async)?.data" [score]="score"></app-game-list-item>
     </mat-list>
@@ -17,14 +17,10 @@ import {GamesResponse} from "../../API/games-response";
 export class GameListComponent implements OnInit, OnChanges, OnDestroy {
   @Input() perPage?: number;
 
-  gameList: Observable<GamesResponse>;
+  gameList?: Observable<GamesResponse>;
+  meta?: object;
 
-  constructor(private api: ApiService, private metaSubscription: Subscription) {
-    this.gameList = api.getGames$(this.perPage);
-    metaSubscription = this.gameList.subscribe( v => {
-      console.log( v )
-    })
-  }
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
     
@@ -32,6 +28,7 @@ export class GameListComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.gameList = this.api.getGames$(this.perPage);
+    this.meta = this.gameList.subscribe( response => response.meta);
   }
 
   ngOnDestroy(): void {
