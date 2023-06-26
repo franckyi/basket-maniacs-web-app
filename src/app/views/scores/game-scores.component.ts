@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-game-scores',
   template: `
     <app-header [introText]="introText"></app-header>
-    <app-latest-scores [perPage]="perPage"></app-latest-scores>
+    <app-game-list [perPage]="perPage"></app-game-list>
     <app-footer></app-footer>
   `,
   styleUrls: ['./game-scores.component.scss']

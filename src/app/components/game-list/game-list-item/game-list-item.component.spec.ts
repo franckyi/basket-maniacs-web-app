@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LatestScoresComponent } from './latest-scores.component';
 
-describe('LatestScoresComponent', () => {
-  let component: LatestScoresComponent;
-  let fixture: ComponentFixture<LatestScoresComponent>;
+import { GameListItemComponent } from './game-list-item.component';
+
+describe('GameListItemComponent', () => {
+  let component: GameListItemComponent;
+  let fixture: ComponentFixture<GameListItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LatestScoresComponent ]
+      declarations: [ GameListItemComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LatestScoresComponent);
+    fixture = TestBed.createComponent(GameListItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -8,8 +8,8 @@ import { MaterialModule } from "./components/common/material/material.module";
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { LatestScoresComponent } from './components/latest-scores/latest-scores.component';
-import { LatestScoreItemComponent } from './components/latest-scores/latest-score-item/latest-score-item.component';
+import { GameListComponent } from './components/game-list/game-list.component';
+import { GameListItemComponent } from './components/game-list/game-list-item/game-list-item.component';
 import { HomeComponent } from './views/home/home.component';
 import { TeamsComponent } from './views/teams/teams.component';
 import { SearchComponent } from './views/search/search.component';
@@ -37,8 +37,8 @@ import { LogoComponent } from './components/common/logo/logo.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LatestScoresComponent,
-    LatestScoreItemComponent,
+    GameListComponent,
+    GameListItemComponent,
     HomeComponent,
     TeamsComponent,
     SearchComponent,

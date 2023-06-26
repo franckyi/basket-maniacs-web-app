@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import {Game} from "../../../API/Game";
 
 @Component({
-  selector: 'app-latest-score-item',
+  selector: 'app-game-list-item',
   template: `
     <li class="results__item">
       <div class="game__main-info">
@@ -31,9 +31,9 @@ import {Game} from "../../../API/Game";
       </div>
     </li>
   `,
-  styleUrls: ['./latest-score-item.component.scss']
+  styleUrls: ['./game-list-item.component.scss']
 })
-export class LatestScoreItemComponent {
+export class GameListItemComponent {
 
   @Input() score?: Game;
 

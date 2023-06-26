@@ -19,7 +19,7 @@ import {GamesResponse} from "../../API/games-response";
     <mat-card class="card--rounded results">
         <mat-card-content>
             <ul class="results__list">
-                <app-latest-score-item *ngFor="let score of (lastResults | async)?.data" [score]="score"></app-latest-score-item>
+                <app-game-list-item *ngFor="let score of (lastResults | async)?.data" [score]="score"></app-game-list-item>
             </ul>
         </mat-card-content>
     </mat-card>
@@ -32,7 +32,7 @@ export class AllScoresComponent implements OnInit {
   lastResults: Observable<GamesResponse>;
 
   constructor(private api: ApiService) {
-    this.lastResults = api.getLatestGames$(100, this.page);
+    this.lastResults = api.getGames$(100, this.page);
   }
 
   ngOnInit(): void {
@@ -42,14 +42,14 @@ export class AllScoresComponent implements OnInit {
     console.log('called goToPrevPage()');
     this.page -= 1;
     console.log('this.page', this.page);
-    this.lastResults = this.api.getLatestGames$(100, this.page);
+    this.lastResults = this.api.getGames$(100, this.page);
   }
 
   goToNextPage() {
     console.log('called goToNextPage()');
     this.page += 1;
     console.log('this.page', this.page);
-    this.lastResults = this.api.getLatestGames$(100, this.page);
+    this.lastResults = this.api.getGames$(100, this.page);
   }
 
 }

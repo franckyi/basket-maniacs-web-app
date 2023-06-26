@@ -47,7 +47,7 @@ import { ApiService } from 'src/app/API/api.service';
       >
         <mat-card-content class="results">
             <ul class="results__list">
-                <app-latest-score-item *ngFor="let result of results" [score]="result"></app-latest-score-item>
+                <app-game-list-item *ngFor="let result of results" [score]="result"></app-game-list-item>
             </ul>
         </mat-card-content>
       </mat-card>
