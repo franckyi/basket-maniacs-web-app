@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-pagination',
+  selector: 'app-paginator',
   template: `
-    <!-- <div class="pagination">
+    <!-- REMOVE <div class="pagination">
       <mat-icon aria-hidden="false" aria-label="Previous page" fontIcon="navigate_before"
         *ngIf="page > 1"
         (click)="goToPrevPage()"
@@ -12,10 +12,16 @@ import { Component, OnInit } from '@angular/core';
       <mat-icon aria-hidden="false" aria-label="Next page" fontIcon="navigate_next"
         (click)="goToNextPage()"></mat-icon>
     </div> -->
+    <mat-paginator
+      [length]="100"
+      [pageSize]="25"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page">
+    </mat-paginator>
   `,
-  styleUrls: ['./pagination.component.scss']
+  styleUrls: ['./paginator.component.scss']
 })
-export class PaginationComponent implements OnInit {
+export class PaginatorComponent implements OnInit {
   page: number = 1;
 
   constructor() { }

@@ -30,7 +30,7 @@ import { RandomPlayerComponent } from './components/all-players/random-player/ra
 import { NewsComponent } from './views/news/news.component';
 import { NavigationComponent } from './components/common/navigation/navigation.component';
 import { HeaderComponent } from './components/common/header/header.component';
-import { PaginationComponent } from './components/common/pagination/pagination.component';
+import { PaginatorComponent } from './components/common/paginator/paginator.component';
 import { NewsListComponent } from './components/news-list/news-list.component';
 import { LogoComponent } from './components/common/logo/logo.component';
 
@@ -59,7 +59,7 @@ import { LogoComponent } from './components/common/logo/logo.component';
     NewsComponent,
     NavigationComponent,
     HeaderComponent,
-    PaginationComponent,
+    PaginatorComponent,
     NewsListComponent,
     LogoComponent
   ],
