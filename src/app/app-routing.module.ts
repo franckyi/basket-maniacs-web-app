@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GameScoresComponent } from './views/scores/game-scores.component';
+import { GamesViewComponent } from './views/games/games-view.component';
 import { HomeComponent } from './views/home/home.component';
 import { SearchComponent } from './views/search/search.component';
 import { TeamsComponent } from './views/teams/teams.component';
@@ -20,8 +20,8 @@ const routes: Routes = [
     component: TeamsComponent
   },
   {
-    path: 'scores',
-    component: GameScoresComponent
+    path: 'games',
+    component: GamesViewComponent
   },
   {
     path: 'news',

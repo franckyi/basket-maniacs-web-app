@@ -16,10 +16,14 @@ import {GamesResponse} from "../../API/games-response";
 })
 export class GameListComponent implements OnInit, OnChanges, OnDestroy {
   @Input() perPage?: number;
+
   gameList: Observable<GamesResponse>;
 
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, private metaSubscription: Subscription) {
     this.gameList = api.getGames$(this.perPage);
+    metaSubscription = this.gameList.subscribe( v => {
+      console.log( v )
+    })
   }
 
   ngOnInit(): void {

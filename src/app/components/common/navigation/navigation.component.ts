@@ -16,7 +16,7 @@ import { Component, OnInit } from '@angular/core';
           <mat-icon>newspaper</mat-icon>
           <span class="main-nav__label">News</span>
       </div>
-      <div [routerLink] = "['/scores']" mat-icon-button class="main-nav__link" aria-label="Go to Scoreboard">
+      <div [routerLink] = "['/games']" mat-icon-button class="main-nav__link" aria-label="Go to Scoreboard">
           <mat-icon>sports_basketball</mat-icon>
           <span class="main-nav__label">Scores</span>
       </div>

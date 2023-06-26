@@ -13,7 +13,7 @@ import { GameListItemComponent } from './components/game-list/game-list-item/gam
 import { HomeComponent } from './views/home/home.component';
 import { TeamsComponent } from './views/teams/teams.component';
 import { SearchComponent } from './views/search/search.component';
-import { GameScoresComponent } from './views/scores/game-scores.component';
+import { GamesViewComponent } from './views/games/games-view.component';
 import { FooterComponent } from './components/common/footer/footer.component';
 import { AllScoresComponent } from './components/all-scores/all-scores.component';
 import { AllPlayersComponent } from './components/all-players/all-players.component';
@@ -42,7 +42,7 @@ import { LogoComponent } from './components/common/logo/logo.component';
     HomeComponent,
     TeamsComponent,
     SearchComponent,
-    GameScoresComponent,
+    GamesViewComponent,
     FooterComponent,
     AllScoresComponent,
     AllPlayersComponent,
