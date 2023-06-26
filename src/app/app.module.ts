@@ -13,13 +13,13 @@ import { LatestScoreItemComponent } from './components/latest-scores/latest-scor
 import { HomeComponent } from './views/home/home.component';
 import { TeamsComponent } from './views/teams/teams.component';
 import { SearchComponent } from './views/search/search.component';
-import { GameScoresComponent } from './views/game-scores/game-scores.component';
+import { GameScoresComponent } from './views/scores/game-scores.component';
 import { FooterComponent } from './components/common/footer/footer.component';
 import { AllScoresComponent } from './components/all-scores/all-scores.component';
 import { AllPlayersComponent } from './components/all-players/all-players.component';
 import { AllPlayersItemComponent } from './components/all-players/all-players-item/all-players-item.component';
-import { TeamsListComponent } from './components/teams-list/teams-list.component';
-import { AllTeamsItemComponent } from './components/teams-list/all-teams-item/all-teams-item.component';
+import { TeamListComponent } from './components/team-list/team-list.component';
+import { TeamListItemComponent } from './components/team-list/team-list-item/team-list-item.component';
 import { AllStatsComponent } from './components/all-stats/all-stats.component';
 import { AllStatsItemComponent } from './components/all-stats/all-stats-item/all-stats-item.component';
 import { SearchFiltersComponent } from './views/search/search-filters/search-filters.component';
@@ -47,8 +47,8 @@ import { LogoComponent } from './components/common/logo/logo.component';
     AllScoresComponent,
     AllPlayersComponent,
     AllPlayersItemComponent,
-    TeamsListComponent,
-    AllTeamsItemComponent,
+    TeamListComponent,
+    TeamListItemComponent,
     AllStatsComponent,
     AllStatsItemComponent,
     SearchFiltersComponent,

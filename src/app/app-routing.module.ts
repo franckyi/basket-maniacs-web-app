@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GameScoresComponent } from './views/game-scores/game-scores.component';
+import { GameScoresComponent } from './views/scores/game-scores.component';
 import { HomeComponent } from './views/home/home.component';
 import { SearchComponent } from './views/search/search.component';
 import { TeamsComponent } from './views/teams/teams.component';

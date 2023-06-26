@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import {Team} from "../../../API/Team";
 
 @Component({
-  selector: 'app-all-teams-item',
+  selector: 'app-team-list-item',
   template: `
     <li class="results__item team">
       <span class="team__score">{{ team?.full_name | uppercase }} ({{ team?.abbreviation }}), {{ team?.division }} division</span>
@@ -13,9 +13,9 @@ import {Team} from "../../../API/Team";
       >
     </li>
   `,
-  styleUrls: ['./all-teams-item.component.scss']
+  styleUrls: ['./team-list-item.component.scss']
 })
-export class AllTeamsItemComponent {
+export class TeamListItemComponent {
   @Input() team?: Team;
 
   constructor() { }

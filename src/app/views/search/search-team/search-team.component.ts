@@ -24,7 +24,7 @@ import { Team } from 'src/app/API/Team';
       <mat-card *ngIf="results !== null && teamName !== '' " class="search-results">
         <mat-card-content>
           <ul class="results__list">
-            <app-all-teams-item *ngFor="let result of results" [team]="result"></app-all-teams-item>
+            <app-team-list-item *ngFor="let result of results" [team]="result"></app-team-list-item>
           </ul>
         </mat-card-content>
       </mat-card>
