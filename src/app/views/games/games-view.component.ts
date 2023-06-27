@@ -10,9 +10,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./games-view.component.scss']
 })
 export class GamesViewComponent {
-  // title: string = 'Game scores';
   introText: string = 'A list of the most recent game results by date. Navigate the results to see historical data.';
-  perPage: number = 15;
+  perPage: number = 100;
   
   constructor() { }
 

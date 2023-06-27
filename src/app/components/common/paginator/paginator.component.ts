@@ -1,66 +1,36 @@
-import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, AfterViewInit, EventEmitter } from '@angular/core';
 import { PaginatorInterface } from 'src/app/types/paginator-interface';
-import { GamesResponse } from 'src/app/API/games-response';
+import { Meta } from 'src/app/API/meta'; 
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-paginator',
   template: `
     <mat-paginator
-      [length]="100"
-      [pageSize]="10"
-      [pageSizeOptions]="[5,10,25,50,100]"
-      aria-label="Select page">
-      ()
+      [length]="meta?.total_count"
+      [pageSize]="meta?.per_page"
+      [pageSizeOptions]="[10,25,50,100]"
+      [pageIndex]="meta?.current_page"
+      aria-label="Select page"
+    >
     </mat-paginator>
-    <h2>{{meta.total_pages}}</h2>
-    <button (click)="passPaginatorOptions()">Pass options</button>
+    <h2>{{meta?.per_page}} per page</h2>
+    <h2>current page {{meta?.current_page}}</h2>
+    <h2>next page {{meta?.next_page}}</h2>
   `,
   styleUrls: ['./paginator.component.scss']
 })
-export class PaginatorComponent implements OnInit {
-  @Input() meta?: any;
-  @Output() changePaginatorOptionsEvent = new EventEmitter<PaginatorInterface>();
-
-  // meta: PaginatorInterface = {
-  //   length: 100,
-  //   pageSize: 10,
-  //   pageSizeOptions: [5, 10, 25, 100]
-  // }
-
-  // meta: Meta = {
-  //   total_pages:  100,
-  //   current_page: 1,
-  //   next_page:    2,
-  //   per_page:     25,
-  //   total_count:  100
-  // }
+export class PaginatorComponent implements OnInit, AfterViewInit {
+  @Input() meta?: Meta;
 
   constructor() {
-   }
+  }
 
   ngOnInit(): void {
 
   }
 
-  ngOnChanges(): void {
+  ngAfterViewInit(): void {
   }
-
-  passPaginatorOptions() {
-    this.changePaginatorOptionsEvent.emit(this.meta)
-  }
-
-  // goToPrevPage() {
-  //   console.log('called goToPrevPage()');
-  //   this.page -= 1;
-  //   console.log('this.page', this.page);
-  //   // this.latestScoresItems = this.api.getLatestGames$(100, this.page);
-  // }
-
-  // goToNextPage() {
-  //   console.log('called goToNextPage()');
-  //   this.page += 1;
-  //   console.log('this.page', this.page);
-  //   // this.latestScoresItems = this.api.getLatestGames$(100, this.page);
-  // }
 
 }
