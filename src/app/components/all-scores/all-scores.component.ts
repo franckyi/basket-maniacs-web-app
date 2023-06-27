@@ -17,11 +17,11 @@ import {GamesResponse} from "../../API/games-response";
         (click)="goToNextPage()"></mat-icon>
     </div>
     <mat-card class="card--rounded results">
-        <mat-card-content>
-            <ul class="results__list">
-                <app-game-list-item *ngFor="let score of (lastResults | async)?.data" [score]="score"></app-game-list-item>
-            </ul>
-        </mat-card-content>
+      <mat-card-content>
+        <ul class="results__list">
+          <app-game-list-item app-game-list-item *ngFor="let game of (lastResults | async)?.data" [game]="game"></app-game-list-item>
+        </ul>
+      </mat-card-content>
     </mat-card>
   `,
   styleUrls: ['./all-scores.component.scss']

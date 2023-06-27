@@ -9,25 +9,25 @@ import {Game} from "../../../API/Game";
           <div class="game__team">
               <img
                 class="game__logo"
-                src="../../assets/img/team-logos/{{ score?.home_team?.abbreviation }}.png"
-                [alt]="score?.home_team?.full_name + 'logo'">
-              <span class="game__team-name">{{ score?.home_team?.abbreviation }}
+                src="../../assets/img/team-logos/{{ game?.home_team?.abbreviation }}.png"
+                [alt]="game?.home_team?.full_name + 'logo'">
+              <span class="game__team-name">{{ game?.home_team?.abbreviation }}
               </span>
-              <span class="game__score">{{ score?.home_team_score }}</span>
+              <span class="game__score">{{ game?.home_team_score }}</span>
           </div>
           <span class="game__vs">VS</span>
           <div class="game__team">
-              <span class="game__score">{{ score?.visitor_team_score }}</span>
+              <span class="game__score">{{ game?.visitor_team_score }}</span>
               <img
                 class="game__logo"
-                [src]="'../../assets/img/team-logos/' + score?.visitor_team?.abbreviation + '.png'"
-                [alt]="score?.visitor_team?.full_name + 'logo'">
-              <span class="game__team-name">{{ score?.visitor_team?.abbreviation }}</span>
+                [src]="'../../assets/img/team-logos/' + game?.visitor_team?.abbreviation + '.png'"
+                [alt]="game?.visitor_team?.full_name + 'logo'">
+              <span class="game__team-name">{{ game?.visitor_team?.abbreviation }}</span>
           </div>
       </div>
       <div class="game__minor-info">
-          <span class="game__date">{{ score?.date | date: 'mediumDate'}} | </span>
-          <span class="game__city">{{ score?.home_team?.city }}</span>
+          <span class="game__date">{{ game?.date | date: 'mediumDate'}} | </span>
+          <span class="game__city">{{ game?.home_team?.city }}</span>
       </div>
     </li>
   `,
@@ -35,7 +35,7 @@ import {Game} from "../../../API/Game";
 })
 export class GameListItemComponent {
 
-  @Input() score?: Game;
+  @Input() game?: Game;
 
   constructor() { }
 
