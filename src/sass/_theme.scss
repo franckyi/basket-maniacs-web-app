@@ -12,8 +12,8 @@
     Define custom palettes
 */
 
-$my-primary: mat.define-palette(mat.$deep-purple-palette, 500);
-$my-accent:  mat.define-palette(mat.$teal-palette, A200);
+$my-primary: mat.define-palette(mat.$deep-orange-palette, 900);
+$my-accent:  mat.define-palette(mat.$amber-palette, A200, A400, A700);
 $my-warn:    mat.define-palette(mat.$red-palette, 200); // optional, defaults to red if omitted
 
 /*

@@ -1,12 +1,18 @@
 @import '../sass/typography';
 
-.mat-button-base {
+button.mat-button-base {
     display: block;
-    margin: 1em auto;
+    margin: 2rem auto;
     font-size: 1.8rem;
-    background: $color-primary;
     &:hover {
         background: $color-accent;
-        color: white;
+        color: $color-text;
+    }
+}
+
+.mat-paginator-range-actions {
+    button.mat-paginator-navigation-previous,
+    button.mat-paginator-navigation-next {
+        background: none;
     }
 }

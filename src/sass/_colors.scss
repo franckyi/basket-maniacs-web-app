@@ -1,12 +1,15 @@
-$color-primary: #6200ee;
-$color-accent: #03dac5;
+$color-primary: #BF360C;
+$color-primary--off: #9e2620;
+$color-accent: #FFE082;
+$color-accent--off: #e1c061;
 $color-warn: #EF9A9A;
 
-$color-tertiary: #3700b3;
+$color-tertiary: #4fc3f7;
+
 $color-text: #333;
 $color-text--light: #828282;
 $light-grey: #eeeeee;
 
 @mixin nba-gradient {
-    background: linear-gradient(45deg, #089ede 0%, #02d8f0 100%);
+    background: linear-gradient(45deg, #FFC032 0%, #FFDE46 100%);
 }
