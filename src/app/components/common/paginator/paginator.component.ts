@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, AfterViewInit, EventEmitter } from '@angular/core';
-import { PaginatorInterface } from 'src/app/types/paginator-interface';
 import { Meta } from 'src/app/API/meta'; 
-import { MatPaginator } from '@angular/material/paginator';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-paginator',
@@ -9,25 +8,31 @@ import { MatPaginator } from '@angular/material/paginator';
     <mat-paginator
       [length]="meta?.total_count"
       [pageSize]="meta?.per_page"
-      [pageSizeOptions]="[10,25,50,100]"
+      [pageSizeOptions]="[10,50,100]"
       [pageIndex]="meta?.current_page"
       aria-label="Select page"
+      (page)="passOptions($event)"
     >
     </mat-paginator>
-    <h2>{{meta?.per_page}} per page</h2>
-    <h2>current page {{meta?.current_page}}</h2>
-    <h2>next page {{meta?.next_page}}</h2>
   `,
   styleUrls: ['./paginator.component.scss']
 })
 export class PaginatorComponent implements OnInit, AfterViewInit {
   @Input() meta?: Meta;
+  @Output() onPageChangeEvent = new EventEmitter<PageEvent>();
+
+  pageEvent?: PageEvent;
 
   constructor() {
   }
 
   ngOnInit(): void {
 
+  }
+
+  passOptions(value: PageEvent) {
+    // console.log('passing options:', value)
+    this.onPageChangeEvent.emit(value)
   }
 
   ngAfterViewInit(): void {

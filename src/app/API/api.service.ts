@@ -33,15 +33,15 @@ export class ApiService {
   getGames(season: string, perPage: number = 100) {
     let query: string | null = `&seasons[]=${season}`;
     perPage = perPage ?? 100;
-    console.log('requesting URL: ', `${this.BASE_URL}/games??page=1&per_page=${perPage}${query}`)
-    return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games??page=1&per_page=${perPage}${query}`, {
+    console.log('requesting URL: ', `${this.BASE_URL}/games?page=1&per_page=${perPage}${query}`)
+    return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?page=1&per_page=${perPage}${query}`, {
       headers: {
         'X-RapidAPI-Key': this.KEY
       }
     })
   }
 
-  getGames$(perPage: number = 50, page: number = 0) {
+  getGames$(perPage: number = 50, page: number = 1) {
     return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?per_page=${perPage}`, {
       headers: {
         'X-RapidAPI-Key': this.KEY
