@@ -19,6 +19,7 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class PaginatorComponent implements OnInit, AfterViewInit {
   @Input() meta?: Meta;
+  // @Input() totalCount?: number;
   @Output() onPageChangeEvent = new EventEmitter<PageEvent>();
 
   pageEvent?: PageEvent;

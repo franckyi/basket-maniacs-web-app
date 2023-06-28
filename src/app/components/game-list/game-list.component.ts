@@ -21,6 +21,8 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class GameListComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() perPage?: number;
+  pageIndex: number = 1;
+  totalCount?: number = 0;
 
   @ViewChild(PaginatorComponent)
   private paginator!: PaginatorComponent;
@@ -36,7 +38,7 @@ export class GameListComponent implements OnInit, AfterViewInit, OnChanges {
   ngAfterViewInit(): void {
     this.gameList = this.api.getGames$(this.paginator.meta?.per_page, this.paginator.meta?.current_page);
     // console.log('paginator', this.paginator)
-    
+    this.totalCount = this.paginator.meta?.current_page;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -51,7 +53,8 @@ export class GameListComponent implements OnInit, AfterViewInit, OnChanges {
   receiveOptions(event: PageEvent) {
     console.log('received options:', event)
     // console.log('this.paginator.meta:', this.paginator.meta)
-    this.gameList = this.api.getGames$(event.pageSize, event.pageIndex);
+    // this.pageIndex = event.pageIndex; // inutile?
+    this.gameList = this.api.getGames$(event.pageSize, this.totalCount);
   }
 
 
