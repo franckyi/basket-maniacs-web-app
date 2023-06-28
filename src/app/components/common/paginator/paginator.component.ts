@@ -30,9 +30,9 @@ export class PaginatorComponent implements OnInit, AfterViewInit {
 
   }
 
-  passOptions(value: PageEvent) {
+  passOptions(event: PageEvent) {
     // console.log('passing options:', value)
-    this.onPageChangeEvent.emit(value)
+    this.onPageChangeEvent.emit(event)
   }
 
   ngAfterViewInit(): void {

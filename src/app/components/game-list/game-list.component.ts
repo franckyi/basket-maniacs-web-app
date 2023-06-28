@@ -48,10 +48,10 @@ export class GameListComponent implements OnInit, AfterViewInit, OnChanges {
     
   }
 
-  receiveOptions(value: PageEvent) {
-    console.log('received options:', value)
+  receiveOptions(event: PageEvent) {
+    console.log('received options:', event)
     // console.log('this.paginator.meta:', this.paginator.meta)
-    this.gameList = this.api.getGames$(value.pageSize, value.pageIndex);
+    this.gameList = this.api.getGames$(event.pageSize, event.pageIndex);
   }
 
 
