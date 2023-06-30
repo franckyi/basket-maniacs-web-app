@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-games-view',
   template: `
     <app-header [introText]="introText"></app-header>
-    <app-game-list [perPage]="perPage"></app-game-list>
+    <app-game-list></app-game-list>
     <app-footer></app-footer>
   `,
   styleUrls: ['./games-view.component.scss']

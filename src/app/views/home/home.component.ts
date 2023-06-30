@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
     <app-header [title]="title" [introText]="introText"></app-header>
     <app-news-list [perPage]="NewsPerPage"></app-news-list>
     <button [routerLink]="['/news']" mat-flat-button color="accent">More news</button>
-    <app-game-list [perPage]="gamesPerPage"></app-game-list>
+    <!-- <app-game-list [perPage]="gamesPerPage"></app-game-list> -->
     <button [routerLink]="['/games']" mat-flat-button color="accent">See more results</button>
     <app-footer></app-footer>
   `,

@@ -6,6 +6,9 @@ import {PlayersResponse} from './players-response';
 import {StatsResponse} from './stats-response';
 import {map, shareReplay, switchMap} from "rxjs";
 import {News} from './news';
+import { Meta } from './meta';
+import { PageEvent } from '@angular/material/paginator';
+import { PaginatorInterface } from '../types/paginator-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +21,48 @@ export class ApiService {
   NEWS_KEY  = '0c008c7080msh10a514646ed797cp1182abjsn21ea7e48e462';
   NEWS_HOST = 'nba-latest-news.p.rapidapi.com';
 
+  interface!: string;
+
   constructor(private httpClient: HttpClient) {
   }
+  
+  getServerData(paginatorOptions: PaginatorInterface, typeOfData: string) {
+
+    // if (typeOfData === 'games') {
+      return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/${typeOfData}?page=${paginatorOptions.pageIndex}&per_page=${paginatorOptions.pageSize}`, {
+        headers: {
+          'X-RapidAPI-Key': this.KEY
+        }
+      })
+    // }
+
+    // else if (typeOfData === 'players') {
+    //   return this.httpClient.get<PlayersResponse>(`${this.BASE_URL}/${typeOfData}?page=${paginatorOptions.pageIndex}&per_page=${paginatorOptions.pageSize}`, {
+    //     headers: {
+    //       'X-RapidAPI-Key': this.KEY
+    //     }
+    //   })
+    // }
+
+    // else if (typeOfData === 'teams') {
+    //   return this.httpClient.get<TeamsResponse>(`${this.BASE_URL}/${typeOfData}?page=${paginatorOptions.pageIndex}&per_page=${paginatorOptions.pageSize}`, {
+    //     headers: {
+    //       'X-RapidAPI-Key': this.KEY
+    //     }
+    //   })
+    // }
+
+    // else if (typeOfData === 'news') {
+    //   return this.httpClient.get<News[]>(this.NEWS_URL, {
+    //     headers: {
+    //       'X-RapidAPI-Key': this.NEWS_KEY,
+    //       'X-RapidAPI-Host': this.NEWS_HOST,
+    //     }
+    //   })
+    // }
+    
+  }
+
 
   getNews() {
     return this.httpClient.get<News[]>(this.NEWS_URL, {
@@ -29,6 +72,7 @@ export class ApiService {
       }
     })
   }
+
 
   getGames(season: string, perPage: number = 100) {
     let query: string | null = `&seasons[]=${season}`;
