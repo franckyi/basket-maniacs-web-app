@@ -11,8 +11,7 @@ import { PageEvent } from '@angular/material/paginator';
       [pageSizeOptions]="[10,50,100]"
       [pageIndex]="meta?.current_page"
       aria-label="Select page"
-      (page)="passOptions($event)"
-    >
+      (page)="passOptions($event)">
     </mat-paginator>
   `,
   styleUrls: ['./paginator.component.scss']

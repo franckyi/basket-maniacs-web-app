@@ -9,10 +9,21 @@ import { PageEvent } from '@angular/material/paginator';
   selector: 'app-game-list',
   template: `
     <h2 class="section-heading">Game results</h2>
-    <app-paginator
+    <mat-paginator
+      (page)="handlePageEvent($event)"
+      [length]="length"
+      [pageSize]="pageSize"
+      [disabled]="disabled"
+      [showFirstLastButtons]="showFirstLastButtons"
+      [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+      [hidePageSize]="hidePageSize"
+      [pageIndex]="pageIndex"
+      aria-label="Select page">
+    </mat-paginator>
+    <!-- <app-paginator
       (onPageChangeEvent)="receiveOptions($event)"
       [meta]="(gameList | async)?.meta"
-    ></app-paginator>
+    ></app-paginator> -->
     <mat-list class="results__list">
       <app-game-list-item *ngFor="let game of (gameList | async)?.data" [game]="game"></app-game-list-item>
     </mat-list>
@@ -36,10 +47,7 @@ export class GameListComponent implements OnInit, AfterViewInit, OnChanges {
   }
   
   ngAfterViewInit(): void {
-    this.gameList = this.api.getGames$(this.paginator.meta?.per_page, this.paginator.meta?.current_page);
-    // console.log('paginator', this.paginator)
-    this.totalCount = this.paginator.meta?.total_count;
-    this.pageIndex = this.paginator.meta?.current_page;
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -50,14 +58,5 @@ export class GameListComponent implements OnInit, AfterViewInit, OnChanges {
   ngOnDestroy(): void {
     
   }
-
-  receiveOptions(event: PageEvent) {
-    console.log('received options:', event)
-    // console.log('this.paginator.meta:', this.paginator.meta)
-    // this.pageIndex = event.pageIndex; // inutile?
-    this.gameList = this.api.getGames$(event.pageSize, this.totalCount);
-  }
-
-
 
 }
