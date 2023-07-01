@@ -2,15 +2,14 @@
 @import '../../../../sass/colors';
 
 .app-logo-text {
-    font-size: 3rem;
+    font-size: 4rem;
     font-family: $font-primary, sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: white;
 }
 
 .app-icon {
-    font-size: 4rem;
+    font-size: 6rem;
     font-family: 'Sport', $font-primary, sans-serif;
     color: white;
 }

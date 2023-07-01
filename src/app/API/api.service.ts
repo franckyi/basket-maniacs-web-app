@@ -14,13 +14,14 @@ export class ApiService {
 
   BASE_URL  = 'https://free-nba.p.rapidapi.com';
   KEY       = 'befd1205e9mshc5b6271d340e520p18212ajsn969c844a4f9c';
-  NEWS_URL  = `https://nba-latest-news.p.rapidapi.com/articles?source=nba`;
+  NEWS_URL  = `https://nba-latest-news.p.rapidapi.com/articles`;
   NEWS_KEY  = '0c008c7080msh10a514646ed797cp1182abjsn21ea7e48e462';
   NEWS_HOST = 'nba-latest-news.p.rapidapi.com';
 
   interface!: string;
 
   constructor(private httpClient: HttpClient) {
+    
   }
   
   getAllGames(paginatorOptions: PaginatorInterface, typeOfData: string) {
@@ -46,8 +47,17 @@ export class ApiService {
   }
 
 
-  getNews() {
-    return this.httpClient.get<News[]>(this.NEWS_URL, {
+  getInitialNews() {
+    return this.httpClient.get<News[]>(`${this.NEWS_URL}?source=nba`, {
+      headers: {
+        'X-RapidAPI-Key': this.NEWS_KEY,
+        'X-RapidAPI-Host': this.NEWS_HOST,
+      }
+    })
+  }
+
+  getNews(source: string) {
+    return this.httpClient.get<News[]>(`${this.NEWS_URL}?source=${source}`, {
       headers: {
         'X-RapidAPI-Key': this.NEWS_KEY,
         'X-RapidAPI-Host': this.NEWS_HOST,
@@ -66,6 +76,7 @@ export class ApiService {
       }
     })
   }
+
 
   getLastGames() {
     return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?per_page=10`, {
@@ -92,6 +103,7 @@ export class ApiService {
     );
   }
 
+
   getTeams() {
     return this.httpClient.get<TeamsResponse>(`${this.BASE_URL}/teams`, {
       headers: {
@@ -99,6 +111,7 @@ export class ApiService {
       }
     })
   }
+
 
   getPlayers(name: string, perPage: number = 100, getPage: number = 1) {
     let query: string | undefined;
@@ -111,5 +124,6 @@ export class ApiService {
       }
     }) 
   }
+  
 
 }

@@ -11,7 +11,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
-
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [],
@@ -27,7 +27,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatTableModule,
     MatPaginatorModule,
     MatListModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatRadioModule
   ]
 })
 export class MaterialModule { }
