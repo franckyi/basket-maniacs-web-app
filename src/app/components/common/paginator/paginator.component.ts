@@ -60,9 +60,6 @@ export class PaginatorComponent implements OnInit {
         this.paginatorOptions.length = response.meta.total_count;
         this.paginatorOptions.pageIndex = response.meta.current_page;
         this.data = response.data;
-        console.log('in subscribe..')
-        console.log('meta.current_page:', response.meta.current_page)
-        console.log('pageIndex:', this.paginatorOptions.pageIndex)
         this.passDataToParent();
         this.loading = false;
       });

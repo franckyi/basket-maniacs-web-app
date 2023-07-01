@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router, NavigationStart, Event as NavigationEvent } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -35,11 +36,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navigation.component.scss']
 })
 
-export class NavigationComponent implements OnInit {
+export class NavigationComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  currentRoute?: string;
+
+  event$
+
+  constructor(private router: Router) {
+    this.event$ = this.router.events.subscribe(
+      (event: NavigationEvent) => {
+        if(event instanceof NavigationStart) {
+          console.log(event.url);
+          this.currentRoute = event.url;
+        }
+      });
+  }
 
   ngOnInit(): void {
+
+  }
+
+  ngOnDestroy() {
+    this.event$.unsubscribe();
   }
 
 }

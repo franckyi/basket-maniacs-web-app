@@ -15,6 +15,9 @@
     &__link {
         text-align: center;
         line-height: 20px;
+        &:hover {
+            color: $color-accent;
+        }
     }
     .mat-button-wrapper {
         display: flex;
