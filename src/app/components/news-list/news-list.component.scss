@@ -6,22 +6,36 @@
     font-size: .9rem;
 }
 
-.mat-list.mat-list-base a {
-    display: flex;
-    justify-content: space-between;
-    text-decoration: none;
-}
-
 .mat-badge.mat-badge {
     font-size: 1.6rem;
+    text-align: left;
+    transition: all .25s;
 }
 
 .radio-group {
     display: flex;
     margin: 15px 0;
     align-items: flex-start;
+    flex-wrap: wrap;
 }
 
 .radio-button {
     margin: 5px;
+}
+
+mat-list-item.results__item {
+    height: 7rem;
+    background: url(../../../assets/img/bg-news.jpeg);
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position-y: 50%;
+    background-position-x: 0%;
+    color: white;
+    transition: all .25s;
+    &:hover {
+        background-position-x: 1%;
+        .mat-badge.mat-badge {
+            font-size: 1.8rem;
+        }
+    }
 }
