@@ -29,21 +29,23 @@ export class ApiService {
   getServerData(paginatorOptions: PaginatorInterface, typeOfData: string) {
 
     // if (typeOfData === 'games') {
-            return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/${typeOfData}?per_page=${paginatorOptions.pageSize}&page=${paginatorOptions.pageIndex}`, {
-        headers: {
-          'X-RapidAPI-Key': this.KEY
+    paginatorOptions.pageSize?? 10;
+
+    return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/${typeOfData}?per_page=${paginatorOptions.pageSize}&page=${paginatorOptions.pageIndex}`, {
+      headers: {
+        'X-RapidAPI-Key': this.KEY
+      }
+    }).pipe(
+      map(response => {
+        return {
+          ...response,
+          data: response.data.sort((prev, next) => {
+            return new Date(next.date).getTime() - new Date(prev.date).getTime();
+          })
         }
-      }).pipe(
-        map(response => {
-          return {
-            ...response,
-            data: response.data.sort((prev, next) => {
-              return new Date(next.date).getTime() - new Date(prev.date).getTime();
-            })
-          }
-        }),
-        shareReplay(),
-      );
+      }),
+      shareReplay(),
+    );
     // }
 
     // else if (typeOfData === 'players') {
