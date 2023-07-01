@@ -19,13 +19,9 @@ import {PaginatorInterface} from '../../types/paginator-interface';
       [showFirstLastButtons]="true"
       [pageSizeOptions]="this.paginatorOptions.pageSizeOptions"
       [pageIndex]="this.paginatorOptions.pageIndex"
-      aria-label="Select page">
+      aria-label="Select page"
+      class="paginator">
     </mat-paginator>
-
-    <!-- <div class="demo-data">
-      <div> Output event: {{(pageEvent | json) || 'No events dispatched yet'}} </div>
-      <div> getNumberOfPages: {{paginator.getNumberOfPages()}} </div>
-    </div> -->
 
     <!-- <app-paginator
       (onPageChangeEvent)="receiveOptions($event)"
@@ -42,8 +38,8 @@ export class GameListComponent implements OnInit, AfterViewInit {
   paginatorOptions: PaginatorInterface = {
     length: 0,
     pageSize: 10,
-    pageIndex: null,
-    pageSizeOptions: [10, 25, 50, 100]
+    pageIndex: 0,
+    pageSizeOptions: [5, 10, 20]
   }
 
   pageEvent!: PageEvent;
@@ -54,7 +50,7 @@ export class GameListComponent implements OnInit, AfterViewInit {
   typeOfData: string = 'games';
 
   handlePageEvent(e: PageEvent) {
-    // console.log('event:', e)
+    console.log('event:', e)
     this.pageEvent = e;
     this.paginatorOptions.pageSize = e.pageSize;
     this.paginatorOptions.pageIndex = e.pageIndex;

@@ -29,30 +29,15 @@ export class ApiService {
   getServerData(paginatorOptions: PaginatorInterface, typeOfData: string) {
 
     // if (typeOfData === 'games') {
-      return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/${typeOfData}?page=${paginatorOptions.pageIndex}&per_page=${paginatorOptions.pageSize}`, {
+            return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/${typeOfData}?per_page=${paginatorOptions.pageSize}&page=${paginatorOptions.pageIndex}`, {
         headers: {
           'X-RapidAPI-Key': this.KEY
         }
       }).pipe(
-        // switchMap(
-        //   (response) => {
-        //     // console.log(paginatorOptions.pageIndex)
-        //     paginatorOptions.pageIndex = response.meta.total_pages - (paginatorOptions.pageIndex!);
-        //     // paginatorOptions.pageIndex = response.meta.total_pages;
-        //     console.log('meta:', response.meta)
-        //     return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/${typeOfData}?page=${paginatorOptions.pageIndex}&per_page=${paginatorOptions.pageSize}`, {
-        //       headers: {
-        //         'X-RapidAPI-Key': this.KEY
-        //       }
-        //     });
-        //   }
-        // ),
         map(response => {
-          // console.log('response before sorting:', response)
           return {
             ...response,
             data: response.data.sort((prev, next) => {
-              // console.log('meta:', response.meta)
               return new Date(next.date).getTime() - new Date(prev.date).getTime();
             })
           }
