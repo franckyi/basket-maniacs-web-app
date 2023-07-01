@@ -6,11 +6,22 @@
     font-size: .9rem;
 }
 
-.results__item.mat-list-base.mat-list-item > a {
+.mat-list.mat-list-base a {
     display: flex;
     justify-content: space-between;
+    text-decoration: none;
 }
 
 .mat-badge.mat-badge {
     font-size: 1.6rem;
+}
+
+.radio-group {
+    display: flex;
+    margin: 15px 0;
+    align-items: flex-start;
+}
+
+.radio-button {
+    margin: 5px;
 }
