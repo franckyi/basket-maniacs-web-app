@@ -68,21 +68,19 @@ export class ApiService {
   }
 
   getLastGames() {
-    return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games`, {
+    return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?per_page=10`, {
       headers: {
         'X-RapidAPI-Key': this.KEY
       }
     }).pipe(
-      switchMap(
-        (response) => {
-          return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?per_page=5&page=${response.meta.total_pages}`, {
-            headers: {
-              'X-RapidAPI-Key': this.KEY
-            }
-          });
-        }
-      ),
-      map(response => {
+      switchMap( response => {
+        return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?per_page=10&page=${response.meta.total_pages}`, {
+          headers: {
+            'X-RapidAPI-Key': this.KEY
+          }
+        });
+      }),
+      map( response => {
         return {
           ...response,
           data: response.data.sort((prev, next) => {
