@@ -33,7 +33,32 @@ export class ApiService {
         headers: {
           'X-RapidAPI-Key': this.KEY
         }
-      })
+      }).pipe(
+        // switchMap(
+        //   (response) => {
+        //     // console.log(paginatorOptions.pageIndex)
+        //     paginatorOptions.pageIndex = response.meta.total_pages - (paginatorOptions.pageIndex!);
+        //     // paginatorOptions.pageIndex = response.meta.total_pages;
+        //     console.log('meta:', response.meta)
+        //     return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/${typeOfData}?page=${paginatorOptions.pageIndex}&per_page=${paginatorOptions.pageSize}`, {
+        //       headers: {
+        //         'X-RapidAPI-Key': this.KEY
+        //       }
+        //     });
+        //   }
+        // ),
+        map(response => {
+          // console.log('response before sorting:', response)
+          return {
+            ...response,
+            data: response.data.sort((prev, next) => {
+              // console.log('meta:', response.meta)
+              return new Date(next.date).getTime() - new Date(prev.date).getTime();
+            })
+          }
+        }),
+        shareReplay(),
+      );
     // }
 
     // else if (typeOfData === 'players') {

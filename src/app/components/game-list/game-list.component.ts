@@ -42,7 +42,7 @@ export class GameListComponent implements OnInit, AfterViewInit {
   paginatorOptions: PaginatorInterface = {
     length: 0,
     pageSize: 10,
-    pageIndex: 1,
+    pageIndex: null,
     pageSizeOptions: [10, 25, 50, 100]
   }
 
@@ -54,23 +54,22 @@ export class GameListComponent implements OnInit, AfterViewInit {
   typeOfData: string = 'games';
 
   handlePageEvent(e: PageEvent) {
-    console.log('event:', e)
+    // console.log('event:', e)
     this.pageEvent = e;
     this.paginatorOptions.pageSize = e.pageSize;
     this.paginatorOptions.pageIndex = e.pageIndex;
-    
     this.fetchData(this.paginatorOptions, this.typeOfData)
   }
 
   fetchData(paginatorOptions: PaginatorInterface, typeOfData: string) {
     return this.api.getServerData(this.paginatorOptions, this.typeOfData)
       .subscribe( response => {
-        console.log('response:', response.meta)
-
-        // TODO sort data by date here
-
         this.paginatorOptions.length = response.meta.total_count;
+        this.paginatorOptions.pageIndex = response.meta.current_page;
         this.data = response.data;
+        console.log('in subscribe..')
+        console.log('meta.current_page:', response.meta.current_page)
+        console.log('pageIndex:', this.paginatorOptions.pageIndex)
       })
   }
 
