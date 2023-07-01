@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ApiService } from 'src/app/API/api.service';
 import { PaginatorInterface } from 'src/app/types/paginator-interface';
@@ -20,7 +20,10 @@ import { PaginatorInterface } from 'src/app/types/paginator-interface';
   styleUrls: ['./paginator.component.scss']
 })
 export class PaginatorComponent implements OnInit {
+
+  @Input() loading!: boolean;
   @Output() changePageOptionsEvent = new EventEmitter<any[]>();
+  @Output() updateLoadingEvent = new EventEmitter<boolean>();
 
   paginatorOptions: PaginatorInterface = {
     length: 0,
@@ -42,7 +45,6 @@ export class PaginatorComponent implements OnInit {
   }
 
   handlePageEvent(e: PageEvent) {
-    console.log('event:', e)
     this.pageEvent = e;
     this.paginatorOptions.pageSize = e.pageSize;
     this.paginatorOptions.pageIndex = e.pageIndex;
@@ -50,6 +52,9 @@ export class PaginatorComponent implements OnInit {
   }
 
   fetchData(paginatorOptions: PaginatorInterface, typeOfData: string) {
+    
+    this.loading = true;
+
     return this.api.getAllGames(this.paginatorOptions, this.typeOfData)
       .subscribe( response => {
         this.paginatorOptions.length = response.meta.total_count;
@@ -59,11 +64,18 @@ export class PaginatorComponent implements OnInit {
         console.log('meta.current_page:', response.meta.current_page)
         console.log('pageIndex:', this.paginatorOptions.pageIndex)
         this.passDataToParent();
+        this.loading = false;
       });
+
   }
 
   passDataToParent() {
     this.changePageOptionsEvent.emit(this.data);
+    this.updateLoadingEvent.emit(this.loading);
+  }
+
+  ngAfterViewChecked(): void {
+    this.updateLoadingEvent.emit(this.loading);
   }
 
 }
