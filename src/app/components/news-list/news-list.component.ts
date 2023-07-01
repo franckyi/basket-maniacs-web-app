@@ -8,12 +8,12 @@ import { News } from 'src/app/API/news';
   template: `
     <h2 class="section-heading">Last news</h2>
 
-
     <div class="spinner-container" *ngIf="loading; else contentBlock">
       <mat-spinner></mat-spinner>
     </div>
 
     <ng-template #contentBlock>
+
       <label id="radio-group-label">Pick a news provider</label>
       <mat-radio-group
         aria-labelledby="radio-group-label"
@@ -25,6 +25,7 @@ import { News } from 'src/app/API/news';
         </mat-radio-button>
       </mat-radio-group>
       <div>Your currently viewing news from <strong>{{selectedSource}}</strong></div>
+      
     </ng-template>
 
     <mat-list class="results__list">
