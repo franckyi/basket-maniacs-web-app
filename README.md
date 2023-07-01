@@ -1,6 +1,6 @@
 # My design on Figma
 
-[version 1](https://www.figma.com/file/zXa5Q8IpAgz19Uqle2R4NH/Serwis-NBA?node-id=0%3A1)
+[version 1](https://www.figma.com/file/zXa5Q8IpAgz19Uqle2R4NH/nba-news?node-id=0%3A1)
 
 # Goal
 
