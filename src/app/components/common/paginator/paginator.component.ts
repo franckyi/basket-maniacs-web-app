@@ -50,7 +50,7 @@ export class PaginatorComponent implements OnInit {
   }
 
   fetchData(paginatorOptions: PaginatorInterface, typeOfData: string) {
-    return this.api.getServerData(this.paginatorOptions, this.typeOfData)
+    return this.api.getAllGames(this.paginatorOptions, this.typeOfData)
       .subscribe( response => {
         this.paginatorOptions.length = response.meta.total_count;
         this.paginatorOptions.pageIndex = response.meta.current_page;

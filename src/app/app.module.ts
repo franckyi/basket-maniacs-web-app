@@ -20,8 +20,6 @@ import { AllPlayersComponent } from './components/all-players/all-players.compon
 import { AllPlayersItemComponent } from './components/all-players/all-players-item/all-players-item.component';
 import { TeamListComponent } from './components/team-list/team-list.component';
 import { TeamListItemComponent } from './components/team-list/team-list-item/team-list-item.component';
-import { AllStatsComponent } from './components/all-stats/all-stats.component';
-import { AllStatsItemComponent } from './components/all-stats/all-stats-item/all-stats-item.component';
 import { SearchFiltersComponent } from './views/search/search-filters/search-filters.component';
 import { SearchPlayerComponent } from './views/search/search-player/search-player.component';
 import { SearchTeamComponent } from './views/search/search-team/search-team.component';
@@ -49,8 +47,6 @@ import { LogoComponent } from './components/common/logo/logo.component';
     AllPlayersItemComponent,
     TeamListComponent,
     TeamListItemComponent,
-    AllStatsComponent,
-    AllStatsItemComponent,
     SearchFiltersComponent,
     SearchPlayerComponent,
     SearchTeamComponent,

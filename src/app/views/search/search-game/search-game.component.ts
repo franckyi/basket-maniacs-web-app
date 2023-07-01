@@ -80,7 +80,7 @@ export class SearchGameComponent implements OnInit {
     };
 
     if ( homeTeam !== '' && visitorTeam === '' ) {
-      this._api.getGames(season, 100)
+      this._api.getGames$(season, 100)
       .subscribe(
         (response) => {
           console.log('found results: ', response.data);
@@ -100,7 +100,7 @@ export class SearchGameComponent implements OnInit {
     } 
     else if ( homeTeam === '' && visitorTeam !== '' ) {
       console.log('TEST 1')
-      this._api.getGames(season, 100)
+      this._api.getGames$(season, 100)
       .subscribe(
         (response) => {
           this.results = response.data.filter( game => 
@@ -118,7 +118,7 @@ export class SearchGameComponent implements OnInit {
       );
     }
     if ( homeTeam !== '' && visitorTeam !== '' ) {
-      this._api.getGames(season, 100)
+      this._api.getGames$(season, 100)
       .subscribe(
         (response) => {
           this.results = response.data.filter( game => 

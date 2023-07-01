@@ -10,6 +10,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./games-view.component.scss']
 })
 export class GamesViewComponent {
+  
   introText: string = 'A list of the historical game results by date. Click on last page to show the most recent results';
   pageSize: number = 10;
   

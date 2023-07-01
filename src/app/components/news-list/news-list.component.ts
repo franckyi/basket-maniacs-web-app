@@ -17,7 +17,6 @@ import { News } from 'src/app/API/news';
   `,
   styleUrls: ['./news-list.component.scss']
 })
-
 export class NewsListComponent implements OnInit {
   @Input() perPage?: number;
   newsList: Observable<News[]>;

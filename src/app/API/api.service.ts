@@ -3,12 +3,9 @@ import {HttpClient} from '@angular/common/http';
 import {GamesResponse} from './games-response';
 import {TeamsResponse} from './teams-response';
 import {PlayersResponse} from './players-response';
-import {StatsResponse} from './stats-response';
 import {map, shareReplay, switchMap} from "rxjs";
 import {News} from './news';
-import { Meta } from './meta';
-import { PageEvent } from '@angular/material/paginator';
-import { PaginatorInterface } from '../types/paginator-interface';
+import {PaginatorInterface} from '../types/paginator-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -26,9 +23,8 @@ export class ApiService {
   constructor(private httpClient: HttpClient) {
   }
   
-  getServerData(paginatorOptions: PaginatorInterface, typeOfData: string) {
+  getAllGames(paginatorOptions: PaginatorInterface, typeOfData: string) {
 
-    // if (typeOfData === 'games') {
     paginatorOptions.pageSize?? 10;
 
     return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/${typeOfData}?per_page=${paginatorOptions.pageSize}&page=${paginatorOptions.pageIndex}`, {
@@ -46,32 +42,6 @@ export class ApiService {
       }),
       shareReplay(),
     );
-    // }
-
-    // else if (typeOfData === 'players') {
-    //   return this.httpClient.get<PlayersResponse>(`${this.BASE_URL}/${typeOfData}?page=${paginatorOptions.pageIndex}&per_page=${paginatorOptions.pageSize}`, {
-    //     headers: {
-    //       'X-RapidAPI-Key': this.KEY
-    //     }
-    //   })
-    // }
-
-    // else if (typeOfData === 'teams') {
-    //   return this.httpClient.get<TeamsResponse>(`${this.BASE_URL}/${typeOfData}?page=${paginatorOptions.pageIndex}&per_page=${paginatorOptions.pageSize}`, {
-    //     headers: {
-    //       'X-RapidAPI-Key': this.KEY
-    //     }
-    //   })
-    // }
-
-    // else if (typeOfData === 'news') {
-    //   return this.httpClient.get<News[]>(this.NEWS_URL, {
-    //     headers: {
-    //       'X-RapidAPI-Key': this.NEWS_KEY,
-    //       'X-RapidAPI-Host': this.NEWS_HOST,
-    //     }
-    //   })
-    // }
     
   }
 
@@ -86,7 +56,7 @@ export class ApiService {
   }
 
 
-  getGames(season: string, perPage: number = 100) {
+  getGames$(season: string, perPage: number = 100) {
     let query: string | null = `&seasons[]=${season}`;
     perPage = perPage ?? 100;
     console.log('requesting URL: ', `${this.BASE_URL}/games?page=1&per_page=${perPage}${query}`)
@@ -97,54 +67,26 @@ export class ApiService {
     })
   }
 
-  getGames$(perPage: number = 50, page: number = 1) {
-    return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?per_page=${perPage}`, {
+  getLastGames() {
+    return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games`, {
       headers: {
         'X-RapidAPI-Key': this.KEY
       }
     }).pipe(
       switchMap(
-        (value) => {
-          page = value.meta.total_pages - (page);
-          return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?per_page=${perPage}&page=${page}`, {
+        (response) => {
+          return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?per_page=5&page=${response.meta.total_pages}`, {
             headers: {
               'X-RapidAPI-Key': this.KEY
             }
           });
         }
       ),
-      map(value => {
+      map(response => {
         return {
-          ...value,
-          data: value.data.sort((firstGame, secondGame) => {
-            return new Date(secondGame.date).getTime() - new Date(firstGame.date).getTime();
-          })
-        }
-      }),
-      shareReplay(),
-    );
-  }
-
-  getLastGame$() {
-    return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?seasons[]=2021&per_page=1`, {
-      headers: {
-        'X-RapidAPI-Key': this.KEY
-      }
-    }).pipe(
-      switchMap(
-        value => {
-          return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?seasons[]=2021&per_page=1&page=${value.meta.total_pages}`, {
-            headers: {
-              'X-RapidAPI-Key': this.KEY
-            }
-          });
-        }
-      ),
-      map(value => {
-        return {
-          ...value,
-          data: value.data.sort((firstGame, secondGame) => {
-            return new Date(secondGame.date).getTime() - new Date(firstGame.date).getTime();
+          ...response,
+          data: response.data.sort((prev, next) => {
+            return new Date(next.date).getTime() - new Date(prev.date).getTime();
           })
         }
       }),
@@ -170,14 +112,6 @@ export class ApiService {
         'X-RapidAPI-Key': this.KEY
       }
     }) 
-  }
-
-  getStats() {
-    return this.httpClient.get<StatsResponse>(`${this.BASE_URL}/stats`, {
-      headers: {
-        'X-RapidAPI-Key': this.KEY
-      }
-    })
   }
 
 }
