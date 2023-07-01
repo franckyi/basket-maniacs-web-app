@@ -3,9 +3,9 @@ import {HttpClient} from '@angular/common/http';
 import {GamesResponse} from './games-response';
 import {TeamsResponse} from './teams-response';
 import {PlayersResponse} from './players-response';
-import {StatsResponse} from './stats-response';
 import {map, shareReplay, switchMap} from "rxjs";
 import {News} from './news';
+import {PaginatorInterface} from '../types/paginator-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +18,33 @@ export class ApiService {
   NEWS_KEY  = '0c008c7080msh10a514646ed797cp1182abjsn21ea7e48e462';
   NEWS_HOST = 'nba-latest-news.p.rapidapi.com';
 
+  interface!: string;
+
   constructor(private httpClient: HttpClient) {
   }
+  
+  getAllGames(paginatorOptions: PaginatorInterface, typeOfData: string) {
+
+    paginatorOptions.pageSize?? 10;
+
+    return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/${typeOfData}?per_page=${paginatorOptions.pageSize}&page=${paginatorOptions.pageIndex}`, {
+      headers: {
+        'X-RapidAPI-Key': this.KEY
+      }
+    }).pipe(
+      map(response => {
+        return {
+          ...response,
+          data: response.data.sort((prev, next) => {
+            return new Date(next.date).getTime() - new Date(prev.date).getTime();
+          })
+        }
+      }),
+      shareReplay(),
+    );
+    
+  }
+
 
   getNews() {
     return this.httpClient.get<News[]>(this.NEWS_URL, {
@@ -30,7 +55,8 @@ export class ApiService {
     })
   }
 
-  getGames(season: string, perPage: number = 100) {
+
+  getGames$(season: string, perPage: number = 100) {
     let query: string | null = `&seasons[]=${season}`;
     perPage = perPage ?? 100;
     console.log('requesting URL: ', `${this.BASE_URL}/games?page=1&per_page=${perPage}${query}`)
@@ -41,54 +67,24 @@ export class ApiService {
     })
   }
 
-  getGames$(perPage: number = 50, page: number = 1) {
-    return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?per_page=${perPage}`, {
+  getLastGames() {
+    return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?per_page=10`, {
       headers: {
         'X-RapidAPI-Key': this.KEY
       }
     }).pipe(
-      switchMap(
-        (value) => {
-          page = value.meta.total_pages - (page);
-          return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?per_page=${perPage}&page=${page}`, {
-            headers: {
-              'X-RapidAPI-Key': this.KEY
-            }
-          });
-        }
-      ),
-      map(value => {
-        return {
-          ...value,
-          data: value.data.sort((firstGame, secondGame) => {
-            return new Date(secondGame.date).getTime() - new Date(firstGame.date).getTime();
-          })
-        }
+      switchMap( response => {
+        return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?per_page=10&page=${response.meta.total_pages}`, {
+          headers: {
+            'X-RapidAPI-Key': this.KEY
+          }
+        });
       }),
-      shareReplay(),
-    );
-  }
-
-  getLastGame$() {
-    return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?seasons[]=2021&per_page=1`, {
-      headers: {
-        'X-RapidAPI-Key': this.KEY
-      }
-    }).pipe(
-      switchMap(
-        value => {
-          return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?seasons[]=2021&per_page=1&page=${value.meta.total_pages}`, {
-            headers: {
-              'X-RapidAPI-Key': this.KEY
-            }
-          });
-        }
-      ),
-      map(value => {
+      map( response => {
         return {
-          ...value,
-          data: value.data.sort((firstGame, secondGame) => {
-            return new Date(secondGame.date).getTime() - new Date(firstGame.date).getTime();
+          ...response,
+          data: response.data.sort((prev, next) => {
+            return new Date(next.date).getTime() - new Date(prev.date).getTime();
           })
         }
       }),
@@ -114,14 +110,6 @@ export class ApiService {
         'X-RapidAPI-Key': this.KEY
       }
     }) 
-  }
-
-  getStats() {
-    return this.httpClient.get<StatsResponse>(`${this.BASE_URL}/stats`, {
-      headers: {
-        'X-RapidAPI-Key': this.KEY
-      }
-    })
   }
 
 }

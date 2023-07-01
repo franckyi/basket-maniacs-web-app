@@ -15,13 +15,10 @@ import { TeamsComponent } from './views/teams/teams.component';
 import { SearchComponent } from './views/search/search.component';
 import { GamesViewComponent } from './views/games/games-view.component';
 import { FooterComponent } from './components/common/footer/footer.component';
-import { AllScoresComponent } from './components/all-scores/all-scores.component';
 import { AllPlayersComponent } from './components/all-players/all-players.component';
 import { AllPlayersItemComponent } from './components/all-players/all-players-item/all-players-item.component';
 import { TeamListComponent } from './components/team-list/team-list.component';
 import { TeamListItemComponent } from './components/team-list/team-list-item/team-list-item.component';
-import { AllStatsComponent } from './components/all-stats/all-stats.component';
-import { AllStatsItemComponent } from './components/all-stats/all-stats-item/all-stats-item.component';
 import { SearchFiltersComponent } from './views/search/search-filters/search-filters.component';
 import { SearchPlayerComponent } from './views/search/search-player/search-player.component';
 import { SearchTeamComponent } from './views/search/search-team/search-team.component';
@@ -44,13 +41,10 @@ import { LogoComponent } from './components/common/logo/logo.component';
     SearchComponent,
     GamesViewComponent,
     FooterComponent,
-    AllScoresComponent,
     AllPlayersComponent,
     AllPlayersItemComponent,
     TeamListComponent,
     TeamListItemComponent,
-    AllStatsComponent,
-    AllStatsItemComponent,
     SearchFiltersComponent,
     SearchPlayerComponent,
     SearchTeamComponent,

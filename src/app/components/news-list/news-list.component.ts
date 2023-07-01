@@ -7,6 +7,7 @@ import { News } from 'src/app/API/news';
   selector: 'app-news-list',
   template: `
     <h2 class="section-heading">Last news</h2>
+
     <mat-list class="results__list">
       <a [href]="item.url" *ngFor="let item of (newsList | async) | slice:0:perPage" target="_blank" rel="nofollow">
         <mat-list-item class="results__item news">
@@ -17,9 +18,10 @@ import { News } from 'src/app/API/news';
   `,
   styleUrls: ['./news-list.component.scss']
 })
-
 export class NewsListComponent implements OnInit {
+
   @Input() perPage?: number;
+  
   newsList: Observable<News[]>;
   hidden = false;
 
@@ -29,13 +31,10 @@ export class NewsListComponent implements OnInit {
 
   constructor(private api: ApiService) {
     this.newsList = api.getNews();
-    console.log('news perPage:', this.perPage);
   }
 
   ngOnInit(): void {
-    console.log('onInit');
-    console.log('news perPage:', this.perPage);
-    console.log(this.newsList.subscribe(v => console.log(v)));
+
   }
 
 }
