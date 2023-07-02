@@ -6,27 +6,27 @@ import { Router, NavigationStart, Event as NavigationEvent } from '@angular/rout
   template: `
     <nav class="main-nav">
 
-      <a [routerLink] = "['']" class="main-nav__link" mat-icon-button aria-label="Go to Home">
+      <a [color]="currentRoute === '/'? accent : null" [routerLink] = "['']" class="main-nav__link" mat-icon-button aria-label="Go to Home">
           <mat-icon>home</mat-icon>
           <span class="main-nav__label">Home</span>
       </a>
 
-      <a [routerLink]= "['/search']" mat-icon-button class="main-nav__link" aria-label="Go to search page">
+      <a [color]="currentRoute === '/search'? accent : null" [routerLink]= "['/search']" mat-icon-button class="main-nav__link" aria-label="Go to search page">
           <mat-icon>search</mat-icon>
           <span class="main-nav__label">Search</span>
       </a>
 
-      <a [routerLink]="['/news']" mat-icon-button class="main-nav__link" aria-label="Read News">
+      <a [color]="currentRoute === '/news'? accent : null" [routerLink]="['/news']" mat-icon-button class="main-nav__link" aria-label="Read News">
           <mat-icon>newspaper</mat-icon>
           <span class="main-nav__label">News</span>
       </a>
 
-      <a [routerLink] = "['/games']" mat-icon-button class="main-nav__link" aria-label="Go to Scoreboard">
+      <a [color]="currentRoute === '/games'? accent : null" [routerLink] = "['/games']" mat-icon-button class="main-nav__link" aria-label="Go to Scoreboard">
           <mat-icon>sports_basketball</mat-icon>
           <span class="main-nav__label">Scores</span>
       </a>
 
-      <a [routerLink] = "['/teams']" mat-icon-button class="main-nav__link" aria-label="Go to Teams page">
+      <a [color]="currentRoute === '/teams'? accent : null" [routerLink] = "['/teams']" mat-icon-button class="main-nav__link" aria-label="Go to Teams page">
           <mat-icon>groups</mat-icon>
           <span class="main-nav__label">Teams</span>
       </a>
@@ -42,12 +42,15 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   event$
 
+  accent: string = 'accent';
+
   constructor(private router: Router) {
     this.event$ = this.router.events.subscribe(
       (event: NavigationEvent) => {
         if(event instanceof NavigationStart) {
           console.log(event.url);
           this.currentRoute = event.url;
+          console.log(this.currentRoute);
         }
       });
   }
