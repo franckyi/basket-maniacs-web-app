@@ -13,7 +13,6 @@ import { Filter } from './services/filter';
     <app-search-player *ngIf="(currentFilter$ | async) == 'player'"></app-search-player>
     <app-search-team  *ngIf="(currentFilter$ | async) == 'team'"></app-search-team>
     <app-search-game  *ngIf="(currentFilter$ | async) == 'game'"></app-search-game>
-    <app-footer></app-footer>
   `,
   styleUrls: ['./search.component.scss']
 })
