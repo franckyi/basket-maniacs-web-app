@@ -48,7 +48,7 @@ export class NewsListComponent implements OnInit, AfterViewChecked {
   selectedSource?: string;
   
   hidden = false;
-  loading: boolean = false;
+  loading: boolean = true;
 
   constructor(private api: ApiService) {
     
