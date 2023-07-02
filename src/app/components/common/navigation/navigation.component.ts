@@ -48,9 +48,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
     this.event$ = this.router.events.subscribe(
       (event: NavigationEvent) => {
         if(event instanceof NavigationStart) {
-          console.log(event.url);
           this.currentRoute = event.url;
-          console.log(this.currentRoute);
         }
       });
   }
