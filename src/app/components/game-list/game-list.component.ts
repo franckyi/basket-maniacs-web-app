@@ -5,11 +5,11 @@ import { Component } from '@angular/core';
   template: `
     <h2 class="section-heading">Game results</h2>
     
-    <div class="spinner-container" *ngIf="loading; else gamesContentBlock">
+    <div class="spinner-container" *ngIf="loading; else contentBlock">
       <mat-spinner></mat-spinner>
     </div>
 
-    <ng-template #gamesContentBlock>
+    <ng-template #contentBlock>
     
       <mat-list class="results__list">
         <app-game-list-item *ngFor="let game of data" [game]="game"></app-game-list-item>
@@ -17,9 +17,7 @@ import { Component } from '@angular/core';
 
     </ng-template>
 
-    <app-paginator
-      [loading]="loading"
-      (updateLoadingEvent)="updateLoadingState($event)"
+    <app-paginator #paginator
       (changePageOptionsEvent)="refreshData($event)">
     </app-paginator>
 
@@ -28,17 +26,15 @@ import { Component } from '@angular/core';
 })
 export class GameListComponent {
 
-  data?: any[];
-  loading: boolean = false;
+  data: any[] | undefined | null = null;
+  loading: boolean = true;
 
   constructor() { }
 
   refreshData(data: any[]) {
+    this.loading = true;
     this.data = data;
-  }
-
-  updateLoadingState($event: boolean) {
-    this.loading = $event;
+    this.loading = false;
   }
 
 }

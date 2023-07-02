@@ -21,9 +21,7 @@ import { PaginatorInterface } from 'src/app/types/paginator-interface';
 })
 export class PaginatorComponent implements OnInit {
 
-  @Input() loading!: boolean;
   @Output() changePageOptionsEvent = new EventEmitter<any[]>();
-  @Output() updateLoadingEvent = new EventEmitter<boolean>();
 
   paginatorOptions: PaginatorInterface = {
     length: 0,
@@ -52,8 +50,6 @@ export class PaginatorComponent implements OnInit {
   }
 
   fetchData(paginatorOptions: PaginatorInterface, typeOfData: string) {
-    
-    this.loading = true;
 
     return this.api.getAllGames(this.paginatorOptions, this.typeOfData)
       .subscribe( response => {
@@ -61,18 +57,12 @@ export class PaginatorComponent implements OnInit {
         this.paginatorOptions.pageIndex = response.meta.current_page;
         this.data = response.data;
         this.passDataToParent();
-        this.loading = false;
       });
 
   }
 
   passDataToParent() {
     this.changePageOptionsEvent.emit(this.data);
-    this.updateLoadingEvent.emit(this.loading);
-  }
-
-  ngAfterViewChecked(): void {
-    this.updateLoadingEvent.emit(this.loading);
   }
 
 }
