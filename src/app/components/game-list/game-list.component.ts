@@ -26,7 +26,7 @@ import { Component } from '@angular/core';
 })
 export class GameListComponent {
 
-  data: any[] | undefined | null = null;
+  data?: any[];
   loading: boolean = true;
 
   constructor() { }
