@@ -128,7 +128,7 @@ export class ApiService {
         response => response.data.filter( team => team.full_name.toLowerCase().includes(teamName.toLowerCase()))
       )
     )
-    // .subscribe( response => console.log(response) )
+    // .subscribe( response => console.log(response) );
 
   }
 
@@ -143,12 +143,16 @@ export class ApiService {
     })
     .pipe(
       map(
-        response => response.data.filter( team => team.full_name.toLowerCase().includes(teamName.toLowerCase()))
+        response => response.data.filter( team => team.full_name.toLowerCase().includes( teamName.toLowerCase() ) )
       )
     )
-    .subscribe(
-      response => response[0].id
-    )
+    .subscribe( response => console.log(response) );
+
+  }
+
+  searchGame(teamsNameList: string[], season: number) {
+
+    // this.getTeamId();
 
   }
 

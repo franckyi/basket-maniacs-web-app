@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { Game } from 'src/app/API/Game';
+import { Team } from 'src/app/API/Team';
 import { ApiService } from 'src/app/API/api.service';
 
 @Component({
@@ -10,20 +13,24 @@ import { ApiService } from 'src/app/API/api.service';
         <mat-form-field class="search__input">
           <mat-label>Home team</mat-label>
           <input
+            [(ngModel)]="homeTeamName"
             matInput placeholder="Team name"
-            [(ngModel)]="homeTeam"
             (input)="resetPrevSearch()"
-            (keydown.enter)="passQueries(season, homeTeam, visitorTeam)"
+            (input)="searchTeam()"
+            (keydown.enter)="searchGame()"
           >
+          <ul class="search__typeahead-list">
+            <li *ngFor="let item of (suggestedTeamList | async)">{{item.full_name}}</li>
+          </ul>
         </mat-form-field>
         
         <mat-form-field class="search__input">
           <mat-label>Visitor team</mat-label>
           <input
-            matInput placeholder="Team name"
-            [(ngModel)]="visitorTeam"
+            [(ngModel)]="visitorTeamName"
             (input)="resetPrevSearch()"
-            (keydown.enter)="passQueries(season, homeTeam, visitorTeam)"
+            (keydown.enter)="searchGame()"
+            matInput placeholder="Team name"
           >
         </mat-form-field>
 
@@ -32,10 +39,10 @@ import { ApiService } from 'src/app/API/api.service';
       <mat-form-field class="search__input">
         <mat-label>Season</mat-label>
         <input
-          matInput placeholder="YYYY" required="required"
           [(ngModel)]="season"
           (input)="resetPrevSearch()"
-          (keydown.enter)="passQueries(season, homeTeam, visitorTeam)"
+          (keydown.enter)="searchGame()"
+          matInput placeholder="YYYY" required="required"
         >
       </mat-form-field>
 
@@ -43,7 +50,7 @@ import { ApiService } from 'src/app/API/api.service';
         <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
         <button
           mat-flat-button color="accent" [style.margin-left.px]="10"
-          (click)="passQueries(season, homeTeam, visitorTeam )"
+          (click)="searchGame()"
         >Search</button>
       </div>
 
@@ -54,7 +61,7 @@ import { ApiService } from 'src/app/API/api.service';
       >
         <mat-card-content class="results">
             <ul class="results__list">
-                <app-game-list-item *ngFor="let result of results" [game]="result"></app-game-list-item>
+                <!-- <app-game-list-item *ngFor="let result (results | async)" [game]="result"></app-game-list-item> -->
             </ul>
         </mat-card-content>
       </mat-card>
@@ -66,86 +73,37 @@ import { ApiService } from 'src/app/API/api.service';
   styleUrls: ['./search-game.component.scss']
 })
 export class SearchGameComponent implements OnInit {
-  results: any | undefined = null;
+
+  results?: Observable<Game[]>;
   season: string = '';
-  homeTeam: string = '';
-  visitorTeam: string = '';
+  homeTeamName: string = '';
+  visitorTeamName: string = '';
   notFoundMsg: string = '';
   btnClicked: boolean = false;
+  teamsNameList?: string[] = [];
+  suggestedTeamList?: Observable<Team[]>;
 
-  constructor(private _api: ApiService) {}
+  constructor(private api: ApiService) {}
+
   ngOnInit() {}
 
   resetBtnClicked() {
     this.btnClicked = false;
   }
 
-  passQueries(season: string, homeTeam: string, visitorTeam: string) {
+  searchTeam() {
+    this.suggestedTeamList = this.api.searchTeam(this.homeTeamName);
+  }
+  
+  searchGame() {
+
     this.btnClicked = true;
-    this.results = '';
+    this.results = of([]);
 
-    if (season === '' || season === 'undefined') {
-      this.notFoundMsg = 'Missing season. Please enter a valid year number in the format YYYY and try again.';
-      return;
-    };
-
-    if ( homeTeam !== '' && visitorTeam === '' ) {
-      this._api.getGames$(season, 100)
-      // .subscribe(
-      //   (response) => {
-      //     console.log('found results: ', response.data);
-      //     this.results = response.data.filter( game => 
-      //       game.home_team.full_name.toLowerCase().includes( homeTeam.toLowerCase() )
-      //     )
-      //     if (this.results.length >= 1) {
-      //       console.log('✅ filtered games', this.results);
-      //     } else {
-      //       console.log(this.results.length);
-      //       console.log('not found')
-      //       this.notFoundMsg = 'No games found... Try again';
-      //       this.results = null;
-      //     }
-      //   }
-      // );
-    } 
-    else if ( homeTeam === '' && visitorTeam !== '' ) {
-      console.log('TEST 1')
-      this._api.getGames$(season, 100)
-      .subscribe(
-        (response) => {
-          this.results = response.data.filter( game => 
-            game.visitor_team.full_name.toLowerCase().includes( visitorTeam.toLowerCase() )
-          )
-          if (this.results.length >= 1) {
-            console.log('✅ filtered games', this.results);
-          } else {
-            console.log(this.results.length);
-            console.log('not found')
-            this.notFoundMsg = 'No games found... Try again';
-            this.results = null;
-          }
-        }
-      );
+    if ( this.homeTeamName !== '' || this.visitorTeamName !== '' || this.season !== '' ) {
+      // this.results = this.api.searchGame( Array.of( this.homeTeamName, this.visitorTeamName ), Number(this.season) );
     }
-    if ( homeTeam !== '' && visitorTeam !== '' ) {
-      this._api.getGames$(season, 100)
-      .subscribe(
-        (response) => {
-          this.results = response.data.filter( game => 
-            game.home_team.full_name.toLowerCase().includes( homeTeam.toLowerCase() ) &&
-            game.visitor_team.full_name.toLowerCase().includes( visitorTeam.toLowerCase() )
-          )
-          if (this.results.length >= 1) {
-            console.log('✅ filtered games', this.results);
-          } else {
-            console.log(this.results.length);
-            console.log('not found')
-            this.notFoundMsg = 'No games found... Try other criteria';
-            this.results = null;
-          }
-        }
-      );
-    } 
+
   }
   
   resetPrevSearch() {
@@ -155,9 +113,9 @@ export class SearchGameComponent implements OnInit {
 
   resetFilters() {
     this.season = '';
-    this.homeTeam = '';
-    this.visitorTeam = '';
-    this.results = null;
+    this.homeTeamName = '';
+    this.visitorTeamName = '';
+    this.results = of([]);
     this.resetPrevSearch();
   }
 
