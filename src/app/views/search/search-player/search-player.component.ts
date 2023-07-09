@@ -33,19 +33,9 @@ import { ApiService } from 'src/app/API/api.service';
       
       <p *ngIf="notFoundMsg !== '' && playerName !== '' ">{{ notFoundMsg }}</p>
 
-      <div class="pagination" *ngIf="results !== null && results.length > 0">
-        <mat-icon aria-hidden="false" aria-label="Previous page" fontIcon="navigate_before"
-          *ngIf="page > 1"
-          (click)="goToPrevPage()"
-        ></mat-icon>
-          <span>{{ page }}</span>
-        <mat-icon aria-hidden="false" aria-label="Next page" fontIcon="navigate_next"
-          (click)="goToNextPage()"></mat-icon>
-      </div>
-
       <mat-card 
-        class="mat-card mat-focus-indicator card--rounded search-results"
         *ngIf="results !== null && results.length > 0"
+        class="mat-card mat-focus-indicator card--rounded search-results"
       >
         <mat-card-content class="mat-card-content results">
           <ul class="results__list">
@@ -63,11 +53,15 @@ import { ApiService } from 'src/app/API/api.service';
           </ul>
         </mat-card-content>
       </mat-card>
+
+      <app-paginator></app-paginator>
+
     </div>
     `
 })
 
 export class SearchPlayerComponent implements OnInit {
+
   filters: any = [];
   playerName: string = '';
   teamName: string = '';
@@ -83,27 +77,16 @@ export class SearchPlayerComponent implements OnInit {
 
   }
 
-  goToPrevPage() {
-    console.log('called goToPrevPage()');
-    this.page -= 1;
-    console.log('this.page', this.page);
-    this.passQuery (this.playerName);
-  }
-
-  goToNextPage() {
-    console.log('called goToNextPage()');
-    this.page += 1;
-    console.log('this.page', this.page);
-    this.passQuery (this.playerName);
-  }
-
   passQuery (name: string) {
+
     if (this.playerName !== '' || this.teamName !== '') {
+
       if (this.playerName !== '' && this.teamName === '') {
         this._api.getPlayers(name, 100, this.page)
         .subscribe(
           (response) => {
             console.log('this.page', this.page);
+            console.log('response', response);
             if (response.data.length > 0) {
               this.results = response.data;
             } else {
@@ -129,7 +112,9 @@ export class SearchPlayerComponent implements OnInit {
               this.notFoundMsg = 'No players found... Try another name';
               this.results = null;
             }
+            
           }
+
         );
       } 
       else {

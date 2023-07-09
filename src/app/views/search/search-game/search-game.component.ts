@@ -6,6 +6,7 @@ import { ApiService } from 'src/app/API/api.service';
   template: `
     <div class="search">
       <div class="d-flex search__inputs">
+
         <mat-form-field class="search__input">
           <mat-label>Home team</mat-label>
           <input
@@ -15,6 +16,7 @@ import { ApiService } from 'src/app/API/api.service';
             (keydown.enter)="passQueries(season, homeTeam, visitorTeam)"
           >
         </mat-form-field>
+        
         <mat-form-field class="search__input">
           <mat-label>Visitor team</mat-label>
           <input
@@ -24,7 +26,9 @@ import { ApiService } from 'src/app/API/api.service';
             (keydown.enter)="passQueries(season, homeTeam, visitorTeam)"
           >
         </mat-form-field>
+
       </div>
+
       <mat-form-field class="search__input">
         <mat-label>Season</mat-label>
         <input
@@ -34,6 +38,7 @@ import { ApiService } from 'src/app/API/api.service';
           (keydown.enter)="passQueries(season, homeTeam, visitorTeam)"
         >
       </mat-form-field>
+
       <div class="d-flex buttons">
         <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
         <button
@@ -41,7 +46,9 @@ import { ApiService } from 'src/app/API/api.service';
           (click)="passQueries(season, homeTeam, visitorTeam )"
         >Search</button>
       </div>
+
       <p *ngIf="notFoundMsg !== '' ">{{ notFoundMsg }}</p>
+
       <mat-card class="card--rounded latest-scores search-results"
         *ngIf="btnClicked && results !== null && season !== '' "
       >
@@ -51,6 +58,9 @@ import { ApiService } from 'src/app/API/api.service';
             </ul>
         </mat-card-content>
       </mat-card>
+
+      <app-paginator></app-paginator>
+
     </div>
   `,
   styleUrls: ['./search-game.component.scss']
@@ -75,28 +85,28 @@ export class SearchGameComponent implements OnInit {
     this.results = '';
 
     if (season === '' || season === 'undefined') {
-      this.notFoundMsg = 'Please select a season and try again.';
+      this.notFoundMsg = 'Missing season. Please enter a valid year number in the format YYYY and try again.';
       return;
     };
 
     if ( homeTeam !== '' && visitorTeam === '' ) {
       this._api.getGames$(season, 100)
-      .subscribe(
-        (response) => {
-          console.log('found results: ', response.data);
-          this.results = response.data.filter( game => 
-            game.home_team.full_name.toLowerCase().includes( homeTeam.toLowerCase() )
-          )
-          if (this.results.length >= 1) {
-            console.log('✅ filtered games', this.results);
-          } else {
-            console.log(this.results.length);
-            console.log('not found')
-            this.notFoundMsg = 'No teams found... Try again';
-            this.results = null;
-          }
-        }
-      );
+      // .subscribe(
+      //   (response) => {
+      //     console.log('found results: ', response.data);
+      //     this.results = response.data.filter( game => 
+      //       game.home_team.full_name.toLowerCase().includes( homeTeam.toLowerCase() )
+      //     )
+      //     if (this.results.length >= 1) {
+      //       console.log('✅ filtered games', this.results);
+      //     } else {
+      //       console.log(this.results.length);
+      //       console.log('not found')
+      //       this.notFoundMsg = 'No games found... Try again';
+      //       this.results = null;
+      //     }
+      //   }
+      // );
     } 
     else if ( homeTeam === '' && visitorTeam !== '' ) {
       console.log('TEST 1')

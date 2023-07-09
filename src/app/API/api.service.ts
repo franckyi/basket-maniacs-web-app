@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {GamesResponse} from './games-response';
 import {TeamsResponse} from './teams-response';
 import {PlayersResponse} from './players-response';
-import {map, shareReplay, switchMap} from "rxjs";
+import {map, filter, shareReplay, switchMap} from "rxjs";
 import {News} from './news';
 import {PaginatorInterface} from '../types/paginator-interface';
 
@@ -67,14 +67,16 @@ export class ApiService {
 
 
   getGames$(season: string, perPage: number = 100) {
-    let query: string | null = `&seasons[]=${season}`;
-    perPage = perPage ?? 100;
-    console.log('requesting URL: ', `${this.BASE_URL}/games?page=1&per_page=${perPage}${query}`)
-    return this.httpClient.get<GamesResponse>(`${this.BASE_URL}/games?page=1&per_page=${perPage}${query}`, {
-      headers: {
-        'X-RapidAPI-Key': this.KEY
-      }
-    })
+
+    let query: string | null = `seasons[]=${season}`;
+
+    console.log('requesting URL: ', `${this.BASE_URL}/games?page=1&per_page=${perPage}&${query}`);
+
+    return this.httpClient.get<GamesResponse>(
+      `${this.BASE_URL}/games?page=1&per_page=${perPage}&${query}`,
+      { headers: { 'X-RapidAPI-Key': this.KEY } }
+    )
+
   }
 
 
@@ -110,6 +112,44 @@ export class ApiService {
         'X-RapidAPI-Key': this.KEY
       }
     })
+  }
+
+  searchTeam(teamName: string) {
+
+    console.log('called searchTeam() with value', teamName)
+
+    return this.httpClient.get<TeamsResponse>(`${this.BASE_URL}/teams?per_page=100`, {
+      headers: {
+        'X-RapidAPI-Key': this.KEY
+      }
+    })
+    .pipe(
+      map(
+        response => response.data.filter( team => team.full_name.toLowerCase().includes(teamName.toLowerCase()))
+      )
+    )
+    // .subscribe( response => console.log(response) )
+
+  }
+
+  getTeamId(teamName: string) {
+
+    console.log('called getSpecifiedTeam() with value', teamName)
+
+    return this.httpClient.get<TeamsResponse>(`${this.BASE_URL}/teams?per_page=100`, {
+      headers: {
+        'X-RapidAPI-Key': this.KEY
+      }
+    })
+    .pipe(
+      map(
+        response => response.data.filter( team => team.full_name.toLowerCase().includes(teamName.toLowerCase()))
+      )
+    )
+    .subscribe(
+      response => response[0].id
+    )
+
   }
 
 
