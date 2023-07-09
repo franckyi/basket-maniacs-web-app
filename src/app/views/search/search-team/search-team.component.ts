@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ApiService } from 'src/app/API/api.service';
 import { Team } from 'src/app/API/Team';
 
@@ -54,25 +54,6 @@ export class SearchTeamComponent implements OnInit {
 
   search(name: string) {
     this.results = this.api.searchTeam(name);
-
-    // this._api.getTeams().subscribe(
-    //   (response) => {
-    //     this.results = response.data.filter( 
-    //       (team: Team) => team.full_name.toLowerCase().includes(name.toLowerCase())
-    //     );
-    //     if (this.results.length >= 1) {
-    //       console.log(this.results.length);
-    //     } else {
-    //         console.log(this.results.length);
-    //         console.log('not found')
-    //         this.notFoundMsg = 'No teams found... Try again';
-    //         this.results = [];
-    //     }
-    //   }
-    // );
-
-    // this._api.getTeamId(this.teamName);
-
   }
 
   emptyNotFoundMsg() {
@@ -81,7 +62,7 @@ export class SearchTeamComponent implements OnInit {
 
   resetFilters() {
     this.teamName = '';
-    this.results.
-    }
+    this.results = of([]);
   }
+  
 }
