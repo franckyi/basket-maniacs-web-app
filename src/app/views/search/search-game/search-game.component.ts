@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { Game } from 'src/app/API/Game';
 import { Team } from 'src/app/API/Team';
 import { ApiService } from 'src/app/API/api.service';
+import { GamesResponse } from 'src/app/API/games-response';
 
 @Component({
   selector: 'app-search-game',
@@ -14,13 +15,17 @@ import { ApiService } from 'src/app/API/api.service';
           <mat-label>Home team</mat-label>
           <input
             [(ngModel)]="homeTeamName"
-            matInput placeholder="Team name"
             (input)="resetPrevSearch()"
-            (input)="searchTeam()"
+            (input)="searchTeam('homeTeamName')"
             (keydown.enter)="searchGame()"
+            matInput placeholder="Team name"
           >
-          <ul class="search__typeahead-list">
-            <li *ngFor="let item of (suggestedTeamList | async)">{{item.full_name}}</li>
+          <ul class="search__selection-list">
+            <li class="search__selection-item"
+              *ngFor="let item of (suggestedHomeTeamList | async)"
+              (click)="handleHomeSuggestionsClick(item)">
+              {{item.full_name}}
+            </li>
           </ul>
         </mat-form-field>
         
@@ -29,9 +34,17 @@ import { ApiService } from 'src/app/API/api.service';
           <input
             [(ngModel)]="visitorTeamName"
             (input)="resetPrevSearch()"
+            (input)="searchTeam('visitorTeamName')"
             (keydown.enter)="searchGame()"
             matInput placeholder="Team name"
           >
+          <ul class="search__selection-list">
+            <li class="search__selection-item"
+              *ngFor="let item of (suggestedVisitorTeamList | async)"
+              (click)="handleVisitorSuggestionsClick(item)">
+              {{item.full_name}}
+            </li>
+          </ul>
         </mat-form-field>
 
       </div>
@@ -47,11 +60,21 @@ import { ApiService } from 'src/app/API/api.service';
       </mat-form-field>
 
       <div class="d-flex buttons">
-        <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
+
         <button
-          mat-flat-button color="accent" [style.margin-left.px]="10"
+          (click)="resetFilters()"
+          mat-stroked-button
+          class="btn-reset"
+          color="basic"
+        >Reset</button>
+
+        <button
           (click)="searchGame()"
+          mat-flat-button
+          color="accent"
+          [style.margin-left.px]="10"
         >Search</button>
+
       </div>
 
       <p *ngIf="notFoundMsg !== '' ">{{ notFoundMsg }}</p>
@@ -61,7 +84,7 @@ import { ApiService } from 'src/app/API/api.service';
       >
         <mat-card-content class="results">
             <ul class="results__list">
-                <!-- <app-game-list-item *ngFor="let result (results | async)" [game]="result"></app-game-list-item> -->
+                <app-game-list-item *ngFor="let result of (results | async)?.data" [game]="result"></app-game-list-item>
             </ul>
         </mat-card-content>
       </mat-card>
@@ -74,14 +97,18 @@ import { ApiService } from 'src/app/API/api.service';
 })
 export class SearchGameComponent implements OnInit {
 
-  results?: Observable<Game[]>;
+  results?: Observable<GamesResponse>;
   season: string = '';
   homeTeamName: string = '';
   visitorTeamName: string = '';
+  homeTeamId?: number;
+  visitorTeamId?: number;
   notFoundMsg: string = '';
   btnClicked: boolean = false;
   teamsNameList?: string[] = [];
-  suggestedTeamList?: Observable<Team[]>;
+  suggestedHomeTeamList?: Observable<Team[]>;
+  suggestedVisitorTeamList?: Observable<Team[]>;
+  idList: number[] = [];
 
   constructor(private api: ApiService) {}
 
@@ -91,19 +118,56 @@ export class SearchGameComponent implements OnInit {
     this.btnClicked = false;
   }
 
-  searchTeam() {
-    this.suggestedTeamList = this.api.searchTeam(this.homeTeamName);
+  handleHomeSuggestionsClick(item: Team) {
+    this.homeTeamName = item.full_name;
+    this.homeTeamId = item.id;
+    this.resetSuggestions();
+  }
+  
+  handleVisitorSuggestionsClick(item: Team) {
+    this.visitorTeamName = item.full_name;
+    this.visitorTeamId = item.id;
+    this.resetSuggestions();
+  }
+
+  searchTeam(origin: string) {
+    switch (origin) {
+      case 'homeTeamName': this.suggestedHomeTeamList = this.api.searchTeam(this.homeTeamName);
+      break;
+      case 'visitorTeamName': this.suggestedVisitorTeamList = this.api.searchTeam(this.visitorTeamName);
+      break;
+    }
+    
   }
   
   searchGame() {
 
     this.btnClicked = true;
-    this.results = of([]);
 
-    if ( this.homeTeamName !== '' || this.visitorTeamName !== '' || this.season !== '' ) {
-      // this.results = this.api.searchGame( Array.of( this.homeTeamName, this.visitorTeamName ), Number(this.season) );
+    if ( ( this.homeTeamId || this.visitorTeamId ) && this.season !== '' ) {
+
+      if ( this.homeTeamId ) {
+        this.idList.push(this.homeTeamId)
+      }
+
+      if ( this.visitorTeamId ) {
+        this.idList.push(this.visitorTeamId)
+      }
+
+      console.log('this.visitorTeamId', this.visitorTeamId);
+      console.log('this.homeTeamId', this.homeTeamId);
+      console.log('this.season', this.season);
+
+      this.results = this.api.searchGame( this.idList, Number(this.season) );
+      // this.results.subscribe( response => console.log('response', response) )
+      
     }
 
+  }
+
+  resetSuggestions() {
+    this.suggestedHomeTeamList = of([]);
+    this.suggestedVisitorTeamList = of([]);
   }
   
   resetPrevSearch() {
@@ -115,7 +179,8 @@ export class SearchGameComponent implements OnInit {
     this.season = '';
     this.homeTeamName = '';
     this.visitorTeamName = '';
-    this.results = of([]);
+    // TODO: clear results
+    // this.results = of([]);
     this.resetPrevSearch();
   }
 

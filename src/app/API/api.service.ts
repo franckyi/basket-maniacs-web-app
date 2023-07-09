@@ -150,23 +150,37 @@ export class ApiService {
 
   }
 
-  searchGame(teamsNameList: string[], season: number) {
+  searchGame(teamsIdList: number[], season: number) {
 
-    // this.getTeamId();
+    let query: string = '&team_ids[]=';
+    let ids = teamsIdList.map( id => query.concat( id.toString() ) ).join('');
+    // let ids = teamsIdList.join('');
+    console.log('ids', ids)
+
+    console.log('calling', `${this.BASE_URL}/games?page=1&per_page=100&seasons[]=${season}${ids}`)
+
+    return this.httpClient.get<GamesResponse>(
+      `${this.BASE_URL}/games?page=1&per_page=100&seasons[]=${season}${ids}`,
+      { headers: { 'X-RapidAPI-Key': this.KEY } }
+    )
+    
 
   }
 
 
   getPlayers(name: string, perPage: number = 100, getPage: number = 1) {
+
     let query: string | undefined;
     let limit: string = perPage ? 'per_page=' + perPage : 'per_page=' + 100;
     let page: number = getPage;
     query = limit + '&search=' + name;
+
     return this.httpClient.get<PlayersResponse>(`${this.BASE_URL}/players?page=${page}&${query}`, {
       headers: {
         'X-RapidAPI-Key': this.KEY
       }
-    }) 
+    });
+
   }
   
 
