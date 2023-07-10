@@ -84,7 +84,7 @@ import { GamesResponse } from 'src/app/API/games-response';
       >
         <mat-card-content class="results">
             <ul class="results__list">
-                <app-game-list-item *ngFor="let result of (results | async)?.data" [game]="result"></app-game-list-item>
+                <app-game-list-item *ngFor="let result of (results | async)" [game]="result"></app-game-list-item>
             </ul>
         </mat-card-content>
       </mat-card>
@@ -97,7 +97,7 @@ import { GamesResponse } from 'src/app/API/games-response';
 })
 export class SearchGameComponent implements OnInit {
 
-  results?: Observable<GamesResponse>;
+  results?: Observable<Game[]>;
   season: string = '';
   homeTeamName: string = '';
   visitorTeamName: string = '';
@@ -145,22 +145,7 @@ export class SearchGameComponent implements OnInit {
     this.btnClicked = true;
 
     if ( ( this.homeTeamId || this.visitorTeamId ) && this.season !== '' ) {
-
-      if ( this.homeTeamId ) {
-        this.idList.push(this.homeTeamId)
-      }
-
-      if ( this.visitorTeamId ) {
-        this.idList.push(this.visitorTeamId)
-      }
-
-      console.log('this.visitorTeamId', this.visitorTeamId);
-      console.log('this.homeTeamId', this.homeTeamId);
-      console.log('this.season', this.season);
-
-      this.results = this.api.searchGame( this.idList, Number(this.season) );
-      // this.results.subscribe( response => console.log('response', response) )
-      
+      this.results = this.api.searchGame( Number(this.season), this.homeTeamId, this.visitorTeamId );
     }
 
   }
