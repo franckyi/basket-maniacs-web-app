@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Game } from 'src/app/API/Game';
 import { Team } from 'src/app/API/Team';
 import { ApiService } from 'src/app/API/api.service';
 import { GamesResponse } from 'src/app/API/games-response';
@@ -151,7 +150,7 @@ export class SearchGameComponent implements OnInit {
 
     this.searchParameters = {
       homeTeamId: this.homeTeamId,
-      visitorTeamId: this.homeTeamId,
+      visitorTeamId: this.visitorTeamId,
       season: this.season
     }
 
