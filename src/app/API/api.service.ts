@@ -125,9 +125,7 @@ export class ApiService {
     })
     .pipe(
       map(
-        response => response.data.filter( team => {
-          team.full_name.toLowerCase().includes(teamName.toLowerCase())
-        })
+        response => response.data.filter( team => team.full_name.toLowerCase().includes(teamName.toLowerCase()))
       )
     )
     // .subscribe( response => console.log(response) );
@@ -145,62 +143,27 @@ export class ApiService {
     })
     .pipe(
       map(
-        response => response.data.filter( team => {
-          team.full_name.toLowerCase().includes( teamName.toLowerCase() )
-        } )
+        response => response.data.filter( team => team.full_name.toLowerCase().includes( teamName.toLowerCase() ) )
       )
     )
+    .subscribe( response => console.log(response) );
 
   }
 
-  searchGame(season: number,homeTeamId?: number, visitorTeamId?: number) {
+  searchGame(teamsIdList: number[], season: number) {
 
-    console.log('homeTeamId:', homeTeamId);
-    console.log('visitorTeamId:', visitorTeamId);
-    console.log('season:', season);
+    let query: string = '&team_ids[]=';
+    let ids = teamsIdList.map( id => query.concat( id.toString() ) ).join('');
+    // let ids = teamsIdList.join('');
+    console.log('ids', ids)
 
-    if ( typeof homeTeamId !== 'undefined' && typeof visitorTeamId === 'undefined') {
+    console.log('calling', `${this.BASE_URL}/games?page=1&per_page=100&seasons[]=${season}${ids}`)
 
-      return this.httpClient.get<GamesResponse>(
-        `${this.BASE_URL}/games?page=1&per_page=100&seasons[]=${season}&team_ids[]=${homeTeamId}`,
-        { headers: { 'X-RapidAPI-Key': this.KEY } }
-      )
-      .pipe(
-        map( response => {
-          response.data.filter( game => game.home_team.id === homeTeamId )
-        })
-      )
-
-    }
-    else if ( typeof homeTeamId === 'undefined' && typeof visitorTeamId !== 'undefined') {
-
-      return this.httpClient.get<GamesResponse>(
-        `${this.BASE_URL}/games?page=1&per_page=100&seasons[]=${season}&team_ids[]=${visitorTeamId}`,
-        { headers: { 'X-RapidAPI-Key': this.KEY } }
-      )
-      .pipe(
-        map( response => {
-          response.data.filter( game => game.visitor_team.id === visitorTeamId )
-        })
-      )
-
-    }
-    else {
-
-      return this.httpClient.get<GamesResponse>(
-        `${this.BASE_URL}/games?page=1&per_page=100&seasons[]=${season}&team_ids[]=${homeTeamId}&team_ids[]=${visitorTeamId}`,
-        { headers: { 'X-RapidAPI-Key': this.KEY } }
-      )
-      .pipe(
-        map( response => {
-          response.data.filter( game => {
-            game.home_team.id === homeTeamId &&
-            game.visitor_team.id === visitorTeamId
-          } )
-        })
-      )
-
-    }
+    return this.httpClient.get<GamesResponse>(
+      `${this.BASE_URL}/games?page=1&per_page=100&seasons[]=${season}${ids}`,
+      { headers: { 'X-RapidAPI-Key': this.KEY } }
+    )
+    
 
   }
 
