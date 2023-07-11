@@ -6,6 +6,7 @@ import {PlayersResponse} from './players-response';
 import {map, filter, shareReplay, switchMap} from "rxjs";
 import {News} from './news';
 import {PaginatorInterface} from '../types/paginator-interface';
+import { GameInputValues } from '../types/search-game-inputs';
 
 @Injectable({
   providedIn: 'root'
@@ -128,39 +129,28 @@ export class ApiService {
         response => response.data.filter( team => team.full_name.toLowerCase().includes(teamName.toLowerCase()))
       )
     )
-    // .subscribe( response => console.log(response) );
 
   }
 
-  getTeamId(teamName: string) {
 
-    console.log('called getSpecifiedTeam() with value', teamName)
+  searchGame( searchParameters: GameInputValues ) {
 
-    return this.httpClient.get<TeamsResponse>(`${this.BASE_URL}/teams?per_page=100`, {
-      headers: {
-        'X-RapidAPI-Key': this.KEY
-      }
-    })
-    .pipe(
-      map(
-        response => response.data.filter( team => team.full_name.toLowerCase().includes( teamName.toLowerCase() ) )
-      )
-    )
-    .subscribe( response => console.log(response) );
+    console.log('searchParameters:', searchParameters)
 
-  }
+    let query: string = `${this.BASE_URL}/games?page=1&per_page=100&seasons[]=${searchParameters.season}`;
 
-  searchGame(teamsIdList: number[], season: number) {
+    if ( typeof searchParameters.homeTeamId !== 'undefined' ) {
+      query = query.concat( '&team_ids[]=' + searchParameters.homeTeamId.toString() );
+    }
+    
+    if ( typeof searchParameters.visitorTeamId !== 'undefined' ) {
+      query = query.concat( '&team_ids[]=' + searchParameters.visitorTeamId.toString() );
+    }
 
-    let query: string = '&team_ids[]=';
-    let ids = teamsIdList.map( id => query.concat( id.toString() ) ).join('');
-    // let ids = teamsIdList.join('');
-    console.log('ids', ids)
-
-    console.log('calling', `${this.BASE_URL}/games?page=1&per_page=100&seasons[]=${season}${ids}`)
+    console.log('query:', query)
 
     return this.httpClient.get<GamesResponse>(
-      `${this.BASE_URL}/games?page=1&per_page=100&seasons[]=${season}${ids}`,
+      query,
       { headers: { 'X-RapidAPI-Key': this.KEY } }
     )
     

@@ -4,6 +4,7 @@ import { Game } from 'src/app/API/Game';
 import { Team } from 'src/app/API/Team';
 import { ApiService } from 'src/app/API/api.service';
 import { GamesResponse } from 'src/app/API/games-response';
+import { GameInputValues } from 'src/app/types/search-game-inputs';
 
 @Component({
   selector: 'app-search-game',
@@ -15,10 +16,10 @@ import { GamesResponse } from 'src/app/API/games-response';
           <mat-label>Home team</mat-label>
           <input
             [(ngModel)]="homeTeamName"
-            (input)="resetPrevSearch()"
             (input)="searchTeam('homeTeamName')"
-            (keydown.enter)="searchGame()"
+            (keydown.enter)="searchTeam('homeTeamName')"
             matInput placeholder="Team name"
+            type="string"
           >
           <ul class="search__selection-list">
             <li class="search__selection-item"
@@ -33,10 +34,10 @@ import { GamesResponse } from 'src/app/API/games-response';
           <mat-label>Visitor team</mat-label>
           <input
             [(ngModel)]="visitorTeamName"
-            (input)="resetPrevSearch()"
             (input)="searchTeam('visitorTeamName')"
-            (keydown.enter)="searchGame()"
+            (keydown.enter)="searchTeam('visitorTeamName')"
             matInput placeholder="Team name"
+            type="string"
           >
           <ul class="search__selection-list">
             <li class="search__selection-item"
@@ -56,6 +57,7 @@ import { GamesResponse } from 'src/app/API/games-response';
           (input)="resetPrevSearch()"
           (keydown.enter)="searchGame()"
           matInput placeholder="YYYY" required="required"
+          type="string"
         >
       </mat-form-field>
 
@@ -108,7 +110,7 @@ export class SearchGameComponent implements OnInit {
   teamsNameList?: string[] = [];
   suggestedHomeTeamList?: Observable<Team[]>;
   suggestedVisitorTeamList?: Observable<Team[]>;
-  idList: number[] = [];
+  searchParameters?: GameInputValues;
 
   constructor(private api: ApiService) {}
 
@@ -131,6 +133,9 @@ export class SearchGameComponent implements OnInit {
   }
 
   searchTeam(origin: string) {
+
+    this.resetPrevSearch();
+
     switch (origin) {
       case 'homeTeamName': this.suggestedHomeTeamList = this.api.searchTeam(this.homeTeamName);
       break;
@@ -144,24 +149,13 @@ export class SearchGameComponent implements OnInit {
 
     this.btnClicked = true;
 
-    if ( ( this.homeTeamId || this.visitorTeamId ) && this.season !== '' ) {
-
-      if ( this.homeTeamId ) {
-        this.idList.push(this.homeTeamId)
-      }
-
-      if ( this.visitorTeamId ) {
-        this.idList.push(this.visitorTeamId)
-      }
-
-      console.log('this.visitorTeamId', this.visitorTeamId);
-      console.log('this.homeTeamId', this.homeTeamId);
-      console.log('this.season', this.season);
-
-      this.results = this.api.searchGame( this.idList, Number(this.season) );
-      // this.results.subscribe( response => console.log('response', response) )
-      
+    this.searchParameters = {
+      homeTeamId: this.homeTeamId,
+      visitorTeamId: this.homeTeamId,
+      season: this.season
     }
+
+    this.results = this.api.searchGame( this.searchParameters );
 
   }
 
