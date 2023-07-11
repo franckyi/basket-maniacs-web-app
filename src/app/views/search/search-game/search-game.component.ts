@@ -155,6 +155,7 @@ export class SearchGameComponent implements OnInit {
     }
 
     this.results = this.api.searchGame( this.searchParameters );
+    
 
   }
 

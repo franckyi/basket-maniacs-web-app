@@ -153,6 +153,27 @@ export class ApiService {
       query,
       { headers: { 'X-RapidAPI-Key': this.KEY } }
     )
+    .pipe(
+
+      // map( response => {
+      //   return {
+      //     ...response,
+      //     data: response.data.sort((prev, next) => {
+      //       return new Date(next.date).getTime() - new Date(prev.date).getTime();
+      //     })
+      //   }
+      // }),
+
+      map( response => {
+        return {
+          ...response,
+          data: response.data.filter( game => game.home_team.id === searchParameters.homeTeamId)
+            // if ( typeof searchParameters.visitorTeamId === 'undefined') {
+            // }
+        }
+      })
+
+    )
     
 
   }
