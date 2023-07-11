@@ -165,12 +165,28 @@ export class ApiService {
       // }),
 
       map( response => {
-        return {
+
+        // TODO: convert to if or switch case and fix case when both ids are valid
+            
+        return ( typeof searchParameters.visitorTeamId === 'undefined') ?
+        {
           ...response,
           data: response.data.filter( game => game.home_team.id === searchParameters.homeTeamId)
-            // if ( typeof searchParameters.visitorTeamId === 'undefined') {
-            // }
+        } :
+        ( typeof searchParameters.homeTeamId === 'undefined') ?
+        {
+          ...response,
+          data: response.data.filter( game => game.visitor_team.id === searchParameters.visitorTeamId)
+        } :
+        {
+          ...response,
+          data: response.data.filter( game => {
+            game.home_team.id === searchParameters.homeTeamId &&
+            game.visitor_team.id === searchParameters.visitorTeamId
+          })
         }
+
+        
       })
 
     )

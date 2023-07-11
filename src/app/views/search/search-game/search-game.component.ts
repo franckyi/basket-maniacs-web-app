@@ -154,7 +154,9 @@ export class SearchGameComponent implements OnInit {
       season: this.season
     }
 
-    this.results = this.api.searchGame( this.searchParameters );
+    if ( (this.searchParameters.homeTeamId || this.searchParameters.visitorTeamId) && this.searchParameters.season ) {
+        this.results = this.api.searchGame( this.searchParameters );
+    }
     
 
   }
@@ -173,7 +175,7 @@ export class SearchGameComponent implements OnInit {
     this.season = '';
     this.homeTeamName = '';
     this.visitorTeamName = '';
-    // TODO: clear results
+    // TODO: clear results !!!
     // this.results = of([]);
     this.resetPrevSearch();
   }
