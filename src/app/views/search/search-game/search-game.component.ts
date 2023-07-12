@@ -98,7 +98,7 @@ import { GameInputValues } from 'src/app/types/search-game-inputs';
 })
 export class SearchGameComponent implements OnInit {
 
-  results?: Observable<GamesResponse>;
+  results?: Observable<GamesResponse> | null;
   season: string = '';
   homeTeamName: string = '';
   visitorTeamName: string = '';
@@ -175,8 +175,7 @@ export class SearchGameComponent implements OnInit {
     this.season = '';
     this.homeTeamName = '';
     this.visitorTeamName = '';
-    // TODO: clear results !!!
-    // this.results = of([]);
+    this.results = null;
     this.resetPrevSearch();
   }
 
