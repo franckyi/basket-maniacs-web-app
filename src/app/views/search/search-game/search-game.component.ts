@@ -157,7 +157,10 @@ export class SearchGameComponent implements OnInit {
     if ( this.searchParameters.season !== '' && this.searchParameters.season.length === 4 ) {
         this.results = this.api.searchGame( this.searchParameters );
     }
-    
+
+    this.results!.subscribe( response => {
+      if ( response.data.length == 0 ) this.notFoundMsg = 'No games found... Please try other criteria'
+    })
 
   }
 
