@@ -154,38 +154,33 @@ export class ApiService {
       { headers: { 'X-RapidAPI-Key': this.KEY } }
     )
     .pipe(
-
-      // map( response => {
-      //   return {
-      //     ...response,
-      //     data: response.data.sort((prev, next) => {
-      //       return new Date(next.date).getTime() - new Date(prev.date).getTime();
-      //     })
-      //   }
-      // }),
-
       map( response => {
 
-        // TODO: convert to if or switch case and fix case when both ids are valid
-            
-        return ( typeof searchParameters.visitorTeamId === 'undefined') ?
-        {
-          ...response,
-          data: response.data.filter( game => game.home_team.id === searchParameters.homeTeamId)
-        } :
-        ( typeof searchParameters.homeTeamId === 'undefined') ?
-        {
-          ...response,
-          data: response.data.filter( game => game.visitor_team.id === searchParameters.visitorTeamId)
-        } :
-        {
-          ...response,
-          data: response.data.filter( game => {
-            game.home_team.id === searchParameters.homeTeamId &&
-            game.visitor_team.id === searchParameters.visitorTeamId
-          })
+        if ( typeof searchParameters.visitorTeamId === 'undefined' ) {
+          console.log('only home is valid');
+          return {
+            ...response,
+            data: response.data.filter( game => game.home_team.id === searchParameters.homeTeamId)
+          }
         }
-
+        else if ( typeof searchParameters.homeTeamId === 'undefined' ) {
+          console.log('only visitor is valid');
+          return {
+            ...response,
+            data: response.data.filter( game => game.visitor_team.id === searchParameters.visitorTeamId)
+          }
+        }
+        else {
+          console.log('both ids are valid');
+          
+          return {
+            ...response,
+            data: response.data.filter( game => {
+              return (game.home_team.id === searchParameters.homeTeamId) &&
+              (game.visitor_team.id === searchParameters.visitorTeamId);
+            })
+          }
+        }
         
       })
 

@@ -154,7 +154,7 @@ export class SearchGameComponent implements OnInit {
       season: this.season
     }
 
-    if ( (this.searchParameters.homeTeamId || this.searchParameters.visitorTeamId) && this.searchParameters.season ) {
+    if ( this.searchParameters.season !== '' && this.searchParameters.season.length === 4 ) {
         this.results = this.api.searchGame( this.searchParameters );
     }
     
