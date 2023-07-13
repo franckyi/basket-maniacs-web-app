@@ -20,7 +20,10 @@ import { GameInputValues } from 'src/app/types/search-game-inputs';
             matInput placeholder="Team name"
             type="string"
           >
-          <ul class="search__selection-list">
+          <ul
+            *ngIf="homeTeamName !== ''"
+            class="search__selection-list"
+          >
             <li class="search__selection-item"
               *ngFor="let item of (suggestedHomeTeamList | async)"
               (click)="handleHomeSuggestionsClick(item)">
@@ -38,7 +41,10 @@ import { GameInputValues } from 'src/app/types/search-game-inputs';
             matInput placeholder="Team name"
             type="string"
           >
-          <ul class="search__selection-list">
+          <ul
+            *ngIf="visitorTeamName !== ''"
+            class="search__selection-list"
+          >
             <li class="search__selection-item"
               *ngFor="let item of (suggestedVisitorTeamList | async)"
               (click)="handleVisitorSuggestionsClick(item)">
