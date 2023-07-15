@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {GamesResponse} from './games-response';
 import {TeamsResponse} from './teams-response';
 import {PlayersResponse} from './players-response';
-import {map, filter, shareReplay, switchMap} from "rxjs";
+import {map, filter, shareReplay, switchMap, expand, EMPTY, reduce} from "rxjs";
 import {News} from './news';
 import {PaginatorInterface} from '../types/paginator-interface';
 import { GameInputValues } from '../types/search-game-inputs';
@@ -215,21 +215,21 @@ export class ApiService {
 
   }
 
-  searchPlayer(parameters: PlayerInputValues) {
+  searchPlayer(parameters: PlayerInputValues, paginatorOptions: PaginatorInterface) {
 
     console.log('called searchPlayer()');
     console.log('parameters', parameters);
 
     if ( typeof parameters.playerName !== 'undefined' && typeof parameters.teamName === 'undefined' ) {
       return this.httpClient.get<PlayersResponse>(
-        `${this.BASE_URL}/players?page=1&per_page=100&search=${parameters.playerName}`,
+        `${this.BASE_URL}/players?page=${paginatorOptions.pageIndex}&per_page=${paginatorOptions.pageSize}&search=${parameters.playerName}`,
         { headers: { 'X-RapidAPI-Key': this.KEY } }
       )
     }
 
     else if ( typeof parameters.playerName !== 'undefined' && typeof parameters.teamName !== 'undefined' ) {
       return this.httpClient.get<PlayersResponse>(
-        `${this.BASE_URL}/players?page=1&per_page=100&search=${parameters.playerName}`,
+        `${this.BASE_URL}/players?page=${paginatorOptions.pageIndex}&per_page=${paginatorOptions.pageSize}&search=${parameters.playerName}`,
         { headers: { 'X-RapidAPI-Key': this.KEY } }
       ).pipe(
         map( response => {
@@ -243,25 +243,34 @@ export class ApiService {
       )
     }
 
+    // Expand operator
     else if ( typeof parameters.playerName === 'undefined' && typeof parameters.teamName !== 'undefined' ) {
       return this.httpClient.get<PlayersResponse>(
-        `${this.BASE_URL}/players?page=1&per_page=100`,
+        `${this.BASE_URL}/players?page=${paginatorOptions.pageIndex}&per_page=${paginatorOptions.pageSize}`,
         { headers: { 'X-RapidAPI-Key': this.KEY } }
       ).pipe(
-        map( response => {
-          return {
-            ...response,
-            data: response.data.filter( player => {
-              return player.team.full_name.toLowerCase().includes( parameters.teamName?.toLowerCase() );
-            } )
-          }
-        })
-      )
+        // map( response => {
+        //   return {
+        //     ...response,
+        //     data: response.data.filter( player => {
+        //       return player.team.full_name.toLowerCase().includes( parameters.teamName?.toLowerCase() );
+        //     } )
+        //   }
+        // }),
+        expand( response => response.meta.next_page ? this.httpClient.get<PlayersResponse>(
+          `${this.BASE_URL}/players?page=${response.meta.next_page}&per_page=${paginatorOptions.pageSize}`,
+          { headers: { 'X-RapidAPI-Key': this.KEY } }
+        ) : EMPTY),
+        // TODO: fix reduce
+        reduce( (accumulator: any, current) => accumulator.concat( current.data.filter( player => {
+          return player.team.full_name.toLowerCase().includes( parameters.teamName?.toLowerCase() );
+        } ) ), null )
+      );
     }
 
     else {
       return this.httpClient.get<PlayersResponse>(
-        `${this.BASE_URL}/players?page=1&per_page=100`,
+        `${this.BASE_URL}/players?page=${paginatorOptions.pageIndex}&per_page=${paginatorOptions.pageSize}`,
         { headers: { 'X-RapidAPI-Key': this.KEY } }
       )
     }

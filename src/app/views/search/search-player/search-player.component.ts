@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/API/api.service';
 import { PlayersResponse } from 'src/app/API/players-response';
+import { PaginatorInterface } from 'src/app/types/paginator-interface';
 import { PlayerInputValues } from 'src/app/types/search-player-inputs';
 
 @Component({
@@ -55,7 +57,17 @@ import { PlayerInputValues } from 'src/app/types/search-player-inputs';
         </mat-card-content>
       </mat-card>
 
-      <app-paginator></app-paginator>
+      <mat-paginator #paginator
+        *ngIf="!notFoundResults"
+        (page)="handlePageEvent($event)"
+        [length]="this.paginatorOptions.length"
+        [pageSize]="this.paginatorOptions.pageSize"
+        [showFirstLastButtons]="true"
+        [pageSizeOptions]="this.paginatorOptions.pageSizeOptions"
+        [pageIndex]="this.paginatorOptions.pageIndex"
+        aria-label="Select page"
+        class="paginator">
+      </mat-paginator>
 
     </div>
     `
@@ -71,6 +83,15 @@ export class SearchPlayerComponent implements OnInit {
   page: number = 1;
   searchParameters!: PlayerInputValues | null;
 
+  paginatorOptions: PaginatorInterface = {
+    length: 0,
+    pageSize: 10,
+    pageIndex: 0,
+    pageSizeOptions: [5, 10, 20]
+  }
+
+  pageEvent!: PageEvent;
+
   constructor(private api: ApiService) {
     
   }
@@ -79,19 +100,29 @@ export class SearchPlayerComponent implements OnInit {
 
   }
 
+  handlePageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.paginatorOptions.pageSize = e.pageSize;
+    this.paginatorOptions.pageIndex = e.pageIndex;
+    console.log('this.paginatorOptions', this.paginatorOptions);
+    this.searchPlayer()
+  }
+
   searchPlayer() {
 
-    // if ( this.playerName || this.teamName ) {
-      this.searchParameters = {
-        playerName: this.playerName,
-        teamName: this.teamName
-      }
-      this.results = this.api.searchPlayer(this.searchParameters);
-      this.notFoundResults = false;
-    // }
+    this.searchParameters = {
+      playerName: this.playerName,
+      teamName: this.teamName
+    }
+    
+    this.results = this.api.searchPlayer(this.searchParameters, this.paginatorOptions);
+    this.notFoundResults = false;
 
     this.results?.subscribe( response => {
-      if ( response.data.length == 0 ) this.notFoundResults = true;
+      this.notFoundResults = response.data.length == 0 ? true : false;
+      this.paginatorOptions.length = response.meta.total_count;
+      this.paginatorOptions.pageIndex = response.meta.current_page;
+      this.paginatorOptions.pageSize = response.meta.per_page;
     })
 
   }
