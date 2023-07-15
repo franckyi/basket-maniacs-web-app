@@ -7,6 +7,7 @@ import {map, filter, shareReplay, switchMap} from "rxjs";
 import {News} from './news';
 import {PaginatorInterface} from '../types/paginator-interface';
 import { GameInputValues } from '../types/search-game-inputs';
+import { PlayerInputValues } from '../types/search-player-inputs';
 
 @Injectable({
   providedIn: 'root'
@@ -212,6 +213,58 @@ export class ApiService {
       }
     });
 
+  }
+
+  searchPlayer(parameters: PlayerInputValues) {
+
+    console.log('called searchPlayer()');
+    console.log('parameters', parameters);
+
+    if ( typeof parameters.playerName !== 'undefined' && typeof parameters.teamName === 'undefined' ) {
+      return this.httpClient.get<PlayersResponse>(
+        `${this.BASE_URL}/players?page=1&per_page=100&search=${parameters.playerName}`,
+        { headers: { 'X-RapidAPI-Key': this.KEY } }
+      )
+    }
+
+    else if ( typeof parameters.playerName !== 'undefined' && typeof parameters.teamName !== 'undefined' ) {
+      return this.httpClient.get<PlayersResponse>(
+        `${this.BASE_URL}/players?page=1&per_page=100&search=${parameters.playerName}`,
+        { headers: { 'X-RapidAPI-Key': this.KEY } }
+      ).pipe(
+        map( response => {
+          return {
+            ...response,
+            data: response.data.filter( player => {
+              return player.team.full_name.toLowerCase().includes( parameters.teamName?.toLowerCase() );
+            } )
+          }
+        })
+      )
+    }
+
+    else if ( typeof parameters.playerName === 'undefined' && typeof parameters.teamName !== 'undefined' ) {
+      return this.httpClient.get<PlayersResponse>(
+        `${this.BASE_URL}/players?page=1&per_page=100`,
+        { headers: { 'X-RapidAPI-Key': this.KEY } }
+      ).pipe(
+        map( response => {
+          return {
+            ...response,
+            data: response.data.filter( player => {
+              return player.team.full_name.toLowerCase().includes( parameters.teamName?.toLowerCase() );
+            } )
+          }
+        })
+      )
+    }
+
+    else {
+      return this.httpClient.get<PlayersResponse>(
+        `${this.BASE_URL}/players?page=1&per_page=100`,
+        { headers: { 'X-RapidAPI-Key': this.KEY } }
+      )
+    }
   }
   
 

@@ -149,8 +149,6 @@ export class SearchGameComponent implements OnInit {
 
   searchTeam(origin: string) {
 
-    // this.resetPrevSearch();
-
     switch (origin) {
       case 'homeTeamName': this.suggestedHomeTeamList = this.api.searchTeam(this.homeTeamName);
       break;
@@ -190,7 +188,7 @@ export class SearchGameComponent implements OnInit {
     }
 
     this.results!.subscribe( response => {
-      if ( response.data.length == 0 ) this.notFoundMsg = 'No games found... Please try other criteria';
+      if ( response.data.length == 0 ) this.notFoundMsg = 'No results found... Please try other criteria';
     })
 
   }

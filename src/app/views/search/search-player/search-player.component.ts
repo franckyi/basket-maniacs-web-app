@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/API/api.service';
+import { PlayersResponse } from 'src/app/API/players-response';
+import { PlayerInputValues } from 'src/app/types/search-player-inputs';
 
 @Component({
   selector: 'app-search-player',
@@ -11,8 +14,7 @@ import { ApiService } from 'src/app/API/api.service';
           <input
             matInput id="name" placeholder="First or last name"
             [(ngModel)]="playerName"
-            (input)="emptyNotFoundMsg()"
-            (keydown.enter)="passQuery(playerName)"
+            (keydown.enter)="searchParameters!.playerName = playerName"
           >
         </mat-form-field>
         <mat-form-field>
@@ -20,26 +22,25 @@ import { ApiService } from 'src/app/API/api.service';
           <input
             matInput id="team" placeholder="Team name"
             [(ngModel)]="teamName"
-            (input)="emptyNotFoundMsg()"
-            (keydown.enter)="passQuery(playerName)"
+            (keydown.enter)="searchParameters!.teamName = teamName"
           >
         </mat-form-field>
       </div>
       
       <div class="d-flex buttons">
         <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
-        <button (click)="passQuery(playerName)" mat-flat-button color="accent">Search</button>
+        <button (click)="searchPlayer()" mat-flat-button color="accent">Search</button>
       </div>
       
-      <p *ngIf="notFoundMsg !== '' && playerName !== '' ">{{ notFoundMsg }}</p>
+      <p *ngIf="notFoundResults">No results found... Please try other criteria</p>
 
       <mat-card 
-        *ngIf="results !== null && results.length > 0"
+        *ngIf="results !== null"
         class="mat-card mat-focus-indicator card--rounded search-results"
       >
         <mat-card-content class="mat-card-content results">
           <ul class="results__list">
-            <li class="player results__item" *ngFor="let result of results">
+            <li class="player results__item" *ngFor="let result of (results | async)?.data">
               {{ result.first_name }}
               {{ result.last_name }},
               {{ result.team.full_name }}
@@ -65,11 +66,12 @@ export class SearchPlayerComponent implements OnInit {
   filters: any = [];
   playerName: string = '';
   teamName: string = '';
-  results: any | undefined = null;
-  notFoundMsg: string = '';
+  results!: Observable<PlayersResponse> | null;
+  notFoundResults?: boolean;
   page: number = 1;
-  
-  constructor(private _api: ApiService) {
+  searchParameters!: PlayerInputValues | null;
+
+  constructor(private api: ApiService) {
     
   }
   
@@ -77,74 +79,28 @@ export class SearchPlayerComponent implements OnInit {
 
   }
 
-  passQuery (name: string) {
+  searchPlayer() {
 
-    if (this.playerName !== '' || this.teamName !== '') {
-
-      if (this.playerName !== '' && this.teamName === '') {
-        this._api.getPlayers(name, 100, this.page)
-        .subscribe(
-          (response) => {
-            console.log('this.page', this.page);
-            console.log('response', response);
-            if (response.data.length > 0) {
-              this.results = response.data;
-            } else {
-              console.log('not found')
-              this.notFoundMsg = 'No players found... Try another name';
-              this.results = null;
-            }
-          }
-        );
-      } 
-      else if (this.playerName === '' && this.teamName !== '') {
-        this._api.getPlayers(name, 100, this.page)
-        .subscribe(
-          (response) => {
-            console.log('this.page', this.page);
-            if (response.data.length > 0) {
-              this.results = response.data.filter( 
-                p => p.team.full_name.toLowerCase().includes( this.teamName.toLowerCase() )
-                );
-              console.log(this.results);
-            } else {
-              console.log('not found')
-              this.notFoundMsg = 'No players found... Try another name';
-              this.results = null;
-            }
-            
-          }
-
-        );
-      } 
-      else {
-        this._api.getPlayers(name, 100, this.page)
-        .subscribe(
-          (response) => {
-            console.log('this.page', this.page);
-            if (response.data.length > 0) {
-              this.results = response.data.filter( 
-                p => p.team.full_name.toLowerCase().includes( this.teamName.toLowerCase() )
-                );
-              console.log(this.results);
-            } else {
-              console.log('not found')
-              this.notFoundMsg = 'No players found... Try another name';
-              this.results = null;
-            }
-          }
-        );
+    // if ( this.playerName || this.teamName ) {
+      this.searchParameters = {
+        playerName: this.playerName,
+        teamName: this.teamName
       }
-    }
-  }
+      this.results = this.api.searchPlayer(this.searchParameters);
+      this.notFoundResults = false;
+    // }
 
-  emptyNotFoundMsg() {
-    this.notFoundMsg = '';
+    this.results?.subscribe( response => {
+      if ( response.data.length == 0 ) this.notFoundResults = true;
+    })
+
   }
   
   resetFilters() {
     this.playerName = '';
+    this.teamName = '';
     this.results = null;
+    this.searchParameters = null;
   }
 
 }
