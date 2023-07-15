@@ -59,7 +59,7 @@ import { GameInputValues } from 'src/app/types/search-game-inputs';
         <mat-label>Season</mat-label>
         <input
           [(ngModel)]="season"
-          (input)="resetPrevSearch()"
+          (input)="searchParameters = null;"
           (keydown.enter)="searchGame()"
           matInput placeholder="YYYY" required="required"
           type="string"
@@ -115,7 +115,7 @@ export class SearchGameComponent implements OnInit {
   teamsNameList?: string[] = [];
   suggestedHomeTeamList?: Observable<Team[]>;
   suggestedVisitorTeamList?: Observable<Team[]>;
-  searchParameters?: GameInputValues;
+  searchParameters!: GameInputValues | null;
 
   constructor(private api: ApiService) {}
 
@@ -129,17 +129,27 @@ export class SearchGameComponent implements OnInit {
     this.homeTeamName = item.full_name;
     this.homeTeamId = item.id;
     this.resetSuggestions();
+
+    console.warn('called handleHomeSuggestionsClick()');
+    console.log('this.homeTeamName', this.homeTeamName);
+    console.log('this.visitorTeamName', this.visitorTeamName);
+    console.log('this.searchParameters', this.searchParameters);
   }
   
   handleVisitorSuggestionsClick(item: Team) {
     this.visitorTeamName = item.full_name;
     this.visitorTeamId = item.id;
     this.resetSuggestions();
+
+    console.warn('called handleVisitorSuggestionsClick()');
+    console.log('this.homeTeamName', this.homeTeamName);
+    console.log('this.visitorTeamName', this.visitorTeamName);
+    console.log('this.searchParameters', this.searchParameters);
   }
 
   searchTeam(origin: string) {
 
-    this.resetPrevSearch();
+    // this.resetPrevSearch();
 
     switch (origin) {
       case 'homeTeamName': this.suggestedHomeTeamList = this.api.searchTeam(this.homeTeamName);
@@ -147,6 +157,11 @@ export class SearchGameComponent implements OnInit {
       case 'visitorTeamName': this.suggestedVisitorTeamList = this.api.searchTeam(this.visitorTeamName);
       break;
     }
+
+    console.warn('called searchTeam()');
+    console.log('this.homeTeamName', this.homeTeamName);
+    console.log('this.visitorTeamName', this.visitorTeamName);
+    console.log('this.searchParameters', this.searchParameters);
     
   }
   
@@ -160,7 +175,17 @@ export class SearchGameComponent implements OnInit {
       season: this.season
     }
 
-    if ( this.searchParameters.season !== '' && this.searchParameters.season.length === 4 ) {
+    console.warn('called searchGame()');
+    console.log('this.homeTeamName', this.homeTeamName);
+    console.log('this.visitorTeamName', this.visitorTeamName);
+    console.log('this.searchParameters', this.searchParameters);
+
+    if ( this.searchParameters.season.length === 4 ) {
+      this.resetPrevSearch();
+
+      if (this.homeTeamName === '') this.searchParameters.homeTeamId = undefined;
+      if (this.visitorTeamName === '') this.searchParameters.visitorTeamId = undefined;
+
       this.results = this.api.searchGame( this.searchParameters );
     }
 
@@ -173,11 +198,19 @@ export class SearchGameComponent implements OnInit {
   resetSuggestions() {
     this.suggestedHomeTeamList = of([]);
     this.suggestedVisitorTeamList = of([]);
+    console.warn('called resetSuggestions()');
+    console.log('this.homeTeamName', this.homeTeamName);
+    console.log('this.visitorTeamName', this.visitorTeamName);
+    console.log('this.searchParameters', this.searchParameters);
   }
   
   resetPrevSearch() {
-    this.btnClicked = false;
+    // this.btnClicked = false;
     this.notFoundMsg = '';
+    console.warn('called resetPrevSearch()');
+    console.log('this.homeTeamName', this.homeTeamName);
+    console.log('this.visitorTeamName', this.visitorTeamName);
+    console.log('this.searchParameters', this.searchParameters);
   }
 
   resetFilters() {
@@ -185,7 +218,12 @@ export class SearchGameComponent implements OnInit {
     this.homeTeamName = '';
     this.visitorTeamName = '';
     this.results = null;
+    this.searchParameters = null;
     this.resetPrevSearch();
+    console.warn('called resetFilters()');
+    console.log('this.homeTeamName', this.homeTeamName);
+    console.log('this.visitorTeamName', this.visitorTeamName);
+    console.log('this.searchParameters', this.searchParameters);
   }
 
 }

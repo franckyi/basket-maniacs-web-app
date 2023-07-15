@@ -156,21 +156,21 @@ export class ApiService {
     .pipe(
       map( response => {
 
-        if ( typeof searchParameters.visitorTeamId === 'undefined' ) {
+        if ( typeof searchParameters.homeTeamId !== 'undefined' && typeof searchParameters.visitorTeamId === 'undefined' ) {
           console.log('only home is valid');
           return {
             ...response,
             data: response.data.filter( game => game.home_team.id === searchParameters.homeTeamId)
           }
         }
-        else if ( typeof searchParameters.homeTeamId === 'undefined' ) {
+        else if ( typeof searchParameters.homeTeamId === 'undefined' && typeof searchParameters.visitorTeamId !== 'undefined' ) {
           console.log('only visitor is valid');
           return {
             ...response,
             data: response.data.filter( game => game.visitor_team.id === searchParameters.visitorTeamId)
           }
         }
-        else {
+        else if ( typeof searchParameters.homeTeamId !== 'undefined' && typeof searchParameters.visitorTeamId !== 'undefined' ) {
           console.log('both ids are valid');
           
           return {
@@ -180,6 +180,15 @@ export class ApiService {
               (game.visitor_team.id === searchParameters.visitorTeamId);
             })
           }
+        }
+        else {
+          console.log('only season is valid');
+
+          return {
+            ...response,
+            data: response.data.filter( game => game.season.toString() === searchParameters.season )
+          }
+
         }
         
       })
