@@ -90,9 +90,9 @@ import { GameInputValues } from 'src/app/types/search-game-inputs';
         *ngIf="btnClicked && results !== null && season !== '' "
       >
         <mat-card-content class="results">
-            <ul class="results__list">
+            <div class="results__list">
                 <app-game-list-item *ngFor="let result of (results | async)?.data" [game]="result"></app-game-list-item>
-            </ul>
+            </div>
         </mat-card-content>
       </mat-card>
 
@@ -161,11 +161,11 @@ export class SearchGameComponent implements OnInit {
     }
 
     if ( this.searchParameters.season !== '' && this.searchParameters.season.length === 4 ) {
-        this.results = this.api.searchGame( this.searchParameters );
+      this.results = this.api.searchGame( this.searchParameters );
     }
 
     this.results!.subscribe( response => {
-      if ( response.data.length == 0 ) this.notFoundMsg = 'No games found... Please try other criteria'
+      if ( response.data.length == 0 ) this.notFoundMsg = 'No games found... Please try other criteria';
     })
 
   }
