@@ -5,7 +5,7 @@ import { ApiService } from 'src/app/API/api.service';
 import { PlayersResponse } from 'src/app/API/players-response';
 import { PaginatorInterface } from 'src/app/types/paginator-interface';
 import { PlayerInputValues } from 'src/app/types/search-player-inputs';
-import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-search-player',
@@ -38,26 +38,32 @@ import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
       
       <p *ngIf="notFoundResults">No results found... Please try other criteria</p>
 
-      <mat-card 
-        *ngIf="results"
-        class="mat-card mat-focus-indicator card--rounded search-results"
-      >
-        <mat-card-content class="mat-card-content results">
-          <ul class="results__list">
-            <li class="player results__item" *ngFor="let result of (results | async)?.data">
-              {{ result.first_name }}
-              {{ result.last_name }},
-              {{ result.team.full_name }}
-              ({{ result.team.abbreviation }})
-              <img
-                class="player__club-logo"
-                [src]="'../../assets/img/team-logos/' + result.team.abbreviation + '.png'"
-                [alt]="result.team.full_name + 'logo'"
-              >
-            </li>
-          </ul>
-        </mat-card-content>
-      </mat-card>
+      <div class="spinner-container" *ngIf="loading; else contentBlock">
+        <mat-spinner></mat-spinner>
+      </div>
+
+      <ng-template #contentBlock>
+        <mat-card
+          *ngIf="results"
+          class="mat-card mat-focus-indicator card--rounded search-results"
+        >
+          <mat-card-content class="mat-card-content results">
+            <ul class="results__list">
+              <li class="player results__item" *ngFor="let result of (results | async)?.data">
+                {{ result.first_name }}
+                {{ result.last_name }},
+                {{ result.team.full_name }}
+                ({{ result.team.abbreviation }})
+                <img
+                  class="player__club-logo"
+                  [src]="'../../assets/img/team-logos/' + result.team.abbreviation + '.png'"
+                  [alt]="result.team.full_name + 'logo'"
+                >
+              </li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+      </ng-template>
 
       <mat-paginator #paginator
         *ngIf="!notFoundResults && results"
@@ -85,6 +91,7 @@ export class SearchPlayerComponent implements OnInit {
   page: number = 1;
   searchParameters!: PlayerInputValues | null;
   missingInputs?: boolean;
+  loading: boolean = false;
 
   paginatorOptions: PaginatorInterface = {
     length: 0,
@@ -117,8 +124,11 @@ export class SearchPlayerComponent implements OnInit {
 
   searchPlayer() {
 
+    
+
     if ( this.playerName !== '' ) {
 
+      this.loading = true;
       this.missingInputs = false;
 
       this.searchParameters = {
@@ -142,6 +152,8 @@ export class SearchPlayerComponent implements OnInit {
     }
 
     else this.openSnackBar('Missing player name', 'OK');
+
+    this.loading = false;
 
   }
   

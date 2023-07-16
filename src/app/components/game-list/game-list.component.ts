@@ -10,11 +10,9 @@ import { Component } from '@angular/core';
     </div>
 
     <ng-template #contentBlock>
-    
       <mat-list class="results__list">
         <app-game-list-item *ngFor="let game of data" [game]="game"></app-game-list-item>
       </mat-list>
-
     </ng-template>
 
     <app-paginator #paginator
