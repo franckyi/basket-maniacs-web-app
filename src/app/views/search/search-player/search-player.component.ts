@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/API/api.service';
 import { PlayersResponse } from 'src/app/API/players-response';
 import { PaginatorInterface } from 'src/app/types/paginator-interface';
 import { PlayerInputValues } from 'src/app/types/search-player-inputs';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-search-player',
@@ -14,6 +15,7 @@ import { PlayerInputValues } from 'src/app/types/search-player-inputs';
         <mat-form-field>
           <mat-label for="name">Player name</mat-label>
           <input
+            required
             matInput id="name" placeholder="First or last name"
             [(ngModel)]="playerName"
             (keydown.enter)="searchParameters!.playerName = playerName"
@@ -37,7 +39,7 @@ import { PlayerInputValues } from 'src/app/types/search-player-inputs';
       <p *ngIf="notFoundResults">No results found... Please try other criteria</p>
 
       <mat-card 
-        *ngIf="results !== null"
+        *ngIf="results"
         class="mat-card mat-focus-indicator card--rounded search-results"
       >
         <mat-card-content class="mat-card-content results">
@@ -82,6 +84,8 @@ export class SearchPlayerComponent implements OnInit {
   notFoundResults?: boolean;
   page: number = 1;
   searchParameters!: PlayerInputValues | null;
+  missingInputs?: boolean;
+  // snackBarRef = this._snackBar.open('Missing player name');
 
   paginatorOptions: PaginatorInterface = {
     length: 0,
@@ -92,8 +96,12 @@ export class SearchPlayerComponent implements OnInit {
 
   pageEvent!: PageEvent;
 
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, private _snackBar: MatSnackBar) {
     
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
   
   ngOnInit(): void {
@@ -110,20 +118,31 @@ export class SearchPlayerComponent implements OnInit {
 
   searchPlayer() {
 
-    this.searchParameters = {
-      playerName: this.playerName,
-      teamName: this.teamName
-    }
-    
-    this.results = this.api.searchPlayer(this.searchParameters, this.paginatorOptions);
-    this.notFoundResults = false;
+    if ( this.playerName !== '' ) {
 
-    this.results?.subscribe( response => {
-      this.notFoundResults = response.data.length == 0 ? true : false;
-      this.paginatorOptions.length = response.meta.total_count;
-      this.paginatorOptions.pageIndex = response.meta.current_page;
-      this.paginatorOptions.pageSize = response.meta.per_page;
-    })
+      this.missingInputs = false;
+
+      this.searchParameters = {
+        playerName: this.playerName,
+        teamName: this.teamName
+      }
+      
+      console.log('this.searchParameters', this.searchParameters)
+  
+      this.results = this.api.searchPlayer(this.searchParameters, this.paginatorOptions);
+      
+      console.log('this.results', this.results)
+  
+      this.results?.subscribe( response => {
+        this.notFoundResults = response.data.length == 0 ? true : false;
+        this.paginatorOptions.length = response.meta.total_count;
+        this.paginatorOptions.pageIndex = response.meta.current_page;
+        this.paginatorOptions.pageSize = response.meta.per_page;
+      })
+      
+    }
+
+    else this.openSnackBar('Missing player name', 'OK');
 
   }
   

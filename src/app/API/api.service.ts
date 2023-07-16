@@ -220,18 +220,19 @@ export class ApiService {
     console.log('called searchPlayer()');
     console.log('parameters', parameters);
 
-    if ( typeof parameters.playerName !== 'undefined' && typeof parameters.teamName === 'undefined' ) {
+    if ( parameters.playerName !== '' && parameters.teamName === '' ) {
       return this.httpClient.get<PlayersResponse>(
         `${this.BASE_URL}/players?page=${paginatorOptions.pageIndex}&per_page=${paginatorOptions.pageSize}&search=${parameters.playerName}`,
         { headers: { 'X-RapidAPI-Key': this.KEY } }
       )
     }
 
-    else if ( typeof parameters.playerName !== 'undefined' && typeof parameters.teamName !== 'undefined' ) {
+    else if ( parameters.playerName !== '' && parameters.teamName !== '' ) {
       return this.httpClient.get<PlayersResponse>(
         `${this.BASE_URL}/players?page=${paginatorOptions.pageIndex}&per_page=${paginatorOptions.pageSize}&search=${parameters.playerName}`,
         { headers: { 'X-RapidAPI-Key': this.KEY } }
-      ).pipe(
+      )
+      .pipe(
         map( response => {
           return {
             ...response,
@@ -241,31 +242,6 @@ export class ApiService {
           }
         })
       )
-    }
-
-    // Expand operator
-    else if ( typeof parameters.playerName === 'undefined' && typeof parameters.teamName !== 'undefined' ) {
-      return this.httpClient.get<PlayersResponse>(
-        `${this.BASE_URL}/players?page=${paginatorOptions.pageIndex}&per_page=${paginatorOptions.pageSize}`,
-        { headers: { 'X-RapidAPI-Key': this.KEY } }
-      ).pipe(
-        // map( response => {
-        //   return {
-        //     ...response,
-        //     data: response.data.filter( player => {
-        //       return player.team.full_name.toLowerCase().includes( parameters.teamName?.toLowerCase() );
-        //     } )
-        //   }
-        // }),
-        expand( response => response.meta.next_page ? this.httpClient.get<PlayersResponse>(
-          `${this.BASE_URL}/players?page=${response.meta.next_page}&per_page=${paginatorOptions.pageSize}`,
-          { headers: { 'X-RapidAPI-Key': this.KEY } }
-        ) : EMPTY),
-        // TODO: fix reduce
-        reduce( (accumulator: any, current) => accumulator.concat( current.data.filter( player => {
-          return player.team.full_name.toLowerCase().includes( parameters.teamName?.toLowerCase() );
-        } ) ), null )
-      );
     }
 
     else {
