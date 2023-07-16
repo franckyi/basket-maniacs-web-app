@@ -58,8 +58,15 @@ export class ApiService {
     })
   }
 
-  getNews(source: string) {
-    return this.httpClient.get<News[]>(`${this.NEWS_URL}?source=${source}`, {
+  getNews(source: string, player: string, team: string) {
+
+    player = player === '' ? '' : `&player=${player}`;
+    team   = team === ''   ? '' : `&team=${team}`;
+
+    console.log('player', player);
+    console.log('team', team);
+
+    return this.httpClient.get<News[]>(`${this.NEWS_URL}?source=${source}${player}${team}`, {
       headers: {
         'X-RapidAPI-Key': this.NEWS_KEY,
         'X-RapidAPI-Host': this.NEWS_HOST,
