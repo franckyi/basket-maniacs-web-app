@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
+import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/API/api.service';
+import { PlayersResponse } from 'src/app/API/players-response';
+import { PaginatorInterface } from 'src/app/types/paginator-interface';
+import { PlayerInputValues } from 'src/app/types/search-player-inputs';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-search-player',
@@ -9,10 +15,10 @@ import { ApiService } from 'src/app/API/api.service';
         <mat-form-field>
           <mat-label for="name">Player name</mat-label>
           <input
+            required
             matInput id="name" placeholder="First or last name"
             [(ngModel)]="playerName"
-            (input)="emptyNotFoundMsg()"
-            (keydown.enter)="passQuery(playerName)"
+            (keydown.enter)="searchParameters!.playerName = playerName"
           >
         </mat-form-field>
         <mat-form-field>
@@ -20,146 +26,142 @@ import { ApiService } from 'src/app/API/api.service';
           <input
             matInput id="team" placeholder="Team name"
             [(ngModel)]="teamName"
-            (input)="emptyNotFoundMsg()"
-            (keydown.enter)="passQuery(playerName)"
+            (keydown.enter)="searchParameters!.teamName = teamName"
           >
         </mat-form-field>
       </div>
       
       <div class="d-flex buttons">
         <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
-        <button (click)="passQuery(playerName)" mat-flat-button color="accent">Search</button>
+        <button (click)="searchPlayer()" mat-flat-button color="accent">Search</button>
       </div>
       
-      <p *ngIf="notFoundMsg !== '' && playerName !== '' ">{{ notFoundMsg }}</p>
+      <p *ngIf="notFoundResults">No results found... Please try other criteria</p>
 
-      <div class="pagination" *ngIf="results !== null && results.length > 0">
-        <mat-icon aria-hidden="false" aria-label="Previous page" fontIcon="navigate_before"
-          *ngIf="page > 1"
-          (click)="goToPrevPage()"
-        ></mat-icon>
-          <span>{{ page }}</span>
-        <mat-icon aria-hidden="false" aria-label="Next page" fontIcon="navigate_next"
-          (click)="goToNextPage()"></mat-icon>
+      <div class="spinner-container" *ngIf="loading; else contentBlock">
+        <mat-spinner></mat-spinner>
       </div>
 
-      <mat-card 
-        class="mat-card mat-focus-indicator card--rounded search-results"
-        *ngIf="results !== null && results.length > 0"
-      >
-        <mat-card-content class="mat-card-content results">
-          <ul class="results__list">
-            <li class="player results__item" *ngFor="let result of results">
-              {{ result.first_name }}
-              {{ result.last_name }},
-              {{ result.team.full_name }}
-              ({{ result.team.abbreviation }})
-              <img
-                class="player__club-logo"
-                [src]="'../../assets/img/team-logos/' + result.team.abbreviation + '.png'"
-                [alt]="result.team.full_name + 'logo'"
-              >
-            </li>
-          </ul>
-        </mat-card-content>
-      </mat-card>
+      <ng-template #contentBlock>
+        <mat-card
+          *ngIf="results"
+          class="mat-card mat-focus-indicator card--rounded search-results"
+        >
+          <mat-card-content class="mat-card-content results">
+            <ul class="results__list">
+              <li class="player results__item" *ngFor="let result of (results | async)?.data">
+                {{ result.first_name }}
+                {{ result.last_name }},
+                {{ result.team.full_name }}
+                ({{ result.team.abbreviation }})
+                <img
+                  class="player__club-logo"
+                  [src]="'../../assets/img/team-logos/' + result.team.abbreviation + '.png'"
+                  [alt]="result.team.full_name + 'logo'"
+                >
+              </li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+      </ng-template>
+
+      <mat-paginator #paginator
+        *ngIf="!notFoundResults && results"
+        (page)="handlePageEvent($event)"
+        [length]="this.paginatorOptions.length"
+        [pageSize]="this.paginatorOptions.pageSize"
+        [showFirstLastButtons]="true"
+        [pageSizeOptions]="this.paginatorOptions.pageSizeOptions"
+        [pageIndex]="this.paginatorOptions.pageIndex"
+        aria-label="Select page"
+        class="paginator">
+      </mat-paginator>
+
     </div>
     `
 })
 
 export class SearchPlayerComponent implements OnInit {
+
   filters: any = [];
   playerName: string = '';
   teamName: string = '';
-  results: any | undefined = null;
-  notFoundMsg: string = '';
+  results!: Observable<PlayersResponse> | null;
+  notFoundResults?: boolean;
   page: number = 1;
-  
-  constructor(private _api: ApiService) {
+  searchParameters!: PlayerInputValues | null;
+  missingInputs?: boolean;
+  loading: boolean = false;
+
+  paginatorOptions: PaginatorInterface = {
+    length: 0,
+    pageSize: 10,
+    pageIndex: 0,
+    pageSizeOptions: [5, 10, 20]
+  }
+
+  pageEvent!: PageEvent;
+
+  constructor(private api: ApiService, private _snackBar: MatSnackBar) {
     
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
   
   ngOnInit(): void {
 
   }
 
-  goToPrevPage() {
-    console.log('called goToPrevPage()');
-    this.page -= 1;
-    console.log('this.page', this.page);
-    this.passQuery (this.playerName);
+  handlePageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.paginatorOptions.pageSize = e.pageSize;
+    this.paginatorOptions.pageIndex = e.pageIndex;
+    console.log('this.paginatorOptions', this.paginatorOptions);
+    this.searchPlayer()
   }
 
-  goToNextPage() {
-    console.log('called goToNextPage()');
-    this.page += 1;
-    console.log('this.page', this.page);
-    this.passQuery (this.playerName);
-  }
+  searchPlayer() {
 
-  passQuery (name: string) {
-    if (this.playerName !== '' || this.teamName !== '') {
-      if (this.playerName !== '' && this.teamName === '') {
-        this._api.getPlayers(name, 100, this.page)
-        .subscribe(
-          (response) => {
-            console.log('this.page', this.page);
-            if (response.data.length > 0) {
-              this.results = response.data;
-            } else {
-              console.log('not found')
-              this.notFoundMsg = 'No players found... Try another name';
-              this.results = null;
-            }
-          }
-        );
-      } 
-      else if (this.playerName === '' && this.teamName !== '') {
-        this._api.getPlayers(name, 100, this.page)
-        .subscribe(
-          (response) => {
-            console.log('this.page', this.page);
-            if (response.data.length > 0) {
-              this.results = response.data.filter( 
-                p => p.team.full_name.toLowerCase().includes( this.teamName.toLowerCase() )
-                );
-              console.log(this.results);
-            } else {
-              console.log('not found')
-              this.notFoundMsg = 'No players found... Try another name';
-              this.results = null;
-            }
-          }
-        );
-      } 
-      else {
-        this._api.getPlayers(name, 100, this.page)
-        .subscribe(
-          (response) => {
-            console.log('this.page', this.page);
-            if (response.data.length > 0) {
-              this.results = response.data.filter( 
-                p => p.team.full_name.toLowerCase().includes( this.teamName.toLowerCase() )
-                );
-              console.log(this.results);
-            } else {
-              console.log('not found')
-              this.notFoundMsg = 'No players found... Try another name';
-              this.results = null;
-            }
-          }
-        );
+    
+
+    if ( this.playerName !== '' ) {
+
+      this.loading = true;
+      this.missingInputs = false;
+
+      this.searchParameters = {
+        playerName: this.playerName,
+        teamName: this.teamName
       }
+      
+      console.log('this.searchParameters', this.searchParameters)
+  
+      this.results = this.api.searchPlayer(this.searchParameters, this.paginatorOptions);
+      
+      console.log('this.results', this.results)
+  
+      this.results?.subscribe( response => {
+        this.notFoundResults = response.data.length == 0 ? true : false;
+        this.paginatorOptions.length = response.meta.total_count;
+        this.paginatorOptions.pageIndex = response.meta.current_page;
+        this.paginatorOptions.pageSize = response.meta.per_page;
+      })
+      
     }
-  }
 
-  emptyNotFoundMsg() {
-    this.notFoundMsg = '';
+    else this.openSnackBar('Missing player name', 'OK');
+
+    this.loading = false;
+
   }
   
   resetFilters() {
     this.playerName = '';
+    this.teamName = '';
     this.results = null;
+    this.searchParameters = null;
   }
 
 }

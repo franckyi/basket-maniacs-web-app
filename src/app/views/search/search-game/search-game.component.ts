@@ -1,154 +1,256 @@
 import {Component, OnInit} from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { Team } from 'src/app/API/Team';
 import { ApiService } from 'src/app/API/api.service';
+import { GamesResponse } from 'src/app/API/games-response';
+import { GameInputValues } from 'src/app/types/search-game-inputs';
+import { PaginatorInterface } from 'src/app/types/paginator-interface';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-search-game',
   template: `
     <div class="search">
       <div class="d-flex search__inputs">
+
         <mat-form-field class="search__input">
           <mat-label>Home team</mat-label>
           <input
+            [(ngModel)]="homeTeamName"
+            (input)="searchTeam('homeTeamName')"
+            (keydown.enter)="searchTeam('homeTeamName')"
             matInput placeholder="Team name"
-            [(ngModel)]="homeTeam"
-            (input)="resetPrevSearch()"
-            (keydown.enter)="passQueries(season, homeTeam, visitorTeam)"
+            type="string"
           >
+          <ul
+            *ngIf="homeTeamName !== ''"
+            class="search__selection-list"
+          >
+            <li class="search__selection-item"
+              *ngFor="let item of (suggestedHomeTeamList | async)"
+              (click)="handleHomeSuggestionsClick(item)">
+              {{item.full_name}}
+            </li>
+          </ul>
         </mat-form-field>
+        
         <mat-form-field class="search__input">
           <mat-label>Visitor team</mat-label>
           <input
+            [(ngModel)]="visitorTeamName"
+            (input)="searchTeam('visitorTeamName')"
+            (keydown.enter)="searchTeam('visitorTeamName')"
             matInput placeholder="Team name"
-            [(ngModel)]="visitorTeam"
-            (input)="resetPrevSearch()"
-            (keydown.enter)="passQueries(season, homeTeam, visitorTeam)"
+            type="string"
           >
+          <ul
+            *ngIf="visitorTeamName !== ''"
+            class="search__selection-list"
+          >
+            <li class="search__selection-item"
+              *ngFor="let item of (suggestedVisitorTeamList | async)"
+              (click)="handleVisitorSuggestionsClick(item)">
+              {{item.full_name}}
+            </li>
+          </ul>
         </mat-form-field>
+
       </div>
+
       <mat-form-field class="search__input">
         <mat-label>Season</mat-label>
         <input
-          matInput placeholder="YYYY" required="required"
           [(ngModel)]="season"
-          (input)="resetPrevSearch()"
-          (keydown.enter)="passQueries(season, homeTeam, visitorTeam)"
+          (input)="searchParameters = null;"
+          (keydown.enter)="searchGame()"
+          matInput placeholder="YYYY" required="required"
+          type="string"
         >
       </mat-form-field>
+
       <div class="d-flex buttons">
-        <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
+
         <button
-          mat-flat-button color="accent" [style.margin-left.px]="10"
-          (click)="passQueries(season, homeTeam, visitorTeam )"
+          (click)="resetFilters()"
+          mat-stroked-button
+          class="btn-reset"
+          color="basic"
+        >Reset</button>
+
+        <button
+          (click)="searchGame()"
+          mat-flat-button
+          color="accent"
+          [style.margin-left.px]="10"
         >Search</button>
+
       </div>
+
       <p *ngIf="notFoundMsg !== '' ">{{ notFoundMsg }}</p>
+
       <mat-card class="card--rounded latest-scores search-results"
         *ngIf="btnClicked && results !== null && season !== '' "
       >
         <mat-card-content class="results">
-            <ul class="results__list">
-                <app-game-list-item *ngFor="let result of results" [game]="result"></app-game-list-item>
-            </ul>
+            <div class="results__list">
+                <app-game-list-item *ngFor="let result of (results | async)?.data" [game]="result"></app-game-list-item>
+            </div>
         </mat-card-content>
       </mat-card>
+
+      <mat-paginator #paginator
+        *ngIf="!notFoundResults && results"
+        (page)="handlePageEvent($event)"
+        [length]="this.paginatorOptions.length"
+        [pageSize]="this.paginatorOptions.pageSize"
+        [showFirstLastButtons]="true"
+        [pageSizeOptions]="this.paginatorOptions.pageSizeOptions"
+        [pageIndex]="this.paginatorOptions.pageIndex"
+        aria-label="Select page"
+        class="paginator" >
+      </mat-paginator>
+
     </div>
   `,
   styleUrls: ['./search-game.component.scss']
 })
 export class SearchGameComponent implements OnInit {
-  results: any | undefined = null;
+
+  results?: Observable<GamesResponse> | null;
+  notFoundResults?: boolean;
   season: string = '';
-  homeTeam: string = '';
-  visitorTeam: string = '';
+  homeTeamName: string = '';
+  visitorTeamName: string = '';
+  homeTeamId?: number;
+  visitorTeamId?: number;
   notFoundMsg: string = '';
   btnClicked: boolean = false;
+  teamsNameList?: string[] = [];
+  suggestedHomeTeamList?: Observable<Team[]>;
+  suggestedVisitorTeamList?: Observable<Team[]>;
+  searchParameters!: GameInputValues | null;
+  pageEvent!: PageEvent;
 
-  constructor(private _api: ApiService) {}
+  constructor(private api: ApiService) {}
+
   ngOnInit() {}
+
+  paginatorOptions: PaginatorInterface = {
+    length: 0,
+    pageSize: 10,
+    pageIndex: 0,
+    pageSizeOptions: [5, 10, 20]
+  }
+  
+  handlePageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.paginatorOptions.pageSize = e.pageSize;
+    this.paginatorOptions.pageIndex = e.pageIndex;
+    console.log('this.paginatorOptions', this.paginatorOptions);
+    this.searchGame()
+  }
 
   resetBtnClicked() {
     this.btnClicked = false;
   }
 
-  passQueries(season: string, homeTeam: string, visitorTeam: string) {
-    this.btnClicked = true;
-    this.results = '';
+  handleHomeSuggestionsClick(item: Team) {
+    this.homeTeamName = item.full_name;
+    this.homeTeamId = item.id;
+    this.resetSuggestions();
 
-    if (season === '' || season === 'undefined') {
-      this.notFoundMsg = 'Please select a season and try again.';
-      return;
-    };
+    console.warn('called handleHomeSuggestionsClick()');
+    console.log('this.homeTeamName', this.homeTeamName);
+    console.log('this.visitorTeamName', this.visitorTeamName);
+    console.log('this.searchParameters', this.searchParameters);
+  }
+  
+  handleVisitorSuggestionsClick(item: Team) {
+    this.visitorTeamName = item.full_name;
+    this.visitorTeamId = item.id;
+    this.resetSuggestions();
 
-    if ( homeTeam !== '' && visitorTeam === '' ) {
-      this._api.getGames$(season, 100)
-      .subscribe(
-        (response) => {
-          console.log('found results: ', response.data);
-          this.results = response.data.filter( game => 
-            game.home_team.full_name.toLowerCase().includes( homeTeam.toLowerCase() )
-          )
-          if (this.results.length >= 1) {
-            console.log('✅ filtered games', this.results);
-          } else {
-            console.log(this.results.length);
-            console.log('not found')
-            this.notFoundMsg = 'No teams found... Try again';
-            this.results = null;
-          }
-        }
-      );
-    } 
-    else if ( homeTeam === '' && visitorTeam !== '' ) {
-      console.log('TEST 1')
-      this._api.getGames$(season, 100)
-      .subscribe(
-        (response) => {
-          this.results = response.data.filter( game => 
-            game.visitor_team.full_name.toLowerCase().includes( visitorTeam.toLowerCase() )
-          )
-          if (this.results.length >= 1) {
-            console.log('✅ filtered games', this.results);
-          } else {
-            console.log(this.results.length);
-            console.log('not found')
-            this.notFoundMsg = 'No games found... Try again';
-            this.results = null;
-          }
-        }
-      );
+    console.warn('called handleVisitorSuggestionsClick()');
+    console.log('this.homeTeamName', this.homeTeamName);
+    console.log('this.visitorTeamName', this.visitorTeamName);
+    console.log('this.searchParameters', this.searchParameters);
+  }
+
+  searchTeam(origin: string) {
+
+    switch (origin) {
+      case 'homeTeamName': this.suggestedHomeTeamList = this.api.searchTeam(this.homeTeamName);
+      break;
+      case 'visitorTeamName': this.suggestedVisitorTeamList = this.api.searchTeam(this.visitorTeamName);
+      break;
     }
-    if ( homeTeam !== '' && visitorTeam !== '' ) {
-      this._api.getGames$(season, 100)
-      .subscribe(
-        (response) => {
-          this.results = response.data.filter( game => 
-            game.home_team.full_name.toLowerCase().includes( homeTeam.toLowerCase() ) &&
-            game.visitor_team.full_name.toLowerCase().includes( visitorTeam.toLowerCase() )
-          )
-          if (this.results.length >= 1) {
-            console.log('✅ filtered games', this.results);
-          } else {
-            console.log(this.results.length);
-            console.log('not found')
-            this.notFoundMsg = 'No games found... Try other criteria';
-            this.results = null;
-          }
-        }
-      );
-    } 
+
+    console.warn('called searchTeam()');
+    console.log('this.homeTeamName', this.homeTeamName);
+    console.log('this.visitorTeamName', this.visitorTeamName);
+    console.log('this.searchParameters', this.searchParameters);
+    
+  }
+  
+  searchGame() {
+    
+    this.btnClicked = true;
+    this.searchParameters = {
+      homeTeamId: this.homeTeamId,
+      visitorTeamId: this.visitorTeamId,
+      season: this.season
+    }
+
+    console.warn('called searchGame()');
+    console.log('this.homeTeamName', this.homeTeamName);
+    console.log('this.visitorTeamName', this.visitorTeamName);
+    console.log('this.searchParameters', this.searchParameters);
+
+    if ( this.searchParameters.season.length === 4 ) {
+      this.resetPrevSearch();
+      if (this.homeTeamName === '') this.searchParameters.homeTeamId = undefined;
+      if (this.visitorTeamName === '') this.searchParameters.visitorTeamId = undefined;
+      this.results = this.api.searchGame( this.searchParameters );
+    }
+
+    this.results!.subscribe( response => {
+      if ( response.data.length == 0 ) this.notFoundMsg = 'No results found... Please try other criteria';
+      this.notFoundResults = response.data.length == 0 ? true : false;
+      this.paginatorOptions.length = response.meta.total_count;
+      this.paginatorOptions.pageIndex = response.meta.current_page;
+      this.paginatorOptions.pageSize = response.meta.per_page;
+    })
+
+  }
+
+  resetSuggestions() {
+    this.suggestedHomeTeamList = of([]);
+    this.suggestedVisitorTeamList = of([]);
+    console.warn('called resetSuggestions()');
+    console.log('this.homeTeamName', this.homeTeamName);
+    console.log('this.visitorTeamName', this.visitorTeamName);
+    console.log('this.searchParameters', this.searchParameters);
   }
   
   resetPrevSearch() {
-    this.btnClicked = false;
     this.notFoundMsg = '';
+    console.warn('called resetPrevSearch()');
+    console.log('this.homeTeamName', this.homeTeamName);
+    console.log('this.visitorTeamName', this.visitorTeamName);
+    console.log('this.searchParameters', this.searchParameters);
   }
 
   resetFilters() {
     this.season = '';
-    this.homeTeam = '';
-    this.visitorTeam = '';
+    this.homeTeamName = '';
+    this.visitorTeamName = '';
     this.results = null;
+    this.searchParameters = null;
     this.resetPrevSearch();
+    console.warn('called resetFilters()');
+    console.log('this.homeTeamName', this.homeTeamName);
+    console.log('this.visitorTeamName', this.visitorTeamName);
+    console.log('this.searchParameters', this.searchParameters);
   }
 
 }

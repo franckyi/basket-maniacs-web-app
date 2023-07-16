@@ -1,1 +1,13 @@
+@import '../../../../sass/colors';
 
+.search__selection-list {
+    list-style-type: none;
+    li {
+        background: white;
+        cursor: pointer;
+        padding: 10px 5px;
+        &:hover {
+            background: $color-accent;
+        }
+    }
+}
