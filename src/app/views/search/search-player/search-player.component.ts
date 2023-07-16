@@ -85,7 +85,6 @@ export class SearchPlayerComponent implements OnInit {
   page: number = 1;
   searchParameters!: PlayerInputValues | null;
   missingInputs?: boolean;
-  // snackBarRef = this._snackBar.open('Missing player name');
 
   paginatorOptions: PaginatorInterface = {
     length: 0,

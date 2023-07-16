@@ -4,6 +4,8 @@ import { Team } from 'src/app/API/Team';
 import { ApiService } from 'src/app/API/api.service';
 import { GamesResponse } from 'src/app/API/games-response';
 import { GameInputValues } from 'src/app/types/search-game-inputs';
+import { PaginatorInterface } from 'src/app/types/paginator-interface';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-search-game',
@@ -96,7 +98,17 @@ import { GameInputValues } from 'src/app/types/search-game-inputs';
         </mat-card-content>
       </mat-card>
 
-      <app-paginator></app-paginator>
+      <mat-paginator #paginator
+        *ngIf="!notFoundResults"
+        (page)="handlePageEvent($event)"
+        [length]="this.paginatorOptions.length"
+        [pageSize]="this.paginatorOptions.pageSize"
+        [showFirstLastButtons]="true"
+        [pageSizeOptions]="this.paginatorOptions.pageSizeOptions"
+        [pageIndex]="this.paginatorOptions.pageIndex"
+        aria-label="Select page"
+        class="paginator" >
+      </mat-paginator>
 
     </div>
   `,
@@ -105,6 +117,7 @@ import { GameInputValues } from 'src/app/types/search-game-inputs';
 export class SearchGameComponent implements OnInit {
 
   results?: Observable<GamesResponse> | null;
+  notFoundResults?: boolean;
   season: string = '';
   homeTeamName: string = '';
   visitorTeamName: string = '';
@@ -116,10 +129,26 @@ export class SearchGameComponent implements OnInit {
   suggestedHomeTeamList?: Observable<Team[]>;
   suggestedVisitorTeamList?: Observable<Team[]>;
   searchParameters!: GameInputValues | null;
+  pageEvent!: PageEvent;
 
   constructor(private api: ApiService) {}
 
   ngOnInit() {}
+
+  paginatorOptions: PaginatorInterface = {
+    length: 0,
+    pageSize: 10,
+    pageIndex: 0,
+    pageSizeOptions: [5, 10, 20]
+  }
+  
+  handlePageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.paginatorOptions.pageSize = e.pageSize;
+    this.paginatorOptions.pageIndex = e.pageIndex;
+    console.log('this.paginatorOptions', this.paginatorOptions);
+    this.searchGame()
+  }
 
   resetBtnClicked() {
     this.btnClicked = false;
@@ -164,9 +193,8 @@ export class SearchGameComponent implements OnInit {
   }
   
   searchGame() {
-
+    
     this.btnClicked = true;
-
     this.searchParameters = {
       homeTeamId: this.homeTeamId,
       visitorTeamId: this.visitorTeamId,
@@ -180,15 +208,17 @@ export class SearchGameComponent implements OnInit {
 
     if ( this.searchParameters.season.length === 4 ) {
       this.resetPrevSearch();
-
       if (this.homeTeamName === '') this.searchParameters.homeTeamId = undefined;
       if (this.visitorTeamName === '') this.searchParameters.visitorTeamId = undefined;
-
       this.results = this.api.searchGame( this.searchParameters );
     }
 
     this.results!.subscribe( response => {
       if ( response.data.length == 0 ) this.notFoundMsg = 'No results found... Please try other criteria';
+      this.notFoundResults = response.data.length == 0 ? true : false;
+      this.paginatorOptions.length = response.meta.total_count;
+      this.paginatorOptions.pageIndex = response.meta.current_page;
+      this.paginatorOptions.pageSize = response.meta.per_page;
     })
 
   }
@@ -203,7 +233,6 @@ export class SearchGameComponent implements OnInit {
   }
   
   resetPrevSearch() {
-    // this.btnClicked = false;
     this.notFoundMsg = '';
     console.warn('called resetPrevSearch()');
     console.log('this.homeTeamName', this.homeTeamName);
