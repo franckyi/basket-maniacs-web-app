@@ -34,8 +34,6 @@ import { Team } from 'src/app/API/Team';
         </mat-card-content>
       </mat-card>
 
-      <app-paginator></app-paginator>
-
     </div>
   `,
   styleUrls: ['./search-team.component.scss']

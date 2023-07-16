@@ -29,27 +29,29 @@ import { SearchNewsInputs } from 'src/app/types/search-news-inputs';
       
     </ng-template>
 
-    <mat-form-field>
-      <mat-label for="player">Player</mat-label>
-      <input
-        matInput id="player"
-        placeholder="First or last name"
-        (input)="getNews()"
-        [(ngModel)]="searchParameters.player"
-        (keydown.enter)="searchParameters!.player"
-      >
-    </mat-form-field>
+    <div>
+      <mat-form-field>
+        <mat-label for="player">Player</mat-label>
+        <input
+          matInput id="player"
+          placeholder="First or last name"
+          (input)="getNews()"
+          [(ngModel)]="searchParameters.player"
+          (keydown.enter)="searchParameters!.player"
+        >
+      </mat-form-field>
 
-    <mat-form-field>
-      <mat-label for="team">Team</mat-label>
-      <input
-        matInput id="team"
-        placeholder="Enter a team name"
-        (input)="getNews()"
-        [(ngModel)]="searchParameters.team"
-        (keydown.enter)="searchParameters!.team"
-      >
-    </mat-form-field>
+      <mat-form-field>
+        <mat-label for="team">Team</mat-label>
+        <input
+          matInput id="team"
+          placeholder="Enter a team name"
+          (input)="getNews()"
+          [(ngModel)]="searchParameters.team"
+          (keydown.enter)="searchParameters!.team"
+        >
+      </mat-form-field>
+    </div>
 
     <mat-list class="results__list">
       <a [href]="item.url" *ngFor="let item of (newsList | async) | slice:0:perPage" target="_blank" rel="nofollow">

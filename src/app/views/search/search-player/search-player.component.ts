@@ -60,7 +60,7 @@ import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
       </mat-card>
 
       <mat-paginator #paginator
-        *ngIf="!notFoundResults"
+        *ngIf="!notFoundResults && results"
         (page)="handlePageEvent($event)"
         [length]="this.paginatorOptions.length"
         [pageSize]="this.paginatorOptions.pageSize"
