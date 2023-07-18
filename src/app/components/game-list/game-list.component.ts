@@ -30,6 +30,7 @@ export class GameListComponent {
 
   refreshData(data: Game[]) {
     this.data = data;
+    this.loading = false;
   }
 
 }
