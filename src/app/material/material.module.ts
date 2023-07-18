@@ -24,7 +24,7 @@ import {MatListModule} from '@angular/material/list';
     MatInputModule,
     MatTableModule,
     MatPaginatorModule,
-    MatListModule
+    MatListModule,
   ]
 })
 export class MaterialModule { }

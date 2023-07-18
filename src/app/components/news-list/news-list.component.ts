@@ -19,10 +19,10 @@ import { SearchNewsInputs } from 'src/app/types/search-news-inputs';
         {{source}}
       </mat-radio-button>
     </mat-radio-group>
-    <div>Your currently viewing news from <strong style="text-transform: capitalize">{{selectedSource}}</strong></div>
+    <div *ngIf="selectedSource">You're currently viewing news from <strong style="text-transform: capitalize">{{selectedSource}}</strong></div>
 
     <div>
-      <mat-form-field>
+      <mat-form-field class="news__input">
         <mat-label for="player">Player</mat-label>
         <input
           matInput id="player"
@@ -33,7 +33,7 @@ import { SearchNewsInputs } from 'src/app/types/search-news-inputs';
         >
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="news__input">
         <mat-label for="team">Team</mat-label>
         <input
           matInput id="team"

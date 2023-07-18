@@ -7,7 +7,7 @@
 }
 
 .mat-badge.mat-badge {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     text-align: left;
     transition: all .25s;
 }
@@ -41,5 +41,14 @@ mat-list-item.results__item {
     }
     @media screen and (min-width: 576px) {
         background-size: 470%;
+    }
+}
+
+.news {
+    &__input {
+        width: 40%;
+        & + .mat-form-field {
+            margin-left: 20px;
+        }
     }
 }

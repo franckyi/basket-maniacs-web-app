@@ -57,7 +57,7 @@ import { SpinnerComponent } from './components/common/spinner/spinner.component'
     PaginatorComponent,
     NewsListComponent,
     LogoComponent,
-    SpinnerComponent
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

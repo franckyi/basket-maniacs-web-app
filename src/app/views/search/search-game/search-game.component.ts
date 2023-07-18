@@ -10,7 +10,7 @@ import { PageEvent } from '@angular/material/paginator';
 @Component({
   selector: 'app-search-game',
   template: `
-    <!-- <div class="search"> -->
+    <div class="search">
       <div class="d-flex search__inputs">
 
         <mat-form-field class="search__input">
@@ -102,7 +102,7 @@ import { PageEvent } from '@angular/material/paginator';
           </mat-card-content>
         </mat-card>
         
-      <ng-template>
+      </ng-template>
 
       <mat-paginator #paginator
         *ngIf="!notFoundResults && results"
@@ -116,7 +116,9 @@ import { PageEvent } from '@angular/material/paginator';
         class="paginator" >
       </mat-paginator>
 
-    <!-- </div> -->
+    </div>
+
+    <app-footer></app-footer>
   `,
   styleUrls: ['./search-game.component.scss']
 })
