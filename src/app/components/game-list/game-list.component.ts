@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Game } from 'src/app/API/Game';
 
 @Component({
   selector: 'app-game-list',
@@ -22,14 +23,13 @@ import { Component } from '@angular/core';
 })
 export class GameListComponent {
 
-  data?: any[];
+  data: Game[] = [];
   loading: boolean = true;
 
   constructor() { }
 
-  refreshData(data: any[]) {
+  refreshData(data: Game[]) {
     this.data = data;
-    this.loading = false;
   }
 
 }
