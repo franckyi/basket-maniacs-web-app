@@ -21,18 +21,24 @@ import { Team } from 'src/app/API/Team';
 
       <div class="d-flex buttons">
         <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
-        <button (click)="search(teamName)" [style.margin-left.px]="10" mat-flat-button color="accent">Search</button>
+        <button (click)="search(teamName); loading = true" [style.margin-left.px]="10" mat-flat-button color="accent">Search</button>
       </div>
 
       <p *ngIf="notFoundMsg !== '' && teamName !== '' ">{{ notFoundMsg }}</p>
 
-      <mat-card *ngIf="results !== null && teamName !== '' " class="search-results">
-        <mat-card-content>
-          <ul class="results__list">
-            <app-team-list-item *ngFor="let result of (results | async)" [team]="result"></app-team-list-item>
-          </ul>
-        </mat-card-content>
-      </mat-card>
+      <app-spinner *ngIf="loading; else contentBlock"></app-spinner>
+
+      <ng-template #contentBlock>
+        
+        <mat-card *ngIf="results !== null && teamName !== '' " class="search-results">
+          <mat-card-content>
+            <ul class="results__list">
+              <app-team-list-item *ngFor="let result of (results | async)" [team]="result"></app-team-list-item>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+        
+      </ng-template>
 
     </div>
   `,
@@ -43,6 +49,7 @@ export class SearchTeamComponent implements OnInit {
   results?: Observable<Team[]>;
   teamName: string = '';
   notFoundMsg: string = '';
+  loading: boolean = false;
 
   constructor(private api: ApiService) {}
 
@@ -52,7 +59,13 @@ export class SearchTeamComponent implements OnInit {
 
   search(name: string) {
     this.results = this.api.searchTeam(name);
+    this.results?.subscribe(
+      response => {
+        if (response) this.loading = false;
+      }
+    )
   }
+
 
   emptyNotFoundMsg() {
     this.notFoundMsg = '';

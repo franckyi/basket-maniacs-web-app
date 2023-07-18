@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ApiService } from 'src/app/API/api.service';
 import { PaginatorInterface } from 'src/app/types/paginator-interface';

@@ -30,6 +30,7 @@ import { HeaderComponent } from './components/common/header/header.component';
 import { PaginatorComponent } from './components/common/paginator/paginator.component';
 import { NewsListComponent } from './components/news-list/news-list.component';
 import { LogoComponent } from './components/common/logo/logo.component';
+import { SpinnerComponent } from './components/common/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { LogoComponent } from './components/common/logo/logo.component';
     HeaderComponent,
     PaginatorComponent,
     NewsListComponent,
-    LogoComponent
+    LogoComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

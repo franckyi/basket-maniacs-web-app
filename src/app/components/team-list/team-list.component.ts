@@ -6,25 +6,37 @@ import {TeamsResponse} from "../../API/teams-response";
 @Component({
   selector: 'app-team-list',
   template: `
-    <mat-card class="card--rounded latest-scores results">
-      <mat-card-content>
-        <ul class="results__list">
-          <app-team-list-item *ngFor="let team of (TeamListItem | async)?.data" [team]="team"></app-team-list-item>
-        </ul>
-      </mat-card-content>
-    </mat-card>
+    <app-spinner *ngIf="loading; else contentBlock"></app-spinner>
+
+    <ng-template #contentBlock>
+      <mat-card class="card--rounded latest-scores results">
+        <mat-card-content>
+          <ul class="results__list">
+            <app-team-list-item *ngFor="let team of (TeamListItem | async)?.data" [team]="team"></app-team-list-item>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+    <ng-template>
   `,
   styleUrls: ['./team-list.component.scss']
 })
 export class TeamListComponent implements OnInit {
 
-  TeamListItem: Observable<TeamsResponse>;
+  loading: boolean = true;
+
+  TeamListItem?: Observable<TeamsResponse>;
 
   constructor(private api: ApiService) {
-    this.TeamListItem = api.getTeams();
+    
    }
 
   ngOnInit(): void {
+    this.TeamListItem = this.api.getTeams();
+    this.TeamListItem.subscribe(
+      response => {
+        if ( response ) this.loading = false;
+      }
+    );
   }
 
 }

@@ -12,6 +12,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   template: `
     <div class="search">
       <div class="d-flex search__inputs">
+
         <mat-form-field>
           <mat-label for="name">Player name</mat-label>
           <input
@@ -21,6 +22,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
             (keydown.enter)="searchParameters!.playerName = playerName"
           >
         </mat-form-field>
+
         <mat-form-field>
           <mat-label for="team">Team name</mat-label>
           <input
@@ -29,6 +31,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
             (keydown.enter)="searchParameters!.teamName = teamName"
           >
         </mat-form-field>
+
       </div>
       
       <div class="d-flex buttons">
@@ -38,9 +41,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
       
       <p *ngIf="notFoundResults">No results found... Please try other criteria</p>
 
-      <div class="spinner-container" *ngIf="loading; else contentBlock">
-        <mat-spinner></mat-spinner>
-      </div>
+      <app-spinner *ngIf="loading; else contentBlock"></app-spinner>
 
       <ng-template #contentBlock>
         <mat-card
@@ -124,13 +125,11 @@ export class SearchPlayerComponent implements OnInit {
 
   searchPlayer() {
 
-    
+    this.loading = true;
 
     if ( this.playerName !== '' ) {
 
-      this.loading = true;
       this.missingInputs = false;
-
       this.searchParameters = {
         playerName: this.playerName,
         teamName: this.teamName
@@ -141,8 +140,9 @@ export class SearchPlayerComponent implements OnInit {
       this.results = this.api.searchPlayer(this.searchParameters, this.paginatorOptions);
       
       console.log('this.results', this.results)
-  
+
       this.results?.subscribe( response => {
+        if (response) this.loading = false;
         this.notFoundResults = response.data.length == 0 ? true : false;
         this.paginatorOptions.length = response.meta.total_count;
         this.paginatorOptions.pageIndex = response.meta.current_page;
@@ -152,8 +152,6 @@ export class SearchPlayerComponent implements OnInit {
     }
 
     else this.openSnackBar('Missing player name', 'OK');
-
-    this.loading = false;
 
   }
   
