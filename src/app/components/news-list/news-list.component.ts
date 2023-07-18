@@ -94,7 +94,6 @@ export class NewsListComponent implements OnInit {
 
   getNews() {
     this.loading = true;
-    console.log('this.searchParameters', this.searchParameters);
     this.newsList = this.api.getNews(this.searchParameters.source?? 'nba', this.searchParameters.player, this.searchParameters.team);
     this.newsList.subscribe( response => {
       if (response) this.loading = false;

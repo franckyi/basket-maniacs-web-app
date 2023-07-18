@@ -63,9 +63,6 @@ export class ApiService {
     player = player === '' ? '' : `&player=${player}`;
     team   = team === ''   ? '' : `&team=${team}`;
 
-    console.log('player', player);
-    console.log('team', team);
-
     return this.httpClient.get<News[]>(`${this.NEWS_URL}?source=${source}${player}${team}`, {
       headers: {
         'X-RapidAPI-Key': this.NEWS_KEY,
@@ -78,8 +75,6 @@ export class ApiService {
   getGames$(season: string, perPage: number = 100) {
 
     let query: string | null = `seasons[]=${season}`;
-
-    console.log('requesting URL: ', `${this.BASE_URL}/games?page=1&per_page=${perPage}&${query}`);
 
     return this.httpClient.get<GamesResponse>(
       `${this.BASE_URL}/games?page=1&per_page=${perPage}&${query}`,
@@ -125,8 +120,6 @@ export class ApiService {
 
   searchTeam(teamName: string) {
 
-    console.log('called searchTeam() with value', teamName)
-
     return this.httpClient.get<TeamsResponse>(`${this.BASE_URL}/teams?per_page=100`, {
       headers: {
         'X-RapidAPI-Key': this.KEY
@@ -143,8 +136,6 @@ export class ApiService {
 
   searchGame( searchParameters: GameInputValues ) {
 
-    console.log('searchParameters:', searchParameters)
-
     let query: string = `${this.BASE_URL}/games?page=1&per_page=100&seasons[]=${searchParameters.season}`;
 
     if ( typeof searchParameters.homeTeamId !== 'undefined' ) {
@@ -155,8 +146,6 @@ export class ApiService {
       query = query.concat( '&team_ids[]=' + searchParameters.visitorTeamId.toString() );
     }
 
-    console.log('query:', query)
-
     return this.httpClient.get<GamesResponse>(
       query,
       { headers: { 'X-RapidAPI-Key': this.KEY } }
@@ -165,21 +154,18 @@ export class ApiService {
       map( response => {
 
         if ( typeof searchParameters.homeTeamId !== 'undefined' && typeof searchParameters.visitorTeamId === 'undefined' ) {
-          console.log('only home is valid');
           return {
             ...response,
             data: response.data.filter( game => game.home_team.id === searchParameters.homeTeamId)
           }
         }
         else if ( typeof searchParameters.homeTeamId === 'undefined' && typeof searchParameters.visitorTeamId !== 'undefined' ) {
-          console.log('only visitor is valid');
           return {
             ...response,
             data: response.data.filter( game => game.visitor_team.id === searchParameters.visitorTeamId)
           }
         }
         else if ( typeof searchParameters.homeTeamId !== 'undefined' && typeof searchParameters.visitorTeamId !== 'undefined' ) {
-          console.log('both ids are valid');
           
           return {
             ...response,
@@ -190,8 +176,6 @@ export class ApiService {
           }
         }
         else {
-          console.log('only season is valid');
-
           return {
             ...response,
             data: response.data.filter( game => game.season.toString() === searchParameters.season )
@@ -223,9 +207,6 @@ export class ApiService {
   }
 
   searchPlayer(parameters: PlayerInputValues, paginatorOptions: PaginatorInterface) {
-
-    console.log('called searchPlayer()');
-    console.log('parameters', parameters);
 
     if ( parameters.playerName !== '' && parameters.teamName === '' ) {
       return this.httpClient.get<PlayersResponse>(

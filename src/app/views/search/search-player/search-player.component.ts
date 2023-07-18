@@ -119,7 +119,6 @@ export class SearchPlayerComponent implements OnInit {
     this.pageEvent = e;
     this.paginatorOptions.pageSize = e.pageSize;
     this.paginatorOptions.pageIndex = e.pageIndex;
-    console.log('this.paginatorOptions', this.paginatorOptions);
     this.searchPlayer()
   }
 
@@ -134,12 +133,8 @@ export class SearchPlayerComponent implements OnInit {
         playerName: this.playerName,
         teamName: this.teamName
       }
-      
-      console.log('this.searchParameters', this.searchParameters)
-  
+
       this.results = this.api.searchPlayer(this.searchParameters, this.paginatorOptions);
-      
-      console.log('this.results', this.results)
 
       this.results?.subscribe( response => {
         if (response) this.loading = false;
