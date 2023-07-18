@@ -3,8 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GamesViewComponent } from './games-view.component';
 
 describe('GameScoresComponent', () => {
-  let component: GameScoresComponent;
-  let fixture: ComponentFixture<GameScoresComponent>;
+  let component: GamesViewComponent;
+  let fixture: ComponentFixture<GamesViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
