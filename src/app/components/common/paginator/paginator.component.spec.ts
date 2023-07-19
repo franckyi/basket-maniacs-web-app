@@ -1,14 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PaginatorComponent } from './paginator.component';
+import { of } from 'rxjs';
+import { ApiService } from 'src/app/API/api.service';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-describe('PaginationComponent', () => {
+describe('PaginatorComponent', () => {
   let component: PaginatorComponent;
   let fixture: ComponentFixture<PaginatorComponent>;
 
   beforeEach(async () => {
+    const apiServiceSpy = jasmine.createSpyObj(['getAllGames']);
+    apiServiceSpy.getAllGames.and.returnValue(of([]));
+    
     await TestBed.configureTestingModule({
-      declarations: [ PaginatorComponent ]
+      declarations: [ PaginatorComponent ],
+      providers: [ {provide: ApiService, useValue: apiServiceSpy} ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
 

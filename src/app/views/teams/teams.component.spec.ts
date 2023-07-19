@@ -1,12 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TeamsComponent } from './teams.component';
+import { of } from 'rxjs';
 
 describe('TeamsComponent', () => {
   let component: TeamsComponent;
   let fixture: ComponentFixture<TeamsComponent>;
 
-  beforeEach(async () => {
+  beforeEach(async () => {    
     await TestBed.configureTestingModule({
       declarations: [ TeamsComponent ]
     })
