@@ -28,4 +28,12 @@ describe('NewsListComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('radio should default to "nba"', () => {
+    expect(component.selectedSource).toBe('nba');
+  });
+
+  it('should display news list', () => {
+    expect(component.newsList).toBeTruthy(); 
+  });
+
 });

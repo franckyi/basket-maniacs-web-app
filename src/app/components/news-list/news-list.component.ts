@@ -19,7 +19,7 @@ export class NewsListComponent implements OnInit {
     source: 'nba'
   };
   sources: string[] = [ 'nba-canada', 'nba', 'bleacher-report', 'espn', 'slam' ]
-  selectedSource?: string;
+  selectedSource?: string = 'nba';
   hidden = false;
   loading: boolean = true;
 
