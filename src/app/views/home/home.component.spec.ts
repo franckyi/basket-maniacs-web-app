@@ -13,6 +13,9 @@ describe('HomeComponent', () => {
     const apiServiceSpy = jasmine.createSpyObj(['getLastGames']);
     apiServiceSpy.getLastGames.and.returnValue(of([]));
     
+    const apiServiceSpy = jasmine.createSpyObj(['getLastGames']);
+    apiServiceSpy.getLastGames.and.returnValue(of([]));
+    
     await TestBed.configureTestingModule({
       declarations: [ HomeComponent ],
       providers: [ {provide: GamesService, useValue: apiServiceSpy} ],

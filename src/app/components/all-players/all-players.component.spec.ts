@@ -13,6 +13,9 @@ describe('AllPlayersComponent', () => {
     const apiServiceSpy = jasmine.createSpyObj(['getPlayers']);
     apiServiceSpy.getPlayers.and.returnValue(of([]));
 
+    const apiServiceSpy = jasmine.createSpyObj(['getPlayers']);
+    apiServiceSpy.getPlayers.and.returnValue(of([]));
+
     await TestBed.configureTestingModule({
       declarations: [ AllPlayersComponent ],
       providers: [ {provide: PlayersService, useValue: apiServiceSpy} ],

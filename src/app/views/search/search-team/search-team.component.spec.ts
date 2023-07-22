@@ -3,12 +3,17 @@ import { TeamsService } from 'src/app/services/teams.service';
 import { SearchTeamComponent } from './search-team.component';
 import { of } from 'rxjs';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { of } from 'rxjs';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('SearchTeamComponent', () => {
   let component: SearchTeamComponent;
   let fixture: ComponentFixture<SearchTeamComponent>;
 
   beforeEach(async () => {
+    const apiServiceSpy = jasmine.createSpyObj(['searchTeam']);
+    apiServiceSpy.searchTeam.and.returnValue(of([]));
+
     const apiServiceSpy = jasmine.createSpyObj(['searchTeam']);
     apiServiceSpy.searchTeam.and.returnValue(of([]));
 
@@ -27,5 +32,6 @@ describe('SearchTeamComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
   
 });
