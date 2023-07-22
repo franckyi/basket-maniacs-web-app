@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {ApiService} from "../../API/api.service";
-import {Observable} from "rxjs";
-import {TeamsResponse} from "../../API/teams-response";
+import { Observable } from "rxjs";
+import { TeamsResponse } from "../../types/teams-response";
+import { TeamsService } from 'src/app/services/teams.service';
 
 @Component({
   selector: 'app-team-list',
   template: `
     <app-spinner *ngIf="loading; else contentBlock"></app-spinner>
-
     <ng-template #contentBlock>
       <mat-card class="card--rounded latest-scores results">
         <mat-card-content>
@@ -23,20 +22,15 @@ import {TeamsResponse} from "../../API/teams-response";
 export class TeamListComponent implements OnInit {
 
   loading: boolean = true;
-
   TeamListItem?: Observable<TeamsResponse>;
 
-  constructor(private api: ApiService) {
-    
-   }
+  constructor(private teams: TeamsService) {}
 
   ngOnInit(): void {
-    this.TeamListItem = this.api.getTeams();
+    this.TeamListItem = this.teams.getTeams();
     this.TeamListItem.subscribe(
-      response => {
-        if ( response ) this.loading = false;
-      }
-    );
+      response => { if (response) this.loading = false }
+   );
   }
 
 }

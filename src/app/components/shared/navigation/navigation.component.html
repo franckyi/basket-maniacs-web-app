@@ -1,0 +1,46 @@
+<nav class="main-nav">
+
+    <a  [routerLink] = "['']"
+        [color]="currentRoute === '/'? accent : null"
+        mat-icon-button
+        class="main-nav__link"
+        aria-label="Go to Home">
+        <mat-icon>home</mat-icon>
+        <span class="main-nav__label">Home</span>
+    </a>
+
+    <a  [routerLink]= "['/search']"
+        [color]="currentRoute === '/search'? accent : null"
+        mat-icon-button
+        class="main-nav__link"
+        aria-label="Go to search page">
+        <mat-icon>search</mat-icon>
+        <span class="main-nav__label">Search</span>
+    </a>
+
+    <a  [routerLink]="['/news']"
+        [color]="currentRoute === '/news'? accent : null"
+        mat-icon-button
+        class="main-nav__link"
+        aria-label="Read News">
+        <mat-icon>newspaper</mat-icon>
+        <span class="main-nav__label">News</span>
+    </a>
+
+    <a  [routerLink] = "['/games']"
+        [color]="currentRoute === '/games'? accent : null"
+        mat-icon-button class="main-nav__link"
+        aria-label="Go to Scoreboard">
+        <mat-icon>sports_basketball</mat-icon>
+        <span class="main-nav__label">Scores</span>
+    </a>
+
+    <a  [routerLink] = "['/teams']"
+        [color]="currentRoute === '/teams'? accent : null"
+        mat-icon-button class="main-nav__link"
+        aria-label="Go to Teams page">
+        <mat-icon>groups</mat-icon>
+        <span class="main-nav__label">Teams</span>
+    </a>
+
+</nav>

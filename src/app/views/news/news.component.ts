@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-news',
@@ -9,16 +9,7 @@ import { Component, OnInit } from '@angular/core';
   `,
   styleUrls: ['./news.component.scss']
 })
-export class NewsComponent implements OnInit {
-
+export class NewsComponent {
   introText: string = 'Get the latest news from NBA and ESPN. Use the filters to chooose a different source';
-  
-  constructor() {
-    
-  }
-
-  ngOnInit(): void {
-
-  }
-
+  constructor() {}
 }

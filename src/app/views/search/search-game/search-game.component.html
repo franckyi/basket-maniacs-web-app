@@ -1,0 +1,104 @@
+<div class="search">
+    <div class="d-flex search__inputs">
+
+      <mat-form-field class="search__input">
+        <mat-label>Home team</mat-label>
+        <input
+          [(ngModel)]="homeTeamName"
+          (input)="fetchTeam('homeTeamName')"
+          (keydown.enter)="fetchTeam('homeTeamName')"
+          matInput placeholder="Team name"
+          type="string"
+        >
+        <ul
+          *ngIf="homeTeamName !== ''"
+          class="search__selection-list">
+          <li class="search__selection-item"
+            *ngFor="let item of (suggestedHomeTeamList | async)"
+            (click)="handleHomeSuggestionsClick(item)">
+            {{item.full_name}}
+          </li>
+        </ul>
+      </mat-form-field>
+      
+      <mat-form-field class="search__input">
+        <mat-label>Visitor team</mat-label>
+        <input
+          [(ngModel)]="visitorTeamName"
+          (input)="fetchTeam('visitorTeamName')"
+          (keydown.enter)="fetchTeam('visitorTeamName')"
+          matInput placeholder="Team name"
+          type="string">
+        <ul
+          *ngIf="visitorTeamName !== ''"
+          class="search__selection-list">
+          <li class="search__selection-item"
+            *ngFor="let item of (suggestedVisitorTeamList | async)"
+            (click)="handleVisitorSuggestionsClick(item)">
+            {{item.full_name}}
+          </li>
+        </ul>
+      </mat-form-field>
+
+    </div>
+
+    <mat-form-field class="search__input">
+      <mat-label>Season</mat-label>
+      <input
+        [(ngModel)]="season"
+        (input)="searchParameters = null;"
+        (keydown.enter)="fetchGame()"
+        matInput placeholder="YYYY" required="required"
+        type="string">
+    </mat-form-field>
+
+    <div class="d-flex buttons">
+
+      <button
+        (click)="resetFilters()"
+        mat-stroked-button
+        class="btn-reset"
+        color="basic"
+      >Reset</button>
+
+      <button
+        (click)="fetchGame()"
+        mat-flat-button
+        color="accent"
+        [style.margin-left.px]="10"
+      >Search</button>
+
+    </div>
+
+    <p *ngIf="notFoundMsg !== '' ">{{ notFoundMsg }}</p>
+
+    <app-spinner *ngIf="loading; else contentBlock"></app-spinner>
+
+    <ng-template #contentBlock>
+
+      <mat-card class="card--rounded latest-scores search-results"
+        *ngIf="btnClicked && results !== null && season !== '' ">
+        <mat-card-content class="results">
+            <div class="results__list">
+                <app-game-list-item *ngFor="let result of (results | async)?.data" [game]="result"></app-game-list-item>
+            </div>
+        </mat-card-content>
+      </mat-card>
+      
+    </ng-template>
+
+    <mat-paginator #paginator
+      *ngIf="!notFoundResults && results"
+      (page)="handlePageEvent($event)"
+      [length]="this.paginatorOptions.length"
+      [pageSize]="this.paginatorOptions.pageSize"
+      [showFirstLastButtons]="true"
+      [pageSizeOptions]="this.paginatorOptions.pageSizeOptions"
+      [pageIndex]="this.paginatorOptions.pageIndex"
+      aria-label="Select page"
+      class="paginator" >
+    </mat-paginator>
+
+  </div>
+
+<app-footer></app-footer>

@@ -7,9 +7,9 @@ import { Filter } from './filter';
 })
 export class ChangeFiltersService {
   private currentFilter$ = new BehaviorSubject(Filter.player); 
-  constructor() { }
+  constructor() {}
 
-  setFilter(filter: Filter) {
+  setFilter(filter: Filter): void {
     this.currentFilter$.next(filter);
   }
 

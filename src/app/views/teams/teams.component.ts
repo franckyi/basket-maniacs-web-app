@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-teams',
@@ -9,14 +9,10 @@ import { Component, OnInit } from '@angular/core';
   `,
   styleUrls: ['./teams.component.scss']
 })
-export class TeamsComponent implements OnInit {
-
+export class TeamsComponent {
   title: string = 'Teams';
   introText: string = 'A list of all NBA teams sorted in alphabetical order';
+
+  constructor() {}
   
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

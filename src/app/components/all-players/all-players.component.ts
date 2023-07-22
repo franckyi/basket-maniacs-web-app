@@ -1,22 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import {ApiService} from "../../API/api.service";
-import {Observable} from "rxjs";
-import {PlayersResponse} from "../../API/players-response";
+import { Component } from '@angular/core';
+import { Observable } from "rxjs";
+import { PlayersResponse } from "../../types/players-response";
+import { PlayersService } from 'src/app/services/players.service';
 
 @Component({
   selector: 'app-all-players',
   templateUrl: './all-players.component.html',
   styleUrls: ['./all-players.component.scss']
 })
-export class AllPlayersComponent implements OnInit {
+export class AllPlayersComponent {
 
   AllPlayersItems: Observable<PlayersResponse>;
 
-  constructor(private api: ApiService) {
-    this.AllPlayersItems = api.getPlayers('');
-   }
-
-  ngOnInit(): void {
+  constructor(private players: PlayersService) {
+    this.AllPlayersItems = players.getPlayers('');
   }
 
 }

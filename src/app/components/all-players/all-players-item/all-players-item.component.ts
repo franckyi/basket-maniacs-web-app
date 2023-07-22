@@ -1,16 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {Player} from "../../../API/Player";
+import { Component, Input } from '@angular/core';
+import { Player } from "../../../types/player";
 
 @Component({
   selector: 'app-all-players-item',
   templateUrl: './all-players-item.component.html',
   styleUrls: ['./all-players-item.component.scss']
 })
-export class AllPlayersItemComponent implements OnInit {
+export class AllPlayersItemComponent {
 
   @Input() player?: Player;
-  constructor() { }
-  ngOnInit(): void {
-  }
+  
+  constructor() {}
 
 }

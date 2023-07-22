@@ -1,71 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { ApiService } from 'src/app/API/api.service';
-import { Team } from 'src/app/API/Team';
+import { TeamsService } from 'src/app/services/teams.service';
+import { Team } from 'src/app/types/team';
 
 @Component({
   selector: 'app-search-team',
-  template: `
-    <div class="search">
-
-      <mat-form-field>
-        <mat-label>Team name</mat-label>
-        <input
-          matInput
-          [(ngModel)]="teamName"
-          (input)="emptyNotFoundMsg()"
-          required="required"
-          (keydown.enter)="search(teamName)"
-        >
-      </mat-form-field>
-
-      <div class="d-flex buttons">
-        <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
-        <button (click)="search(teamName); loading = true" [style.margin-left.px]="10" mat-flat-button color="accent">Search</button>
-      </div>
-
-      <p *ngIf="notFoundMsg !== '' && teamName !== '' ">{{ notFoundMsg }}</p>
-
-      <app-spinner *ngIf="loading; else contentBlock"></app-spinner>
-
-      <ng-template #contentBlock>
-        
-        <mat-card *ngIf="results !== null && teamName !== '' " class="search-results">
-          <mat-card-content>
-            <ul class="results__list">
-              <app-team-list-item *ngFor="let result of (results | async)" [team]="result"></app-team-list-item>
-            </ul>
-          </mat-card-content>
-        </mat-card>
-        
-      </ng-template>
-
-    </div>
-  `,
+  templateUrl: './search-team.component.html',
   styleUrls: ['./search-team.component.scss']
 })
-export class SearchTeamComponent implements OnInit {
+export class SearchTeamComponent {
 
   results?: Observable<Team[]>;
-  teamName: string = '';
+  teamName: string    = '';
   notFoundMsg: string = '';
-  loading: boolean = false;
+  loading: boolean    = false;
 
-  constructor(private api: ApiService) {}
-
-  ngOnInit() {
-    
-  }
+  constructor(private teams: TeamsService) {}
 
   search(name: string) {
-    this.results = this.api.searchTeam(name);
+    this.results = this.teams.searchTeam(name);
     this.results?.subscribe(
-      response => {
-        if (response) this.loading = false;
-      }
-    )
+      response => { if (response) this.loading = false }
+   )
   }
-
 
   emptyNotFoundMsg() {
     this.notFoundMsg = '';
@@ -73,7 +30,7 @@ export class SearchTeamComponent implements OnInit {
 
   resetFilters() {
     this.teamName = '';
-    this.results = of([]);
+    this.results  = of([]);
   }
   
 }

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiService } from 'src/app/API/api.service';
-import { GamesResponse } from 'src/app/API/games-response';
+import { GamesResponse } from 'src/app/types/games-response';
+import { GamesService } from 'src/app/services/games.service';
 
 @Component({
   selector: 'app-home',
@@ -13,27 +13,21 @@ import { GamesResponse } from 'src/app/API/games-response';
     <mat-list class="results__list">
       <app-game-list-item *ngFor="let game of (lastGames | async)?.data" [game]="game"></app-game-list-item>
     </mat-list>
-    <button [routerLink]="['/games']" mat-flat-button color="accent">All game results</button>
 
+    <button [routerLink]="['/games']" mat-flat-button color="accent">All game results</button>
     <app-footer></app-footer>
   `,
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-
-  title = 'NBA News';
+export class HomeComponent {
+  title: string = 'NBA News';
   introText: string = 'Check last NBA scores, stay update about teams and players';
   NewsPerPage: number = 3;
   panelOpenState: boolean = false;
-
   lastGames: Observable<GamesResponse>;
   
-  constructor(private api: ApiService) { 
-    this.lastGames = this.api.getLastGames();
-  }
-
-  ngOnInit(): void {
-    
+  constructor(private games : GamesService) { 
+    this.lastGames = this.games.getLastGames();
   }
 
 }

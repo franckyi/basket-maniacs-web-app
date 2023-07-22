@@ -1,4 +1,4 @@
-import { Meta } from "../API/meta";
+import { Meta } from "./meta";
 
 export interface Response {
     "data": any[];

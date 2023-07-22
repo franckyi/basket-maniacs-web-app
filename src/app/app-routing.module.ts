@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GamesViewComponent } from './views/games/games-view.component';
+import { GamesComponent } from './views/games/games.component';
 import { HomeComponent } from './views/home/home.component';
 import { SearchComponent } from './views/search/search.component';
 import { TeamsComponent } from './views/teams/teams.component';
@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'games',
-    component: GamesViewComponent
+    component: GamesComponent
   },
   {
     path: 'news',
@@ -33,4 +33,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -4,7 +4,7 @@
     Core mixins
 */
 
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 @include mat.core();
 // @include mat.strong-focus-indicators(); // improves accessibility but may annoy some users
 
@@ -13,32 +13,37 @@
 */
 
 $my-primary: mat.define-palette(mat.$deep-orange-palette, 900);
-$my-accent:  mat.define-palette(mat.$amber-palette, A200, A400, A700);
-$my-warn:    mat.define-palette(mat.$red-palette, 200); // optional, defaults to red if omitted
+$my-accent: mat.define-palette(mat.$amber-palette, A200, A400, A700);
+$my-warn: mat.define-palette(
+  mat.$red-palette,
+  200
+); // optional, defaults to red if omitted
 
 /*
     Define custom themes
 */
 
-$my-theme: mat.define-light-theme((
+$my-theme: mat.define-light-theme(
+  (
     color: (
-        primary: $my-primary,
-        accent: $my-accent,
-        warn: $my-warn
+      primary: $my-primary,
+      accent: $my-accent,
+      warn: $my-warn,
     ),
     typography: mat.define-typography-config(),
     density: -1,
-));
+  )
+);
 
 // $dark-theme: mat.define-dark-theme((
 //     color: (
 //         primary: $my-primary,
 //         accent: $my-accent,
 //         warn: $my-warn
-//     ),
+//    ),
 //     typography: mat.define-typography-config(),
 //     density: -1,
-// ));
+//));
 
 /*
     Apply the themes
@@ -69,14 +74,14 @@ $my-theme: mat.define-light-theme((
 
 // Apply the dark theme only when the user prefers dark themes
 // @media (prefers-color-scheme: dark) {
-    // Use the `-color` mixins to only apply color styles without reapplying the same
-    // typography and density styles.
-    // Include only used components below for better performance
-    // @include mat.core-color($dark-theme);
-    // @include mat.button-color($dark-theme);
-    // @include mat.badge-theme($dark-theme);
-    // Or uncomment below to use in all components (for large apps)
-    // @include mat.all-component-colors($dark-theme);
+// Use the `-color` mixins to only apply color styles without reapplying the same
+// typography and density styles.
+// Include only used components below for better performance
+// @include mat.core-color($dark-theme);
+// @include mat.button-color($dark-theme);
+// @include mat.badge-theme($dark-theme);
+// Or uncomment below to use in all components (for large apps)
+// @include mat.all-component-colors($dark-theme);
 // }
 
 /*
@@ -84,7 +89,6 @@ $my-theme: mat.define-light-theme((
 */
 // @include mat.strong-focus-indicators-theme($my-theme);
 // @include mat.strong-focus-indicators-theme($dark-theme);
-
 
 /*
     Define custom styles
