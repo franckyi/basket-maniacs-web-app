@@ -23,7 +23,6 @@ export class HomeComponent {
   title: string = 'NBA News';
   introText: string = 'Check last NBA scores, stay update about teams and players';
   NewsPerPage: number = 3;
-  panelOpenState: boolean = false;
   lastGames: Observable<GamesResponse>;
   
   constructor(private games : GamesService) { 

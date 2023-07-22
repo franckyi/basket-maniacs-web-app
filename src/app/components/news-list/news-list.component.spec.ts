@@ -33,7 +33,7 @@ describe('NewsListComponent', () => {
   });
 
   it('should display news list', () => {
-    expect(component.newsList).toBeTruthy(); 
+    expect(component.newsList).toBeTruthy();
   });
 
 });

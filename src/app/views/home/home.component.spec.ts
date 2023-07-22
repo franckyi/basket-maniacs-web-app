@@ -27,4 +27,17 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('home title should be "NBA News"', () => {
+    expect(component.title).toBe('NBA News');
+  });
+  
+  it('should display 3 news', () => {
+    expect(component.NewsPerPage).toBe(3);
+  });
+
+  it('should display game list', () => {
+    expect(component.lastGames).toBeTruthy();
+  });
+
 });
