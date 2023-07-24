@@ -3,13 +3,17 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-logo',
   template: `
-    <span *ngIf="title" class="app-logo-text">
-      <span class="app-icon">8</span> {{ title }}
-    </span>
+    <img
+      src="../../../../assets/img/bm-logo.svg"
+      class="app-logo"
+      [height]="logoHeight"
+      [width]="logoWidth"
+      alt="Basket Maniacs logo">
   `,
   styleUrls: ['./logo.component.scss']
 })
 export class LogoComponent {
-  @Input() title?: string;
+  @Input() logoWidth?: number;
+  @Input() logoHeight?: number;
   constructor() {}
 }

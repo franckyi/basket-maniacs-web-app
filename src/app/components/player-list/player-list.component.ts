@@ -4,16 +4,16 @@ import { PlayersResponse } from "../../types/players-response";
 import { PlayersService } from 'src/app/services/players.service';
 
 @Component({
-  selector: 'app-all-players',
-  templateUrl: './all-players.component.html',
-  styleUrls: ['./all-players.component.scss']
+  selector: 'app-player-list',
+  templateUrl: './player-list.component.html',
+  styleUrls: ['./player-list.component.scss']
 })
-export class AllPlayersComponent {
+export class PlayerListComponent {
 
-  AllPlayersItems: Observable<PlayersResponse>;
+  PlayerList: Observable<PlayersResponse>;
 
   constructor(private players: PlayersService) {
-    this.AllPlayersItems = players.getPlayers('');
+    this.PlayerList = players.getPlayers('');
   }
 
 }

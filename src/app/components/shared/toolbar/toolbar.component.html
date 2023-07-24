@@ -1,0 +1,36 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <!-- <span>Second Line</span>
+        <span class="spacer"></span> -->
+        <button [routerLink] = "['']"
+            [color]="currentRoute === '/'? accent : null"
+            mat-icon-button aria-label="icon-button with home icon">
+            <mat-icon>home</mat-icon>
+        </button>
+        <button [routerLink]= "['/search']"
+            [color]="currentRoute === '/search'? accent : null"
+            mat-icon-button aria-label="icon-button with search icon">
+            <mat-icon>search</mat-icon>
+        </button>
+        <button [routerLink]="['/news']"
+            [color]="currentRoute === '/news'? accent : null"
+            mat-icon-button aria-label="icon-button with newspaper icon">
+            <mat-icon>newspaper</mat-icon>
+        </button>
+        <button [routerLink] = "['/games']"
+            [color]="currentRoute === '/games'? accent : null"
+            mat-icon-button aria-label="icon-button with ball icon">
+            <mat-icon>sports_basketball</mat-icon>
+        </button>
+        <button [routerLink] = "['/teams']"
+            [color]="currentRoute === '/teams'? accent : null"
+            mat-icon-button aria-label="icon-button with groups icon">
+            <mat-icon>groups</mat-icon>
+        </button>
+        <button [routerLink] = "['/about']"
+            [color]="currentRoute === '/about'? accent : null"
+            mat-icon-button  aria-label="icon-button with info icon">
+            <mat-icon>info</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>

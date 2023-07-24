@@ -7,12 +7,10 @@ import { Filter } from './services/filter';
   selector: 'app-search',
   template: `
     <app-header [title]="title"></app-header>
-    <mat-card class="filters">
-      <app-search-filters [currentFilter]="currentFilter$"></app-search-filters>
-    </mat-card>
-    <app-search-player *ngIf="(currentFilter$ | async) == 'player'"></app-search-player>
-    <app-search-team  *ngIf="(currentFilter$ | async) == 'team'"></app-search-team>
-    <app-search-game  *ngIf="(currentFilter$ | async) == 'game'"></app-search-game>
+    <app-search-filters class="search__filters" [currentFilter]="currentFilter$"></app-search-filters>
+    <app-search-player class="search__form" *ngIf="(currentFilter$ | async) == 'player'"></app-search-player>
+    <app-search-team class="search__form"  *ngIf="(currentFilter$ | async) == 'team'"></app-search-team>
+    <app-search-game class="search__form"  *ngIf="(currentFilter$ | async) == 'game'"></app-search-game>
   `,
   styleUrls: ['./search.component.scss']
 })

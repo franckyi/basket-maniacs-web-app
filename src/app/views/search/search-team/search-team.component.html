@@ -1,32 +1,25 @@
-<div class="search">
+<mat-form-field>
+  <mat-label>Team name</mat-label>
+  <input
+    matInput required="required"
+    [(ngModel)]="teamName"
+    (input)="emptyNotFoundMsg()"
+    (keydown.enter)="search(teamName)">
+</mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Team name</mat-label>
-      <input
-        matInput
-        [(ngModel)]="teamName"
-        (input)="emptyNotFoundMsg()"
-        required="required"
-        (keydown.enter)="search(teamName)">
-    </mat-form-field>
+<button mat-stroked-button class="btn--shadow" color="basic" (click)="resetFilters()">Reset</button>
+<button (click)="search(teamName); loading=true" class="btn--primary" mat-flat-button color="primary">Search</button>
 
-    <div class="d-flex buttons">
-      <button mat-stroked-button class="btn-reset" color="basic" (click)="resetFilters()">Reset</button>
-      <button (click)="search(teamName); loading = true" [style.margin-left.px]="10" mat-flat-button color="accent">Search</button>
-    </div>
+<p *ngIf="notFoundMsg !== '' && teamName !== '' ">{{ notFoundMsg }}</p>
 
-    <p *ngIf="notFoundMsg !== '' && teamName !== '' ">{{ notFoundMsg }}</p>
+<app-spinner *ngIf="loading; else contentBlock"></app-spinner>
 
-    <app-spinner *ngIf="loading; else contentBlock"></app-spinner>
-    
-    <ng-template #contentBlock>
-      <mat-card *ngIf="results !== null && teamName !== '' " class="search-results">
-        <mat-card-content>
-          <ul class="results__list">
-            <app-team-list-item *ngFor="let result of (results | async)" [team]="result"></app-team-list-item>
-          </ul>
-        </mat-card-content>
-      </mat-card>
-    </ng-template>
-
-</div>
+<ng-template #contentBlock>
+  <mat-card *ngIf="results !== null && teamName !== '' " class="search-results">
+    <mat-card-content>
+      <ul class="results__list">
+        <app-team-list-item *ngFor="let result of (results | async)" [team]="result"></app-team-list-item>
+      </ul>
+    </mat-card-content>
+  </mat-card>
+</ng-template>

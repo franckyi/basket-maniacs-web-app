@@ -1,26 +1,14 @@
-<nav class="search-nav">
-    <div class="search-nav__filter">
+<div class="search__filter" [ngClass]="{'active': (currentFilter | async) === 'player'}">
+  <mat-icon (click)="activateFilterPlayer()"  class="search__icon" aria-hidden="false" aria-label="Search player" fontIcon="sports_handball"></mat-icon>
+  <span class="search__label">Players</span>
+</div>
 
-      <div class="search-nav__category" [ngClass]="{'active': (currentFilter | async) === 'player'}">
-        <a (click)="activateFilterPlayer()">
-          <mat-icon aria-hidden="false" aria-label="Search player" fontIcon="sports_handball"></mat-icon>
-        </a>
-        <span class="label">Players</span>
-      </div>
+<div class="search__filter" [ngClass]="{'active': (currentFilter | async) === 'team'}">
+  <mat-icon (click)="activateFilterTeam()"  class="search__icon" aria-hidden="false" aria-label="Search team" fontIcon="groups"></mat-icon>
+  <span class="search__label">Teams</span>
+</div>
 
-      <div class="search-nav__category" [ngClass]="{'active': (currentFilter | async) === 'team'}">
-        <a (click)="activateFilterTeam()">
-          <mat-icon aria-hidden="false" aria-label="Search team" fontIcon="groups"></mat-icon>
-        </a>
-        <span class="label">Teams</span>
-      </div>
-
-      <div class="search-nav__category" [ngClass]="{'active': (currentFilter | async) === 'game'}">
-        <a (click)="activateFilterGame()">
-          <mat-icon aria-hidden="false" aria-label="Search game" fontIcon="sports_basketball"></mat-icon>
-        </a>
-        <span class="label">Games</span>
-      </div>
-
-    </div>
-</nav>
+<div class="search__filter" [ngClass]="{'active': (currentFilter | async) === 'game'}">
+  <mat-icon (click)="activateFilterGame()"  class="search__icon" aria-hidden="false" aria-label="Search game" fontIcon="sports_basketball"></mat-icon>
+  <span class="search__label">Games</span>
+</div>

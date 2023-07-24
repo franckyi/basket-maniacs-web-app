@@ -4,12 +4,14 @@ import { Component } from '@angular/core';
   selector: 'app-news',
   template: `
     <app-header [introText]="introText"></app-header>
+    <h2>Latest news</h2>
     <app-news-list></app-news-list>
     <app-footer></app-footer>
   `,
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent {
-  introText: string = 'Get the latest news from NBA and ESPN. Use the filters to chooose a different source';
+  introText: string = `The latest news from a variety of online sources.
+    Use the filters to chooose your favorite provider`;
   constructor() {}
 }

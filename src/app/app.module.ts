@@ -16,19 +16,20 @@ import { NewsListComponent } from './components/news-list/news-list.component';
 import { GameListComponent } from './components/game-list/game-list.component';
 import { GameListItemComponent } from './components/game-list/game-list-item/game-list-item.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
-import { AllPlayersComponent } from './components/all-players/all-players.component';
-import { AllPlayersItemComponent } from './components/all-players/all-players-item/all-players-item.component';
+import { PlayerListComponent } from './components/player-list/player-list.component';
+import { PlayerListItemComponent } from './components/player-list/player-list-item/player-list-item.component';
 import { TeamListComponent } from './components/team-list/team-list.component';
 import { TeamListItemComponent } from './components/team-list/team-list-item/team-list-item.component';
 import { SearchFiltersComponent } from './views/search/search-filters/search-filters.component';
 import { SearchPlayerComponent } from './views/search/search-player/search-player.component';
 import { SearchTeamComponent } from './views/search/search-team/search-team.component';
 import { SearchGameComponent } from './views/search/search-game/search-game.component';
-import { NavigationComponent } from './components/shared/navigation/navigation.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { PaginatorComponent } from './components/shared/paginator/paginator.component';
 import { LogoComponent } from './components/shared/logo/logo.component';
 import { SpinnerComponent } from './components/shared/spinner/spinner.component';
+import { AboutComponent } from './views/about/about.component';
+import { ToolbarComponent } from './components/shared/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -40,8 +41,8 @@ import { SpinnerComponent } from './components/shared/spinner/spinner.component'
     SearchComponent,
     GamesComponent,
     FooterComponent,
-    AllPlayersComponent,
-    AllPlayersItemComponent,
+    PlayerListComponent,
+    PlayerListItemComponent,
     TeamListComponent,
     TeamListItemComponent,
     SearchFiltersComponent,
@@ -49,12 +50,13 @@ import { SpinnerComponent } from './components/shared/spinner/spinner.component'
     SearchTeamComponent,
     SearchGameComponent,
     NewsComponent,
-    NavigationComponent,
     HeaderComponent,
     PaginatorComponent,
     NewsListComponent,
     LogoComponent,
     SpinnerComponent,
+    AboutComponent,
+    ToolbarComponent,
   ],
   imports: [
     BrowserModule,

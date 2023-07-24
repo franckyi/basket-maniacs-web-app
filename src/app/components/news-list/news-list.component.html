@@ -1,40 +1,51 @@
-<h2 class="section-heading">Last news</h2>
+<mat-accordion color="accent">
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                        (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+        <mat-panel-description>
+            Show search filters
+        </mat-panel-description>
+        </mat-expansion-panel-header>
 
-<label id="radio-group-label">Pick a news provider</label>
+        <h3 id="radio-group-label">Select your news provider</h3>
+        <mat-radio-group
+            aria-labelledby="radio-group-label"
+            class="radio-group"
+            color="primary"
+            (change)="changeProvider($event)"
+            [(ngModel)]="selectedSource">
+            <mat-radio-button class="radio-button" *ngFor="let source of sources" [value]="source">
+            {{source}}
+            </mat-radio-button>
+        </mat-radio-group>
 
-<mat-radio-group
-    aria-labelledby="radio-group-label"
-    class="radio-group"
-    (change)="changeProvider($event)"
-    [(ngModel)]="selectedSource">
-    <mat-radio-button class="radio-button" *ngFor="let source of sources" [value]="source">
-    {{source}}
-    </mat-radio-button>
-</mat-radio-group>
+        <div>
+            <h3>Interested about a player or team?</h3>
+            <mat-form-field class="news__input">
+            <mat-label for="player">Player</mat-label>
+            <input
+                matInput id="player"
+                placeholder="First or last name"
+                (input)="getNews()"
+                [(ngModel)]="searchParameters.player"
+                (keydown.enter)="searchParameters!.player">
+            </mat-form-field>
 
-<div *ngIf="selectedSource">You're currently viewing news from <strong style="text-transform: capitalize">{{selectedSource}}</strong></div>
+            <mat-form-field class="news__input">
+            <mat-label for="team">Team</mat-label>
+            <input
+                matInput id="team"
+                placeholder="Enter a team name"
+                (input)="getNews()"
+                [(ngModel)]="searchParameters.team"
+                (keydown.enter)="searchParameters!.team">
+            </mat-form-field>
+        </div>
 
-<div>
-    <mat-form-field class="news__input">
-    <mat-label for="player">Player</mat-label>
-    <input
-        matInput id="player"
-        placeholder="First or last name"
-        (input)="getNews()"
-        [(ngModel)]="searchParameters.player"
-        (keydown.enter)="searchParameters!.player">
-    </mat-form-field>
+    </mat-expansion-panel>
+</mat-accordion>
 
-    <mat-form-field class="news__input">
-    <mat-label for="team">Team</mat-label>
-    <input
-        matInput id="team"
-        placeholder="Enter a team name"
-        (input)="getNews()"
-        [(ngModel)]="searchParameters.team"
-        (keydown.enter)="searchParameters!.team">
-    </mat-form-field>
-</div>
+<h3 *ngIf="selectedSource">Currently reading news from <strong style="text-transform: capitalize">{{selectedSource}}</strong></h3>
 
 <app-spinner *ngIf="loading; else contentBlock"></app-spinner>
 

@@ -5,38 +5,44 @@
 */
 
 // Sass imports
+@import 'sass/reset';
 @import 'sass/colors';
 @import 'sass/fonts';
 @import 'sass/typography';
 @import 'sass/lists';
-@import 'sass/reset';
-@import 'sass/lists';
-@import 'sass/ui';
 @import 'sass/buttons';
 
 /*******************/
 
-body {
-    margin: 0 auto;
-    app-latest-scores,
-    app-news-list {
-        text-align: center
-    }
+/* 
+    Shared UI
+*/
+
+.card--rounded {
+    border-radius: 25px;
+}
+
+.field-shape {
+    background: $color-primary;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 header {
     @extend .field-shape;
     text-align: center;
-    height: 10rem;
+    height: 7rem;
 }
 
-.logo {
-    margin-bottom: 2em;
-    height: 54px;
-}
-
-.card--rounded {
-    border-radius: 25px;
+p {
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 
 .other-info {
@@ -63,7 +69,6 @@ header {
         display: flex;
         align-items: center;
         gap: 5px;
-        width: -webkit-fill-available;
     }
     &__logo {
         height: 40px;
@@ -73,7 +78,7 @@ header {
     &__score {
         font-size: 21px;
         font-weight: 700;
-        color: $color-text;
+        color: $color-text--dark;
     }
     &__vs {
         margin-left: 5px;
@@ -104,29 +109,18 @@ header {
     }
 }
 
-.mat-card-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.search {
-    &__inputs {
-        gap: 5%;
-    }
-}
-
 .mat-form-field {
     width: 100%;
-    font-size: 1.8rem;
-}
-  
-.d-flex {
-    display: flex;
 }
 
 .mat-paginator {
     background: none;
+    margin: .5rem auto 3rem 20px;
+    .mat-icon {
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }
 
 .pagination {
@@ -138,8 +132,3 @@ header {
     }
 }
 
-.spinner-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}

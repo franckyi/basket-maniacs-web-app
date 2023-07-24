@@ -1,39 +1,17 @@
 @import '../../../../sass/colors';
-@import '../../../../sass/buttons';
-@import '../../../../sass/typography';
 
-.search-nav {
-    @include nba-gradient;
-    margin-top: -3em;
-    padding: 1rem;
-    text-align: center;
-    border-radius: 2.5rem;
-    h1 {
-        color: white;
-    }
+.search {
     &__filter {
-        display: flex;
-        justify-content: space-around;
-    }
-    &__category {
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
-        color: #e1c061;
+        color: $color-text--light;
         &.active {
-            color: #555;
-        }
-
-        .mat-icon {
-            height: 5rem;
-            width: 5rem;
-            &::before {
-                font-size: 5rem;
-            }
+            color: $color-primary;
         }
     }
-    .label {
-        position: relative;
-        bottom: 5px;
+    &__icon {
+        height: 5rem;
+        width: 5rem;
+        &::before {
+            font-size: 5rem;
+        }
     }
 }

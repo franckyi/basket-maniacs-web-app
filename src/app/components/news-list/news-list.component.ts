@@ -22,6 +22,7 @@ export class NewsListComponent implements OnInit {
   selectedSource?: string = 'nba';
   hidden = false;
   loading: boolean = true;
+  panelOpenState = false;
 
   constructor(private news: NewsService) {}
 

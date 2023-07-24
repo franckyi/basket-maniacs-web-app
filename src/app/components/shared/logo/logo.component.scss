@@ -1,6 +1,10 @@
 @import '../../../../sass/typography';
 @import '../../../../sass/colors';
 
+.app-logo {
+    margin-top: -3rem;
+}
+
 .app-logo-text {
     font-size: 4rem;
     font-family: $font-primary, sans-serif;

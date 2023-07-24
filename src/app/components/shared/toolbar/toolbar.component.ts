@@ -1,14 +1,16 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { Router, NavigationStart, Event as NavigationEvent } from '@angular/router';
+// import { ThemePalette } from '@angular/material/core';
 
 @Component({
-  selector: 'app-navigation',
-  templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss']
+  selector: 'app-toolbar',
+  templateUrl: './toolbar.component.html',
+  styleUrls: ['./toolbar.component.scss']
 })
+export class ToolbarComponent implements OnDestroy {
 
-export class NavigationComponent implements OnDestroy {
-
+  // @Input() color: ThemePalette;
+  
   currentRoute?: string;
   event$;
   accent: string = 'accent';

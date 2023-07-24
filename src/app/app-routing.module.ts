@@ -5,6 +5,7 @@ import { HomeComponent } from './views/home/home.component';
 import { SearchComponent } from './views/search/search.component';
 import { TeamsComponent } from './views/teams/teams.component';
 import { NewsComponent } from './views/news/news.component';
+import { AboutComponent } from './views/about/about.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'news',
     component: NewsComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
   }
 ];
 
