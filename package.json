@@ -1,6 +1,6 @@
 {
-  "name": "nba-news",
-  "version": "0.5",
+  "name": "basket-maniacs",
+  "version": "0.7",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
