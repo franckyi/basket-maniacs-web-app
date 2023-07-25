@@ -3,6 +3,9 @@
 .search {
     &__filter {
         color: $color-text--light;
+        &:hover {
+            cursor: pointer;
+        }
         &.active {
             color: $color-primary;
         }

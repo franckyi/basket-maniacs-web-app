@@ -8,8 +8,6 @@ import { Router, NavigationStart, Event as NavigationEvent } from '@angular/rout
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnDestroy {
-
-  // @Input() color: ThemePalette;
   
   currentRoute?: string;
   event$;

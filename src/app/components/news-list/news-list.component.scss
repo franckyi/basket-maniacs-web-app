@@ -13,7 +13,6 @@ h3 {
 }
 
 .mat-badge-content {
-    background: $color-primary;
     color: white;
     font-size: .9rem;
 }
@@ -35,24 +34,21 @@ h3 {
     margin: 5px;
 }
 
+.results__list.mat-list-base {
+	margin: 2rem 2rem 3rem 2rem;
+}
+
 mat-list-item.results__item {
     height: 7rem;
     color: $color-text--dark;
-    background: whitesmoke;
-    transition: all .25s;
+    background: #e5e1f2;
+    transition: all .5s;
+    font-size: 1.5rem;
     &:hover {
         background: white;
+        border: 2px #e5e1f2 solid;
         .mat-badge.mat-badge {
-            font-size: 1.8rem;
-        }
-    }
-}
-
-.news {
-    &__input {
-        width: 40%;
-        & + .mat-form-field {
-            margin-left: 20px;
+            font-size: 1.6rem;
         }
     }
 }

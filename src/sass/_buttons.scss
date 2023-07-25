@@ -1,13 +1,11 @@
 @import '../sass/typography';
 
-.btn {
-    &--shadow {
-        float: left;
-    }
+.btn--shadow {
+    float: left;
 }
+
+.btn--primary,
 button.mat-button-base {
-    display: block;
-    margin: 2rem auto;
     &:hover {
         background: $color-accent;
     }

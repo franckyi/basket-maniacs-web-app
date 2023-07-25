@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./games.component.scss']
 })
 export class GamesComponent {
-  introText: string = 'A list of the historical game results by date. Click on last page to show the most recent results';
+  introText: string = 'Jump to the end to get the latest results';
   pageSize: number = 10;
   
   constructor() {}

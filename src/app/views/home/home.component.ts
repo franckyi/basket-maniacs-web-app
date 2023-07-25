@@ -6,13 +6,13 @@ import { GamesService } from 'src/app/services/games.service';
 @Component({
   selector: 'app-home',
   template: `
-    <app-header></app-header>
+    <app-header [introText]="introText"></app-header>
     <app-logo [logoWidth]="70" [logoHeight]="70"></app-logo>
     <h2>Latest news</h2>
-    <app-news-list [perPage]="NewsPerPage"></app-news-list>
+    <app-news-list class="home" [perPage]="NewsPerPage"></app-news-list>
     <button [routerLink]="['/news']" mat-flat-button color="primary">More news</button>
     <h2>Latest game results</h2>
-    <mat-list class="results__list">
+    <mat-list class="results__list home">
       <app-game-list-item *ngFor="let game of (lastGames | async)?.data" [game]="game"></app-game-list-item>
     </mat-list>
 
@@ -23,7 +23,7 @@ import { GamesService } from 'src/app/services/games.service';
 })
 export class HomeComponent {
 
-  introText: string = 'Check last NBA scores, stay update about teams and players';
+  introText: string = 'Welcome back!';
   NewsPerPage: number = 3;
   lastGames: Observable<GamesResponse>;
   

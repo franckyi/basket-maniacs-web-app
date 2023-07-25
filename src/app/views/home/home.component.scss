@@ -1,3 +1,11 @@
 .mat-mdc-form-field + .mat-mdc-form-field {
     margin-left: 8px;
 }
+
+.results__list.home {
+    margin: 2rem;
+}
+
+.results__list + button {
+    margin-bottom: 10rem;
+}

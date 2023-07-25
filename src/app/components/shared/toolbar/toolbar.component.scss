@@ -1,4 +1,27 @@
 .mat-toolbar {
+    z-index: 9;
     position: fixed;
     bottom: 0;
+    max-width: 810px;
+    @media screen and (min-width: 992px) {
+        position: static;
+    }
+    &-row {
+        height: 70px;
+        justify-content: space-around;
+    }
+    .mat-button-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+    &__button.mat-icon-button {
+        line-height: 15px;
+    }
+    .mat-icon {
+        height: 28px;
+        width: 28px;
+    }
+    .material-icons {
+        font-size: 28px;
+    }
 }

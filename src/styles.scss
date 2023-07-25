@@ -29,93 +29,16 @@
 }
 
 .spinner-container {
+    margin: 5rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-header {
-    @extend .field-shape;
-    text-align: center;
-    height: 7rem;
-}
-
-p {
-    margin-left: 2rem;
-    margin-right: 2rem;
-}
-
-.other-info {
-    margin-bottom: 1em;
-    text-align: center;
-    color: $color-text--light;
-}
-
-.game {
-    &__main-info {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5%;
-        &__ball{
-            margin-right: 10%;
-        }
-        .teams {
-            margin-left: 5px;
-        }
-    }
-
-    &__team {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-    &__logo {
-        height: 40px;
-        margin-left: 10px;
-        padding: 5px 0;
-    }
-    &__score {
-        font-size: 21px;
-        font-weight: 700;
-        color: $color-text--dark;
-    }
-    &__vs {
-        margin-left: 5px;
-        margin-right: 5px;
-        font-size: 1.5rem;
-        font-weight: 700;
-    }
-
-    &__minor-info {
-        display: flex;
-        justify-content: center;
-        color: $color-text--light;
-        column-gap: 5px;
-    }
-}
-
-.team {
-    &__logo {
-        max-height: 40px;
-        max-width: 60px;
-    }
-}
-
-.player {
-    &__club-logo {
-        max-height: 40px;
-        max-width: 60px;
-    }
-}
-
-.mat-form-field {
-    width: 100%;
-}
-
 .mat-paginator {
     background: none;
     margin: .5rem auto 3rem 20px;
+    padding-bottom: 4rem;
     .mat-icon {
         &:hover {
             cursor: pointer;
@@ -132,3 +55,49 @@ p {
     }
 }
 
+/* 
+    Layout
+*/
+
+body {
+    max-width: 810px;
+    min-height: 100vh;
+    @media screen and (min-width: 810px) {
+        box-shadow: 0 0 70px rgba(45, 45, 45, 0.8);
+    }
+}
+
+header {
+    @extend .field-shape;
+    text-align: center;
+    height: 7rem;
+    color: $color-accent;
+}
+
+p {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+/* 
+    Other styles
+*/
+
+html {
+    @media screen and (min-width: 810px) {
+        background: #322262;
+        background: url(./assets/img/bg.jpg);
+        background-size: 110%;
+        background-position: center top;
+    }
+}
+
+.other-info {
+    margin-bottom: 1em;
+    text-align: center;
+    color: $color-text--light;
+}
+
+.mat-form-field {
+    width: 100%;
+}

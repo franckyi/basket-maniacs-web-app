@@ -6,7 +6,7 @@ import { Filter } from './services/filter';
 @Component({
   selector: 'app-search',
   template: `
-    <app-header [title]="title"></app-header>
+    <app-header [title]="title" [introText]="introText"></app-header>
     <app-search-filters class="search__filters" [currentFilter]="currentFilter$"></app-search-filters>
     <app-search-player class="search__form" *ngIf="(currentFilter$ | async) == 'player'"></app-search-player>
     <app-search-team class="search__form"  *ngIf="(currentFilter$ | async) == 'team'"></app-search-team>
@@ -15,7 +15,9 @@ import { Filter } from './services/filter';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+
   title = 'Search';
+  introText = 'Here you can search anything you want';
   currentFilter$: Observable <Filter>;   
 
   constructor(private filterService: ChangeFiltersService) {

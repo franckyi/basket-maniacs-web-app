@@ -1,36 +1,53 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
-        <!-- <span>Second Line</span>
-        <span class="spacer"></span> -->
+
         <button [routerLink] = "['']"
+            class="mat-toolbar__button"
             [color]="currentRoute === '/'? accent : null"
             mat-icon-button aria-label="icon-button with home icon">
             <mat-icon>home</mat-icon>
+            <div>Home</div>
         </button>
+
         <button [routerLink]= "['/search']"
+            class="mat-toolbar__button"
             [color]="currentRoute === '/search'? accent : null"
             mat-icon-button aria-label="icon-button with search icon">
             <mat-icon>search</mat-icon>
+            <div>Search</div>
         </button>
+
         <button [routerLink]="['/news']"
+            class="mat-toolbar__button"
             [color]="currentRoute === '/news'? accent : null"
             mat-icon-button aria-label="icon-button with newspaper icon">
             <mat-icon>newspaper</mat-icon>
+            <div>News</div>
         </button>
+
         <button [routerLink] = "['/games']"
+            class="mat-toolbar__button"
             [color]="currentRoute === '/games'? accent : null"
             mat-icon-button aria-label="icon-button with ball icon">
             <mat-icon>sports_basketball</mat-icon>
+            <div>Games</div>
         </button>
+
         <button [routerLink] = "['/teams']"
+            class="mat-toolbar__button"
             [color]="currentRoute === '/teams'? accent : null"
             mat-icon-button aria-label="icon-button with groups icon">
             <mat-icon>groups</mat-icon>
+            <div>Teams</div>
         </button>
+
         <button [routerLink] = "['/about']"
+            class="mat-toolbar__button"
             [color]="currentRoute === '/about'? accent : null"
             mat-icon-button  aria-label="icon-button with info icon">
             <mat-icon>info</mat-icon>
+            <div>Info</div>
         </button>
+
     </mat-toolbar-row>
 </mat-toolbar>

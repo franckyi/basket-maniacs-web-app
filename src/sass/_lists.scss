@@ -1,14 +1,17 @@
 @import '../sass/colors';
 
+.news-group {
+    .results__list.news {
+        padding-bottom: 7rem;
+    }
+}
+
 .results {
     &.mat-card {
         padding: 0;
     }
     &__list {
-        max-width: 350px;
         display: flex;
-        margin: 0 auto;
-        padding-left: 0;
         flex-direction: column;
         list-style: none;
         gap: 1rem;
@@ -17,18 +20,13 @@
             display: flex;
         }
     }
-    a {
-        &:hover {
-            background: #fafafa;
-            font-size: 1.8rem;
-        }
-    }
     &__item {
         padding: 1rem;
         font-size: 1.6rem;
         background: white;
-        border: 1px solid lightgrey;
+        color: $color-text--dark;
         border-radius: 10px;
+        text-transform: capitalize;
         &.team,
         &.player {
             display: flex;
@@ -43,4 +41,91 @@
 
 .mat-list.mat-list-base a {
     text-decoration: none;
+}
+
+.game {
+    &__main-info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5%;
+        &__ball{
+            margin-right: 10%;
+        }
+        .teams {
+            margin-left: 5px;
+        }
+    }
+    &__team {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    &__team-name {
+        color: $color-text--dark;
+    }
+    &__logo {
+        height: 40px;
+        margin-left: 10px;
+        padding: 5px 0;
+    }
+    &__score {
+        font-size: 21px;
+        font-weight: 700;
+        color: $color-text--dark;
+    }
+    &__vs {
+        margin-left: 5px;
+        margin-right: 5px;
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    &__minor-info {
+        display: flex;
+        justify-content: center;
+        color: $color-text--light;
+        column-gap: 5px;
+    }
+}
+
+.search__form {
+    .mat-card {
+        padding: 0;
+        margin-top: 2rem;
+    }
+}
+
+.team {
+    &__logo {
+        max-height: 40px;
+        max-width: 60px;
+    }
+}
+
+.player {
+    &__club-logo {
+        max-height: 40px;
+        max-width: 60px;
+    }
+}
+
+.search__selection-item {
+    list-style-type: none;
+    background: whitesmoke;
+    padding: 15px;
+    &:hover {
+        cursor: pointer;
+        background: $color-accent;
+    }
+}
+
+.home.results__list.news {
+    padding: 0;
+}
+
+.teams-group {
+    .results__list {
+        margin: 2rem 2rem 10rem 2rem;
+    }
 }

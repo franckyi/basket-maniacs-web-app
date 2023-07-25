@@ -50,10 +50,10 @@
 <app-spinner *ngIf="loading; else contentBlock"></app-spinner>
 
 <ng-template #contentBlock>
-    <mat-list class="results__list">
+    <mat-list class="results__list news">
     <a [href]="item.url" *ngFor="let item of (newsList | async) | slice:0:perPage" target="_blank" rel="nofollow">
         <mat-list-item class="results__item news">
-        <div matBadge="{{item.source}}" matBadgeColor="accent" matBadgeOverlap="false">{{ item.title }}</div>
+        <div matBadge="{{item.source}}" matBadgeColor="primary" matBadgeOverlap="false">{{ item.title }}</div>
         </mat-list-item>
     </a>
     </mat-list>
