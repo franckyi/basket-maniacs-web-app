@@ -7,7 +7,7 @@ import { Component, OnInit, VERSION } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  introText = 'Angular version ' + VERSION.full;
+  introText = 'Made with Angular version ' + VERSION.full;
 
   constructor() { }
 
