@@ -11,6 +11,11 @@ button.mat-button-base {
     }
 }
 
+button.mat-button-base {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
 .mat-paginator-range-actions {
     button.mat-paginator-navigation-previous,
     button.mat-paginator-navigation-next {
