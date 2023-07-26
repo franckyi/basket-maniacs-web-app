@@ -3,8 +3,8 @@
         <div class="game__team">
             <img
               class="game__logo"
-              src="../../assets/img/team-logos/{{ game?.home_team?.abbreviation }}.png"
-              [alt]="game?.home_team?.full_name + 'logo'">
+              src="./assets/img/team-logos/{{ game?.home_team?.abbreviation }}.png"
+              [alt]="game?.home_team?.full_name + ' logo'">
             <span class="game__team-name">{{ game?.home_team?.abbreviation }}
             </span>
             <span class="game__score">{{ game?.home_team_score }}</span>
@@ -14,8 +14,8 @@
             <span class="game__score">{{ game?.visitor_team_score }}</span>
             <img
               class="game__logo"
-              [src]="'../../assets/img/team-logos/' + game?.visitor_team?.abbreviation + '.png'"
-              [alt]="game?.visitor_team?.full_name + 'logo'">
+              [src]="'./assets/img/team-logos/' + game?.visitor_team?.abbreviation + '.png'"
+              [alt]="game?.visitor_team?.full_name + ' logo'">
             <span class="game__team-name">{{ game?.visitor_team?.abbreviation }}</span>
         </div>
     </div>

@@ -10,7 +10,7 @@ import {Team} from "../../../types/team";
       </span>
       <img
         class="team__logo"
-        src="../../assets/img/team-logos/{{ team?.abbreviation }}.png"
+        src="./assets/img/team-logos/{{ team?.abbreviation }}.png"
         [alt]="team?.full_name + ' logo'"
       >
     </li>

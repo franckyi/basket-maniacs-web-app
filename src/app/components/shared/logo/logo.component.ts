@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
   selector: 'app-logo',
   template: `
     <img
-      src="../../../../assets/img/bm-logo.svg"
+      src="./assets/img/bm-logo.svg"
       class="app-logo"
       [height]="logoHeight"
       [width]="logoWidth"
