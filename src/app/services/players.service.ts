@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { PaginatorInterface } from '../types/paginator-interface';
 import { PlayersResponse } from '../types/players-response';
 import { API } from './shared/api-variables';
+import { KEY } from './shared/keys';
 import { map } from 'rxjs';
 
 @Injectable({
@@ -18,14 +19,14 @@ export class PlayersService {
     if (parameters.playerName !== '' && parameters.teamName === '') {
       return this.httpClient.get<PlayersResponse>(
         `${API.BASE_URL}/players?page=${paginatorOptions.pageIndex}&per_page=${paginatorOptions.pageSize}&search=${parameters.playerName}`,
-        { headers: { 'X-RapidAPI-Key': API.KEY } }
+        { headers: { 'X-RapidAPI-Key': KEY } }
      )
     }
 
     else if (parameters.playerName !== '' && parameters.teamName !== '') {
       return this.httpClient.get<PlayersResponse>(
         `${API.BASE_URL}/players?page=${paginatorOptions.pageIndex}&per_page=${paginatorOptions.pageSize}&search=${parameters.playerName}`,
-        { headers: { 'X-RapidAPI-Key': API.KEY } }
+        { headers: { 'X-RapidAPI-Key': KEY } }
      )
       .pipe(
         map(response => {
@@ -42,7 +43,7 @@ export class PlayersService {
     else {
       return this.httpClient.get<PlayersResponse>(
         `${API.BASE_URL}/players?page=${paginatorOptions.pageIndex}&per_page=${paginatorOptions.pageSize}`,
-        { headers: { 'X-RapidAPI-Key': API.KEY } }
+        { headers: { 'X-RapidAPI-Key': KEY } }
      )
     }
   }
@@ -56,7 +57,7 @@ export class PlayersService {
 
     return this.httpClient.get<PlayersResponse>(`${API.BASE_URL}/players?page=${page}&${query}`, {
       headers: {
-        'X-RapidAPI-Key': API.KEY
+        'X-RapidAPI-Key': KEY
       }
     });
   }
