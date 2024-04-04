@@ -15,7 +15,7 @@ export class TeamsService {
     return this.httpClient
       .get<TeamsResponse>(`${API.BASE_URL}/teams?per_page=100`, {
         headers: {
-          'X-RapidAPI-Key': KEY,
+          Authorization: KEY,
         },
       })
       .pipe(
@@ -30,7 +30,7 @@ export class TeamsService {
   getTeams() {
     return this.httpClient.get<TeamsResponse>(`${API.BASE_URL}/teams`, {
       headers: {
-        'X-RapidAPI-Key': KEY,
+        Authorization: KEY,
       },
     });
   }

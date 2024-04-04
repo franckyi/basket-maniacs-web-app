@@ -29,7 +29,7 @@ export class GamesService {
     }
 
     return this.httpClient
-      .get<GamesResponse>(query, { headers: { 'X-RapidAPI-Key': KEY } })
+      .get<GamesResponse>(query, { headers: { Authorization: KEY } })
       .pipe(
         map((response) => {
           if (
@@ -86,7 +86,7 @@ export class GamesService {
         `${API.BASE_URL}/${typeOfData}?per_page=${paginatorOptions.pageSize}&page=${paginatorOptions.pageIndex}`,
         {
           headers: {
-            'X-RapidAPI-Key': KEY,
+            Authorization: KEY,
           },
         }
       )
@@ -109,7 +109,7 @@ export class GamesService {
     let query: string | null = `seasons[]=${season}`;
     return this.httpClient.get<GamesResponse>(
       `${API.BASE_URL}/games?page=1&per_page=${perPage}&${query}`,
-      { headers: { 'X-RapidAPI-Key': KEY } }
+      { headers: { Authorization: KEY } }
     );
   }
 
@@ -117,31 +117,34 @@ export class GamesService {
     return this.httpClient
       .get<GamesResponse>(`${API.BASE_URL}/games?per_page=10`, {
         headers: {
-          'X-RapidAPI-Key': KEY,
+          'Authorization': KEY,
         },
       })
-      .pipe(
-        switchMap((response) => {
-          return this.httpClient.get<GamesResponse>(
-            `${API.BASE_URL}/games?per_page=10&page=${response.meta.total_pages}`,
-            {
-              headers: {
-                'X-RapidAPI-Key': KEY,
-              },
-            }
-          );
-        }),
-        map((response) => {
-          return {
-            ...response,
-            data: response.data.sort((prev, next) => {
-              return (
-                new Date(next.date).getTime() - new Date(prev.date).getTime()
-              );
-            }),
-          };
-        }),
-        shareReplay()
-      );
+      // .pipe(
+      //   switchMap((response) => {
+      //     return this.httpClient.get<GamesResponse>(
+      //       // `${API.BASE_URL}/games?per_page=10&page=${response.meta.total_pages}`,
+      //       // `${API.BASE_URL}/games?per_page=10&cursor=1`,
+      //       // `${API.BASE_URL}/games?per_page=10`,
+      //       `${API.BASE_URL}/games`,
+      //       {
+      //         headers: {
+      //           'Authorization': KEY,
+      //         },
+      //       }
+      //     );
+      //   }),
+      //   map((response) => {
+      //     return {
+      //       ...response,
+      //       data: response.data.sort((prev, next) => {
+      //         return (
+      //           new Date(next.date).getTime() - new Date(prev.date).getTime()
+      //         );
+      //       }),
+      //     };
+      //   }),
+      //   shareReplay()
+      // );
   }
 }
